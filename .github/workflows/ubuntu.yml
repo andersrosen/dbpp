@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: docs
-          path: install/share/doc/template/html/*
+          path: install/share/doc/dbpp/html/*
 
   update-docs:
     name: Update docs

@@ -2,7 +2,6 @@ BasedOnStyle: Mozilla
 AccessModifierOffset: 0
 AlignAfterOpenBracket: false
 AlignEscapedNewlinesLeft: true
-AlwaysBreakAfterReturnType: TopLevel
 BreakBeforeBraces: Attach
 BreakConstructorInitializers: BeforeComma
 BreakInheritanceList: BeforeComma

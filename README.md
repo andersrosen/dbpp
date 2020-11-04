@@ -1,56 +1,63 @@
-# template-cmake-library
-A template for C++ libraries that are built with CMake. This was inspired by https://jappieklooster.nl/using-git-for-templates.html
+# dbpp
+A simple database client library for C++
+
+The purpose of dbpp is to provide an easy-to-use interface to SQL databases.
+It is currently under development and the interface is not stable. So far
+sqlite3 is the only supported database backend.
 
 ## Build status
-[![Ubuntu Actions Status](https://github.com/andersrosen/template-cmake-library/workflows/Ubuntu/badge.svg)](https://github.com/andersrosen/template-cmake-library/actions?query=workflow%3AUbuntu)
-[![MacOS Actions Status](https://github.com/andersrosen/template-cmake-library/workflows/MacOS/badge.svg)](https://github.com/andersrosen/template-cmake-library/actions?query=workflow%3AmacOS)
-[![Windows Actions Status](https://github.com/andersrosen/template-cmake-library/workflows/Windows/badge.svg)](https://github.com/andersrosen/template-cmake-library/actions?query=workflow%3AWindows)
+[![Ubuntu Actions Status](https://github.com/andersrosen/dbpp/workflows/Ubuntu/badge.svg)](https://github.com/andersrosen/dbpp/actions?query=workflow%3AUbuntu)
+[![MacOS Actions Status](https://github.com/andersrosen/dbpp/workflows/MacOS/badge.svg)](https://github.com/andersrosen/dbpp/actions?query=workflow%3AmacOS)
+[![Windows Actions Status](https://github.com/andersrosen/dbpp/workflows/Windows/badge.svg)](https://github.com/andersrosen/dbpp/actions?query=workflow%3AWindows)
 
 ## Reference documentation
 
-[Bleeding edge](https://andersrosen.github.io/template-cmake-library/docs/main/index.html) (generated from the latest commit to main)<br>
-[Version 1.0](https://andersrosen.github.io/template-cmake-library/docs/v1.0/index.html)
+[Bleeding edge](https://andersrosen.github.io/dbpp/docs/main/index.html) (generated from the latest commit to main)<br>
+[Version 1.0](https://andersrosen.github.io/dbpp/docs/v1.0/index.html)
 
 ## Usage
+```c++
+#include <dbpp/dbpp.h>
 
+...
+    
+// Set up the connection to the database
+auto db = Dbpp::Sqlite3::open(":memory:");
+
+// You can iterate over the results of a query
+for (auto&& row : db.prepare("SELECT * FROM persons WHERE age > ?", 18)) {
+    cout << "Name: " << row.get<std::string>("name")
+         << ", age: " << row.get<int>("age") << std::endl;
+}
+        
+// You can opt to execute a statement immediately, which is useful if it
+// doesn't produce a result.
+db.exec("DELETE FROM persons WHERE age < ?", 18);
+
+// If you only query for a single value, you can use the get() method:
+int numberOfAdults = db.get("SELECT COUNT(*) FROM persons WHERE age >= ?", 18);
 ```
-git clone --recurse-submodules git@github.com:andersrosen/template-cmake-library new-project
-cd new-project
-git remote add template git@github.com:andersrosen/template-cmake-library.git
-git remote set-url origin git@github.com:andersrosen/new-project.git
-```
+
+## Building and Installing
 
 The library template example is using Catch2 for unit testing. It is added as
 a git submodule.
 
-To configure the project, assuming you want to use new-project/build as
+To configure the project, assuming you want to use tmp/build as
 the build directory:
 ```
-cd new-project
-cmake -B build -DBUILD_SHARED_LIBS=ON ...other settings...
+cd dbpp
+cmake -B /tmp/build
 ```
 
 To build and test:
 ```
-cmake --build build
-(cd build && ctest) # Terse output
-(cd build && ctest --output-on-failure) # Shows output from tests that fail 
+cmake --build /tmp/build
+(cd /tmp/build && ctest) # Terse output
+(cd /tmp/build && ctest --output-on-failure) # Shows output from tests that fail 
 ```
 
 To install the project:
 ```
-cmake --build build --target install
+cmake --build /tmp/build --target install
 ```
-
-To create a source package:
-```
-(cd build && cpack --config CPackSourceConfig.cmake)
-```
-
-Documentation is generated using doxygen. There are two custom doxygen commands
-available, to include example files and optionally their output after executing
-them.
-
-The commands are `\includeexample` and `\includeexamplewithoutput`, and both are
-available in one and two argument versions. Take a look at the documentation
-comment in `template.h` and the definition of the commands in `docs/CMakeLists.txt`

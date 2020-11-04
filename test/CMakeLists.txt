@@ -1,10 +1,10 @@
-add_executable(test_template testrunner.cpp)
-target_sources(test_template
+add_executable(test_dbpp testrunner.cpp)
+target_sources(test_dbpp
     PRIVATE
-        test1.cpp
+    sqlite.cpp
 )
 
-target_link_libraries(test_template PRIVATE template::template Catch2::Catch2)
+target_link_libraries(test_dbpp PRIVATE dbpp::dbpp Catch2::Catch2)
 
 include(Catch)
-catch_discover_tests(test_template)
+catch_discover_tests(test_dbpp)

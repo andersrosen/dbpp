@@ -1,4 +1,4 @@
-// Copyright (C) 2020 Anders Rosén <panrosen@gmail.com>
+// Copyright (C) 2020 Anders Rosén (panrosen@gmail.com)
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -19,7 +19,7 @@
 
 #ifndef DECLSPEC
 #   if defined(__WIN32__) || defined(__WINRT__)
-#       ifdef BUILDING_TEMPLATE
+#       ifdef BUILDING_DBPP
 #           define DECLSPEC __declspec(dllexport)
 #       else
 #           define DECLSPEC __declspec(dllimport)
@@ -29,29 +29,11 @@
 #   endif
 #endif
 
-/// The version of the template library.
+/// The version of the dbpp library.
 /// Format: ABBCC Where A = Major, BB = Minor, CC = Revision
-#define TEMPLATE_VERSION 0x00102
+#define DBPP_VERSION 10000
 
-namespace arosen::Template {
-
-    /// \class MyVeryOwnClass template.h template/template.h
-    /// \brief This is just a silly little class just to have something in the template
-    ///
-    /// There could be a longer description here, and even an example:
-    /// \includeexamplewithoutput{example1.cpp}
-    class DECLSPEC MyVeryOwnClass
-    {
-        int a_ = 14;
-        int b_ = 48;
-
-    public:
-        MyVeryOwnClass() = default;
-        MyVeryOwnClass(int a, int b);
-
-        /// Returns the sum of the two integers this object contains
-        ///
-        /// \return The sum
-        int sum() const;
-    };
-}
+#include "dbpp/Connection.h"
+#include "dbpp/Statement.h"
+#include "dbpp/Result.h"
+#include "dbpp/Exception.h"

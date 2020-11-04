@@ -3,8 +3,8 @@ exec_prefix=${prefix}
 libdir=@CMAKE_INSTALL_FULL_LIBDIR@
 includedir=@CMAKE_INSTALL_FULL_INCLUDEDIR@
 
-Name: template
+Name: dbpp
 Description: A C++ example library from a project template
 Version: @PROJECT_VERSION@
-Libs: -L${libdir} -ltemplate -lsome_other_library
+Libs: -L${libdir} -ldbpp -lsome_other_library
 Cflags: -I${includedir}

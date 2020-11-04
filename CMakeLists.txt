@@ -7,77 +7,68 @@ if (NOT DEFINED PROJECT_NAME)
 endif()
 
 # Get version from the main header
-file(READ include/template/template.h template_h)
-if (NOT template_h MATCHES "TEMPLATE_VERSION 0x([0-9]+)([0-9][0-9])([0-9][0-9])")
-  message(FATAL_ERROR "Cannot get TEMPLATE_VERSION from template.h")
+file(READ include/dbpp/dbpp.h dbpp_h)
+if (NOT dbpp_h MATCHES "DBPP_VERSION ([0-9]+)([0-9][0-9])([0-9][0-9])")
+  message(FATAL_ERROR "Cannot get DBPP_VERSION from dbpp.h")
 endif ()
 # Use math to skip leading zeroes if any.
 math(EXPR CPACK_PACKAGE_VERSION_MAJOR ${CMAKE_MATCH_1})
 math(EXPR CPACK_PACKAGE_VERSION_MINOR ${CMAKE_MATCH_2})
 math(EXPR CPACK_PACKAGE_VERSION_PATCH ${CMAKE_MATCH_3})
 
-project(template VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}" LANGUAGES CXX)
+project(dbpp VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}" LANGUAGES CXX)
 message(STATUS "${PROJECT_NAME} version: ${PROJECT_VERSION}")
 
 include(GNUInstallDirs)
 
 # Settings
-set(TEMPLATE_PKGCONFIG_DIR "${CMAKE_INSTALL_DATADIR}/pkgconfig" CACHE PATH
+set(DBPP_PKGCONFIG_DIR "${CMAKE_INSTALL_DATADIR}/pkgconfig" CACHE PATH
     "Installation directory for pkgconfig (.pc) files.")
 set(CMAKE_BUILD_TYPE Release CACHE STRING
     "Choose the type of build, options are: None (CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel.")
-option(TEMPLATE_ENABLE_INSTALL "Generate install target" ${MASTER_PROJECT})
-option(TEMPLATE_ENABLE_TESTS "Build tests" ${MASTER_PROJECT})
-option(TEMPLATE_ENABLE_DOCS "Generate documentation using Doxygen" ${MASTER_PROJECT})
+option(DBPP_ENABLE_INSTALL "Generate install target" ${MASTER_PROJECT})
+option(DBPP_ENABLE_TESTS "Build tests" ${MASTER_PROJECT})
+option(DBPP_ENABLE_DOCS "Generate documentation using Doxygen" ${MASTER_PROJECT})
 
 # CMake script include path
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 # External Dependencies
 find_package(Doxygen)
-find_package(PkgConfig)
-if (PKG_CONFIG_FOUND)
-#    pkg_check_modules(libsomething libsomething IMPORTED_TARGET)
-endif()
+find_package(SQLite3 REQUIRED)
 add_subdirectory(thirdparty)
 
 # Target definition
 set(CMAKE_DEBUG_POSTFIX "-d")
 
-add_library(template)
-add_library(${PROJECT_NAME}::template ALIAS template)
+add_library(dbpp)
+add_library(${PROJECT_NAME}::dbpp ALIAS dbpp)
 
-target_compile_features(template PUBLIC cxx_std_17)
+target_compile_features(dbpp PUBLIC cxx_std_17)
 
-target_sources(template PRIVATE
-    src/template.cpp
-)
+target_compile_definitions(dbpp PUBLIC $<BUILD_INTERFACE:BUILDING_DBPP>)
 
-target_compile_definitions(template
-    PUBLIC
-    $<BUILD_INTERFACE:BUILDING_TEMPLATE>)
-
-set_target_properties(template PROPERTIES
+set_target_properties(dbpp PROPERTIES
     VERSION ${PROJECT_VERSION} SOVERSION ${CPACK_PACKAGE_VERSION_MAJOR}
 )
-target_include_directories(template
-    PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
-)
+
+target_link_libraries(dbpp PUBLIC SQLite3::SQLite3)
+
+add_subdirectory(include)
+add_subdirectory(src)
 
 # Testing
-if (TEMPLATE_ENABLE_TESTS)
+if (DBPP_ENABLE_TESTS)
     enable_testing()
     add_subdirectory(test)
 endif()
 
 # Docs
-if (TEMPLATE_ENABLE_DOCS AND DOXYGEN_FOUND)
+if (DBPP_ENABLE_DOCS AND DOXYGEN_FOUND)
     add_subdirectory(docs)
 endif()
 
-if (TEMPLATE_ENABLE_INSTALL)
+if (DBPP_ENABLE_INSTALL)
     # Generate CMake package configuration files, to support find_package()
     set(version_config "${PROJECT_BINARY_DIR}/${PROJECT_NAME}-config-version.cmake")
     set(project_config "${PROJECT_BINARY_DIR}/${PROJECT_NAME}-config.cmake")
@@ -103,15 +94,12 @@ if (TEMPLATE_ENABLE_INSTALL)
     )
 
     # Installation
-    install(TARGETS template
+    install(TARGETS dbpp
         EXPORT ${targets_export_name}
         LIBRARY
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
         ARCHIVE
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    )
-    install(DIRECTORY include/${PROJECT_NAME}
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
     )
     install(EXPORT ${targets_export_name}
         FILE ${targets_export_name}.cmake
@@ -133,13 +121,13 @@ if (TEMPLATE_ENABLE_INSTALL)
     install(
         FILES
             ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pc
-        DESTINATION ${TEMPLATE_PKGCONFIG_DIR}
+        DESTINATION ${DBPP_PKGCONFIG_DIR}
     )
 endif()
 
 # Packaging
 if (MASTER_PROJECT)
-    set(CPACK_PROJECT_URL "https://github.com/andersrosen/template-cmake-library")
+    set(CPACK_PROJECT_URL "https://github.com/andersrosen/dbpp")
     set(CPACK_PACKAGE_VENDOR  "Anders Rosén")
     set(CPACK_PACKAGE_CONTACT "Anders Rosén <panrosen@gmail.com>")
 

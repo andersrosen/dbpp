@@ -1,19 +1,19 @@
 list(APPEND DOXYGEN_ALIASES "includeexample{1}=\\par Example^^ \\includelineno \\1")
 list(APPEND DOXYGEN_ALIASES "includeexample{2}=\\par Example^^ \\1 \\n \\includelineno \\2")
 list(APPEND DOXYGEN_ALIASES "includeexamplewithoutput{1}=\\par Example^^ \\includelineno \\1 \\par Output^^ \\verbinclude \\1.output")
-list(APPEND DOXYGEN_ALIASES "includeexamplewithoutput{2}=\\par Example^^ \\1 \\n \\includelineno \\2 \\par Output^^ \\includelineno \\1.output")
+list(APPEND DOXYGEN_ALIASES "includeexamplewithoutput{2}=\\par Example^^ \\1 \\n \\includelineno \\2 \\par Output^^ \\verbinclude \\1.output")
 list(APPEND DOXYGEN_EXAMPLE_PATH "${CMAKE_CURRENT_BINARY_DIR}/examples")
 
 doxygen_add_docs(docs ${CMAKE_CURRENT_SOURCE_DIR}/../include ALL)
 
 set(EXAMPLES
-    examples/example1.cpp
+    examples/ConnectionClass.cpp
 )
 
 foreach(EXAMPLE ${EXAMPLES})
     get_filename_component(EXECUTABLE ${EXAMPLE} NAME_WE)
     add_executable(${EXECUTABLE} ${EXAMPLE})
-    target_link_libraries(${EXECUTABLE} PRIVATE template)
+    target_link_libraries(${EXECUTABLE} PRIVATE dbpp)
     configure_file(${EXAMPLE} ${CMAKE_CURRENT_BINARY_DIR}/${EXAMPLE} COPYONLY)
 
     add_custom_command(OUTPUT ${EXAMPLE}.output
@@ -27,7 +27,7 @@ endforeach()
 add_custom_target(example_outputs DEPENDS ${EXAMPLE_OUTPUT_FILES})
 add_dependencies(docs example_outputs)
 
-if (TEMPLATE_ENABLE_INSTALL)
+if (DBPP_ENABLE_INSTALL)
     install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/html
         DESTINATION ${CMAKE_INSTALL_DOCDIR}
     )
