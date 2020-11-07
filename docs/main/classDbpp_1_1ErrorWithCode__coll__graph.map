@@ -1,5 +1,5 @@
 <map id="Dbpp::ErrorWithCode" name="Dbpp::ErrorWithCode">
-<area shape="rect" id="node1" title=" " alt="" coords="5,155,164,181"/>
-<area shape="rect" id="node2" href="$classDbpp_1_1Error.html" title=" " alt="" coords="37,80,132,107"/>
+<area shape="rect" id="node1" title="Exception class with a driver&#45;specific numeric code." alt="" coords="5,155,164,181"/>
+<area shape="rect" id="node2" href="$classDbpp_1_1Error.html" title="Generic exception class for the dbpp library." alt="" coords="37,80,132,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="15,5,154,32"/>
 </map>

@@ -74,28 +74,30 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>RAII class for transaction handling.  
+ <a href="classDbpp_1_1Transaction.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="Connection_8h_source.html">Connection.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a112714172cd30a02fa034aa5ed4e7c68"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Transaction.html#a112714172cd30a02fa034aa5ed4e7c68">Transaction</a> (<a class="el" href="classDbpp_1_1Connection.html">Connection</a> &amp;c)</td></tr>
-<tr class="separator:a112714172cd30a02fa034aa5ed4e7c68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af948f37019e409df9f4da242c591afd9"><td class="memItemLeft" align="right" valign="top"><a id="af948f37019e409df9f4da242c591afd9"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Transaction.html#af948f37019e409df9f4da242c591afd9">~Transaction</a> ()</td></tr>
-<tr class="memdesc:af948f37019e409df9f4da242c591afd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rolls back the transaction unless <a class="el" href="classDbpp_1_1Transaction.html#aed6f1d8e2f8d488a92d90865cb05b2a8" title="Commits the transaction.">commit()</a> has been called. <br /></td></tr>
+<tr class="memitem:ad2f7d465667dd40363996e6677efdec8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Transaction.html#ad2f7d465667dd40363996e6677efdec8">Transaction</a> (<a class="el" href="classDbpp_1_1Connection.html">Connection</a> &amp;db)</td></tr>
+<tr class="memdesc:ad2f7d465667dd40363996e6677efdec8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. Begins a transaction.  <a href="classDbpp_1_1Transaction.html#ad2f7d465667dd40363996e6677efdec8">More...</a><br /></td></tr>
+<tr class="separator:ad2f7d465667dd40363996e6677efdec8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af948f37019e409df9f4da242c591afd9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Transaction.html#af948f37019e409df9f4da242c591afd9">~Transaction</a> ()</td></tr>
+<tr class="memdesc:af948f37019e409df9f4da242c591afd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. Rolls back the transaction unless <a class="el" href="classDbpp_1_1Transaction.html#aed6f1d8e2f8d488a92d90865cb05b2a8" title="Commits the transaction.">commit()</a> has been called.  <a href="classDbpp_1_1Transaction.html#af948f37019e409df9f4da242c591afd9">More...</a><br /></td></tr>
 <tr class="separator:af948f37019e409df9f4da242c591afd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed6f1d8e2f8d488a92d90865cb05b2a8"><td class="memItemLeft" align="right" valign="top"><a id="aed6f1d8e2f8d488a92d90865cb05b2a8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Transaction.html#aed6f1d8e2f8d488a92d90865cb05b2a8">commit</a> ()</td></tr>
-<tr class="memdesc:aed6f1d8e2f8d488a92d90865cb05b2a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Commits the transaction. <br /></td></tr>
+<tr class="memitem:aed6f1d8e2f8d488a92d90865cb05b2a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Transaction.html#aed6f1d8e2f8d488a92d90865cb05b2a8">commit</a> ()</td></tr>
+<tr class="memdesc:aed6f1d8e2f8d488a92d90865cb05b2a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Commits the transaction.  <a href="classDbpp_1_1Transaction.html#aed6f1d8e2f8d488a92d90865cb05b2a8">More...</a><br /></td></tr>
 <tr class="separator:aed6f1d8e2f8d488a92d90865cb05b2a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>RAII class for transaction handling</p>
+<div class="textblock"><p>RAII class for transaction handling. </p>
 <p>Instantiate a transaction object to begin a transaction, and call commit on it to commit. If it goes out of scope before commit has been called, the transaction will be rolled back automatically.</p>
-<p>@inlineex{Use of transaction object,transaction.cxx} </p>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a112714172cd30a02fa034aa5ed4e7c68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a112714172cd30a02fa034aa5ed4e7c68">&#9670;&nbsp;</a></span>Transaction()</h2>
+<a id="ad2f7d465667dd40363996e6677efdec8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2f7d465667dd40363996e6677efdec8">&#9670;&nbsp;</a></span>Transaction()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -107,7 +109,41 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td class="memname">Dbpp::Transaction::Transaction </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classDbpp_1_1Connection.html">Connection</a> &amp;&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
+          <td class="paramname"><em>db</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. Begins a transaction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">db</td><td>The db connection object</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
+
+</div>
+</div>
+<a id="af948f37019e409df9f4da242c591afd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af948f37019e409df9f4da242c591afd9">&#9670;&nbsp;</a></span>~Transaction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Dbpp::Transaction::~Transaction </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -117,15 +153,38 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Constructor. Begins a transaction</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">c</td><td>The db connection object </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2dbpp_2dbpp_2src_2include_2dbpp_2Connection_8h-example.html#a10">/home/runner/work/dbpp/dbpp/src/include/dbpp/Connection.h</a>.</dd>
-</dl>
+
+<p>Destructor. Rolls back the transaction unless <a class="el" href="classDbpp_1_1Transaction.html#aed6f1d8e2f8d488a92d90865cb05b2a8" title="Commits the transaction.">commit()</a> has been called. </p>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aed6f1d8e2f8d488a92d90865cb05b2a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed6f1d8e2f8d488a92d90865cb05b2a8">&#9670;&nbsp;</a></span>commit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dbpp::Transaction::commit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Commits the transaction. </p>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
 
 </div>
 </div>

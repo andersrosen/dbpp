@@ -75,6 +75,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>A connection object represents a connection to a database.  
+ <a href="classDbpp_1_1Connection.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="Connection_8h_source.html">Connection.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -85,68 +88,83 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af7b006bd2fbf4a22c373a3edb1abd441"><td class="memItemLeft" align="right" valign="top"><a id="af7b006bd2fbf4a22c373a3edb1abd441"></a>
 <a class="el" href="classDbpp_1_1Connection.html">Connection</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classDbpp_1_1Connection.html">Connection</a> &amp;)=delete</td></tr>
 <tr class="separator:af7b006bd2fbf4a22c373a3edb1abd441"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab32a52af10d72b559d830c49e2116c1b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#ab32a52af10d72b559d830c49e2116c1b">Connection</a> (Driver::ConnectionPtr c)</td></tr>
-<tr class="separator:ab32a52af10d72b559d830c49e2116c1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1408df32f6e0c9d5e13d9b95a169476"><td class="memItemLeft" align="right" valign="top"><a id="ab1408df32f6e0c9d5e13d9b95a169476"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#ab1408df32f6e0c9d5e13d9b95a169476">Connection</a> (<a class="el" href="classDbpp_1_1Connection.html">Connection</a> &amp;&amp;that) noexcept</td></tr>
-<tr class="memdesc:ab1408df32f6e0c9d5e13d9b95a169476"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor. <br /></td></tr>
+<tr class="memitem:a173deab82b10d2ddcc349413c02e72e1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#a173deab82b10d2ddcc349413c02e72e1">Connection</a> (Adapter::ConnectionPtr connection)</td></tr>
+<tr class="memdesc:a173deab82b10d2ddcc349413c02e72e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a connection object.  <a href="classDbpp_1_1Connection.html#a173deab82b10d2ddcc349413c02e72e1">More...</a><br /></td></tr>
+<tr class="separator:a173deab82b10d2ddcc349413c02e72e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1408df32f6e0c9d5e13d9b95a169476"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#ab1408df32f6e0c9d5e13d9b95a169476">Connection</a> (<a class="el" href="classDbpp_1_1Connection.html">Connection</a> &amp;&amp;that) noexcept</td></tr>
 <tr class="separator:ab1408df32f6e0c9d5e13d9b95a169476"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acddc7f09c4a72fdf985d2b913fcd60c1"><td class="memItemLeft" align="right" valign="top"><a id="acddc7f09c4a72fdf985d2b913fcd60c1"></a>
-<a class="el" href="classDbpp_1_1Connection.html">Connection</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#acddc7f09c4a72fdf985d2b913fcd60c1">operator=</a> (<a class="el" href="classDbpp_1_1Connection.html">Connection</a> &amp;&amp;that)</td></tr>
-<tr class="memdesc:acddc7f09c4a72fdf985d2b913fcd60c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assignment. <br /></td></tr>
+<tr class="memitem:acddc7f09c4a72fdf985d2b913fcd60c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDbpp_1_1Connection.html">Connection</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#acddc7f09c4a72fdf985d2b913fcd60c1">operator=</a> (<a class="el" href="classDbpp_1_1Connection.html">Connection</a> &amp;&amp;that)</td></tr>
 <tr class="separator:acddc7f09c4a72fdf985d2b913fcd60c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15d499a6ea05103b836da39527387857"><td class="memItemLeft" align="right" valign="top"><a id="a15d499a6ea05103b836da39527387857"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#a15d499a6ea05103b836da39527387857">~Connection</a> ()=default</td></tr>
-<tr class="memdesc:a15d499a6ea05103b836da39527387857"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br /></td></tr>
+<tr class="memitem:a15d499a6ea05103b836da39527387857"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#a15d499a6ea05103b836da39527387857">~Connection</a> ()=default</td></tr>
 <tr class="separator:a15d499a6ea05103b836da39527387857"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a588a3b280591ed17f2b5981964175c10"><td class="memItemLeft" align="right" valign="top"><a id="a588a3b280591ed17f2b5981964175c10"></a>
-<a class="el" href="classDbpp_1_1Statement.html">Statement</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#a588a3b280591ed17f2b5981964175c10">prepare</a> (const std::string &amp;sql)</td></tr>
-<tr class="memdesc:a588a3b280591ed17f2b5981964175c10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new statement for the supplied string. <br /></td></tr>
-<tr class="separator:a588a3b280591ed17f2b5981964175c10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fe6f0337d7d0ae30a337e5c2f1f68cc"><td class="memTemplParams" colspan="2"><a id="a0fe6f0337d7d0ae30a337e5c2f1f68cc"></a>
-template&lt;typename... Args&gt; </td></tr>
-<tr class="memitem:a0fe6f0337d7d0ae30a337e5c2f1f68cc"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classDbpp_1_1Statement.html">Statement</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><b>prepare</b> (const std::string &amp;sql, Args... args)</td></tr>
-<tr class="separator:a0fe6f0337d7d0ae30a337e5c2f1f68cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75e99d068b643730ff4a524493aec8d2"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
-<tr class="memitem:a75e99d068b643730ff4a524493aec8d2"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classDbpp_1_1Result.html">Result</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#a75e99d068b643730ff4a524493aec8d2">exec</a> (const std::string &amp;sql, Args... args)</td></tr>
-<tr class="separator:a75e99d068b643730ff4a524493aec8d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8582f31f739df55a0b804f31481366b2"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Args&gt; </td></tr>
-<tr class="memitem:a8582f31f739df55a0b804f31481366b2"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#a8582f31f739df55a0b804f31481366b2">get</a> (const std::string &amp;sql, Args... args)</td></tr>
-<tr class="separator:a8582f31f739df55a0b804f31481366b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c4ed9b8e58b69e90cd0d317a3f73c39"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Args&gt; </td></tr>
-<tr class="memitem:a1c4ed9b8e58b69e90cd0d317a3f73c39"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#a1c4ed9b8e58b69e90cd0d317a3f73c39">getOptional</a> (const std::string &amp;sql, Args... args)</td></tr>
-<tr class="separator:a1c4ed9b8e58b69e90cd0d317a3f73c39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f77a4b817a7ab2e57ab8ece87516a64"><td class="memItemLeft" align="right" valign="top"><a id="a9f77a4b817a7ab2e57ab8ece87516a64"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#a9f77a4b817a7ab2e57ab8ece87516a64">begin</a> ()</td></tr>
-<tr class="memdesc:a9f77a4b817a7ab2e57ab8ece87516a64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begins a transaction. <br /></td></tr>
+<tr class="memitem:a8d36f1dd4783eea22d5084df3f03aeaf"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a8d36f1dd4783eea22d5084df3f03aeaf"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classDbpp_1_1Statement.html">Statement</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#a8d36f1dd4783eea22d5084df3f03aeaf">prepare</a> (std::string_view sql, Args... args)</td></tr>
+<tr class="memdesc:a8d36f1dd4783eea22d5084df3f03aeaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new statement for the supplied string.  <a href="classDbpp_1_1Connection.html#a8d36f1dd4783eea22d5084df3f03aeaf">More...</a><br /></td></tr>
+<tr class="separator:a8d36f1dd4783eea22d5084df3f03aeaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8d72d0a260142e80d4d9f4df758a9a9"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:ae8d72d0a260142e80d4d9f4df758a9a9"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classDbpp_1_1Result.html">Result</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#ae8d72d0a260142e80d4d9f4df758a9a9">exec</a> (std::string_view sql, Args... args)</td></tr>
+<tr class="memdesc:ae8d72d0a260142e80d4d9f4df758a9a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and executes an SQL statement.  <a href="classDbpp_1_1Connection.html#ae8d72d0a260142e80d4d9f4df758a9a9">More...</a><br /></td></tr>
+<tr class="separator:ae8d72d0a260142e80d4d9f4df758a9a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6db6d55ca24d4b55a11f49f28063c92e"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Args&gt; </td></tr>
+<tr class="memitem:a6db6d55ca24d4b55a11f49f28063c92e"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#a6db6d55ca24d4b55a11f49f28063c92e">get</a> (std::string_view sql, Args... args)</td></tr>
+<tr class="memdesc:a6db6d55ca24d4b55a11f49f28063c92e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and executes an SQL statement, returning a single value.  <a href="classDbpp_1_1Connection.html#a6db6d55ca24d4b55a11f49f28063c92e">More...</a><br /></td></tr>
+<tr class="separator:a6db6d55ca24d4b55a11f49f28063c92e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae14208c6d81281786ea9dd1312ccfcb6"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Args&gt; </td></tr>
+<tr class="memitem:ae14208c6d81281786ea9dd1312ccfcb6"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#ae14208c6d81281786ea9dd1312ccfcb6">getOptional</a> (std::string_view sql, Args... args)</td></tr>
+<tr class="memdesc:ae14208c6d81281786ea9dd1312ccfcb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and executes an SQL statement, returning a single optional value.  <a href="classDbpp_1_1Connection.html#ae14208c6d81281786ea9dd1312ccfcb6">More...</a><br /></td></tr>
+<tr class="separator:ae14208c6d81281786ea9dd1312ccfcb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f77a4b817a7ab2e57ab8ece87516a64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#a9f77a4b817a7ab2e57ab8ece87516a64">begin</a> ()</td></tr>
+<tr class="memdesc:a9f77a4b817a7ab2e57ab8ece87516a64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begins a transaction.  <a href="classDbpp_1_1Connection.html#a9f77a4b817a7ab2e57ab8ece87516a64">More...</a><br /></td></tr>
 <tr class="separator:a9f77a4b817a7ab2e57ab8ece87516a64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada5ea9166fa0209ba1ec984fac52e56c"><td class="memItemLeft" align="right" valign="top"><a id="ada5ea9166fa0209ba1ec984fac52e56c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#ada5ea9166fa0209ba1ec984fac52e56c">commit</a> ()</td></tr>
-<tr class="memdesc:ada5ea9166fa0209ba1ec984fac52e56c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Commits a transaction. <br /></td></tr>
+<tr class="memitem:ada5ea9166fa0209ba1ec984fac52e56c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#ada5ea9166fa0209ba1ec984fac52e56c">commit</a> ()</td></tr>
+<tr class="memdesc:ada5ea9166fa0209ba1ec984fac52e56c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Commits a transaction.  <a href="classDbpp_1_1Connection.html#ada5ea9166fa0209ba1ec984fac52e56c">More...</a><br /></td></tr>
 <tr class="separator:ada5ea9166fa0209ba1ec984fac52e56c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a965ccc37befd5a65ab1ac1f6df57a3"><td class="memItemLeft" align="right" valign="top"><a id="a5a965ccc37befd5a65ab1ac1f6df57a3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#a5a965ccc37befd5a65ab1ac1f6df57a3">rollback</a> ()</td></tr>
-<tr class="memdesc:a5a965ccc37befd5a65ab1ac1f6df57a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rolls back a transaction. <br /></td></tr>
+<tr class="memitem:a5a965ccc37befd5a65ab1ac1f6df57a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#a5a965ccc37befd5a65ab1ac1f6df57a3">rollback</a> ()</td></tr>
+<tr class="memdesc:a5a965ccc37befd5a65ab1ac1f6df57a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rolls back a transaction.  <a href="classDbpp_1_1Connection.html#a5a965ccc37befd5a65ab1ac1f6df57a3">More...</a><br /></td></tr>
 <tr class="separator:a5a965ccc37befd5a65ab1ac1f6df57a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae7c646e04e5d0304fb4c07182eed342"><td class="memItemLeft" align="right" valign="top"><a id="aae7c646e04e5d0304fb4c07182eed342"></a>
-const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#aae7c646e04e5d0304fb4c07182eed342">driverName</a> () const</td></tr>
-<tr class="memdesc:aae7c646e04e5d0304fb4c07182eed342"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the driver in use. <br /></td></tr>
+<tr class="memitem:aae7c646e04e5d0304fb4c07182eed342"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#aae7c646e04e5d0304fb4c07182eed342">driverName</a> () const</td></tr>
+<tr class="memdesc:aae7c646e04e5d0304fb4c07182eed342"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the driver in use.  <a href="classDbpp_1_1Connection.html#aae7c646e04e5d0304fb4c07182eed342">More...</a><br /></td></tr>
 <tr class="separator:aae7c646e04e5d0304fb4c07182eed342"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:ade3f3c353330c358b7f4dea9884264d7"><td class="memItemLeft" align="right" valign="top"><a id="ade3f3c353330c358b7f4dea9884264d7"></a>
-class&#160;</td><td class="memItemRight" valign="bottom"><b>Driver::Connection</b></td></tr>
-<tr class="separator:ade3f3c353330c358b7f4dea9884264d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e002cfb4c760a0dea85b2d07bd03551"><td class="memItemLeft" align="right" valign="top"><a id="a9e002cfb4c760a0dea85b2d07bd03551"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>Adapter::Connection</b></td></tr>
+<tr class="separator:a9e002cfb4c760a0dea85b2d07bd03551"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A connection object represents a connection to a database</p>
+<div class="textblock"><p>A connection object represents a connection to a database. </p>
 <p>Before you can use this library, you need to have at least one connection object, that you use to communicate with the database.</p>
-<dl class="section user"><dt>Example</dt><dd><div class="fragment"></div><!-- fragment --> </dd></dl>
-<dl class="section user"><dt>Output</dt><dd><pre class="fragment"></pre> </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0</dd></dl>
+<dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;dbpp/dbpp.h&gt;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;dbpp/Sqlite3.h&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">namespace </span>Sqlite3 = <a class="code" href="namespaceDbpp_1_1Sqlite3.html">Dbpp::Sqlite3</a>;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="classDbpp_1_1Connection.html">Dbpp::Connection</a> db = <a class="code" href="namespaceDbpp_1_1Sqlite3.html#aa413ad0c0178ba2f31b3fc1e56f82e5e">Sqlite3::open</a>(<span class="stringliteral">&quot;:memory:&quot;</span>);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    db.<a class="code" href="classDbpp_1_1Connection.html#ae8d72d0a260142e80d4d9f4df758a9a9">exec</a>(<span class="stringliteral">&quot;CREATE TABLE employee (&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            <span class="stringliteral">&quot; id INTEGER PRIMARY KEY AUTOINCREMENT,&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;            <span class="stringliteral">&quot; name TEXT NOT NULL&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            <span class="stringliteral">&quot;)&quot;</span>);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    db.<a class="code" href="classDbpp_1_1Connection.html#ae8d72d0a260142e80d4d9f4df758a9a9">exec</a>(<span class="stringliteral">&quot;INSERT INTO employee (name) VALUES (?)&quot;</span>, <span class="stringliteral">&quot;James Bond&quot;</span>);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    db.<a class="code" href="classDbpp_1_1Connection.html#ae8d72d0a260142e80d4d9f4df758a9a9">exec</a>(<span class="stringliteral">&quot;INSERT INTO employee (name) VALUES (?)&quot;</span>, <span class="stringliteral">&quot;Jason Bourne&quot;</span>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    db.<a class="code" href="classDbpp_1_1Connection.html#ae8d72d0a260142e80d4d9f4df758a9a9">exec</a>(<span class="stringliteral">&quot;INSERT INTO employee (name) VALUES (?)&quot;</span>, <span class="stringliteral">&quot;Carl Hamilton&quot;</span>);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;&amp;row : db.<a class="code" href="classDbpp_1_1Connection.html#a8d36f1dd4783eea22d5084df3f03aeaf">prepare</a>(<span class="stringliteral">&quot;SELECT name, id FROM employee WHERE name NOT LIKE &#39;%Hamilton&#39;&quot;</span>))</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Agent &quot;</span> &lt;&lt; row.<a class="code" href="classDbpp_1_1Result.html#aa9cfbb3ce55711cbe366b1df172be48e">get</a>&lt;<span class="keywordtype">int</span>&gt;(<span class="stringliteral">&quot;id&quot;</span>) &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> &lt;&lt; row.get&lt;std::string&gt;(<span class="stringliteral">&quot;name&quot;</span>) &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
+</div><!-- fragment --> </dd></dl>
+<dl class="section user"><dt>Output</dt><dd><pre class="fragment">Agent 1: James Bond
+Agent 2: Jason Bourne
+</pre> </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ab32a52af10d72b559d830c49e2116c1b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab32a52af10d72b559d830c49e2116c1b">&#9670;&nbsp;</a></span>Connection()</h2>
+<a id="a173deab82b10d2ddcc349413c02e72e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a173deab82b10d2ddcc349413c02e72e1">&#9670;&nbsp;</a></span>Connection() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -154,19 +172,141 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Driver::Connection</
         <tr>
           <td class="memname">Dbpp::Connection::Connection </td>
           <td>(</td>
-          <td class="paramtype">Driver::ConnectionPtr&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
+          <td class="paramtype">Adapter::ConnectionPtr&#160;</td>
+          <td class="paramname"><em>connection</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Construct a connection object. This constructor is typically called from a driver specific creation function, such as sqlite3::open() </p>
+
+<p>Construct a connection object. </p>
+<p>This constructor is typically called from a driver specific creation function, such as sqlite3::open().</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">connection</td><td>A driver-specific connection </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
+
+</div>
+</div>
+<a id="ab1408df32f6e0c9d5e13d9b95a169476"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1408df32f6e0c9d5e13d9b95a169476">&#9670;&nbsp;</a></span>Connection() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Dbpp::Connection::Connection </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classDbpp_1_1Connection.html">Connection</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>that</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Move constructor </p><dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
+
+</div>
+</div>
+<a id="a15d499a6ea05103b836da39527387857"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15d499a6ea05103b836da39527387857">&#9670;&nbsp;</a></span>~Connection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Dbpp::Connection::~Connection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Destructor </p><dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a75e99d068b643730ff4a524493aec8d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75e99d068b643730ff4a524493aec8d2">&#9670;&nbsp;</a></span>exec()</h2>
+<a id="a9f77a4b817a7ab2e57ab8ece87516a64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f77a4b817a7ab2e57ab8ece87516a64">&#9670;&nbsp;</a></span>begin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dbpp::Connection::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Begins a transaction. </p>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
+
+</div>
+</div>
+<a id="ada5ea9166fa0209ba1ec984fac52e56c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada5ea9166fa0209ba1ec984fac52e56c">&#9670;&nbsp;</a></span>commit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dbpp::Connection::commit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Commits a transaction. </p>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
+
+</div>
+</div>
+<a id="aae7c646e04e5d0304fb4c07182eed342"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae7c646e04e5d0304fb4c07182eed342">&#9670;&nbsp;</a></span>driverName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string&amp; Dbpp::Connection::driverName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the name of the driver in use. </p>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
+
+</div>
+</div>
+<a id="ae8d72d0a260142e80d4d9f4df758a9a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8d72d0a260142e80d4d9f4df758a9a9">&#9670;&nbsp;</a></span>exec()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -179,7 +319,7 @@ template&lt;typename... Args&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classDbpp_1_1Result.html">Result</a> Dbpp::Connection::exec </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramtype">std::string_view&#160;</td>
           <td class="paramname"><em>sql</em>, </td>
         </tr>
         <tr>
@@ -200,7 +340,9 @@ template&lt;typename... Args&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Creates and executes an SQL statement</p>
+
+<p>Creates and executes an SQL statement. </p>
+<p>The statement will be executed once, and the first row of the result set is returned, if any. This is handy for executing statements such as INSERT or DELETE FROM, where there won't be multiple resulting rows to iterate over.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sql</td><td>An SQL statement </td></tr>
@@ -208,14 +350,13 @@ template&lt;typename... Args&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A result object, which contains the first row of the result set (if any) </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2dbpp_2dbpp_2src_2include_2dbpp_2Connection_8h-example.html#a2">/home/runner/work/dbpp/dbpp/src/include/dbpp/Connection.h</a>.</dd>
-</dl>
+<dl class="section return"><dt>Returns</dt><dd>A result object, which contains the first row of the result set (if any)</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
 
 </div>
 </div>
-<a id="a8582f31f739df55a0b804f31481366b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8582f31f739df55a0b804f31481366b2">&#9670;&nbsp;</a></span>get()</h2>
+<a id="a6db6d55ca24d4b55a11f49f28063c92e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6db6d55ca24d4b55a11f49f28063c92e">&#9670;&nbsp;</a></span>get()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -228,7 +369,7 @@ template&lt;typename T , typename... Args&gt; </div>
         <tr>
           <td class="memname">T Dbpp::Connection::get </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramtype">std::string_view&#160;</td>
           <td class="paramname"><em>sql</em>, </td>
         </tr>
         <tr>
@@ -249,7 +390,15 @@ template&lt;typename T , typename... Args&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Creates and executes an SQL statement, returning a single value</p>
+
+<p>Creates and executes an SQL statement, returning a single value. </p>
+<p>This is a convenience method that can be used when it is expected that the statement returns exactly one value.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The type of the return value </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sql</td><td>An SQL statement </td></tr>
@@ -257,14 +406,13 @@ template&lt;typename T , typename... Args&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A single value </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2dbpp_2dbpp_2src_2include_2dbpp_2Connection_8h-example.html#a3">/home/runner/work/dbpp/dbpp/src/include/dbpp/Connection.h</a>.</dd>
-</dl>
+<dl class="section return"><dt>Returns</dt><dd>A single value</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
 
 </div>
 </div>
-<a id="a1c4ed9b8e58b69e90cd0d317a3f73c39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c4ed9b8e58b69e90cd0d317a3f73c39">&#9670;&nbsp;</a></span>getOptional()</h2>
+<a id="ae14208c6d81281786ea9dd1312ccfcb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae14208c6d81281786ea9dd1312ccfcb6">&#9670;&nbsp;</a></span>getOptional()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -277,7 +425,7 @@ template&lt;typename T , typename... Args&gt; </div>
         <tr>
           <td class="memname">std::optional&lt;T&gt; Dbpp::Connection::getOptional </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramtype">std::string_view&#160;</td>
           <td class="paramname"><em>sql</em>, </td>
         </tr>
         <tr>
@@ -298,7 +446,15 @@ template&lt;typename T , typename... Args&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Creates and executes an SQL statement, returning a single value</p>
+
+<p>Creates and executes an SQL statement, returning a single optional value. </p>
+<p>This is a convenience method that can be used when it is expected that the statement returns exactly one value, or nothing.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The type of the return value </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sql</td><td>An SQL statement </td></tr>
@@ -306,9 +462,96 @@ template&lt;typename T , typename... Args&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A single value (if any) </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2dbpp_2dbpp_2src_2include_2dbpp_2Connection_8h-example.html#a5">/home/runner/work/dbpp/dbpp/src/include/dbpp/Connection.h</a>.</dd>
+<dl class="section return"><dt>Returns</dt><dd>A single value (if any)</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
+
+</div>
+</div>
+<a id="acddc7f09c4a72fdf985d2b913fcd60c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acddc7f09c4a72fdf985d2b913fcd60c1">&#9670;&nbsp;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDbpp_1_1Connection.html">Connection</a>&amp; Dbpp::Connection::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classDbpp_1_1Connection.html">Connection</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>that</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Move assignment </p><dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
+
+</div>
+</div>
+<a id="a8d36f1dd4783eea22d5084df3f03aeaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d36f1dd4783eea22d5084df3f03aeaf">&#9670;&nbsp;</a></span>prepare()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDbpp_1_1Statement.html">Statement</a> Dbpp::Connection::prepare </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>sql</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a new statement for the supplied string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sql</td><td>An SQL statement string </td></tr>
+    <tr><td class="paramname">args</td><td>A list of values to be bound to placeholders in the SQL statement </td></tr>
+  </table>
+  </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>A statement object</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
+
+</div>
+</div>
+<a id="a5a965ccc37befd5a65ab1ac1f6df57a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a965ccc37befd5a65ab1ac1f6df57a3">&#9670;&nbsp;</a></span>rollback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dbpp::Connection::rollback </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Rolls back a transaction. </p>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
 
 </div>
 </div>
@@ -316,6 +559,12 @@ template&lt;typename T , typename... Args&gt; </div>
 <li>/home/runner/work/dbpp/dbpp/src/include/dbpp/<a class="el" href="Connection_8h_source.html">Connection.h</a></li>
 </ul>
 </div><!-- contents -->
+<div class="ttc" id="aclassDbpp_1_1Result_html_aa9cfbb3ce55711cbe366b1df172be48e"><div class="ttname"><a href="classDbpp_1_1Result.html#aa9cfbb3ce55711cbe366b1df172be48e">Dbpp::Result::get</a></div><div class="ttdeci">bool get(int index, short &amp;out)</div><div class="ttdoc">Retrieves a value from the result.</div></div>
+<div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html">Dbpp::Sqlite3</a></div><div class="ttdoc">Namespace specific to the SQLite3 adapter.</div><div class="ttdef"><b>Definition:</b> Sqlite3.h:29</div></div>
+<div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html_aa413ad0c0178ba2f31b3fc1e56f82e5e"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html#aa413ad0c0178ba2f31b3fc1e56f82e5e">Dbpp::Sqlite3::open</a></div><div class="ttdeci">Connection open(const std::filesystem::path &amp;file)</div><div class="ttdoc">Opens an SQLite3 database, and returns a connection to it.</div></div>
+<div class="ttc" id="aclassDbpp_1_1Connection_html"><div class="ttname"><a href="classDbpp_1_1Connection.html">Dbpp::Connection</a></div><div class="ttdoc">A connection object represents a connection to a database.</div><div class="ttdef"><b>Definition:</b> Connection.h:37</div></div>
+<div class="ttc" id="aclassDbpp_1_1Connection_html_ae8d72d0a260142e80d4d9f4df758a9a9"><div class="ttname"><a href="classDbpp_1_1Connection.html#ae8d72d0a260142e80d4d9f4df758a9a9">Dbpp::Connection::exec</a></div><div class="ttdeci">Result exec(std::string_view sql, Args... args)</div><div class="ttdoc">Creates and executes an SQL statement.</div><div class="ttdef"><b>Definition:</b> Connection.h:96</div></div>
+<div class="ttc" id="aclassDbpp_1_1Connection_html_a8d36f1dd4783eea22d5084df3f03aeaf"><div class="ttname"><a href="classDbpp_1_1Connection.html#a8d36f1dd4783eea22d5084df3f03aeaf">Dbpp::Connection::prepare</a></div><div class="ttdeci">Statement prepare(std::string_view sql, Args... args)</div><div class="ttdoc">Creates a new statement for the supplied string.</div><div class="ttdef"><b>Definition:</b> Connection.h:78</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

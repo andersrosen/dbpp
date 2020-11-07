@@ -92,29 +92,29 @@ $(function() {
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">namespace </span>Dbpp {</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classDbpp_1_1Error.html">   26</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classDbpp_1_1Error.html">Error</a> : <span class="keyword">public</span> std::runtime_error {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keyword">using</span> std::runtime_error::runtime_error;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    };</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classDbpp_1_1ErrorWithCode.html">   33</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classDbpp_1_1ErrorWithCode.html">ErrorWithCode</a> : <span class="keyword">public</span> <a class="code" href="classDbpp_1_1Error.html">Error</a> {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73">   36</a></span>&#160;        <span class="keyword">const</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code" href="classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73">code</a>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classDbpp_1_1ErrorWithCode.html#a671b81650fb0ac5125bc1eb94bddcdf9">   42</a></span>&#160;        <a class="code" href="classDbpp_1_1ErrorWithCode.html#a671b81650fb0ac5125bc1eb94bddcdf9">ErrorWithCode</a>(<span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code" href="classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73">code</a>, <span class="keyword">const</span> std::string &amp;message)</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        : <a class="code" href="classDbpp_1_1Error.html">Error</a>(message), <a class="code" href="classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73">code</a>(<a class="code" href="classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73">code</a>)</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        {}</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    };</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classDbpp_1_1PlaceholderOutOfRange.html">   49</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classDbpp_1_1PlaceholderOutOfRange.html">PlaceholderOutOfRange</a> : <span class="keyword">public</span> <a class="code" href="classDbpp_1_1Error.html">Error</a> {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keyword">using</span> Error::Error;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    };</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classDbpp_1_1Error.html">   30</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classDbpp_1_1Error.html">Error</a> : <span class="keyword">public</span> std::runtime_error {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keyword">using</span> std::runtime_error::runtime_error;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    };</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classDbpp_1_1ErrorWithCode.html">   41</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classDbpp_1_1ErrorWithCode.html">ErrorWithCode</a> : <span class="keyword">public</span> <a class="code" href="classDbpp_1_1Error.html">Error</a> {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73">   46</a></span>&#160;        <span class="keyword">const</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code" href="classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73">code</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classDbpp_1_1ErrorWithCode.html#a816456d31f3203561eb5d60b8f953431">   54</a></span>&#160;        <a class="code" href="classDbpp_1_1ErrorWithCode.html#a816456d31f3203561eb5d60b8f953431">ErrorWithCode</a>(<span class="keywordtype">long</span> <span class="keywordtype">long</span> errorCode, <span class="keyword">const</span> std::string &amp;message)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        : <a class="code" href="classDbpp_1_1Error.html">Error</a>(message), <a class="code" href="classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73">code</a>(errorCode)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        {}</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    };</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classDbpp_1_1PlaceholderOutOfRange.html">   63</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classDbpp_1_1PlaceholderOutOfRange.html">PlaceholderOutOfRange</a> : <span class="keyword">public</span> <a class="code" href="classDbpp_1_1Error.html">Error</a> {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keyword">using</span> Error::Error;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    };</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassDbpp_1_1ErrorWithCode_html_a5c9bd5984373876923b64ba98d650e73"><div class="ttname"><a href="classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73">Dbpp::ErrorWithCode::code</a></div><div class="ttdeci">const long long code</div><div class="ttdoc">The error code from the underlying driver implementation.</div><div class="ttdef"><b>Definition:</b> Exception.h:36</div></div>
-<div class="ttc" id="aclassDbpp_1_1Error_html"><div class="ttname"><a href="classDbpp_1_1Error.html">Dbpp::Error</a></div><div class="ttdef"><b>Definition:</b> Exception.h:26</div></div>
-<div class="ttc" id="aclassDbpp_1_1ErrorWithCode_html_a671b81650fb0ac5125bc1eb94bddcdf9"><div class="ttname"><a href="classDbpp_1_1ErrorWithCode.html#a671b81650fb0ac5125bc1eb94bddcdf9">Dbpp::ErrorWithCode::ErrorWithCode</a></div><div class="ttdeci">ErrorWithCode(long long code, const std::string &amp;message)</div><div class="ttdef"><b>Definition:</b> Exception.h:42</div></div>
-<div class="ttc" id="aclassDbpp_1_1PlaceholderOutOfRange_html"><div class="ttname"><a href="classDbpp_1_1PlaceholderOutOfRange.html">Dbpp::PlaceholderOutOfRange</a></div><div class="ttdef"><b>Definition:</b> Exception.h:49</div></div>
-<div class="ttc" id="aclassDbpp_1_1ErrorWithCode_html"><div class="ttname"><a href="classDbpp_1_1ErrorWithCode.html">Dbpp::ErrorWithCode</a></div><div class="ttdef"><b>Definition:</b> Exception.h:33</div></div>
+<div class="ttc" id="aclassDbpp_1_1ErrorWithCode_html_a5c9bd5984373876923b64ba98d650e73"><div class="ttname"><a href="classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73">Dbpp::ErrorWithCode::code</a></div><div class="ttdeci">const long long code</div><div class="ttdef"><b>Definition:</b> Exception.h:46</div></div>
+<div class="ttc" id="aclassDbpp_1_1Error_html"><div class="ttname"><a href="classDbpp_1_1Error.html">Dbpp::Error</a></div><div class="ttdoc">Generic exception class for the dbpp library.</div><div class="ttdef"><b>Definition:</b> Exception.h:30</div></div>
+<div class="ttc" id="aclassDbpp_1_1PlaceholderOutOfRange_html"><div class="ttname"><a href="classDbpp_1_1PlaceholderOutOfRange.html">Dbpp::PlaceholderOutOfRange</a></div><div class="ttdoc">Thrown if the client tries to bind a value to a placeholder that doesn't exist.</div><div class="ttdef"><b>Definition:</b> Exception.h:63</div></div>
+<div class="ttc" id="aclassDbpp_1_1ErrorWithCode_html_a816456d31f3203561eb5d60b8f953431"><div class="ttname"><a href="classDbpp_1_1ErrorWithCode.html#a816456d31f3203561eb5d60b8f953431">Dbpp::ErrorWithCode::ErrorWithCode</a></div><div class="ttdeci">ErrorWithCode(long long errorCode, const std::string &amp;message)</div><div class="ttdef"><b>Definition:</b> Exception.h:54</div></div>
+<div class="ttc" id="aclassDbpp_1_1ErrorWithCode_html"><div class="ttname"><a href="classDbpp_1_1ErrorWithCode.html">Dbpp::ErrorWithCode</a></div><div class="ttdoc">Exception class with a driver-specific numeric code.</div><div class="ttdef"><b>Definition:</b> Exception.h:41</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

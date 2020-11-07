@@ -1,4 +1,0 @@
-<map id="Dbpp::Detail::HasDbppBindMethod&lt; T, std::void_t&lt; decltype(std::declval&lt; const T &amp; &gt;().dbpp_bind(std::declval&lt; Statement &amp; &gt;()))&gt; &gt;" name="Dbpp::Detail::HasDbppBindMethod&lt; T, std::void_t&lt; decltype(std::declval&lt; const T &amp; &gt;().dbpp_bind(std::declval&lt; Statement &amp; &gt;()))&gt; &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="5,80,204,180"/>
-<area shape="rect" id="node2" title=" " alt="" coords="49,5,161,32"/>
-</map>

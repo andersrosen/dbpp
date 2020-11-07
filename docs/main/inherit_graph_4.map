@@ -1,3 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classDbpp_1_1Driver_1_1Result.html" title="Interface class for the result of a query." alt="" coords="5,5,159,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,116,57"/>
+<area shape="rect" id="node2" href="$classDbpp_1_1Error.html" title="Generic exception class for the dbpp library." alt="" coords="164,31,259,57"/>
+<area shape="rect" id="node3" href="$classDbpp_1_1ErrorWithCode.html" title="Exception class with a driver&#45;specific numeric code." alt="" coords="337,5,495,32"/>
+<area shape="rect" id="node4" href="$classDbpp_1_1PlaceholderOutOfRange.html" title="Thrown if the client tries to bind a value to a placeholder that doesn&#39;t exist." alt="" coords="307,56,525,83"/>
 </map>

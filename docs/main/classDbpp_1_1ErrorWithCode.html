@@ -75,14 +75,17 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Exception class with a driver-specific numeric code.  
+ <a href="classDbpp_1_1ErrorWithCode.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="Exception_8h_source.html">Exception.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Dbpp::ErrorWithCode:</div>
 <div class="dyncontent">
 <div class="center"><img src="classDbpp_1_1ErrorWithCode__inherit__graph.png" border="0" usemap="#Dbpp_1_1ErrorWithCode_inherit__map" alt="Inheritance graph"/></div>
 <map name="Dbpp_1_1ErrorWithCode_inherit__map" id="Dbpp_1_1ErrorWithCode_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,155,164,181"/>
-<area shape="rect" href="classDbpp_1_1Error.html" title=" " alt="" coords="37,80,132,107"/>
+<area shape="rect" title="Exception class with a driver&#45;specific numeric code." alt="" coords="5,155,164,181"/>
+<area shape="rect" href="classDbpp_1_1Error.html" title="Generic exception class for the dbpp library." alt="" coords="37,80,132,107"/>
 <area shape="rect" title=" " alt="" coords="15,5,154,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
@@ -91,29 +94,29 @@ Collaboration diagram for Dbpp::ErrorWithCode:</div>
 <div class="dyncontent">
 <div class="center"><img src="classDbpp_1_1ErrorWithCode__coll__graph.png" border="0" usemap="#Dbpp_1_1ErrorWithCode_coll__map" alt="Collaboration graph"/></div>
 <map name="Dbpp_1_1ErrorWithCode_coll__map" id="Dbpp_1_1ErrorWithCode_coll__map">
-<area shape="rect" title=" " alt="" coords="5,155,164,181"/>
-<area shape="rect" href="classDbpp_1_1Error.html" title=" " alt="" coords="37,80,132,107"/>
+<area shape="rect" title="Exception class with a driver&#45;specific numeric code." alt="" coords="5,155,164,181"/>
+<area shape="rect" href="classDbpp_1_1Error.html" title="Generic exception class for the dbpp library." alt="" coords="37,80,132,107"/>
 <area shape="rect" title=" " alt="" coords="15,5,154,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a671b81650fb0ac5125bc1eb94bddcdf9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1ErrorWithCode.html#a671b81650fb0ac5125bc1eb94bddcdf9">ErrorWithCode</a> (long long <a class="el" href="classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73">code</a>, const std::string &amp;message)</td></tr>
-<tr class="separator:a671b81650fb0ac5125bc1eb94bddcdf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a816456d31f3203561eb5d60b8f953431"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1ErrorWithCode.html#a816456d31f3203561eb5d60b8f953431">ErrorWithCode</a> (long long errorCode, const std::string &amp;message)</td></tr>
+<tr class="separator:a816456d31f3203561eb5d60b8f953431"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a5c9bd5984373876923b64ba98d650e73"><td class="memItemLeft" align="right" valign="top"><a id="a5c9bd5984373876923b64ba98d650e73"></a>
-const long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73">code</a></td></tr>
-<tr class="memdesc:a5c9bd5984373876923b64ba98d650e73"><td class="mdescLeft">&#160;</td><td class="mdescRight">The error code from the underlying driver implementation. <br /></td></tr>
+<tr class="memitem:a5c9bd5984373876923b64ba98d650e73"><td class="memItemLeft" align="right" valign="top">const long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73">code</a></td></tr>
 <tr class="separator:a5c9bd5984373876923b64ba98d650e73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class is used when a driver encounters a problem for which there is a driver specific error code that the client of this library might want to use when handling the exception </p>
+<div class="textblock"><p>Exception class with a driver-specific numeric code. </p>
+<p>This class is used when a driver encounters a problem for which there is a driver specific error code that the client of this library might want to use when handling the exception</p>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a671b81650fb0ac5125bc1eb94bddcdf9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a671b81650fb0ac5125bc1eb94bddcdf9">&#9670;&nbsp;</a></span>ErrorWithCode()</h2>
+<a id="a816456d31f3203561eb5d60b8f953431"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a816456d31f3203561eb5d60b8f953431">&#9670;&nbsp;</a></span>ErrorWithCode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -125,7 +128,7 @@ const long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el"
           <td class="memname">Dbpp::ErrorWithCode::ErrorWithCode </td>
           <td>(</td>
           <td class="paramtype">long long&#160;</td>
-          <td class="paramname"><em>code</em>, </td>
+          <td class="paramname"><em>errorCode</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -148,11 +151,29 @@ const long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el"
 <p>Constructor</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">code</td><td>Driver-specific error code </td></tr>
-    <tr><td class="paramname">message</td><td>A description of the exception </td></tr>
+    <tr><td class="paramname">errorCode</td><td>Driver-specific error code </td></tr>
+    <tr><td class="paramname">message</td><td>A description of the exception</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a5c9bd5984373876923b64ba98d650e73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c9bd5984373876923b64ba98d650e73">&#9670;&nbsp;</a></span>code</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const long long Dbpp::ErrorWithCode::code</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The error code from the underlying driver implementation.</p>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
 
 </div>
 </div>

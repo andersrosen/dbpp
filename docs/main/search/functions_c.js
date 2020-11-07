@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['_7econnection_76',['~Connection',['../classDbpp_1_1Connection.html#a15d499a6ea05103b836da39527387857',1,'Dbpp::Connection']]],
-  ['_7etransaction_77',['~Transaction',['../classDbpp_1_1Transaction.html#af948f37019e409df9f4da242c591afd9',1,'Dbpp::Transaction']]]
+  ['value_5for_103',['value_or',['../classDbpp_1_1Result.html#a8a31827282025e80b7bf921080d8ead1',1,'Dbpp::Result::value_or(int columnIndex, T defaultValue)'],['../classDbpp_1_1Result.html#aefbd896867641656bd184a4bf0eb80ed',1,'Dbpp::Result::value_or(int columnIndex, T defaultValue)']]]
 ];

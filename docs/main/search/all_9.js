@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['result_28',['Result',['../classDbpp_1_1Result.html',1,'Dbpp::Result'],['../classDbpp_1_1Driver_1_1Result.html',1,'Dbpp::Driver::Result']]],
-  ['rollback_29',['rollback',['../classDbpp_1_1Connection.html#a5a965ccc37befd5a65ab1ac1f6df57a3',1,'Dbpp::Connection::rollback()'],['../classDbpp_1_1Driver_1_1Connection.html#ab4afe3d03e1a99c03a02032c2788ed10',1,'Dbpp::Driver::Connection::rollback()']]]
+  ['nomutex_27',['NoMutex',['../namespaceDbpp_1_1Sqlite3.html#a0523f25495dd773469ef8a426427aceaaed897a216de36c7c934c4baa02b4fea7',1,'Dbpp::Sqlite3']]]
 ];

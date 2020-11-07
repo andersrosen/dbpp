@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['result_48',['Result',['../classDbpp_1_1Result.html',1,'Dbpp::Result'],['../classDbpp_1_1Driver_1_1Result.html',1,'Dbpp::Driver::Result']]]
+  ['transaction_62',['Transaction',['../classDbpp_1_1Transaction.html',1,'Dbpp']]]
 ];
