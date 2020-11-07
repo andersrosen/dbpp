@@ -5,8 +5,9 @@ list(APPEND DOXYGEN_ALIASES "includeexamplewithoutput{2}=\\par Example^^ \\1 \\n
 list(APPEND DOXYGEN_EXAMPLE_PATH "${CMAKE_CURRENT_BINARY_DIR}/examples")
 list(APPEND DOXYGEN_EXCLUDE_SYMBOLS "detail")
 list(APPEND DOXYGEN_EXCLUDE_SYMBOLS "Detail")
+set(DOXYGEN_USE_MDFILE_AS_MAINPAGE mainpage.md)
 
-doxygen_add_docs(docs ${CMAKE_CURRENT_SOURCE_DIR}/../include ALL)
+doxygen_add_docs(docs mainpage.md ${CMAKE_CURRENT_SOURCE_DIR}/../include ALL)
 
 set(EXAMPLES
     examples/ConnectionClass.cpp
