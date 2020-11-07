@@ -20,32 +20,46 @@
 #include <stdexcept>
 
 namespace Dbpp {
-    /// Generic exception class for the dbpp library. All exceptions thrown by
-    /// the library itself will be Dbpp::Error or a subclass. Other exceptions
-    /// might be thrown by the use of the standard library.
+    /// \brief Generic exception class for the dbpp library
+    ///
+    /// All exceptions thrown by the library itself will be Dbpp::Error or a
+    /// subclass of it. Other exceptions might be thrown by the use of the
+    /// standard library, or the underlying database driver.
+    ///
+    /// \since v1.0.0
     class Error : public std::runtime_error {
         using std::runtime_error::runtime_error;
     };
 
+    /// \brief Exception class with a driver-specific numeric code
+    ///
     /// This class is used when a driver encounters a problem for which there
     /// is a driver specific error code that the client of this library might
     /// want to use when handling the exception
+    ///
+    /// \since v1.0.0
     class ErrorWithCode : public Error {
     public:
         /// The error code from the underlying driver implementation.
+        ///
+        /// \since v1.0.0
         const long long code;
 
         /// Constructor
         ///
-        /// \param code Driver-specific error code
+        /// \param errorCode Driver-specific error code
         /// \param message A description of the exception
-        ErrorWithCode(long long code, const std::string &message)
-        : Error(message), code(code)
+        ///
+        /// \since v1.0.0
+        ErrorWithCode(long long errorCode, const std::string &message)
+        : Error(message), code(errorCode)
         {}
     };
 
-    /// This exception is thrown if the client tries to bind a value to a
-    /// placeholder that doesn't exist
+    /// \brief Thrown if the client tries to bind a value to a placeholder that
+    /// doesn't exist
+    ///
+    /// \since v1.0.0
     class PlaceholderOutOfRange : public Error {
         using Error::Error;
     };

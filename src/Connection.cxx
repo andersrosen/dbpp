@@ -16,23 +16,25 @@
 // USA
 
 #include "dbpp/Connection.h"
-#include "dbpp/driver/Connection.h"
+#include "dbpp/adapter/Connection.h"
 
 namespace Dbpp {
 
-Connection::Connection(Driver::ConnectionPtr c)
-: impl(std::move(c)) {}
+Statement Connection::createStatement(std::string_view sql) const {
+    return Statement(impl->prepare(sql));
+}
+
+Connection::Connection(Adapter::ConnectionPtr c)
+: impl(std::move(c))
+{}
 
 Connection::Connection(Connection&& that) noexcept
-: impl(std::move(that.impl)) {}
+: impl(std::move(that.impl))
+{}
 
 Connection& Connection::operator=(Connection&& that) {
     impl = std::move(that.impl);
     return *this;
-}
-
-Statement Connection::prepare(const std::string& sql) {
-    return std::move(Statement(impl->prepare(sql)));
 }
 
 void Connection::begin() {

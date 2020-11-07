@@ -17,33 +17,17 @@
 
 #pragma once
 
-#include "../Connection.h"
-#include <string>
-#include "Types.h"
+#include <memory>
 
-namespace Dbpp::Driver {
+namespace Dbpp::Adapter {
 
-/// Interface class for the connection of a driver
-class Connection {
-    public:
-    /// Creates a new statement for the supplied string
-    virtual StatementPtr prepare(const std::string &sql) = 0;
+class Statement;
+using StatementPtr = std::shared_ptr<Statement>;
 
-    /// Begins a transaction
-    virtual void begin() = 0;
+class Connection;
+using ConnectionPtr = std::shared_ptr<Connection>;
 
-    /// Commits a transaction
-    virtual void commit() = 0;
-
-    /// Rolls back a transaction
-    virtual void rollback() = 0;
-
-    /// Returns the name of the driver
-    virtual const std::string &driverName() const = 0;
-
-    inline static ConnectionPtr getImpl(Dbpp::Connection& db) {
-        return db.impl;
-    }
-};
+class Result;
+using ResultPtr = std::shared_ptr<Result>;
 
 }

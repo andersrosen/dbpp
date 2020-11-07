@@ -15,12 +15,12 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
 // USA
 
-#include "dbpp/driver/Result.h"
-#include "dbpp/driver/Types.h"
+#include "dbpp/adapter/Result.h"
+#include "dbpp/adapter/Types.h"
 #include "dbpp/Result.h"
 
 template <class T>
-static bool doGet(Dbpp::Driver::ResultPtr& p, T& out, int index) {
+static bool doGet(Dbpp::Adapter::ResultPtr& p, T& out, int index) {
     if (!p)
         throw Dbpp::Error("Attempted access of values in empty Result");
     return p->getColumn(index, out);
@@ -29,7 +29,7 @@ static bool doGet(Dbpp::Driver::ResultPtr& p, T& out, int index) {
 
 namespace Dbpp {
 
-Result::Result(Driver::ResultPtr p)
+Result::Result(Adapter::ResultPtr p)
     : impl(std::move(p))
 {}
 
@@ -43,55 +43,55 @@ Result& Result::operator=(Dbpp::Result &&that) noexcept
     return *this;
 }
 
-bool Result::isNull(int colindex) {
-    return impl->isNull(colindex);
+bool Result::isNull(int columnIndex) const {
+    return impl->isNull(columnIndex);
 }
 
-bool Result::get(short &out, int index) { return doGet(impl, out, index); }
-bool Result::get(int &out, int index) { return doGet(impl, out, index); }
-bool Result::get(long &out, int index) { return doGet(impl, out, index); }
-bool Result::get(long long &out, int index) { return doGet(impl, out, index); }
-bool Result::get(unsigned short &out, int index) { return doGet(impl, out, index); }
-bool Result::get(unsigned int &out, int index) { return doGet(impl, out, index); }
-bool Result::get(unsigned long &out, int index) { return doGet(impl, out, index); }
-bool Result::get(unsigned long long &out, int index) { return doGet(impl, out, index); }
-bool Result::get(float &out, int index) { return doGet(impl, out, index); }
-bool Result::get(double &out, int index) { return doGet(impl, out, index); }
-bool Result::get(std::string &out, int index) { return doGet(impl, out, index); }
-bool Result::get(std::vector<unsigned char> &out, int index) { return doGet(impl, out, index); }
-bool Result::get(std::filesystem::path &out, int index) { return doGet(impl, out, index); }
+bool Result::get(int index, short& out) { return doGet(impl, out, index); }
+bool Result::get(int index, int& out) { return doGet(impl, out, index); }
+bool Result::get(int index, long& out) { return doGet(impl, out, index); }
+bool Result::get(int index, long long& out) { return doGet(impl, out, index); }
+bool Result::get(int index, unsigned short& out) { return doGet(impl, out, index); }
+bool Result::get(int index, unsigned int& out) { return doGet(impl, out, index); }
+bool Result::get(int index, unsigned long& out) { return doGet(impl, out, index); }
+bool Result::get(int index, unsigned long long& out) { return doGet(impl, out, index); }
+bool Result::get(int index, float& out) { return doGet(impl, out, index); }
+bool Result::get(int index, double& out) { return doGet(impl, out, index); }
+bool Result::get(int index, std::string& out) { return doGet(impl, out, index); }
+bool Result::get(int index, std::vector<unsigned char>& out) { return doGet(impl, out, index); }
+bool Result::get(int index, std::filesystem::path& out) { return doGet(impl, out, index); }
 
-bool Result::empty() {
+bool Result::empty() const {
     if (!impl)
         return false;
     return impl->empty();
 }
 
-int Result::columnCount() {
+int Result::columnCount() const {
     if (!impl)
         throw Error("Empty Result");
     return impl->columnCount();
 }
 
-std::string Result::columnName(int index) {
+std::string Result::columnName(int columnIndex) const {
     if (!impl)
         throw Error("Empty Result");
-    return impl->columnName(index);
+    return impl->columnName(columnIndex);
 }
 
-bool Result::hasColumn(std::string_view colname) {
+bool Result::hasColumn(std::string_view colname) const {
     if (!impl)
         return false;
     auto idx = impl->columnIndexByName(colname);
     return idx >= 0;
 }
 
-int Result::columnIndex(std::string_view colname) {
+int Result::columnIndexByName(std::string_view columnName) const {
     if (!impl)
         throw Error("Empty Result");
-    auto idx = impl->columnIndexByName(colname);
+    auto idx = impl->columnIndexByName(columnName);
     if (idx < 0)
-        throw Error(std::string("Result has no column named ") + std::string(colname));
+        throw Error(std::string("Result has no column named ") + std::string(columnName));
     return idx;
 }
 

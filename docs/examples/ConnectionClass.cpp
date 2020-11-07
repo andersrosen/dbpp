@@ -2,8 +2,10 @@
 #include <dbpp/dbpp.h>
 #include <dbpp/Sqlite3.h>
 
+namespace Sqlite3 = Dbpp::Sqlite3;
+
 int main(int argc, char **argv) {
-    Dbpp::Connection db = Dbpp::Sqlite3::open(":memory:", Dbpp::Sqlite3::OpenMode::ReadWriteCreate);
+    Dbpp::Connection db = Sqlite3::open(":memory:");
 
     db.exec("CREATE TABLE employee ("
             " id INTEGER PRIMARY KEY AUTOINCREMENT,"

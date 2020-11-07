@@ -17,143 +17,181 @@
 
 #pragma once
 
-#include "driver/Types.h"
+#include "adapter/Types.h"
 #include "Statement.h"
-#include <memory>
+
+#include <string>
+#include <string_view>
 
 namespace Dbpp {
 
-/// A connection object represents a connection to a database
+/// \brief A connection object represents a connection to a database
 ///
 /// Before you can use this library, you need to have at least
 /// one connection object, that you use to communicate with the
 /// database.
 ///
-/// \includeexamplewithoutput{ConnectionClass}
+/// \since v1.0.0
+///
+/// \includeexamplewithoutput{ConnectionClass.cpp}
 class Connection {
-    friend class Driver::Connection;
+    friend class Adapter::Connection;
 
 private:
-    Driver::ConnectionPtr impl;
+    Adapter::ConnectionPtr impl;
+
+    Statement createStatement(std::string_view sql) const;
 
 public:
     Connection(const Connection &c) = delete;
     Connection &operator=(const Connection &) = delete;
 
-    /// Construct a connection object.
+    /// \brief Construct a connection object
+    ///
     /// This constructor is typically called from a driver specific creation
-    /// function, such as sqlite3::open()
-    Connection(Driver::ConnectionPtr c);
+    /// function, such as sqlite3::open().
+    ///
+    /// \param connection A driver-specific connection
+    /// \since v1.0.0
+    Connection(Adapter::ConnectionPtr connection);
+
     /// Move constructor
+    /// \since v1.0.0
     Connection(Connection &&that) noexcept;
+
     /// Move assignment
+    /// \since v1.0.0
     Connection &operator=(Connection &&that);
+
     /// Destructor
+    /// \since v1.0.0
     ~Connection() = default;
 
-    /// Creates a new statement for the supplied string
-    Statement prepare(const std::string &sql);
-
-    /// Creates a new statement for the supplied string
+    /// \brief Creates a new statement for the supplied string
     ///
-    /// \param sql An SQL statement
+    /// \param sql An SQL statement string
     /// \param args A list of values to be bound to placeholders in the SQL statement
     /// \return A statement object
     ///
-    /// \example
-    /// auto st = db.prepare("SELECT * FROM user WHERE dept_id = ?", department_id);
-    /// for (row : st) {
-    /// ...
-    /// }
-    ///
+    /// \since v1.0.0
     template <typename... Args>
-    Statement prepare(const std::string &sql, Args... args) {
-        Statement st = prepare(sql);
+    Statement prepare(std::string_view sql, Args... args) {
+        Statement st = createStatement(sql);
         (st.bind(args), ...);
         return st;
     }
 
-    /// Creates and executes an SQL statement
+    /// \brief Creates and executes an SQL statement
+    ///
+    /// The statement will be executed once, and the first row of the result set is
+    /// returned, if any. This is handy for executing statements such as INSERT or
+    /// DELETE FROM, where there won't be multiple resulting rows to iterate over.
     ///
     /// \param sql An SQL statement
     /// \param args A list of values to be bound to placeholders in the SQL statement
     /// \return A result object, which contains the first row of the result set (if any)
+    ///
+    /// \since v1.0.0
     template <typename... Args>
-    Result exec(const std::string &sql, Args... args) {
+    Result exec(std::string_view sql, Args... args) {
         Statement st = prepare(sql);
         (st.bind(args), ...);
         return st.step();
     }
 
-    /// Creates and executes an SQL statement, returning a single value
+    /// \brief Creates and executes an SQL statement, returning a single value
     ///
+    /// This is a convenience method that can be used when it is expected that the
+    /// statement returns exactly one value.
+    ///
+    /// \tparam T The type of the return value
     /// \param sql An SQL statement
     /// \param args A list of values to be bound to placeholders in the SQL statement
     /// \return A single value
+    ///
+    /// \since v1.0.0
     template <typename T, typename... Args>
-    T get(const std::string &sql, Args... args) {
+    T get(std::string_view sql, Args... args) {
         auto row = exec(sql, args...);
         if (row.columnCount() != 1)
-            throw Dbpp::Error(std::string("get() expects a single column Result. Statement: ") +  sql);
+            throw Dbpp::Error(std::string("get() expects a single column Result. Statement: ") + std::string{sql});
         return row.template get<T>(0);
     }
 
-    /// Creates and executes an SQL statement, returning a single value
+    /// \brief Creates and executes an SQL statement, returning a single optional value
     ///
+    /// This is a convenience method that can be used when it is expected that the
+    /// statement returns exactly one value, or nothing.
+    ///
+    /// \tparam T The type of the return value
     /// \param sql An SQL statement
     /// \param args A list of values to be bound to placeholders in the SQL statement
     /// \return A single value (if any)
+    ///
+    /// \since v1.0.0
     template <typename T, typename... Args>
-    std::optional<T> getOptional(const std::string& sql, Args... args) {
+    std::optional<T> getOptional(std::string_view sql, Args... args) {
         auto row = exec(sql, args...);
         if (row.columnCount() != 1)
-            throw Dbpp::Error(std::string("getOptional() expects a single column Result. Statement: ") +  sql);
+            throw Dbpp::Error(std::string("getOptional() expects a single column Result. Statement: ") + std::string{sql});
         return row.template getOptional<T>(0);
     }
 
-    /// Begins a transaction
+    /// \brief Begins a transaction
+    ///
+    /// \since v1.0.0
     void begin();
 
-    /// Commits a transaction
+    /// \brief Commits a transaction
+    ///
+    /// \since v1.0.0
     void commit();
 
-    /// Rolls back a transaction
+    /// \brief Rolls back a transaction
+    ///
+    /// \since v1.0.0
     void rollback();
 
-    /// Returns the name of the driver in use
+    /// \brief Returns the name of the driver in use
+    ///
+    /// \since v1.0.0
     const std::string &driverName() const;
 };
 
-/// RAII class for transaction handling
+/// \brief RAII class for transaction handling
 ///
-/// Instantiate a transaction object to begin
-/// a transaction, and call commit on it to commit.
-/// If it goes out of scope before commit has been
-/// called, the transaction will be rolled back automatically.
+/// Instantiate a transaction object to begin a transaction, and call commit on it to commit.
+/// If it goes out of scope before commit has been called, the transaction will be rolled back automatically.
 ///
-/// @inlineex{Use of transaction object,transaction.cxx}
+/// \since v1.0.0
 class Transaction {
 private:
-    Connection &c;
+    Connection &db_;
     bool committed{false};
 
 public:
-    /// Constructor. Begins a transaction
+    /// \brief Constructor. Begins a transaction
     ///
-    /// \param c The db connection object
-    inline Transaction(Connection &c) : c(c) {
-        c.begin();
+    /// \param db The db connection object
+    ///
+    /// \since v1.0.0
+    inline explicit Transaction(Connection &db) : db_(db) {
+        db_.begin();
     }
 
-    /// Rolls back the transaction unless commit() has been called.
+    /// \brief Destructor. Rolls back the transaction unless commit() has been called
+    ///
+    /// \since v1.0.0
     inline ~Transaction() {
         if (!committed)
-            c.rollback();
+            db_.rollback();
     }
 
-    /// Commits the transaction
+    /// \brief Commits the transaction
+    ///
+    /// \since v1.0.0
     inline void commit() {
-        c.commit();
+        db_.commit();
         committed = true;
     }
 };

@@ -16,20 +16,28 @@
 // USA
 
 #include "dbpp/Statement.h"
-#include "dbpp/driver/Statement.h"
+#include "dbpp/adapter/Statement.h"
 
 namespace Dbpp {
 
 template<class T>
-static void do_bind(Driver::StatementPtr& p, T val, int& placeholder_pos) {
+static void doBind(Adapter::StatementPtr& p, T val, int& placeholder_pos) {
     p->bind(val, placeholder_pos++);
 }
 
-Statement::Statement(Driver::StatementPtr p)
-: impl(std::move(p)) {}
+void Statement::doReset() {
+    impl_->reset();
+}
+
+void Statement::clearBindings() {
+    impl_->clearBindings();
+}
+
+Statement::Statement(Adapter::StatementPtr p)
+: impl_(std::move(p)) {}
 
 Statement::Statement(Statement&& that) noexcept
-: impl(std::move(that.impl)) {}
+: impl_(std::move(that.impl_)) {}
 
 StatementIterator Statement::begin() {
     return StatementIterator(this);
@@ -40,75 +48,75 @@ StatementIterator Statement::end() {
 }
 
 void Statement::bindNull() {
-    impl->bindNull(placeholderPosition++);
+    impl_->bindNull(placeholderPosition_++);
 }
 
 void Statement::bind(std::nullptr_t) {
-    impl->bindNull(placeholderPosition++);
+    impl_->bindNull(placeholderPosition_++);
 }
 
 void Statement::bind(short v) {
-    impl->bind(v, placeholderPosition++);
+    impl_->bind(v, placeholderPosition_++);
 }
 
 void Statement::bind(int v) {
-    impl->bind(v, placeholderPosition++);
+    impl_->bind(v, placeholderPosition_++);
 }
 
 void Statement::bind(long v) {
-    impl->bind(v, placeholderPosition++);
+    impl_->bind(v, placeholderPosition_++);
 }
 
 void Statement::bind(long long v) {
-    impl->bind(v, placeholderPosition++);
+    impl_->bind(v, placeholderPosition_++);
 }
 
 void Statement::bind(unsigned short v) {
-    impl->bind(v, placeholderPosition++);
+    impl_->bind(v, placeholderPosition_++);
 }
 
 void Statement::bind(unsigned int v) {
-    impl->bind(v, placeholderPosition++);
+    impl_->bind(v, placeholderPosition_++);
 }
 
 void Statement::bind(unsigned long v) {
-    impl->bind(v, placeholderPosition++);
+    impl_->bind(v, placeholderPosition_++);
 }
 
 void Statement::bind(unsigned long long v) {
-    impl->bind(v, placeholderPosition++);
+    impl_->bind(v, placeholderPosition_++);
 }
 
 void Statement::bind(float v) {
-    impl->bind(v, placeholderPosition++);
+    impl_->bind(v, placeholderPosition_++);
 }
 
 void Statement::bind(double v) {
-    impl->bind(v, placeholderPosition++);
+    impl_->bind(v, placeholderPosition_++);
 }
 
 void Statement::bind(const std::string& v) {
-    impl->bind(v, placeholderPosition++);
+    impl_->bind(v, placeholderPosition_++);
 }
 
 void Statement::bind(std::string_view sv) {
-    impl->bind(sv, placeholderPosition++);
+    impl_->bind(sv, placeholderPosition_++);
 }
 
 void Statement::bind(const char* v) {
-    impl->bind(std::string{ v }, placeholderPosition++);
+    impl_->bind(std::string{ v }, placeholderPosition_++);
 }
 
 void Statement::bind(const std::vector<unsigned char>& v) {
-    impl->bind(v, placeholderPosition++);
+    impl_->bind(v, placeholderPosition_++);
 }
 
 Result Statement::step() {
-    return std::move(Result(impl->step()));
+    return std::move(Result(impl_->step()));
 }
 
 std::string Statement::sql() const {
-    return impl->sql();
+    return impl_->sql();
 }
 
 }

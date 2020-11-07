@@ -18,12 +18,13 @@
 #pragma once
 
 #include "Exception.h"
-#include "driver/Result.h"
-#include "driver/Types.h"
+#include "adapter/Result.h"
+#include "adapter/Types.h"
 
 #include <filesystem>
 #include <optional>
 #include <string>
+#include <string_view>
 #include <type_traits>
 #include <vector>
 
@@ -34,8 +35,7 @@ class Result;
 
 namespace Detail {
 
-    ///@{
-    /// Trait to check if class T is std::optional
+    // Trait to check if class T is std::optional
     template <typename T>
     struct IsOptional : public std::false_type {};
 
@@ -45,10 +45,7 @@ namespace Detail {
     template <typename T>
     inline constexpr bool IsOptionalV = IsOptional<T>::value;
 
-    ///@}
-
-    ///@{
-    /// Trait to check if class T has a static dbpp_get member function
+    // Trait to check if class T has a static dbppGet member function
     template <typename T, typename=void>
     struct HasStaticDbppGetMethod : std::false_type{};
 
@@ -58,81 +55,279 @@ namespace Detail {
 
     template <typename T>
     inline constexpr bool HasStaticDbppGetMethodV = HasStaticDbppGetMethod<T>::value;
-    ///@}
 
 }
 
-/// Represents a single result (row) of a query
+/// \brief Represents a single result (row) of a query
+///
+/// \since v1.0.0
 class Result {
     friend class Statement;
 private:
-    Driver::ResultPtr impl;
+    Adapter::ResultPtr impl;
 
 protected:
-    explicit Result(Driver::ResultPtr p);
+    /// \brief Constructs a result object from a driver specific result
+    ///
+    /// \since v1.0.0
+    explicit Result(Adapter::ResultPtr p);
 
 public:
+    /// \brief Default constructor
+    ///
+    /// \since v1.0.0
     Result() = default;
+
     Result(const Result &) = delete;
-    Result(Result &&) noexcept ;
+
+    /// \brief Move constructor
+    ///
+    /// \since v1.0.0
+    Result(Result &&) noexcept;
+
     ~Result() = default;
+
     Result &operator=(const Result &) = delete;
+
+    /// \brief Move constructor
+    ///
+    /// \since v1.0.0
     Result &operator=(Result &&) noexcept;
 
-    /// Conversion to bool. False if the result is empty, true otherwise
-    inline explicit operator bool () {return !empty();}
+    /// \brief Conversion to bool. False if the result is empty, true otherwise
+    ///
+    /// \since v1.0.0
+    inline explicit operator bool () const {return !empty();}
 
-    bool isNull(int colindex);
+    /// \brief Checks if the specified column is NULL
+    ///
+    /// \param columnIndex The zero-based index of the column to check
+    /// \return True if the column was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    bool isNull(int columnIndex) const;
 
-    ///@{
+    /// \brief Checks if the specified column is NULL
+    ///
+    /// \param columnName The name of the column to check
+    /// \return True if the column was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    bool isNull(std::string_view columnName) const;
+
+    /// \brief Retrieves a value from the result
+    ///
     /// Retrieves a value from the result. If the value was NULL, the
     /// output variable will not be touched, and false is returned.
     ///
+    /// \param index The zero-based index of the value
     /// \param out Output variable where the value will be stored unless
     ///            it was NULL in the result
-    /// \param index The zero-based index of the value.
-    /// \return False if the value was NULL, true otherwise.
-    bool get(short &out, int index);
-    bool get(int &out, int index);
-    bool get(long &out, int index);
-    bool get(long long &out, int index);
+    /// \return False if the value was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    bool get(int index, short& out);
 
-    bool get(unsigned short &out, int index);
-    bool get(unsigned int &out, int index);
-    bool get(unsigned long &out, int index);
-    bool get(unsigned long long &out, int index);
+    /// \brief Retrieves a value from the result
+    ///
+    /// Retrieves a value from the result. If the value was NULL, the
+    /// output variable will not be touched, and false is returned.
+    ///
+    /// \param index The zero-based index of the value
+    /// \param out Output variable where the value will be stored unless
+    ///            it was NULL in the result
+    /// \return False if the value was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    bool get(int index, int& out);
 
-    bool get(float &out, int index);
-    bool get(double &out, int index);
+    /// \brief Retrieves a value from the result
+    ///
+    /// Retrieves a value from the result. If the value was NULL, the
+    /// output variable will not be touched, and false is returned.
+    ///
+    /// \param index The zero-based index of the value
+    /// \param out Output variable where the value will be stored unless
+    ///            it was NULL in the result
+    /// \return False if the value was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    bool get(int index, long& out);
 
-    bool get(std::string &out, int index);
-    bool get(std::vector<unsigned char> &out, int index);
-    bool get(std::filesystem::path &out, int index);
-    ///@}
+    /// \brief Retrieves a value from the result
+    ///
+    /// Retrieves a value from the result. If the value was NULL, the
+    /// output variable will not be touched, and false is returned.
+    ///
+    /// \param index The zero-based index of the value
+    /// \param out Output variable where the value will be stored unless
+    ///            it was NULL in the result
+    /// \return False if the value was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    bool get(int index, long long& out);
 
-    /// Retrieves a value of type T from the specified column in the result.
+    /// \brief Retrieves a value from the result
+    ///
+    /// Retrieves a value from the result. If the value was NULL, the
+    /// output variable will not be touched, and false is returned.
+    ///
+    /// \param index The zero-based index of the value
+    /// \param out Output variable where the value will be stored unless
+    ///            it was NULL in the result
+    /// \return False if the value was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    bool get(int index, unsigned short& out);
+
+    /// \brief Retrieves a value from the result
+    ///
+    /// Retrieves a value from the result. If the value was NULL, the
+    /// output variable will not be touched, and false is returned.
+    ///
+    /// \param index The zero-based index of the value
+    /// \param out Output variable where the value will be stored unless
+    ///            it was NULL in the result
+    /// \return False if the value was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    bool get(int index, unsigned int& out);
+
+    /// \brief Retrieves a value from the result
+    ///
+    /// Retrieves a value from the result. If the value was NULL, the
+    /// output variable will not be touched, and false is returned.
+    ///
+    /// \param index The zero-based index of the value
+    /// \param out Output variable where the value will be stored unless
+    ///            it was NULL in the result
+    /// \return False if the value was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    bool get(int index, unsigned long& out);
+
+    /// \brief Retrieves a value from the result
+    ///
+    /// Retrieves a value from the result. If the value was NULL, the
+    /// output variable will not be touched, and false is returned.
+    ///
+    /// \param index The zero-based index of the value
+    /// \param out Output variable where the value will be stored unless
+    ///            it was NULL in the result
+    /// \return False if the value was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    bool get(int index, unsigned long long& out);
+
+    /// \brief Retrieves a value from the result
+    ///
+    /// Retrieves a value from the result. If the value was NULL, the
+    /// output variable will not be touched, and false is returned.
+    ///
+    /// \param index The zero-based index of the value
+    /// \param out Output variable where the value will be stored unless
+    ///            it was NULL in the result
+    /// \return False if the value was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    bool get(int index, float& out);
+
+    /// \brief Retrieves a value from the result
+    ///
+    /// Retrieves a value from the result. If the value was NULL, the
+    /// output variable will not be touched, and false is returned.
+    ///
+    /// \param index The zero-based index of the value
+    /// \param out Output variable where the value will be stored unless
+    ///            it was NULL in the result
+    /// \return False if the value was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    bool get(int index, double& out);
+
+    /// \brief Retrieves a value from the result
+    ///
+    /// Retrieves a value from the result. If the value was NULL, the
+    /// output variable will not be touched, and false is returned.
+    ///
+    /// \param index The zero-based index of the value
+    /// \param out Output variable where the value will be stored unless
+    ///            it was NULL in the result
+    /// \return False if the value was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    bool get(int index, std::string& out);
+
+    /// \brief Retrieves a value from the result
+    ///
+    /// Retrieves a value from the result. If the value was NULL, the
+    /// output variable will not be touched, and false is returned.
+    ///
+    /// \param index The zero-based index of the value
+    /// \param out Output variable where the value will be stored unless
+    ///            it was NULL in the result
+    /// \return False if the value was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    bool get(int index, std::vector<unsigned char>& out);
+
+    /// \brief Retrieves a value from the result
+    ///
+    /// Retrieves a value from the result. If the value was NULL, the
+    /// output variable will not be touched, and false is returned.
+    ///
+    /// \param index The zero-based index of the value
+    /// \param out Output variable where the value will be stored unless
+    ///            it was NULL in the result
+    /// \return False if the value was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    bool get(int index, std::filesystem::path& out);
+
+    /// \brief Retrieves a value of type T from the specified column in the result
+    ///
     /// Throws if the value is NULL, unless T is std::optional.
     ///
     /// \tparam T The type of the value to return
-    /// \param columnIndex The column to return
+    /// \param columnIndex The zero-based index of the column to return
     /// \return The value of the specified column
+    ///
+    /// \since v1.0.0
     template <typename T>
     typename std::enable_if_t<Detail::HasStaticDbppGetMethodV<T>, T>
     get(int columnIndex) {
         return T::dbppGet(*this, columnIndex);
     }
 
+    /// \brief Retrieves a value of type T from the specified column in the result
+    ///
+    /// Throws if the value is NULL, unless T is std::optional.
+    ///
+    /// \tparam T The type of the value to return
+    /// \param columnIndex The zero-based index of the column to return
+    /// \return The value of the specified column
+    ///
+    /// \since v1.0.0
     template <typename T>
     typename std::enable_if_t<
         not Detail::IsOptional<T>::value and not Detail::HasStaticDbppGetMethodV<T>,
         T>
     get(int columnIndex) {
         T val;
-        if (!get(val, columnIndex))
+        if (!get(columnIndex, val))
             throw Dbpp::Error("Column value was NULL in retrieval");
         return val;
     }
 
+    /// \brief Retrieves a value of type T from the specified column in the result
+    ///
+    /// Throws if the value is NULL, unless T is std::optional.
+    ///
+    /// \tparam T The type of the value to return
+    /// \param columnIndex The zero-based index of the column to return
+    /// \return The value of the specified column
+    ///
+    /// \since v1.0.0
     template <typename T>
     std::enable_if_t<
         Detail::IsOptionalV<T> and Detail::HasStaticDbppGetMethodV<typename T::value_type>,
@@ -143,68 +338,95 @@ public:
         return get<typename T::value_type>(columnIndex);
     }
 
+    /// \brief Retrieves a value of type T from the specified column in the result
+    ///
+    /// Throws if the value is NULL, unless T is std::optional.
+    ///
+    /// \tparam T The type of the value to return
+    /// \param columnIndex The zero-based index of the column to return
+    /// \return The value of the specified column
+    ///
+    /// \since v1.0.0
     template <typename T>
     typename std::enable_if_t<
         Detail::IsOptionalV<T> and not Detail::HasStaticDbppGetMethodV<typename T::value_type>,
         T>
     get(int columnIndex) {
         typename T::value_type val;
-        if (!get(val, columnIndex))
+        if (!get(columnIndex, val))
             return std::nullopt;
         return val;
     }
-    ///@}
 
-    /// Retrieves an optional value of type T from the specified column in the result.
+    /// \brief Retrieves an optional value of type T from the specified column in the result
     ///
-    /// This is equivalent to get<std::optional<T>(column_index)
+    /// This is equivalent to get<std::optional<T>>(columnIndex)
     ///
     /// \tparam T The type of the value to return
-    /// \param columnIndex The column to return
+    /// \param columnIndex The zero-based index of the column to return
     /// \return The value of the specified column
+    ///
+    /// \since v1.0.0
     template <typename T>
     std::optional<T> getOptional(int columnIndex) {
         return get<std::optional<T>>(columnIndex);
     }
 
-    /// Retrieves a value of type T from the specified column in the result.
+    /// \brief Retrieves a value of type T from the specified column in the result
+    ///
     /// Throws if the value is NULL, unless T is std::optional.
     ///
     /// \tparam T The type of the value to return
-    /// \param columnName The column to return
+    /// \param columnName The name of the column to return
     /// \return The value of the specified column
+    ///
+    /// \since v1.0.0
     template <typename T>
     T get(std::string_view columnName) {
-        return get<T>(columnIndex(columnName));
+        return get<T>(columnIndexByName(columnName));
     }
 
-    /// Retrieves an optional value of type T from the specified column in the result.
+    /// \brief Retrieves an optional value of type T from the specified column in the result
     ///
-    /// This is equivalent to get<std::optional<T>(columnName)
+    /// This is equivalent to get<std::optional<T>>(columnName)
     ///
     /// \tparam T The type of the value to return
-    /// \param columnName The column to return
+    /// \param columnName The name of the column to return
     /// \return The value of the specified column
+    ///
+    /// \since v1.0.0
     template <typename T>
     std::optional<T> getOptional(std::string_view columnName) {
-        return getOptional<T>(columnIndex(columnName));
+        return getOptional<T>(columnIndexByName(columnName));
     }
 
-    ///@{
-    /// Returns a column's value or, if it was NULL, the provided default value.
+    /// \brief Returns a column's value or, if it was NULL, the provided default value
+    ///
     /// Throws if there is no such column in the row.
     ///
     /// \tparam T The type to be returned
-    /// \param columnIndex The column to be returned
+    /// \param columnIndex The zero-based index of the column to be returned
     /// \param defaultValue The value to return if the result was NULL
     /// \return The value of the specified column, or the default value
+    ///
+    /// \since v1.0.0
     template <typename T>
     typename std::enable_if_t<not Detail::IsOptionalV<T> and not Detail::HasStaticDbppGetMethodV<T>, T>
     value_or(int columnIndex, T defaultValue) {
-        get(defaultValue, columnIndex);
+        get(columnIndex, defaultValue);
         return defaultValue;
     }
 
+    /// \brief Returns a column's value or, if it was NULL, the provided default value
+    ///
+    /// Throws if there is no such column in the row.
+    ///
+    /// \tparam T The type to be returned
+    /// \param columnIndex The zero-based index of the column to be returned
+    /// \param defaultValue The value to return if the result was NULL
+    /// \return The value of the specified column, or the default value
+    ///
+    /// \since v1.0.0
     template <typename T>
     typename std::enable_if_t<not Detail::IsOptionalV<T> and Detail::HasStaticDbppGetMethodV<T>, T>
     value_or(int columnIndex, T defaultValue) {
@@ -212,31 +434,63 @@ public:
             return defaultValue;
         return T::dbppGet(*this, columnIndex);
     }
-    ///@}
 
-    /// Returns true if the result is empty, false otherwise
-    bool empty();
+    /// \brief Checks if the result is empty
+    ///
+    /// \return True if the result is empty, false otherwise
+    ///
+    /// \since v1.0.0
+    bool empty() const;
 
-    /// Returns the number of columns (values) in the result
-    int columnCount();
+    /// \brief Retrieves the number of columns (values) in the result
+    ///
+    /// \return The number of columns in the result
+    ///
+    /// \since v1.0.0
+    int columnCount() const;
 
-    /// Returns the name of the column at the specified index
-    std::string columnName(int index);
+    /// \brief Retrieves the name of the column at the specified index
+    ///
+    /// Throws if the index is out of range
+    ///
+    /// \param index The zero based index of the column
+    /// \return The name of the column
+    ///
+    /// \since v1.0.0
+    std::string columnName(int index) const;
 
-    /// Returns the index of the specified column
-    int columnIndex(std::string_view columnName);
+    /// \brief Retrieves the index of the specified column
+    ///
+    /// Throws if there is no such column in the result
+    ///
+    /// \param columnName The name of the column
+    /// \return The index of the specified column
+    ///
+    /// \since v1.0.0
+    int columnIndexByName(std::string_view columnName) const;
 
-    /// Returns true if the result has a column of the specified name
-    bool hasColumn(std::string_view columnName);
+    /// \brief Checks if the result has a column of the specified name
+    ///
+    /// \param columnName The name of the column to check for
+    /// \return True if the result has such a column, false otherwise
+    ///
+    /// \since v1.0.0
+    bool hasColumn(std::string_view columnName) const;
 
-    /// Returns the last insert id
+    /// \brief Retrieves the last insert ID
+    ///
+    /// \return The ID of the last inserted row
+    ///
+    /// \since v1.0.0
     long long getInsertId() { return impl->getInsertId(""); }
 
-    /// Returns the last insert id
+    /// \brief Retrieves the last insert ID
     ///
     /// \param sequenceName Name of the sequence holding the ID
-    /// \return The last sequence ID
-    long long getInsertId(const std::string& sequenceName) { return impl->getInsertId(sequenceName); }
+    /// \return The last ID in the sequence
+    ///
+    /// \since v1.0.0
+    long long getInsertId(std::string_view sequenceName) { return impl->getInsertId(sequenceName); }
 };
 
 } // namespace Dbpp

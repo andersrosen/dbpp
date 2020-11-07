@@ -29,6 +29,8 @@ set(CMAKE_BUILD_TYPE Release CACHE STRING
 option(DBPP_ENABLE_INSTALL "Generate install target" ${MASTER_PROJECT})
 option(DBPP_ENABLE_TESTS "Build tests" ${MASTER_PROJECT})
 option(DBPP_ENABLE_DOCS "Generate documentation using Doxygen" ${MASTER_PROJECT})
+option(DBPP_ENABLE_DEV_MODE "Enable strict compiler warnings" OFF)
+option(DBPP_ENABLE_SANITIZERS "Use address, leak and undefined behavior sanitizers" ${DBPP_ENABLE_DEV_MODE})
 
 # CMake script include path
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
@@ -52,7 +54,52 @@ set_target_properties(dbpp PROPERTIES
     VERSION ${PROJECT_VERSION} SOVERSION ${CPACK_PACKAGE_VERSION_MAJOR}
 )
 
-target_link_libraries(dbpp PUBLIC SQLite3::SQLite3)
+target_link_libraries(dbpp PUBLIC SQLite::SQLite3)
+
+if (DBPP_ENABLE_DEV_MODE)
+    target_compile_options(dbpp PRIVATE
+        -Wall
+        -pedantic
+        -pedantic-errors
+        -Wextra
+        -Wcast-align
+        -Wcast-qual
+        -Wconversion
+        -Wdisabled-optimization
+        -Werror
+        -Wfloat-equal
+        -Wformat=2
+        -Wformat-nonliteral
+        -Wformat-security
+        -Wformat-y2k
+        -Wimport
+        -Winit-self
+        -Winline
+        -Winvalid-pch
+        -Wmissing-field-initializers
+        -Wmissing-format-attribute
+        -Wmissing-include-dirs
+        -Wmissing-noreturn
+        -Wpacked
+        -Wpointer-arith
+        -Wredundant-decls
+        -Wshadow
+        -Wstack-protector
+        -Wstrict-aliasing=2
+        -Wswitch-default
+        -Wswitch-enum
+        -Wunreachable-code
+        -Wunused
+        -Wunused-parameter
+        -Wvariadic-macros
+        -Wwrite-strings
+    )
+endif()
+
+if (DBPP_ENABLE_SANITIZERS)
+    target_compile_options(dbpp PUBLIC -fsanitize=address -fsanitize=leak -fsanitize=undefined -g)
+    target_link_options(dbpp PUBLIC -fsanitize=address -fsanitize=leak -fsanitize=undefined -g)
+endif()
 
 add_subdirectory(include)
 add_subdirectory(src)

@@ -3,7 +3,7 @@ A simple database client library for C++
 
 The purpose of dbpp is to provide an easy-to-use interface to SQL databases.
 It is currently under development and the interface is not stable. So far
-sqlite3 is the only supported database backend.
+sqlite3 is the only supported database.
 
 ## Build status
 [![Ubuntu Actions Status](https://github.com/andersrosen/dbpp/workflows/Ubuntu/badge.svg)](https://github.com/andersrosen/dbpp/actions?query=workflow%3AUbuntu)
@@ -18,6 +18,7 @@ sqlite3 is the only supported database backend.
 ## Usage
 ```c++
 #include <dbpp/dbpp.h>
+#include <dbpp/Sqlite3.h>
 
 ...
     
