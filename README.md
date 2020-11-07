@@ -13,7 +13,6 @@ sqlite3 is the only supported database.
 ## Reference documentation
 
 [Bleeding edge](https://andersrosen.github.io/dbpp/docs/main/index.html) (generated from the latest commit to main)<br>
-[Version 1.0](https://andersrosen.github.io/dbpp/docs/v1.0/index.html)
 
 ## Usage
 ```c++
