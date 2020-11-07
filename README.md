@@ -2,7 +2,7 @@
 A simple database client library for C++
 
 The purpose of dbpp is to provide an easy-to-use interface to SQL databases.
-It is currently under development and the interface is not stable. So far
+It is currently under development and the **interface is not stable**. So far
 sqlite3 is the only supported database.
 
 ## Build status
