@@ -276,17 +276,15 @@ public:
 /// \brief Allows iteration over results of a statement
 ///
 /// \since v1.0.0
-class StatementIterator : public std::iterator<std::input_iterator_tag,
-                                               Statement, // Value type
-                                               size_t> {  // diff type
+class StatementIterator {
     friend class Statement;
 
 private:
-    Statement* stmt_;
+    Statement* stmt_ = nullptr;
     Result res_;
 
     explicit StatementIterator(Statement* statement)
-        : stmt_(statement), res_(statement->step()) {
+    : stmt_(statement), res_(statement->step()) {
         if (res_.empty()) {
             // Become the end iterator
             stmt_ = nullptr;
@@ -295,19 +293,25 @@ private:
     }
 
 public:
+    StatementIterator& operator=(const StatementIterator&) = delete;
+    StatementIterator(const StatementIterator&) = delete;
+
+    ~StatementIterator() = default;
+
     /// \brief Default constructor
     ///
     /// \since v1.0.0
-    StatementIterator()
-        : stmt_(nullptr)
-    {}; // Constructs an end iterator
+    StatementIterator() = default; // Constructs an end iterator
 
-    /// \brief Copy constructor
+    /// \brief Move constructor
     ///
     /// \since v1.0.0
-    StatementIterator(const StatementIterator& that)
-        : stmt_(that.stmt_)
-    {}
+    StatementIterator(StatementIterator&&) = default;
+
+    /// \brief Move assignment
+    ///
+    /// \since v1.0.0
+    StatementIterator& operator=(StatementIterator&&) = default;
 
     /// \brief Dereferencing operator
     ///
@@ -322,15 +326,12 @@ public:
     /// \brief Checks if two iterators are equal
     ///
     /// \since v1.0.0
-    bool operator==(StatementIterator& that) {
-        // FIXME! More thorough comparison needed? What about the result obj?
-        return stmt_ == that.stmt_;
-    }
+    bool operator==(const StatementIterator& that) const { return stmt_ == that.stmt_; }
 
     /// \brief Checks if two iterators are different
     ///
     /// \since v1.0.0
-    bool operator!=(StatementIterator& that) { return !(*this == that); }
+    bool operator!=(const StatementIterator& that) const  { return !(*this == that); }
 
     /// \brief Increments the iterator, which means stepping to the next result
     ///
