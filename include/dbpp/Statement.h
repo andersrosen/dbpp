@@ -42,64 +42,7 @@ inline constexpr bool hasDbppBindMethod = HasDbppBindMethod<T>::value;
 } // namespace Detail
 
 class Connection;
-
-/// \brief Allows iteration over results of a statement
-///
-/// \since v1.0.0
-class StatementIterator : public std::iterator<std::input_iterator_tag,
-                              Statement, // Value type
-                              size_t> {  // diff type
-    friend class Statement;
-
-private:
-    Statement* stmt_;
-    Result res_;
-
-    explicit StatementIterator(Statement* s);
-
-public:
-    /// \brief Default constructor
-    ///
-    /// \since v1.0.0
-    StatementIterator()
-    : stmt_(nullptr)
-    {}; // Constructs an end iterator
-
-    /// \brief Copy constructor
-    ///
-    /// \since v1.0.0
-    StatementIterator(const StatementIterator& that)
-    : stmt_(that.stmt_)
-    {}
-
-    /// \brief Dereferencing operator
-    ///
-    /// \since v1.0.0
-    Result& operator*() { return res_; }
-
-    /// \brief Dereferencing operator
-    ///
-    /// \since v1.0.0
-    Result* operator->() { return &res_; }
-
-    /// \brief Checks if two iterators are equal
-    ///
-    /// \since v1.0.0
-    bool operator==(StatementIterator& that) {
-        // FIXME! More thorough comparison needed? What about the result obj?
-        return stmt_ == that.stmt_;
-    }
-
-    /// \brief Checks if two iterators are different
-    ///
-    /// \since v1.0.0
-    bool operator!=(StatementIterator& that) { return !(*this == that); }
-
-    /// \brief Increments the iterator, which means stepping to the next result
-    ///
-    /// \since v1.0.0
-    StatementIterator& operator++();
-};
+class StatementIterator;
 
 /// \brief Represents a prepared SQL statement
 ///
@@ -330,26 +273,79 @@ public:
     }
 };
 
-inline StatementIterator::StatementIterator(Statement* statement)
-: stmt_(statement), res_(statement->step()) {
-    if (res_.empty()) {
-        // Become the end iterator
-        stmt_ = nullptr;
-        res_ = Result();
-    }
-}
+/// \brief Allows iteration over results of a statement
+///
+/// \since v1.0.0
+class StatementIterator : public std::iterator<std::input_iterator_tag,
+                                               Statement, // Value type
+                                               size_t> {  // diff type
+    friend class Statement;
 
-inline StatementIterator&
-StatementIterator::operator++() {
-    if (stmt_) {
-        res_ = stmt_->step();
+private:
+    Statement* stmt_;
+    Result res_;
+
+    explicit StatementIterator(Statement* statement)
+        : stmt_(statement), res_(statement->step()) {
         if (res_.empty()) {
             // Become the end iterator
             stmt_ = nullptr;
             res_ = Result();
         }
     }
-    return *this;
-}
 
-}
+public:
+    /// \brief Default constructor
+    ///
+    /// \since v1.0.0
+    StatementIterator()
+        : stmt_(nullptr)
+    {}; // Constructs an end iterator
+
+    /// \brief Copy constructor
+    ///
+    /// \since v1.0.0
+    StatementIterator(const StatementIterator& that)
+        : stmt_(that.stmt_)
+    {}
+
+    /// \brief Dereferencing operator
+    ///
+    /// \since v1.0.0
+    Result& operator*() { return res_; }
+
+    /// \brief Dereferencing operator
+    ///
+    /// \since v1.0.0
+    Result* operator->() { return &res_; }
+
+    /// \brief Checks if two iterators are equal
+    ///
+    /// \since v1.0.0
+    bool operator==(StatementIterator& that) {
+        // FIXME! More thorough comparison needed? What about the result obj?
+        return stmt_ == that.stmt_;
+    }
+
+    /// \brief Checks if two iterators are different
+    ///
+    /// \since v1.0.0
+    bool operator!=(StatementIterator& that) { return !(*this == that); }
+
+    /// \brief Increments the iterator, which means stepping to the next result
+    ///
+    /// \since v1.0.0
+    StatementIterator& operator++() {
+        if (stmt_) {
+            res_ = stmt_->step();
+            if (res_.empty()) {
+                // Become the end iterator
+                stmt_ = nullptr;
+                res_ = Result();
+            }
+        }
+        return *this;
+    }
+};
+
+} // namespace Dbpp
