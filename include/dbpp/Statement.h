@@ -28,78 +28,21 @@ namespace Dbpp {
 
 namespace Detail {
 
-// Trait to check if class T has a dbpp_bind member function
 template<class T, class = void>
 struct HasDbppBindMethod : std::false_type {};
 
 template<class T>
-struct HasDbppBindMethod<T, std::void_t<decltype(std::declval<const T&>().dbpp_bind(std::declval<Statement&>()))>>
+struct HasDbppBindMethod<T, std::void_t<decltype(std::declval<const T&>().dbppBind(std::declval<Statement&>()))>>
 : std::true_type {};
 
+// Trait to check if class T has a dbppBind member function
 template<class T>
-inline constexpr bool hasDbppBindMethod = HasDbppBindMethod<T>::value;
+inline constexpr bool HasDbppBindMethodV = HasDbppBindMethod<T>::value;
 
 } // namespace Detail
 
 class Connection;
-
-/// \brief Allows iteration over results of a statement
-///
-/// \since v1.0.0
-class StatementIterator : public std::iterator<std::input_iterator_tag,
-                              Statement, // Value type
-                              size_t> {  // diff type
-    friend class Statement;
-
-private:
-    Statement* stmt_;
-    Result res_;
-
-    explicit StatementIterator(Statement* s);
-
-public:
-    /// \brief Default constructor
-    ///
-    /// \since v1.0.0
-    StatementIterator()
-    : stmt_(nullptr)
-    {}; // Constructs an end iterator
-
-    /// \brief Copy constructor
-    ///
-    /// \since v1.0.0
-    StatementIterator(const StatementIterator& that)
-    : stmt_(that.stmt_)
-    {}
-
-    /// \brief Dereferencing operator
-    ///
-    /// \since v1.0.0
-    Result& operator*() { return res_; }
-
-    /// \brief Dereferencing operator
-    ///
-    /// \since v1.0.0
-    Result* operator->() { return &res_; }
-
-    /// \brief Checks if two iterators are equal
-    ///
-    /// \since v1.0.0
-    bool operator==(StatementIterator& that) {
-        // FIXME! More thorough comparison needed? What about the result obj?
-        return stmt_ == that.stmt_;
-    }
-
-    /// \brief Checks if two iterators are different
-    ///
-    /// \since v1.0.0
-    bool operator!=(StatementIterator& that) { return !(*this == that); }
-
-    /// \brief Increments the iterator, which means stepping to the next result
-    ///
-    /// \since v1.0.0
-    StatementIterator& operator++();
-};
+class StatementIterator;
 
 /// \brief Represents a prepared SQL statement
 ///
@@ -117,13 +60,14 @@ private:
     void doReset();
     void clearBindings();
 
-protected:
     /// \brief Constructs a Statement object from an adapter-specific statement
     ///
     /// \since v1.0.0
     explicit Statement(Adapter::StatementPtr p);
 
 public:
+    using iterator = StatementIterator;
+
     Statement(const Statement&) = delete;
     Statement& operator=(const Statement&) = delete;
 
@@ -133,14 +77,19 @@ public:
     Statement(Statement&&) noexcept;
     ~Statement() = default;
 
+    Statement& operator=(Statement&&) noexcept;
+
     /// \brief Returns an iterator to the first result of this statement
     ///
     /// \since v1.0.0
-    StatementIterator begin();
+    [[nodiscard]]
+    iterator begin();
+
     /// \brief Returns the end iterator of the result set
     ///
     /// \since v1.0.0
-    StatementIterator end();
+    [[nodiscard]]
+    iterator end();
 
     /// \brief Binds NULL to a placeholder (typically a question mark) in the SQL statement,
     /// and increments the index of the next placeholder to bind
@@ -151,10 +100,8 @@ public:
     /// \brief Binds NULL to a placeholder (typically a question mark) in the SQL statement,
     /// and increments the index of the next placeholder to bind
     ///
-    /// \param aNullptr nullptr
-    ///
     /// \since v1.0.0
-    void bind(std::nullptr_t aNullptr);
+    void bind(std::nullptr_t);
 
     /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement, and
     /// increments the index of the next placeholder to bind
@@ -278,7 +225,7 @@ public:
     /// \param value The value to bind
     ///
     /// \since v1.0.0
-    template<typename T, typename std::enable_if_t<Detail::hasDbppBindMethod<T>, int> = 0>
+    template<typename T, typename std::enable_if_t<Detail::HasDbppBindMethodV<T>, int> = 0>
     void bind(const T& value) {
         value.dbppBind(*this);
     }
@@ -303,6 +250,7 @@ public:
     /// \brief Returns the SQL statement string represented by this object
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     std::string sql() const;
 
     /// \brief Executes the statement or steps to the next result
@@ -310,6 +258,7 @@ public:
     /// \return A result object, representing the next set of values
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     Result step();
 
     /// \brief Resets the statement to its initial state, so it can be executed again
@@ -324,26 +273,80 @@ public:
     }
 };
 
-inline StatementIterator::StatementIterator(Statement* statement)
-: stmt_(statement), res_(statement->step()) {
-    if (res_.empty()) {
-        // Become the end iterator
-        stmt_ = nullptr;
-        res_ = Result();
-    }
-}
+/// \brief Allows iteration over results of a statement
+///
+/// \since v1.0.0
+class StatementIterator {
+    friend class Statement;
 
-inline StatementIterator&
-StatementIterator::operator++() {
-    if (stmt_) {
-        res_ = stmt_->step();
+private:
+    Statement* stmt_ = nullptr;
+    Result res_;
+
+    explicit StatementIterator(Statement* statement)
+    : stmt_(statement), res_(statement->step()) {
         if (res_.empty()) {
             // Become the end iterator
             stmt_ = nullptr;
             res_ = Result();
         }
     }
-    return *this;
-}
 
-}
+public:
+    StatementIterator& operator=(const StatementIterator&) = delete;
+    StatementIterator(const StatementIterator&) = delete;
+
+    ~StatementIterator() = default;
+
+    /// \brief Default constructor
+    ///
+    /// \since v1.0.0
+    StatementIterator() = default; // Constructs an end iterator
+
+    /// \brief Move constructor
+    ///
+    /// \since v1.0.0
+    StatementIterator(StatementIterator&&) = default;
+
+    /// \brief Move assignment
+    ///
+    /// \since v1.0.0
+    StatementIterator& operator=(StatementIterator&&) = default;
+
+    /// \brief Dereferencing operator
+    ///
+    /// \since v1.0.0
+    Result& operator*() { return res_; }
+
+    /// \brief Dereferencing operator
+    ///
+    /// \since v1.0.0
+    Result* operator->() { return &res_; }
+
+    /// \brief Checks if two iterators are equal
+    ///
+    /// \since v1.0.0
+    bool operator==(const StatementIterator& that) const { return stmt_ == that.stmt_; }
+
+    /// \brief Checks if two iterators are different
+    ///
+    /// \since v1.0.0
+    bool operator!=(const StatementIterator& that) const  { return !(*this == that); }
+
+    /// \brief Increments the iterator, which means stepping to the next result
+    ///
+    /// \since v1.0.0
+    StatementIterator& operator++() {
+        if (stmt_) {
+            res_ = stmt_->step();
+            if (res_.empty()) {
+                // Become the end iterator
+                stmt_ = nullptr;
+                res_ = Result();
+            }
+        }
+        return *this;
+    }
+};
+
+} // namespace Dbpp

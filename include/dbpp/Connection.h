@@ -38,7 +38,7 @@ class Connection {
     friend class Adapter::Connection;
 
 private:
-    Adapter::ConnectionPtr impl;
+    Adapter::ConnectionPtr impl_;
 
     Statement createStatement(std::string_view sql) const;
 
@@ -61,7 +61,7 @@ public:
 
     /// Move assignment
     /// \since v1.0.0
-    Connection &operator=(Connection &&that);
+    Connection &operator=(Connection &&that) noexcept;
 
     /// Destructor
     /// \since v1.0.0
@@ -94,7 +94,7 @@ public:
     /// \since v1.0.0
     template <typename... Args>
     Result exec(std::string_view sql, Args... args) {
-        Statement st = prepare(sql);
+        Statement st = createStatement(sql);
         (st.bind(args), ...);
         return st.step();
     }
@@ -130,6 +130,7 @@ public:
     ///
     /// \since v1.0.0
     template <typename T, typename... Args>
+    [[nodiscard]]
     std::optional<T> getOptional(std::string_view sql, Args... args) {
         auto row = exec(sql, args...);
         if (row.columnCount() != 1)
@@ -155,7 +156,7 @@ public:
     /// \brief Returns the name of the driver in use
     ///
     /// \since v1.0.0
-    const std::string &driverName() const;
+    const std::string& adapterName() const;
 };
 
 /// \brief RAII class for transaction handling
@@ -167,9 +168,14 @@ public:
 class Transaction {
 private:
     Connection &db_;
-    bool committed{false};
+    bool committed_{false};
 
 public:
+    Transaction(const Transaction&) = delete;
+    Transaction(const Transaction&&) = delete;
+    Transaction& operator=(const Transaction&) = delete;
+    Transaction& operator=(Transaction&&) = delete;
+
     /// \brief Constructor. Begins a transaction
     ///
     /// \param db The db connection object
@@ -183,7 +189,7 @@ public:
     ///
     /// \since v1.0.0
     inline ~Transaction() {
-        if (!committed)
+        if (!committed_)
             db_.rollback();
     }
 
@@ -192,8 +198,9 @@ public:
     /// \since v1.0.0
     inline void commit() {
         db_.commit();
-        committed = true;
+        committed_ = true;
     }
 };
 
-}
+} // namespace Dbpp
+

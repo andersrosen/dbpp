@@ -21,8 +21,8 @@
 namespace Dbpp {
 
 template<class T>
-static void doBind(Adapter::StatementPtr& p, T val, int& placeholder_pos) {
-    p->bind(val, placeholder_pos++);
+static void doBind(Adapter::StatementPtr& p, T val, int& placeholderPos) {
+    p->bind(val, placeholderPos++);
 }
 
 void Statement::doReset() {
@@ -38,6 +38,11 @@ Statement::Statement(Adapter::StatementPtr p)
 
 Statement::Statement(Statement&& that) noexcept
 : impl_(std::move(that.impl_)) {}
+
+Statement& Statement::operator=(Statement&& that) noexcept {
+    impl_ = std::move(that.impl_);
+    return *this;
+}
 
 StatementIterator Statement::begin() {
     return StatementIterator(this);
@@ -99,8 +104,8 @@ void Statement::bind(const std::string& v) {
     impl_->bind(v, placeholderPosition_++);
 }
 
-void Statement::bind(std::string_view sv) {
-    impl_->bind(sv, placeholderPosition_++);
+void Statement::bind(std::string_view value) {
+    impl_->bind(value, placeholderPosition_++);
 }
 
 void Statement::bind(const char* v) {
@@ -112,11 +117,12 @@ void Statement::bind(const std::vector<unsigned char>& v) {
 }
 
 Result Statement::step() {
-    return std::move(Result(impl_->step()));
+    return Result(impl_->step());
 }
 
 std::string Statement::sql() const {
     return impl_->sql();
 }
 
-}
+} // namespace Dbpp
+

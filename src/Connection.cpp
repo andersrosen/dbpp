@@ -21,36 +21,36 @@
 namespace Dbpp {
 
 Statement Connection::createStatement(std::string_view sql) const {
-    return Statement(impl->prepare(sql));
+    return Statement(impl_->prepare(sql));
 }
 
 Connection::Connection(Adapter::ConnectionPtr c)
-: impl(std::move(c))
+: impl_(std::move(c))
 {}
 
 Connection::Connection(Connection&& that) noexcept
-: impl(std::move(that.impl))
+: impl_(std::move(that.impl_))
 {}
 
-Connection& Connection::operator=(Connection&& that) {
-    impl = std::move(that.impl);
+Connection& Connection::operator=(Connection&& that) noexcept {
+    impl_ = std::move(that.impl_);
     return *this;
 }
 
 void Connection::begin() {
-    impl->begin();
+    impl_->begin();
 }
 
 void Connection::commit() {
-    impl->commit();
+    impl_->commit();
 }
 
 void Connection::rollback() {
-    impl->rollback();
+    impl_->rollback();
 }
 
-const std::string& Connection::driverName() const {
-    return impl->driverName();
+const std::string& Connection::adapterName() const {
+    return impl_->adapterName();
 }
 
 } // namespace Dbpp
