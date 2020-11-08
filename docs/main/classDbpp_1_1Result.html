@@ -68,7 +68,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="classDbpp_1_1Result-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -174,14 +173,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a107db9f709cb28c665835734d6301adf"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#a107db9f709cb28c665835734d6301adf">getOptional</a> (std::string_view <a class="el" href="classDbpp_1_1Result.html#a0bb9227356223737cfeeec5e663a6afd">columnName</a>)</td></tr>
 <tr class="memdesc:a107db9f709cb28c665835734d6301adf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves an optional value of type T from the specified column in the result.  <a href="classDbpp_1_1Result.html#a107db9f709cb28c665835734d6301adf">More...</a><br /></td></tr>
 <tr class="separator:a107db9f709cb28c665835734d6301adf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a31827282025e80b7bf921080d8ead1"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a8a31827282025e80b7bf921080d8ead1"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; not Detail::IsOptionalV&lt; T &gt; and not Detail::HasStaticDbppGetMethodV&lt; T &gt;, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#a8a31827282025e80b7bf921080d8ead1">value_or</a> (int columnIndex, T defaultValue)</td></tr>
-<tr class="memdesc:a8a31827282025e80b7bf921080d8ead1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a column's value or, if it was NULL, the provided default value.  <a href="classDbpp_1_1Result.html#a8a31827282025e80b7bf921080d8ead1">More...</a><br /></td></tr>
-<tr class="separator:a8a31827282025e80b7bf921080d8ead1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefbd896867641656bd184a4bf0eb80ed"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:aefbd896867641656bd184a4bf0eb80ed"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; not Detail::IsOptionalV&lt; T &gt; and Detail::HasStaticDbppGetMethodV&lt; T &gt;, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#aefbd896867641656bd184a4bf0eb80ed">value_or</a> (int columnIndex, T defaultValue)</td></tr>
-<tr class="memdesc:aefbd896867641656bd184a4bf0eb80ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a column's value or, if it was NULL, the provided default value.  <a href="classDbpp_1_1Result.html#aefbd896867641656bd184a4bf0eb80ed">More...</a><br /></td></tr>
-<tr class="separator:aefbd896867641656bd184a4bf0eb80ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7d0f9c995e399e84ff9de26919c6409"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ac7d0f9c995e399e84ff9de26919c6409"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; not Detail::IsOptionalV&lt; T &gt; and not Detail::HasStaticDbppGetMethodV&lt; T &gt;, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#ac7d0f9c995e399e84ff9de26919c6409">valueOr</a> (int columnIndex, T defaultValue)</td></tr>
+<tr class="memdesc:ac7d0f9c995e399e84ff9de26919c6409"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a column's value or, if it was NULL, the provided default value.  <a href="classDbpp_1_1Result.html#ac7d0f9c995e399e84ff9de26919c6409">More...</a><br /></td></tr>
+<tr class="separator:ac7d0f9c995e399e84ff9de26919c6409"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb6af14341e03112739fbfc7dfe2df3c"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:aeb6af14341e03112739fbfc7dfe2df3c"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; not Detail::IsOptionalV&lt; T &gt; and Detail::HasStaticDbppGetMethodV&lt; T &gt;, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#aeb6af14341e03112739fbfc7dfe2df3c">valueOr</a> (int columnIndex, T defaultValue)</td></tr>
+<tr class="memdesc:aeb6af14341e03112739fbfc7dfe2df3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a column's value or, if it was NULL, the provided default value.  <a href="classDbpp_1_1Result.html#aeb6af14341e03112739fbfc7dfe2df3c">More...</a><br /></td></tr>
+<tr class="separator:aeb6af14341e03112739fbfc7dfe2df3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2f65a29779a0121f1b480eb3e8bfd5b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#aa2f65a29779a0121f1b480eb3e8bfd5b">empty</a> () const</td></tr>
 <tr class="memdesc:aa2f65a29779a0121f1b480eb3e8bfd5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the result is empty.  <a href="classDbpp_1_1Result.html#aa2f65a29779a0121f1b480eb3e8bfd5b">More...</a><br /></td></tr>
 <tr class="separator:aa2f65a29779a0121f1b480eb3e8bfd5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -204,12 +203,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ad026389725f3a57507d05cae941b6a64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the last insert ID.  <a href="classDbpp_1_1Result.html#ad026389725f3a57507d05cae941b6a64">More...</a><br /></td></tr>
 <tr class="separator:ad026389725f3a57507d05cae941b6a64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr class="memitem:a242fa896a4b7959592ad83d6137f264c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#a242fa896a4b7959592ad83d6137f264c">Result</a> (Adapter::ResultPtr p)</td></tr>
-<tr class="memdesc:a242fa896a4b7959592ad83d6137f264c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a result object from a driver specific result.  <a href="classDbpp_1_1Result.html#a242fa896a4b7959592ad83d6137f264c">More...</a><br /></td></tr>
-<tr class="separator:a242fa896a4b7959592ad83d6137f264c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:adab6e13caeb507948d0ee0b059b1a1af"><td class="memItemLeft" align="right" valign="top"><a id="adab6e13caeb507948d0ee0b059b1a1af"></a>
@@ -220,37 +213,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Statement</b></td></
 <div class="textblock"><p>Represents a single result (row) of a query. </p>
 <dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a242fa896a4b7959592ad83d6137f264c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a242fa896a4b7959592ad83d6137f264c">&#9670;&nbsp;</a></span>Result() <span class="overload">[1/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Dbpp::Result::Result </td>
-          <td>(</td>
-          <td class="paramtype">Adapter::ResultPtr&#160;</td>
-          <td class="paramname"><em>p</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">explicit</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Constructs a result object from a driver specific result. </p>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
 <a id="acadb5679cee28b135f85bd7e79b38c93"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acadb5679cee28b135f85bd7e79b38c93">&#9670;&nbsp;</a></span>Result() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acadb5679cee28b135f85bd7e79b38c93">&#9670;&nbsp;</a></span>Result() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -278,7 +242,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Statement</b></td></
 </div>
 </div>
 <a id="aca56a2f5d56002cf0756daaa98c2caf5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca56a2f5d56002cf0756daaa98c2caf5">&#9670;&nbsp;</a></span>Result() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aca56a2f5d56002cf0756daaa98c2caf5">&#9670;&nbsp;</a></span>Result() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1448,8 +1412,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a8a31827282025e80b7bf921080d8ead1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a31827282025e80b7bf921080d8ead1">&#9670;&nbsp;</a></span>value_or() <span class="overload">[1/2]</span></h2>
+<a id="ac7d0f9c995e399e84ff9de26919c6409"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7d0f9c995e399e84ff9de26919c6409">&#9670;&nbsp;</a></span>valueOr() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1460,7 +1424,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if_t&lt;not Detail::IsOptionalV&lt;T&gt; and not Detail::HasStaticDbppGetMethodV&lt;T&gt;, T&gt; Dbpp::Result::value_or </td>
+          <td class="memname">std::enable_if_t&lt;not Detail::IsOptionalV&lt;T&gt; and not Detail::HasStaticDbppGetMethodV&lt;T&gt;, T&gt; Dbpp::Result::valueOr </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>columnIndex</em>, </td>
@@ -1504,8 +1468,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="aefbd896867641656bd184a4bf0eb80ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aefbd896867641656bd184a4bf0eb80ed">&#9670;&nbsp;</a></span>value_or() <span class="overload">[2/2]</span></h2>
+<a id="aeb6af14341e03112739fbfc7dfe2df3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb6af14341e03112739fbfc7dfe2df3c">&#9670;&nbsp;</a></span>valueOr() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1516,7 +1480,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if_t&lt;not Detail::IsOptionalV&lt;T&gt; and Detail::HasStaticDbppGetMethodV&lt;T&gt;, T&gt; Dbpp::Result::value_or </td>
+          <td class="memname">std::enable_if_t&lt;not Detail::IsOptionalV&lt;T&gt; and Detail::HasStaticDbppGetMethodV&lt;T&gt;, T&gt; Dbpp::Result::valueOr </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>columnIndex</em>, </td>

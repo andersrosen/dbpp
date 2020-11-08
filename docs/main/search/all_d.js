@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['sharedcache_47',['SharedCache',['../namespaceDbpp_1_1Sqlite3.html#a0523f25495dd773469ef8a426427aceaadd8141c2dbba4f369c304f748a6badf6',1,'Dbpp::Sqlite3']]],
-  ['sql_48',['sql',['../classDbpp_1_1Adapter_1_1Statement.html#a2c60784042fd596731d183252e54479c',1,'Dbpp::Adapter::Statement::sql()'],['../classDbpp_1_1Statement.html#a41fc437fe508d81a5efd9337b77a8d79',1,'Dbpp::Statement::sql()']]],
-  ['statement_49',['Statement',['../classDbpp_1_1Statement.html',1,'Dbpp::Statement'],['../classDbpp_1_1Adapter_1_1Statement.html',1,'Dbpp::Adapter::Statement'],['../classDbpp_1_1Statement.html#a821d1cc9e7c894f740b593e737c9133d',1,'Dbpp::Statement::Statement(Adapter::StatementPtr p)'],['../classDbpp_1_1Statement.html#afb3482a383eea4bdc0e748fafbe39b6d',1,'Dbpp::Statement::Statement(Statement &amp;&amp;) noexcept']]],
-  ['statementiterator_50',['StatementIterator',['../classDbpp_1_1StatementIterator.html',1,'Dbpp::StatementIterator'],['../classDbpp_1_1StatementIterator.html#a0e06496e95f8c92b6a489333daa5f491',1,'Dbpp::StatementIterator::StatementIterator()'],['../classDbpp_1_1StatementIterator.html#a556f23d30692e820c69bb13fbffb5505',1,'Dbpp::StatementIterator::StatementIterator(const StatementIterator &amp;that)']]],
-  ['step_51',['step',['../classDbpp_1_1Adapter_1_1Statement.html#a28a2a200dae66b01bd246332d3e60fd0',1,'Dbpp::Adapter::Statement::step()'],['../classDbpp_1_1Statement.html#a2b8bd7c33d0b1f3d98a7d44fd1e7c58d',1,'Dbpp::Statement::step()']]]
+  ['readwrite_42',['ReadWrite',['../namespaceDbpp_1_1Sqlite3.html#acf713b698926b509722ba8259283f802a70a2a84088d405a2e3f1e3accaa16723',1,'Dbpp::Sqlite3']]],
+  ['readwritecreate_43',['ReadWriteCreate',['../namespaceDbpp_1_1Sqlite3.html#acf713b698926b509722ba8259283f802a35922c9206688344b8c677f130135999',1,'Dbpp::Sqlite3']]],
+  ['reset_44',['reset',['../classDbpp_1_1Adapter_1_1Statement.html#afaec4da667c18bbcb0c26a06c880b13e',1,'Dbpp::Adapter::Statement::reset()'],['../classDbpp_1_1Statement.html#a6190a4a32aedc3dc084d06eceecd34af',1,'Dbpp::Statement::reset()']]],
+  ['result_45',['Result',['../classDbpp_1_1Adapter_1_1Result.html',1,'Dbpp::Adapter::Result'],['../classDbpp_1_1Result.html',1,'Dbpp::Result'],['../classDbpp_1_1Result.html#acadb5679cee28b135f85bd7e79b38c93',1,'Dbpp::Result::Result()=default'],['../classDbpp_1_1Result.html#aca56a2f5d56002cf0756daaa98c2caf5',1,'Dbpp::Result::Result(Result &amp;&amp;) noexcept']]],
+  ['rollback_46',['rollback',['../classDbpp_1_1Adapter_1_1Connection.html#a2e1a727d58163af4be9f1dc6775f6cee',1,'Dbpp::Adapter::Connection::rollback()'],['../classDbpp_1_1Connection.html#a5a965ccc37befd5a65ab1ac1f6df57a3',1,'Dbpp::Connection::rollback()']]]
 ];

@@ -110,12 +110,12 @@ Functions</h2></td></tr>
 <tr class="memitem:adbbf14999f0a57abfdd1c4bbc809543b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDbpp_1_1Connection.html">Connection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceDbpp_1_1Sqlite3.html#adbbf14999f0a57abfdd1c4bbc809543b">open</a> (const std::filesystem::path &amp;file, <a class="el" href="namespaceDbpp_1_1Sqlite3.html#acf713b698926b509722ba8259283f802">OpenMode</a> mode, <a class="el" href="namespaceDbpp_1_1Sqlite3.html#a0523f25495dd773469ef8a426427acea">OpenFlag</a> flags)</td></tr>
 <tr class="memdesc:adbbf14999f0a57abfdd1c4bbc809543b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens an SQLite3 database, and returns a connection to it.  <a href="namespaceDbpp_1_1Sqlite3.html#adbbf14999f0a57abfdd1c4bbc809543b">More...</a><br /></td></tr>
 <tr class="separator:adbbf14999f0a57abfdd1c4bbc809543b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48df74073c09f702f57f864830a7fe80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceDbpp_1_1Sqlite3.html#a48df74073c09f702f57f864830a7fe80">backup</a> (<a class="el" href="classDbpp_1_1Connection.html">Dbpp::Connection</a> &amp;db, const std::filesystem::path &amp;file, int pagesPerStep, int sleepPerStepMs)</td></tr>
-<tr class="memdesc:a48df74073c09f702f57f864830a7fe80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Backs up an SQLite3 database.  <a href="namespaceDbpp_1_1Sqlite3.html#a48df74073c09f702f57f864830a7fe80">More...</a><br /></td></tr>
-<tr class="separator:a48df74073c09f702f57f864830a7fe80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3a71256b1099d52d5e01a0133f6e7e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceDbpp_1_1Sqlite3.html#ad3a71256b1099d52d5e01a0133f6e7e7">backup</a> (<a class="el" href="classDbpp_1_1Connection.html">Dbpp::Connection</a> &amp;db, const std::filesystem::path &amp;file, int pagesPerStep, int sleepPerStepMs, std::function&lt; void(int, int)&gt; progressCallback)</td></tr>
-<tr class="memdesc:ad3a71256b1099d52d5e01a0133f6e7e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Backs up an SQLite3 database.  <a href="namespaceDbpp_1_1Sqlite3.html#ad3a71256b1099d52d5e01a0133f6e7e7">More...</a><br /></td></tr>
-<tr class="separator:ad3a71256b1099d52d5e01a0133f6e7e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37b98fdfa2282c0cfd75b28dc8f75e98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceDbpp_1_1Sqlite3.html#a37b98fdfa2282c0cfd75b28dc8f75e98">backup</a> (<a class="el" href="classDbpp_1_1Connection.html">Dbpp::Connection</a> &amp;db, const std::filesystem::path &amp;file, int pagesPerStep, int sleepTimePerStepMs)</td></tr>
+<tr class="memdesc:a37b98fdfa2282c0cfd75b28dc8f75e98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Backs up an SQLite3 database.  <a href="namespaceDbpp_1_1Sqlite3.html#a37b98fdfa2282c0cfd75b28dc8f75e98">More...</a><br /></td></tr>
+<tr class="separator:a37b98fdfa2282c0cfd75b28dc8f75e98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54f5b2f57b3a2bd09db6541364797bf6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceDbpp_1_1Sqlite3.html#a54f5b2f57b3a2bd09db6541364797bf6">backup</a> (<a class="el" href="classDbpp_1_1Connection.html">Dbpp::Connection</a> &amp;db, const std::filesystem::path &amp;file, int pagesPerStep, int sleepTimePerStepMs, std::function&lt; void(int, int)&gt; progressCallback)</td></tr>
+<tr class="memdesc:a54f5b2f57b3a2bd09db6541364797bf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Backs up an SQLite3 database.  <a href="namespaceDbpp_1_1Sqlite3.html#a54f5b2f57b3a2bd09db6541364797bf6">More...</a><br /></td></tr>
+<tr class="separator:a54f5b2f57b3a2bd09db6541364797bf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Namespace specific to the SQLite3 adapter. </p>
@@ -190,8 +190,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a48df74073c09f702f57f864830a7fe80"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a48df74073c09f702f57f864830a7fe80">&#9670;&nbsp;</a></span>backup() <span class="overload">[1/2]</span></h2>
+<a id="a37b98fdfa2282c0cfd75b28dc8f75e98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37b98fdfa2282c0cfd75b28dc8f75e98">&#9670;&nbsp;</a></span>backup() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -218,7 +218,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>sleepPerStepMs</em>&#160;</td>
+          <td class="paramname"><em>sleepTimePerStepMs</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -234,7 +234,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">db</td><td>A connection to the database that should be backed up </td></tr>
     <tr><td class="paramname">file</td><td>The destination file in which to store the backup </td></tr>
     <tr><td class="paramname">pagesPerStep</td><td>Number of pages to back up per step, before sleeping </td></tr>
-    <tr><td class="paramname">sleepPerStepMs</td><td>How long to sleep, in milliseconds, between the steps</td></tr>
+    <tr><td class="paramname">sleepTimePerStepMs</td><td>How long to sleep, in milliseconds, between the steps</td></tr>
   </table>
   </dd>
 </dl>
@@ -242,8 +242,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad3a71256b1099d52d5e01a0133f6e7e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad3a71256b1099d52d5e01a0133f6e7e7">&#9670;&nbsp;</a></span>backup() <span class="overload">[2/2]</span></h2>
+<a id="a54f5b2f57b3a2bd09db6541364797bf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54f5b2f57b3a2bd09db6541364797bf6">&#9670;&nbsp;</a></span>backup() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -270,7 +270,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>sleepPerStepMs</em>, </td>
+          <td class="paramname"><em>sleepTimePerStepMs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -292,7 +292,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">db</td><td>A connection to the database that should be backed up </td></tr>
     <tr><td class="paramname">file</td><td>The destination file in which to store the backup </td></tr>
     <tr><td class="paramname">pagesPerStep</td><td>Number of pages to back up per step, before sleeping and reporting progress </td></tr>
-    <tr><td class="paramname">sleepPerStepMs</td><td>How long to sleep, in milliseconds, between the steps </td></tr>
+    <tr><td class="paramname">sleepTimePerStepMs</td><td>How long to sleep, in milliseconds, between the steps </td></tr>
     <tr><td class="paramname">progressCallback</td><td>A callback that will be called after each step, to report progress to the caller</td></tr>
   </table>
   </dd>

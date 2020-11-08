@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['memory_27',['Memory',['../namespaceDbpp_1_1Sqlite3.html#a0523f25495dd773469ef8a426427aceaa4789f23283b3a61f858b641a1bef19a3',1,'Dbpp::Sqlite3']]]
+  ['isnull_26',['isNull',['../classDbpp_1_1Adapter_1_1Result.html#a2a34a8fab00170a82f845140466eaca4',1,'Dbpp::Adapter::Result::isNull()'],['../classDbpp_1_1Result.html#aa268ccc86be3b2aebd0d99a68eeacde6',1,'Dbpp::Result::isNull(int columnIndex) const'],['../classDbpp_1_1Result.html#a23d1d93d6395b94cabf3f47b641c517a',1,'Dbpp::Result::isNull(std::string_view columnName) const']]]
 ];

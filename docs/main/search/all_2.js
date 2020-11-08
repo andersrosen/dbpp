@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['drivername_11',['driverName',['../classDbpp_1_1Adapter_1_1Connection.html#ad4fb86488c70e84625f81f801f57dc91',1,'Dbpp::Adapter::Connection::driverName()'],['../classDbpp_1_1Connection.html#aae7c646e04e5d0304fb4c07182eed342',1,'Dbpp::Connection::driverName()']]],
-  ['dbpp_20reference_20documentation_12',['dbpp reference documentation',['../index.html',1,'']]],
-  ['sqlite3_13',['Sqlite3',['../namespaceDbpp_1_1Sqlite3.html',1,'Dbpp']]]
+  ['clearbindings_5',['clearBindings',['../classDbpp_1_1Adapter_1_1Statement.html#a73b2bea56460f4f14c064f44c1af46a8',1,'Dbpp::Adapter::Statement']]],
+  ['code_6',['code',['../classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73',1,'Dbpp::ErrorWithCode']]],
+  ['columncount_7',['columnCount',['../classDbpp_1_1Adapter_1_1Result.html#a7ff5ca4c35039810d6fc0dd0949141d9',1,'Dbpp::Adapter::Result::columnCount()'],['../classDbpp_1_1Result.html#ac71f16a3524d96ea153cb004b2598d60',1,'Dbpp::Result::columnCount()']]],
+  ['columnindexbyname_8',['columnIndexByName',['../classDbpp_1_1Adapter_1_1Result.html#a80cfebb6b703615f30a771dc3a0b32f3',1,'Dbpp::Adapter::Result::columnIndexByName()'],['../classDbpp_1_1Result.html#a7bb45a3b1383e76429e1e1f7866586ad',1,'Dbpp::Result::columnIndexByName()']]],
+  ['columnname_9',['columnName',['../classDbpp_1_1Adapter_1_1Result.html#a0b040390d804a4dced837cdea0e675ac',1,'Dbpp::Adapter::Result::columnName()'],['../classDbpp_1_1Result.html#a0bb9227356223737cfeeec5e663a6afd',1,'Dbpp::Result::columnName()']]],
+  ['commit_10',['commit',['../classDbpp_1_1Adapter_1_1Connection.html#a094e915af95b406fcb6fc8fccfe067d1',1,'Dbpp::Adapter::Connection::commit()'],['../classDbpp_1_1Connection.html#ada5ea9166fa0209ba1ec984fac52e56c',1,'Dbpp::Connection::commit()'],['../classDbpp_1_1Transaction.html#aed6f1d8e2f8d488a92d90865cb05b2a8',1,'Dbpp::Transaction::commit()']]],
+  ['connection_11',['Connection',['../classDbpp_1_1Adapter_1_1Connection.html',1,'Dbpp::Adapter::Connection'],['../classDbpp_1_1Connection.html',1,'Dbpp::Connection'],['../classDbpp_1_1Connection.html#a173deab82b10d2ddcc349413c02e72e1',1,'Dbpp::Connection::Connection(Adapter::ConnectionPtr connection)'],['../classDbpp_1_1Connection.html#ab1408df32f6e0c9d5e13d9b95a169476',1,'Dbpp::Connection::Connection(Connection &amp;&amp;that) noexcept']]]
 ];

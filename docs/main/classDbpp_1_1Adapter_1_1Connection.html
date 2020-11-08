@@ -94,9 +94,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2e1a727d58163af4be9f1dc6775f6cee"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Adapter_1_1Connection.html#a2e1a727d58163af4be9f1dc6775f6cee">rollback</a> ()=0</td></tr>
 <tr class="memdesc:a2e1a727d58163af4be9f1dc6775f6cee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rolls back a transaction.  <a href="classDbpp_1_1Adapter_1_1Connection.html#a2e1a727d58163af4be9f1dc6775f6cee">More...</a><br /></td></tr>
 <tr class="separator:a2e1a727d58163af4be9f1dc6775f6cee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4fb86488c70e84625f81f801f57dc91"><td class="memItemLeft" align="right" valign="top">virtual const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Adapter_1_1Connection.html#ad4fb86488c70e84625f81f801f57dc91">driverName</a> () const =0</td></tr>
-<tr class="memdesc:ad4fb86488c70e84625f81f801f57dc91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the driver.  <a href="classDbpp_1_1Adapter_1_1Connection.html#ad4fb86488c70e84625f81f801f57dc91">More...</a><br /></td></tr>
-<tr class="separator:ad4fb86488c70e84625f81f801f57dc91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9fa32d453c497b2bcf61d5da45f1beb"><td class="memItemLeft" align="right" valign="top">virtual const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Adapter_1_1Connection.html#aa9fa32d453c497b2bcf61d5da45f1beb">adapterName</a> () const =0</td></tr>
+<tr class="memdesc:aa9fa32d453c497b2bcf61d5da45f1beb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the driver.  <a href="classDbpp_1_1Adapter_1_1Connection.html#aa9fa32d453c497b2bcf61d5da45f1beb">More...</a><br /></td></tr>
+<tr class="separator:aa9fa32d453c497b2bcf61d5da45f1beb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -108,6 +108,34 @@ Static Public Member Functions</h2></td></tr>
 <div class="textblock"><p>Abstract base class for the connection of a driver. </p>
 <dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa9fa32d453c497b2bcf61d5da45f1beb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9fa32d453c497b2bcf61d5da45f1beb">&#9670;&nbsp;</a></span>adapterName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const std::string&amp; Dbpp::Adapter::Connection::adapterName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the name of the driver. </p>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
+
+</div>
+</div>
 <a id="ad3d61bee22744a85ac71f9b7e67c28fb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad3d61bee22744a85ac71f9b7e67c28fb">&#9670;&nbsp;</a></span>begin()</h2>
 
@@ -160,34 +188,6 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Commits a transaction. </p>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="ad4fb86488c70e84625f81f801f57dc91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4fb86488c70e84625f81f801f57dc91">&#9670;&nbsp;</a></span>driverName()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual const std::string&amp; Dbpp::Adapter::Connection::driverName </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Returns the name of the driver. </p>
 <dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
 
 </div>
