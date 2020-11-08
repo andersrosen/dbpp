@@ -88,20 +88,20 @@ Connection open(const std::filesystem::path &file, OpenMode mode, OpenFlag flags
 /// \param db A connection to the database that should be backed up
 /// \param file The destination file in which to store the backup
 /// \param pagesPerStep Number of pages to back up per step, before sleeping
-/// \param sleepPerStepMs How long to sleep, in milliseconds, between the steps
+/// \param sleepTimePerStepMs How long to sleep, in milliseconds, between the steps
 ///
 /// \since v1.0.0
-void backup(Dbpp::Connection &db, const std::filesystem::path &file, int pagesPerStep, int sleepPerStepMs);
+void backup(Dbpp::Connection &db, const std::filesystem::path &file, int pagesPerStep, int sleepTimePerStepMs);
 
 /// \brief Backs up an SQLite3 database
 ///
 /// \param db A connection to the database that should be backed up
 /// \param file The destination file in which to store the backup
 /// \param pagesPerStep Number of pages to back up per step, before sleeping and reporting progress
-/// \param sleepPerStepMs How long to sleep, in milliseconds, between the steps
+/// \param sleepTimePerStepMs How long to sleep, in milliseconds, between the steps
 /// \param progressCallback A callback that will be called after each step, to report progress to the caller
 ///
 /// \since v1.0.0
-void backup(Dbpp::Connection &db, const std::filesystem::path &file, int pagesPerStep, int sleepPerStepMs, std::function<void(int,int)> progressCallback);
+void backup(Dbpp::Connection &db, const std::filesystem::path &file, int pagesPerStep, int sleepTimePerStepMs, std::function<void(int,int)> progressCallback);
 
 }

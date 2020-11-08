@@ -56,7 +56,7 @@ namespace Detail {
     template <typename T>
     inline constexpr bool HasStaticDbppGetMethodV = HasStaticDbppGetMethod<T>::value;
 
-}
+} // namespace Detail
 
 /// \brief Represents a single result (row) of a query
 ///
@@ -64,9 +64,8 @@ namespace Detail {
 class Result {
     friend class Statement;
 private:
-    Adapter::ResultPtr impl;
+    Adapter::ResultPtr impl_;
 
-protected:
     /// \brief Constructs a result object from a driver specific result
     ///
     /// \since v1.0.0
@@ -412,7 +411,7 @@ public:
     /// \since v1.0.0
     template <typename T>
     typename std::enable_if_t<not Detail::IsOptionalV<T> and not Detail::HasStaticDbppGetMethodV<T>, T>
-    value_or(int columnIndex, T defaultValue) {
+    valueOr(int columnIndex, T defaultValue) {
         get(columnIndex, defaultValue);
         return defaultValue;
     }
@@ -429,7 +428,7 @@ public:
     /// \since v1.0.0
     template <typename T>
     typename std::enable_if_t<not Detail::IsOptionalV<T> and Detail::HasStaticDbppGetMethodV<T>, T>
-    value_or(int columnIndex, T defaultValue) {
+    valueOr(int columnIndex, T defaultValue) {
         if (isNull(columnIndex))
             return defaultValue;
         return T::dbppGet(*this, columnIndex);
@@ -482,7 +481,7 @@ public:
     /// \return The ID of the last inserted row
     ///
     /// \since v1.0.0
-    long long getInsertId() { return impl->getInsertId(""); }
+    long long getInsertId() { return impl_->getInsertId(""); }
 
     /// \brief Retrieves the last insert ID
     ///
@@ -490,7 +489,7 @@ public:
     /// \return The last ID in the sequence
     ///
     /// \since v1.0.0
-    long long getInsertId(std::string_view sequenceName) { return impl->getInsertId(sequenceName); }
+    long long getInsertId(std::string_view sequenceName) { return impl_->getInsertId(sequenceName); }
 };
 
 } // namespace Dbpp

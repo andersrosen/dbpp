@@ -30,69 +30,69 @@ static bool doGet(Dbpp::Adapter::ResultPtr& p, T& out, int index) {
 namespace Dbpp {
 
 Result::Result(Adapter::ResultPtr p)
-    : impl(std::move(p))
+    : impl_(std::move(p))
 {}
 
 Result::Result(Dbpp::Result &&that) noexcept
-    : impl(std::move(that.impl))
+    : impl_(std::move(that.impl_))
 {}
 
 Result& Result::operator=(Dbpp::Result &&that) noexcept
 {
-    impl = std::move(that.impl);
+    impl_ = std::move(that.impl_);
     return *this;
 }
 
 bool Result::isNull(int columnIndex) const {
-    return impl->isNull(columnIndex);
+    return impl_->isNull(columnIndex);
 }
 
-bool Result::get(int index, short& out) { return doGet(impl, out, index); }
-bool Result::get(int index, int& out) { return doGet(impl, out, index); }
-bool Result::get(int index, long& out) { return doGet(impl, out, index); }
-bool Result::get(int index, long long& out) { return doGet(impl, out, index); }
-bool Result::get(int index, unsigned short& out) { return doGet(impl, out, index); }
-bool Result::get(int index, unsigned int& out) { return doGet(impl, out, index); }
-bool Result::get(int index, unsigned long& out) { return doGet(impl, out, index); }
-bool Result::get(int index, unsigned long long& out) { return doGet(impl, out, index); }
-bool Result::get(int index, float& out) { return doGet(impl, out, index); }
-bool Result::get(int index, double& out) { return doGet(impl, out, index); }
-bool Result::get(int index, std::string& out) { return doGet(impl, out, index); }
-bool Result::get(int index, std::vector<unsigned char>& out) { return doGet(impl, out, index); }
-bool Result::get(int index, std::filesystem::path& out) { return doGet(impl, out, index); }
+bool Result::get(int index, short& out) { return doGet(impl_, out, index); }
+bool Result::get(int index, int& out) { return doGet(impl_, out, index); }
+bool Result::get(int index, long& out) { return doGet(impl_, out, index); }
+bool Result::get(int index, long long& out) { return doGet(impl_, out, index); }
+bool Result::get(int index, unsigned short& out) { return doGet(impl_, out, index); }
+bool Result::get(int index, unsigned int& out) { return doGet(impl_, out, index); }
+bool Result::get(int index, unsigned long& out) { return doGet(impl_, out, index); }
+bool Result::get(int index, unsigned long long& out) { return doGet(impl_, out, index); }
+bool Result::get(int index, float& out) { return doGet(impl_, out, index); }
+bool Result::get(int index, double& out) { return doGet(impl_, out, index); }
+bool Result::get(int index, std::string& out) { return doGet(impl_, out, index); }
+bool Result::get(int index, std::vector<unsigned char>& out) { return doGet(impl_, out, index); }
+bool Result::get(int index, std::filesystem::path& out) { return doGet(impl_, out, index); }
 
 bool Result::empty() const {
-    if (!impl)
+    if (!impl_)
         return false;
-    return impl->empty();
+    return impl_->empty();
 }
 
 int Result::columnCount() const {
-    if (!impl)
+    if (!impl_)
         throw Error("Empty Result");
-    return impl->columnCount();
+    return impl_->columnCount();
 }
 
 std::string Result::columnName(int columnIndex) const {
-    if (!impl)
+    if (!impl_)
         throw Error("Empty Result");
-    return impl->columnName(columnIndex);
+    return impl_->columnName(columnIndex);
 }
 
-bool Result::hasColumn(std::string_view colname) const {
-    if (!impl)
+bool Result::hasColumn(std::string_view columnName) const {
+    if (!impl_)
         return false;
-    auto idx = impl->columnIndexByName(colname);
+    auto idx = impl_->columnIndexByName(columnName);
     return idx >= 0;
 }
 
 int Result::columnIndexByName(std::string_view columnName) const {
-    if (!impl)
+    if (!impl_)
         throw Error("Empty Result");
-    auto idx = impl->columnIndexByName(columnName);
+    auto idx = impl_->columnIndexByName(columnName);
     if (idx < 0)
         throw Error(std::string("Result has no column named ") + std::string(columnName));
     return idx;
 }
 
-}
+} // namespace Dbpp

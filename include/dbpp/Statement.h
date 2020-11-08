@@ -28,14 +28,14 @@ namespace Dbpp {
 
 namespace Detail {
 
-// Trait to check if class T has a dbpp_bind member function
 template<class T, class = void>
 struct HasDbppBindMethod : std::false_type {};
 
 template<class T>
-struct HasDbppBindMethod<T, std::void_t<decltype(std::declval<const T&>().dbpp_bind(std::declval<Statement&>()))>>
+struct HasDbppBindMethod<T, std::void_t<decltype(std::declval<const T&>().dbppBind(std::declval<Statement&>()))>>
 : std::true_type {};
 
+// Trait to check if class T has a dbppBind member function
 template<class T>
 inline constexpr bool hasDbppBindMethod = HasDbppBindMethod<T>::value;
 
@@ -117,13 +117,14 @@ private:
     void doReset();
     void clearBindings();
 
-protected:
     /// \brief Constructs a Statement object from an adapter-specific statement
     ///
     /// \since v1.0.0
     explicit Statement(Adapter::StatementPtr p);
 
 public:
+    using iterator = StatementIterator;
+
     Statement(const Statement&) = delete;
     Statement& operator=(const Statement&) = delete;
 
@@ -133,14 +134,19 @@ public:
     Statement(Statement&&) noexcept;
     ~Statement() = default;
 
+    Statement& operator=(Statement&&) noexcept;
+
     /// \brief Returns an iterator to the first result of this statement
     ///
     /// \since v1.0.0
-    StatementIterator begin();
+    [[nodiscard]]
+    iterator begin();
+
     /// \brief Returns the end iterator of the result set
     ///
     /// \since v1.0.0
-    StatementIterator end();
+    [[nodiscard]]
+    iterator end();
 
     /// \brief Binds NULL to a placeholder (typically a question mark) in the SQL statement,
     /// and increments the index of the next placeholder to bind
@@ -151,10 +157,8 @@ public:
     /// \brief Binds NULL to a placeholder (typically a question mark) in the SQL statement,
     /// and increments the index of the next placeholder to bind
     ///
-    /// \param aNullptr nullptr
-    ///
     /// \since v1.0.0
-    void bind(std::nullptr_t aNullptr);
+    void bind(std::nullptr_t);
 
     /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement, and
     /// increments the index of the next placeholder to bind
@@ -303,6 +307,7 @@ public:
     /// \brief Returns the SQL statement string represented by this object
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     std::string sql() const;
 
     /// \brief Executes the statement or steps to the next result
@@ -310,6 +315,7 @@ public:
     /// \return A result object, representing the next set of values
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     Result step();
 
     /// \brief Resets the statement to its initial state, so it can be executed again
