@@ -1,4 +1,18 @@
-Checks: '*,-llvm-include-order,-misc-unused-parameters,-fuchsia-default-arguments,-readability-implicit-bool-conversion,-google-readability-braces-around-statements,-readability-braces-around-statements,-hicpp-braces-around-statements'
+Checks: '*,
+  -fuchsia-default-arguments,
+  -fuchsia-default-arguments-calls,
+  -fuchsia-overloaded-operator,
+  -google-build-using-namespace,
+  -google-readability-braces-around-statements,
+  -google-runtime-int,
+  -google-runtime-references,
+  -hicpp-braces-around-statements,
+  -llvm-include-order,
+  -misc-non-private-member-variables-in-classes,
+  -misc-unused-parameters,
+  -readability-braces-around-statements,
+  -readability-implicit-bool-conversion'
+
 CheckOptions:
   - { key: readability-identifier-naming.NamespaceCase,         value: CamelCase }
   - { key: readability-identifier-naming.ClassCase,             value: CamelCase  }
