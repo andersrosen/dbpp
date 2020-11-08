@@ -37,7 +37,7 @@ struct HasDbppBindMethod<T, std::void_t<decltype(std::declval<const T&>().dbppBi
 
 // Trait to check if class T has a dbppBind member function
 template<class T>
-inline constexpr bool hasDbppBindMethod = HasDbppBindMethod<T>::value;
+inline constexpr bool HasDbppBindMethodV = HasDbppBindMethod<T>::value;
 
 } // namespace Detail
 
@@ -225,7 +225,7 @@ public:
     /// \param value The value to bind
     ///
     /// \since v1.0.0
-    template<typename T, typename std::enable_if_t<Detail::hasDbppBindMethod<T>, int> = 0>
+    template<typename T, typename std::enable_if_t<Detail::HasDbppBindMethodV<T>, int> = 0>
     void bind(const T& value) {
         value.dbppBind(*this);
     }
