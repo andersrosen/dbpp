@@ -66,6 +66,19 @@ class Result {
 private:
     Adapter::ResultPtr impl_;
 
+    template <typename TupleT, std::size_t I>
+    std::tuple_element_t<I, TupleT> getColumn()
+    {
+        using ElementT = typename std::tuple_element_t<I, TupleT>;
+        return get<ElementT>(I);
+    }
+
+    template <typename TupleT, std::size_t... Is>
+    TupleT getColumns(std::index_sequence<Is...> /* is */)
+    {
+        return TupleT(getColumn<TupleT, Is>()...);
+    }
+
     /// \brief Constructs a result object from a driver specific result
     ///
     /// \since v1.0.0
@@ -432,6 +445,23 @@ public:
         if (isNull(columnIndex))
             return defaultValue;
         return T::dbppGet(*this, columnIndex);
+    }
+
+    /// \brief Converts the result to a tuple
+    ///
+    /// \tparam Ts The type list of the tuple
+    /// \return The result as std::tuple<Ts..>
+    template <typename... Ts>
+    std::tuple<Ts...> toTuple()
+    {
+        return getColumns<std::tuple<Ts...>>(std::make_index_sequence<sizeof...(Ts)>{});
+    }
+
+    /// \brief Converts the result to a tuple
+    template <typename... Ts>
+    explicit operator std::tuple<Ts...>()
+    {
+        return toTuple<Ts...>();
     }
 
     /// \brief Checks if the result is empty
