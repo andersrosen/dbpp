@@ -73,7 +73,7 @@ private:
     explicit Statement(Adapter::StatementPtr p);
 
 public:
-    using iterator = StatementIterator;
+    using iterator = StatementIterator; // NOLINT
 
     Statement(const Statement&) = delete;
     Statement& operator=(const Statement&) = delete;
@@ -345,6 +345,8 @@ private:
     }
 
 public:
+    using value_type = Result; // NOLINT
+
     StatementIterator& operator=(const StatementIterator&) = delete;
     StatementIterator(const StatementIterator&) = delete;
 
@@ -358,31 +360,35 @@ public:
     /// \brief Move constructor
     ///
     /// \since v1.0.0
-    StatementIterator(StatementIterator&&) = default;
+    StatementIterator(StatementIterator&&) noexcept = default;
 
     /// \brief Move assignment
     ///
     /// \since v1.0.0
-    StatementIterator& operator=(StatementIterator&&) = default;
+    StatementIterator& operator=(StatementIterator&&) noexcept = default;
 
     /// \brief Dereferencing operator
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     Result& operator*() { return res_; }
 
     /// \brief Dereferencing operator
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     Result* operator->() { return &res_; }
 
     /// \brief Checks if two iterators are equal
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     bool operator==(const StatementIterator& that) const { return stmt_ == that.stmt_; }
 
     /// \brief Checks if two iterators are different
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     bool operator!=(const StatementIterator& that) const  { return !(*this == that); }
 
     /// \brief Increments the iterator, which means stepping to the next result
