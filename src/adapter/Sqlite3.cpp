@@ -175,9 +175,9 @@ public:
 
     bool isNull(int index) const override {
         if (index < 0 || index >= colInfo_->numCols)
-            throw std::runtime_error("Column index out of bounds");
+            throw Error("Column index out of bounds");
         if (empty())
-            throw std::runtime_error("Attempted column access in empty result");
+            throw Error("Attempted column access in empty result");
         return sqlite3_column_type(stmt_.get(), index) == SQLITE_NULL;
     }
 
@@ -378,6 +378,11 @@ Dbpp::Connection open(const std::filesystem::path& file, OpenMode mode) {
 
 Dbpp::Connection open(const std::filesystem::path& file) {
 return open(file, OpenMode::ReadWriteCreate, OpenFlag::None);
+}
+
+void backup(Dbpp::Connection &db, const std::filesystem::path &file, int pagesPerStep, int sleepTimePerStepMs) {
+    auto progressFuncNoOp = [](int, int){};
+    backup(db, file, pagesPerStep, sleepTimePerStepMs, progressFuncNoOp);
 }
 
 void backup(Dbpp::Connection& db, const std::filesystem::path& file, int pagesPerStep, int sleepTimePerStepMs, std::function<void(int,int)> progressCallback) {
