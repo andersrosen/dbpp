@@ -31,6 +31,7 @@ option(DBPP_ENABLE_TESTS "Build tests" ${MASTER_PROJECT})
 option(DBPP_ENABLE_DOCS "Generate documentation using Doxygen" ${MASTER_PROJECT})
 option(DBPP_ENABLE_DEV_MODE "Enable strict compiler warnings" OFF)
 option(DBPP_ENABLE_SANITIZERS "Use address, leak and undefined behavior sanitizers" ${DBPP_ENABLE_DEV_MODE})
+option(DBPP_ENABLE_COVERAGE "Compile with code coverage analysis" OFF)
 option(DBPP_USE_BUNDLED_SQLITE "Use the version of SQLite that's bundled with dbpp" OFF)
 
 # CMake script include path
@@ -100,6 +101,11 @@ if (DBPP_ENABLE_DEV_MODE)
         -Wvariadic-macros
         -Wwrite-strings
     )
+endif()
+
+if (DBPP_ENABLE_COVERAGE)
+    target_compile_options(dbpp PUBLIC -coverage)
+    target_link_libraries(dbpp PUBLIC gcov)
 endif()
 
 if (DBPP_ENABLE_SANITIZERS)
