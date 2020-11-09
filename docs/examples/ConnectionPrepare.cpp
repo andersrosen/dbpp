@@ -2,7 +2,7 @@
 
 using namespace Dbpp;
 
-int main(int argc, char **argv)
+int main()
 {
     // FIXME! Show the prepare() method and its usage!
 }

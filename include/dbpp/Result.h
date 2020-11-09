@@ -117,6 +117,7 @@ public:
     /// \return True if the column was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     bool isNull(int columnIndex) const;
 
     /// \brief Checks if the specified column is NULL
@@ -125,6 +126,7 @@ public:
     /// \return True if the column was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     bool isNull(std::string_view columnName) const;
 
     /// \brief Retrieves a value from the result
@@ -138,6 +140,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     bool get(int index, short& out);
 
     /// \brief Retrieves a value from the result
@@ -151,6 +154,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     bool get(int index, int& out);
 
     /// \brief Retrieves a value from the result
@@ -164,6 +168,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     bool get(int index, long& out);
 
     /// \brief Retrieves a value from the result
@@ -177,6 +182,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     bool get(int index, long long& out);
 
     /// \brief Retrieves a value from the result
@@ -190,6 +196,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     bool get(int index, unsigned short& out);
 
     /// \brief Retrieves a value from the result
@@ -203,6 +210,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     bool get(int index, unsigned int& out);
 
     /// \brief Retrieves a value from the result
@@ -216,6 +224,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     bool get(int index, unsigned long& out);
 
     /// \brief Retrieves a value from the result
@@ -229,6 +238,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     bool get(int index, unsigned long long& out);
 
     /// \brief Retrieves a value from the result
@@ -242,6 +252,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     bool get(int index, float& out);
 
     /// \brief Retrieves a value from the result
@@ -255,6 +266,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     bool get(int index, double& out);
 
     /// \brief Retrieves a value from the result
@@ -268,6 +280,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     bool get(int index, std::string& out);
 
     /// \brief Retrieves a value from the result
@@ -281,6 +294,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     bool get(int index, std::vector<unsigned char>& out);
 
     /// \brief Retrieves a value from the result
@@ -294,6 +308,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     bool get(int index, std::filesystem::path& out);
 
     /// \brief Retrieves a value of type T from the specified column in the result
@@ -306,6 +321,7 @@ public:
     ///
     /// \since v1.0.0
     template <typename T>
+    [[nodiscard]]
     typename std::enable_if_t<Detail::HasStaticDbppGetMethodV<T>, T>
     get(int columnIndex) {
         return T::dbppGet(*this, columnIndex);
@@ -321,6 +337,7 @@ public:
     ///
     /// \since v1.0.0
     template <typename T>
+    [[nodiscard]]
     typename std::enable_if_t<
         not Detail::IsOptional<T>::value and not Detail::HasStaticDbppGetMethodV<T>,
         T>
@@ -341,6 +358,7 @@ public:
     ///
     /// \since v1.0.0
     template <typename T>
+    [[nodiscard]]
     std::enable_if_t<
         Detail::IsOptionalV<T> and Detail::HasStaticDbppGetMethodV<typename T::value_type>,
         T>
@@ -360,6 +378,7 @@ public:
     ///
     /// \since v1.0.0
     template <typename T>
+    [[nodiscard]]
     typename std::enable_if_t<
         Detail::IsOptionalV<T> and not Detail::HasStaticDbppGetMethodV<typename T::value_type>,
         T>
@@ -380,6 +399,7 @@ public:
     ///
     /// \since v1.0.0
     template <typename T>
+    [[nodiscard]]
     std::optional<T> getOptional(int columnIndex) {
         return get<std::optional<T>>(columnIndex);
     }
@@ -394,6 +414,7 @@ public:
     ///
     /// \since v1.0.0
     template <typename T>
+    [[nodiscard]]
     T get(std::string_view columnName) {
         return get<T>(columnIndexByName(columnName));
     }
@@ -408,6 +429,7 @@ public:
     ///
     /// \since v1.0.0
     template <typename T>
+    [[nodiscard]]
     std::optional<T> getOptional(std::string_view columnName) {
         return getOptional<T>(columnIndexByName(columnName));
     }
@@ -423,6 +445,7 @@ public:
     ///
     /// \since v1.0.0
     template <typename T>
+    [[nodiscard]]
     typename std::enable_if_t<not Detail::IsOptionalV<T> and not Detail::HasStaticDbppGetMethodV<T>, T>
     valueOr(int columnIndex, T defaultValue) {
         get(columnIndex, defaultValue);
@@ -440,6 +463,7 @@ public:
     ///
     /// \since v1.0.0
     template <typename T>
+    [[nodiscard]]
     typename std::enable_if_t<not Detail::IsOptionalV<T> and Detail::HasStaticDbppGetMethodV<T>, T>
     valueOr(int columnIndex, T defaultValue) {
         if (isNull(columnIndex))
@@ -452,6 +476,7 @@ public:
     /// \tparam Ts The type list of the tuple
     /// \return The result as std::tuple<Ts..>
     template <typename... Ts>
+    [[nodiscard]]
     std::tuple<Ts...> toTuple()
     {
         return getColumns<std::tuple<Ts...>>(std::make_index_sequence<sizeof...(Ts)>{});
@@ -459,6 +484,7 @@ public:
 
     /// \brief Converts the result to a tuple
     template <typename... Ts>
+    [[nodiscard]]
     explicit operator std::tuple<Ts...>()
     {
         return toTuple<Ts...>();
@@ -469,6 +495,7 @@ public:
     /// \return True if the result is empty, false otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     bool empty() const;
 
     /// \brief Retrieves the number of columns (values) in the result
@@ -476,6 +503,7 @@ public:
     /// \return The number of columns in the result
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     int columnCount() const;
 
     /// \brief Retrieves the name of the column at the specified index
@@ -486,6 +514,7 @@ public:
     /// \return The name of the column
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     std::string columnName(int index) const;
 
     /// \brief Retrieves the index of the specified column
@@ -496,6 +525,7 @@ public:
     /// \return The index of the specified column
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     int columnIndexByName(std::string_view columnName) const;
 
     /// \brief Checks if the result has a column of the specified name
@@ -504,6 +534,7 @@ public:
     /// \return True if the result has such a column, false otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     bool hasColumn(std::string_view columnName) const;
 
     /// \brief Retrieves the last insert ID
@@ -511,6 +542,7 @@ public:
     /// \return The ID of the last inserted row
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     long long getInsertId() { return impl_->getInsertId(""); }
 
     /// \brief Retrieves the last insert ID
@@ -519,6 +551,7 @@ public:
     /// \return The last ID in the sequence
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     long long getInsertId(std::string_view sequenceName) { return impl_->getInsertId(sequenceName); }
 };
 

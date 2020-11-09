@@ -63,4 +63,5 @@ namespace Dbpp {
     class PlaceholderOutOfRange : public Error {
         using Error::Error;
     };
-}
+
+} // namespace Dbpp

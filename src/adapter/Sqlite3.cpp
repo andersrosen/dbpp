@@ -37,6 +37,7 @@ class Sqlite3Error final : public Dbpp::ErrorWithCode {
 public:
     using ErrorWithCode::ErrorWithCode;
 
+    [[nodiscard]]
     const char* what() const noexcept override  {
         static std::string msg;
         msg = std::string(ErrorWithCode::what()) + ": " + sqlite3_errstr(static_cast<int>(code));
@@ -106,8 +107,8 @@ private:
         if (isNull(index))
             return false;
 
-        auto datap = static_cast<const unsigned char *>(sqlite3_column_blob(stmt_.get(), index));
-        auto datasize = sqlite3_column_bytes(stmt_.get(), index);
+        const auto* datap = static_cast<const unsigned char *>(sqlite3_column_blob(stmt_.get(), index));
+        const auto datasize = sqlite3_column_bytes(stmt_.get(), index);
         var.clear();
         var.reserve(static_cast<std::vector<unsigned char>::size_type>(datasize));
         var.insert(var.end(), datap, datap + datasize); // NOLINT
@@ -148,18 +149,22 @@ public:
         return doGetBlob(var, index);
     }
 
+    [[nodiscard]]
     bool empty() const override {
         return sqlite3_data_count(stmt_.get()) <= 0;
     }
 
+    [[nodiscard]]
     int columnCount() const override {
         return colInfo_->numCols;
     }
 
+    [[nodiscard]]
     std::string columnName(int index) const override {
         return sqlite3_column_name(stmt_.get(), index);
     }
 
+    [[nodiscard]]
     int columnIndexByName(std::string_view name) const override {
         if (!colInfo_->namesAvailable) {
             for (int i=0; i<colInfo_->numCols; ++i) {
@@ -173,6 +178,7 @@ public:
         return it->second;
     }
 
+    [[nodiscard]]
     bool isNull(int index) const override {
         if (index < 0 || index >= colInfo_->numCols)
             throw Error("Column index out of bounds");
@@ -181,6 +187,7 @@ public:
         return sqlite3_column_type(stmt_.get(), index) == SQLITE_NULL;
     }
 
+    [[nodiscard]]
     long long getInsertId(std::string_view /* sequenceName */) override {
         // FIXME: Non-empty sequenceName?
         return sqlite3_last_insert_rowid(connection_.get());
@@ -213,7 +220,7 @@ private:
 public:
     Statement(Sqlite3HandleT conn, std::string_view sql)
     : connectionHandle_(std::move(conn)) {
-        sqlite3_stmt* stmt;
+        sqlite3_stmt* stmt; // NOLINT
         int res = sqlite3_prepare_v2(connectionHandle_.get(),
                 sql.data(), static_cast<int>(sql.length()),
                 &stmt, nullptr);
@@ -260,10 +267,12 @@ public:
         throwOnBindError(res);
     }
 
+    [[nodiscard]]
     std::string sql() const override {
         return sqlite3_sql(handle_.get());
     }
 
+    [[nodiscard]]
     Adapter::ResultPtr step() override {
         int res = sqlite3_step(handle_.get());
         if (res != SQLITE_DONE && res != SQLITE_ROW)
@@ -292,7 +301,7 @@ private:
 
 public:
     Connection(const std::filesystem::path& filename, OpenMode mode, OpenFlag flags) {
-        struct sqlite3* conn;
+        struct sqlite3* conn; // NOLINT
         int res = sqlite3_open_v2(filename.c_str(), &conn, static_cast<int>(static_cast<unsigned int>(mode) | static_cast<unsigned int>(flags)), nullptr);
         if (res != SQLITE_OK) {
             if (conn != nullptr)
@@ -302,27 +311,33 @@ public:
         handle_ = Sqlite3HandleT(conn, sqlite3_close_v2);
     }
 
+    [[nodiscard]]
     const std::string& adapterName() const override {
         static const std::string name{"sqlite3"};
         return name;
     }
 
     void begin() override {
-        prepare("BEGIN")->step();
+        auto res = prepare("BEGIN")->step();
+        (void) res;
     }
 
     void commit() override {
-        prepare("COMMIT")->step();
+        auto res = prepare("COMMIT")->step();
+        (void) res;
     }
 
     void rollback() override {
-        prepare("ROLLBACK")->step();
+        auto res = prepare("ROLLBACK")->step();
+        (void) res;
     }
 
+    [[nodiscard]]
     Adapter::StatementPtr prepare(std::string_view sql) override {
         return std::make_shared<Statement>(handle_, sql);
     }
 
+    [[nodiscard]]
     static std::shared_ptr<Connection> getImpl(Dbpp::Connection& db) {
         return std::dynamic_pointer_cast<Connection>(Adapter::Connection::getImpl(db));
     }
@@ -333,7 +348,7 @@ public:
         };
         std::unique_ptr<struct sqlite3, DbDeleter> dbHandle;
         {
-            struct sqlite3* db;
+            struct sqlite3* db; // NOLINT
             auto res = sqlite3_open(file.c_str(), &db);
             if (res != SQLITE_OK) {
                 if (db)
@@ -368,20 +383,23 @@ public:
     }
 };
 
+[[nodiscard]]
 Dbpp::Connection open(const std::filesystem::path& file, OpenMode mode, OpenFlag flags) {
     return Adapter::ConnectionPtr(new Sqlite3::Connection(file, mode, flags));
 }
 
+[[nodiscard]]
 Dbpp::Connection open(const std::filesystem::path& file, OpenMode mode) {
     return open(file, mode, OpenFlag::None);
 }
 
+[[nodiscard]]
 Dbpp::Connection open(const std::filesystem::path& file) {
-return open(file, OpenMode::ReadWriteCreate, OpenFlag::None);
+    return open(file, OpenMode::ReadWriteCreate, OpenFlag::None);
 }
 
-void backup(Dbpp::Connection &db, const std::filesystem::path &file, int pagesPerStep, int sleepTimePerStepMs) {
-    auto progressFuncNoOp = [](int, int){};
+void backup(Dbpp::Connection &db, const std::filesystem::path& file, int pagesPerStep, int sleepTimePerStepMs) {
+    auto progressFuncNoOp = [](int /*unused*/, int /*unused*/){};
     backup(db, file, pagesPerStep, sleepTimePerStepMs, progressFuncNoOp);
 }
 

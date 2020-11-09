@@ -52,6 +52,7 @@ public:
     /// \brief Returns the name of the driver
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual const std::string& adapterName() const = 0;
 
     /// \brief Retrieves a shared pointer to the adapter-specific connection object
@@ -65,6 +66,7 @@ public:
     /// \return A shared pointer to the adapter-specific object
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     inline static ConnectionPtr getImpl(Dbpp::Connection& db) {
         return db.impl_;
     }

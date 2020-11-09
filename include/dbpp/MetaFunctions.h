@@ -22,7 +22,7 @@
 namespace Dbpp::Detail {
 
 template <typename T, typename... Rest>
-struct First { using type = T; };
+struct First { using type = T; }; // NOLINT
 
 // Gets the first of the types provided
 template <typename... Ts>
@@ -42,13 +42,13 @@ struct ScalarOrTuple;
 template <typename... Ts>
 struct ScalarOrTuple<true, Ts...>
 {
-    using type = FirstTypeT<Ts...>;
+    using type = FirstTypeT<Ts...>; // NOLINT
 };
 
 template <typename... Ts>
 struct ScalarOrTuple<false, Ts...>
 {
-    using type = std::tuple<Ts...>;
+    using type = std::tuple<Ts...>; // NOLINT
 };
 
 // Expands to T if the type pack contains a single type T
@@ -56,4 +56,4 @@ struct ScalarOrTuple<false, Ts...>
 template <typename... Ts>
 using ScalarOrTupleT = typename ScalarOrTuple<sizeof...(Ts) == 1, Ts...>::type;
 
-}
+} // namespace Dbpp::Detail

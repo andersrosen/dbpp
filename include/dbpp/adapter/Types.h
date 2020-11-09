@@ -30,4 +30,4 @@ using ConnectionPtr = std::shared_ptr<Connection>;
 class Result;
 using ResultPtr = std::shared_ptr<Result>;
 
-}
+} // namespace Dbpp::Adapter

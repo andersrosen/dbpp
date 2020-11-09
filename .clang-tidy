@@ -1,6 +1,6 @@
 Checks: '*,
-  -fuchsia-default-arguments,
-  -fuchsia-default-arguments-calls,
+  -cppcoreguidelines-avoid-non-const-global-variables,
+  -fuchsia-default-arguments*,
   -fuchsia-overloaded-operator,
   -google-build-using-namespace,
   -google-readability-braces-around-statements,
@@ -8,9 +8,12 @@ Checks: '*,
   -google-runtime-references,
   -hicpp-braces-around-statements,
   -llvm-include-order,
+  -llvmlibc-*,
   -misc-non-private-member-variables-in-classes,
   -misc-unused-parameters,
+  -modernize-use-trailing-return-type,
   -readability-braces-around-statements,
+  -readability-convert-member-functions-to-static,
   -readability-implicit-bool-conversion'
 
 CheckOptions:
