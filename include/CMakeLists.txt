@@ -4,6 +4,19 @@ target_include_directories(dbpp
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
+target_sources(dbpp PRIVATE
+    dbpp/dbpp.h
+    dbpp/Connection.h
+    dbpp/Exception.h
+    dbpp/MetaFunctions.h
+    dbpp/Result.h
+    dbpp/Statement.h
+    dbpp/adapter/Connection.h
+    dbpp/adapter/Result.h
+    dbpp/adapter/Statement.h
+    dbpp/adapter/Types.h
+)
+
 if (DBPP_ENABLE_INSTALL)
-install(DIRECTORY dbpp DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+    install(DIRECTORY dbpp DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 endif()
