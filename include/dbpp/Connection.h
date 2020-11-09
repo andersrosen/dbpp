@@ -213,7 +213,7 @@ public:
     const std::string& adapterName() const;
 };
 
-/// \brief RAII class for transaction handling
+/// \brief RAII class for scoped transaction handling
 ///
 /// Instantiate a transaction object to begin a transaction, and call commit on it to commit.
 /// If it goes out of scope before commit has been called, the transaction will be rolled back automatically.
