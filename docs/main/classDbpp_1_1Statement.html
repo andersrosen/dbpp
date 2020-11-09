@@ -169,10 +169,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2b8bd7c33d0b1f3d98a7d44fd1e7c58d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDbpp_1_1Result.html">Result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#a2b8bd7c33d0b1f3d98a7d44fd1e7c58d">step</a> ()</td></tr>
 <tr class="memdesc:a2b8bd7c33d0b1f3d98a7d44fd1e7c58d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the statement or steps to the next result.  <a href="classDbpp_1_1Statement.html#a2b8bd7c33d0b1f3d98a7d44fd1e7c58d">More...</a><br /></td></tr>
 <tr class="separator:a2b8bd7c33d0b1f3d98a7d44fd1e7c58d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6190a4a32aedc3dc084d06eceecd34af"><td class="memTemplParams" colspan="2"><a id="a6190a4a32aedc3dc084d06eceecd34af"></a>
-template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a6190a4a32aedc3dc084d06eceecd34af"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
 <tr class="memitem:a6190a4a32aedc3dc084d06eceecd34af"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#a6190a4a32aedc3dc084d06eceecd34af">reset</a> (Args... args)</td></tr>
-<tr class="memdesc:a6190a4a32aedc3dc084d06eceecd34af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the statement to its initial state, so it can be executed again. <br /></td></tr>
+<tr class="memdesc:a6190a4a32aedc3dc084d06eceecd34af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the statement to its initial state, so it can be executed again.  <a href="classDbpp_1_1Statement.html#a6190a4a32aedc3dc084d06eceecd34af">More...</a><br /></td></tr>
 <tr class="separator:a6190a4a32aedc3dc084d06eceecd34af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77c895034b59ce4dc24b9f7dbe44a02b"><td class="memTemplParams" colspan="2">template&lt;typename... Ts&gt; </td></tr>
 <tr class="memitem:a77c895034b59ce4dc24b9f7dbe44a02b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classDbpp_1_1StatementTupleWrapper.html">StatementTupleWrapper</a>&lt; Ts... &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#a77c895034b59ce4dc24b9f7dbe44a02b">as</a> () &amp;&amp;</td></tr>
@@ -800,6 +799,37 @@ template&lt;typename T , typename std::enable_if_t&lt; Detail::HasDbppBindMethod
 </div><div class="memdoc">
 
 <p>Returns the end iterator of the result set. </p>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
+
+</div>
+</div>
+<a id="a6190a4a32aedc3dc084d06eceecd34af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6190a4a32aedc3dc084d06eceecd34af">&#9670;&nbsp;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dbpp::Statement::reset </td>
+          <td>(</td>
+          <td class="paramtype">Args...&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets the statement to its initial state, so it can be executed again. </p>
 <dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
 
 </div>
