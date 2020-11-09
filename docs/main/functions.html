@@ -69,6 +69,9 @@ $(function() {
 : <a class="el" href="classDbpp_1_1Adapter_1_1Connection.html#aa9fa32d453c497b2bcf61d5da45f1beb">Dbpp::Adapter::Connection</a>
 , <a class="el" href="classDbpp_1_1Connection.html#a3ad6cc6ce1a8ccfd9e1a0b8d1de64202">Dbpp::Connection</a>
 </li>
+<li>as()
+: <a class="el" href="classDbpp_1_1Statement.html#a77c895034b59ce4dc24b9f7dbe44a02b">Dbpp::Statement</a>
+</li>
 </ul>
 
 
@@ -77,10 +80,11 @@ $(function() {
 : <a class="el" href="classDbpp_1_1Adapter_1_1Connection.html#ad3d61bee22744a85ac71f9b7e67c28fb">Dbpp::Adapter::Connection</a>
 , <a class="el" href="classDbpp_1_1Connection.html#a9f77a4b817a7ab2e57ab8ece87516a64">Dbpp::Connection</a>
 , <a class="el" href="classDbpp_1_1Statement.html#ac9682045e7b28907e0fc9ae2124dc719">Dbpp::Statement</a>
+, <a class="el" href="classDbpp_1_1StatementTupleWrapper.html#af69e1fa591410cf243fb6353829c603c">Dbpp::StatementTupleWrapper&lt; Ts &gt;</a>
 </li>
 <li>bind()
-: <a class="el" href="classDbpp_1_1Adapter_1_1Statement.html#a87af67a13a06f0dea19c4f924cd8060a">Dbpp::Adapter::Statement</a>
-, <a class="el" href="classDbpp_1_1Statement.html#ab61d30438f2f5e3e662641d0c9296df2">Dbpp::Statement</a>
+: <a class="el" href="classDbpp_1_1Adapter_1_1Statement.html#a25da9564a651098ebbec7b3d9ab8f25a">Dbpp::Adapter::Statement</a>
+, <a class="el" href="classDbpp_1_1Statement.html#a54bdc940baeb60321aae232f76e15302">Dbpp::Statement</a>
 </li>
 <li>bindNull()
 : <a class="el" href="classDbpp_1_1Adapter_1_1Statement.html#adb91ba7b4d82ff891855c862c41095ef">Dbpp::Adapter::Statement</a>
@@ -126,6 +130,7 @@ $(function() {
 </li>
 <li>end()
 : <a class="el" href="classDbpp_1_1Statement.html#a167e8773a2919db1bcc15bf6cb4a2cc0">Dbpp::Statement</a>
+, <a class="el" href="classDbpp_1_1StatementTupleWrapper.html#a2e54e8dff8f2277b6b60af437b8f7495">Dbpp::StatementTupleWrapper&lt; Ts &gt;</a>
 </li>
 <li>ErrorWithCode()
 : <a class="el" href="classDbpp_1_1ErrorWithCode.html#a816456d31f3203561eb5d60b8f953431">Dbpp::ErrorWithCode</a>
@@ -139,10 +144,10 @@ $(function() {
 <h3><a id="index_g"></a>- g -</h3><ul>
 <li>get()
 : <a class="el" href="classDbpp_1_1Connection.html#a6db6d55ca24d4b55a11f49f28063c92e">Dbpp::Connection</a>
-, <a class="el" href="classDbpp_1_1Result.html#aa9cfbb3ce55711cbe366b1df172be48e">Dbpp::Result</a>
+, <a class="el" href="classDbpp_1_1Result.html#ad89e0b7b3e4354e2ec36898cb73001cc">Dbpp::Result</a>
 </li>
 <li>getColumn()
-: <a class="el" href="classDbpp_1_1Adapter_1_1Result.html#ad15a4f3ba3030ff71c9fbddcbfaa3ec7">Dbpp::Adapter::Result</a>
+: <a class="el" href="classDbpp_1_1Adapter_1_1Result.html#a0457a38eb7ec767eaa4175d7b2aeb546">Dbpp::Adapter::Result</a>
 </li>
 <li>getImpl()
 : <a class="el" href="classDbpp_1_1Adapter_1_1Connection.html#ac11fcea4c6470e756a21679da6b5136a">Dbpp::Adapter::Connection</a>
@@ -177,25 +182,34 @@ $(function() {
 <li>operator bool()
 : <a class="el" href="classDbpp_1_1Result.html#a6f3fca568b65c422cf0a7679ca031645">Dbpp::Result</a>
 </li>
+<li>operator std::tuple&lt; Ts... &gt;()
+: <a class="el" href="classDbpp_1_1Result.html#ac8b84a45943ed0628ceef6807fc05c2d">Dbpp::Result</a>
+</li>
 <li>operator!=()
 : <a class="el" href="classDbpp_1_1StatementIterator.html#a8448b4a3168b7dcf931fc0fae5cb1be2">Dbpp::StatementIterator</a>
+, <a class="el" href="classDbpp_1_1StatementTupleIterator.html#a94f27e30a694b9f96e547ce28d0e7945">Dbpp::StatementTupleIterator&lt; Ts &gt;</a>
 </li>
 <li>operator*()
 : <a class="el" href="classDbpp_1_1StatementIterator.html#ab698ddc1fa196b0d5b8f7762595e05ad">Dbpp::StatementIterator</a>
+, <a class="el" href="classDbpp_1_1StatementTupleIterator.html#adde95f32700eb707e463b4060afd3951">Dbpp::StatementTupleIterator&lt; Ts &gt;</a>
 </li>
 <li>operator++()
 : <a class="el" href="classDbpp_1_1StatementIterator.html#a00cb17d30604471543afc8c69816559f">Dbpp::StatementIterator</a>
+, <a class="el" href="classDbpp_1_1StatementTupleIterator.html#aa577888f3cab2977d2966db6314eee7e">Dbpp::StatementTupleIterator&lt; Ts &gt;</a>
 </li>
 <li>operator-&gt;()
 : <a class="el" href="classDbpp_1_1StatementIterator.html#a0bcc317d1b2256a2ea3a32a394576ea0">Dbpp::StatementIterator</a>
+, <a class="el" href="classDbpp_1_1StatementTupleIterator.html#abe3065101a54d8ac82471f96e3dca180">Dbpp::StatementTupleIterator&lt; Ts &gt;</a>
 </li>
 <li>operator=()
 : <a class="el" href="classDbpp_1_1Connection.html#a3e68bdd89b4b42ede47155b7866d9d48">Dbpp::Connection</a>
 , <a class="el" href="classDbpp_1_1Result.html#af9f061882c07a1399bc9f5be53c9bb10">Dbpp::Result</a>
 , <a class="el" href="classDbpp_1_1StatementIterator.html#a759b02cde2f7d1ad929041df7d40b019">Dbpp::StatementIterator</a>
+, <a class="el" href="classDbpp_1_1StatementTupleIterator.html#ac703cc59cd9268ef6e58ee2014fd1a5c">Dbpp::StatementTupleIterator&lt; Ts &gt;</a>
 </li>
 <li>operator==()
 : <a class="el" href="classDbpp_1_1StatementIterator.html#a3fef05cc131a6ff39d5e2c0921a39f62">Dbpp::StatementIterator</a>
+, <a class="el" href="classDbpp_1_1StatementTupleIterator.html#ae800f01d95701feeab8ee3b313801694">Dbpp::StatementTupleIterator&lt; Ts &gt;</a>
 </li>
 </ul>
 
@@ -234,6 +248,9 @@ $(function() {
 <li>StatementIterator()
 : <a class="el" href="classDbpp_1_1StatementIterator.html#a95d41c02703ec7806d5e6e930a37de5a">Dbpp::StatementIterator</a>
 </li>
+<li>StatementTupleIterator()
+: <a class="el" href="classDbpp_1_1StatementTupleIterator.html#a6d41d8ba5e03c8369dd85f2da737e6df">Dbpp::StatementTupleIterator&lt; Ts &gt;</a>
+</li>
 <li>step()
 : <a class="el" href="classDbpp_1_1Adapter_1_1Statement.html#a28a2a200dae66b01bd246332d3e60fd0">Dbpp::Adapter::Statement</a>
 , <a class="el" href="classDbpp_1_1Statement.html#a2b8bd7c33d0b1f3d98a7d44fd1e7c58d">Dbpp::Statement</a>
@@ -242,6 +259,9 @@ $(function() {
 
 
 <h3><a id="index_t"></a>- t -</h3><ul>
+<li>toTuple()
+: <a class="el" href="classDbpp_1_1Result.html#aadfd76654edc2eca5d68547bd4ec4192">Dbpp::Result</a>
+</li>
 <li>Transaction()
 : <a class="el" href="classDbpp_1_1Transaction.html#ad2f7d465667dd40363996e6677efdec8">Dbpp::Transaction</a>
 </li>

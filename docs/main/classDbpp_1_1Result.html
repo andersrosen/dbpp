@@ -181,6 +181,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aeb6af14341e03112739fbfc7dfe2df3c"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; not Detail::IsOptionalV&lt; T &gt; and Detail::HasStaticDbppGetMethodV&lt; T &gt;, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#aeb6af14341e03112739fbfc7dfe2df3c">valueOr</a> (int columnIndex, T defaultValue)</td></tr>
 <tr class="memdesc:aeb6af14341e03112739fbfc7dfe2df3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a column's value or, if it was NULL, the provided default value.  <a href="classDbpp_1_1Result.html#aeb6af14341e03112739fbfc7dfe2df3c">More...</a><br /></td></tr>
 <tr class="separator:aeb6af14341e03112739fbfc7dfe2df3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadfd76654edc2eca5d68547bd4ec4192"><td class="memTemplParams" colspan="2">template&lt;typename... Ts&gt; </td></tr>
+<tr class="memitem:aadfd76654edc2eca5d68547bd4ec4192"><td class="memTemplItemLeft" align="right" valign="top">std::tuple&lt; Ts... &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#aadfd76654edc2eca5d68547bd4ec4192">toTuple</a> ()</td></tr>
+<tr class="memdesc:aadfd76654edc2eca5d68547bd4ec4192"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the result to a tuple.  <a href="classDbpp_1_1Result.html#aadfd76654edc2eca5d68547bd4ec4192">More...</a><br /></td></tr>
+<tr class="separator:aadfd76654edc2eca5d68547bd4ec4192"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8b84a45943ed0628ceef6807fc05c2d"><td class="memTemplParams" colspan="2"><a id="ac8b84a45943ed0628ceef6807fc05c2d"></a>
+template&lt;typename... Ts&gt; </td></tr>
+<tr class="memitem:ac8b84a45943ed0628ceef6807fc05c2d"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#ac8b84a45943ed0628ceef6807fc05c2d">operator std::tuple&lt; Ts... &gt;</a> ()</td></tr>
+<tr class="memdesc:ac8b84a45943ed0628ceef6807fc05c2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the result to a tuple. <br /></td></tr>
+<tr class="separator:ac8b84a45943ed0628ceef6807fc05c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2f65a29779a0121f1b480eb3e8bfd5b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#aa2f65a29779a0121f1b480eb3e8bfd5b">empty</a> () const</td></tr>
 <tr class="memdesc:aa2f65a29779a0121f1b480eb3e8bfd5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the result is empty.  <a href="classDbpp_1_1Result.html#aa2f65a29779a0121f1b480eb3e8bfd5b">More...</a><br /></td></tr>
 <tr class="separator:aa2f65a29779a0121f1b480eb3e8bfd5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1409,6 +1418,42 @@ template&lt;typename T &gt; </div>
 
 <p>Move constructor. </p>
 <dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
+
+</div>
+</div>
+<a id="aadfd76654edc2eca5d68547bd4ec4192"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadfd76654edc2eca5d68547bd4ec4192">&#9670;&nbsp;</a></span>toTuple()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Ts&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::tuple&lt;Ts...&gt; Dbpp::Result::toTuple </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts the result to a tuple. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Ts</td><td>The type list of the tuple </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result as std::tuple&lt;Ts..&gt; </dd></dl>
 
 </div>
 </div>

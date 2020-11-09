@@ -109,6 +109,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6db6d55ca24d4b55a11f49f28063c92e"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#a6db6d55ca24d4b55a11f49f28063c92e">get</a> (std::string_view sql, Args... args)</td></tr>
 <tr class="memdesc:a6db6d55ca24d4b55a11f49f28063c92e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and executes an SQL statement, returning a single value.  <a href="classDbpp_1_1Connection.html#a6db6d55ca24d4b55a11f49f28063c92e">More...</a><br /></td></tr>
 <tr class="separator:a6db6d55ca24d4b55a11f49f28063c92e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe870a20c1f883935d4f5d44c209fa61"><td class="memTemplParams" colspan="2">template&lt;typename... ReturnTypes, typename... Args&gt; </td></tr>
+<tr class="memitem:abe870a20c1f883935d4f5d44c209fa61"><td class="memTemplItemLeft" align="right" valign="top">std::tuple&lt; ReturnTypes... &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#abe870a20c1f883935d4f5d44c209fa61">get</a> (std::string_view sql, Args... args)</td></tr>
+<tr class="memdesc:abe870a20c1f883935d4f5d44c209fa61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and executes an SQL statement, returning a single result.  <a href="classDbpp_1_1Connection.html#abe870a20c1f883935d4f5d44c209fa61">More...</a><br /></td></tr>
+<tr class="separator:abe870a20c1f883935d4f5d44c209fa61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae14208c6d81281786ea9dd1312ccfcb6"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Args&gt; </td></tr>
 <tr class="memitem:ae14208c6d81281786ea9dd1312ccfcb6"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#ae14208c6d81281786ea9dd1312ccfcb6">getOptional</a> (std::string_view sql, Args... args)</td></tr>
 <tr class="memdesc:ae14208c6d81281786ea9dd1312ccfcb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and executes an SQL statement, returning a single optional value.  <a href="classDbpp_1_1Connection.html#ae14208c6d81281786ea9dd1312ccfcb6">More...</a><br /></td></tr>
@@ -356,15 +360,12 @@ template&lt;typename... Args&gt; </div>
 </div>
 </div>
 <a id="a6db6d55ca24d4b55a11f49f28063c92e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6db6d55ca24d4b55a11f49f28063c92e">&#9670;&nbsp;</a></span>get()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6db6d55ca24d4b55a11f49f28063c92e">&#9670;&nbsp;</a></span>get() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename T , typename... Args&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">T Dbpp::Connection::get </td>
@@ -384,11 +385,6 @@ template&lt;typename T , typename... Args&gt; </div>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Creates and executes an SQL statement, returning a single value. </p>
@@ -396,6 +392,7 @@ template&lt;typename T , typename... Args&gt; </div>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>The type of the return value </td></tr>
+    <tr><td class="paramname">Args...</td><td>The types of the additional arguments for binding values to placeholders (should be deduced automatically) </td></tr>
   </table>
   </dd>
 </dl>
@@ -407,6 +404,55 @@ template&lt;typename T , typename... Args&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A single value</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
+
+</div>
+</div>
+<a id="abe870a20c1f883935d4f5d44c209fa61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe870a20c1f883935d4f5d44c209fa61">&#9670;&nbsp;</a></span>get() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... ReturnTypes, typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::tuple&lt;ReturnTypes...&gt; Dbpp::Connection::get </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>sql</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates and executes an SQL statement, returning a single result. </p>
+<p>This is a convenience method that can be used when it is expected that the statement returns exactly one row in the result set, or when you are only interested in the first one.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ReturnTypes</td><td>The types of the columns to return </td></tr>
+    <tr><td class="paramname">Args...</td><td>The types of the additional arguments for binding values to placeholders (should be deduced automatically) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sql</td><td>An SQL statement </td></tr>
+    <tr><td class="paramname">args</td><td>A list of values to be bound to placeholders in the SQL statement </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A tuple representing the result</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
 
 </div>
@@ -570,9 +616,9 @@ template&lt;typename... Args&gt; </div>
 <div class="ttc" id="aclassDbpp_1_1Result_html_aa9cfbb3ce55711cbe366b1df172be48e"><div class="ttname"><a href="classDbpp_1_1Result.html#aa9cfbb3ce55711cbe366b1df172be48e">Dbpp::Result::get</a></div><div class="ttdeci">bool get(int index, short &amp;out)</div><div class="ttdoc">Retrieves a value from the result.</div></div>
 <div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html">Dbpp::Sqlite3</a></div><div class="ttdoc">Namespace specific to the SQLite3 adapter.</div><div class="ttdef"><b>Definition:</b> Sqlite3.h:29</div></div>
 <div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html_aa413ad0c0178ba2f31b3fc1e56f82e5e"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html#aa413ad0c0178ba2f31b3fc1e56f82e5e">Dbpp::Sqlite3::open</a></div><div class="ttdeci">Connection open(const std::filesystem::path &amp;file)</div><div class="ttdoc">Opens an SQLite3 database, and returns a connection to it.</div></div>
-<div class="ttc" id="aclassDbpp_1_1Connection_html"><div class="ttname"><a href="classDbpp_1_1Connection.html">Dbpp::Connection</a></div><div class="ttdoc">A connection object represents a connection to a database.</div><div class="ttdef"><b>Definition:</b> Connection.h:37</div></div>
-<div class="ttc" id="aclassDbpp_1_1Connection_html_ae8d72d0a260142e80d4d9f4df758a9a9"><div class="ttname"><a href="classDbpp_1_1Connection.html#ae8d72d0a260142e80d4d9f4df758a9a9">Dbpp::Connection::exec</a></div><div class="ttdeci">Result exec(std::string_view sql, Args... args)</div><div class="ttdoc">Creates and executes an SQL statement.</div><div class="ttdef"><b>Definition:</b> Connection.h:96</div></div>
-<div class="ttc" id="aclassDbpp_1_1Connection_html_a8d36f1dd4783eea22d5084df3f03aeaf"><div class="ttname"><a href="classDbpp_1_1Connection.html#a8d36f1dd4783eea22d5084df3f03aeaf">Dbpp::Connection::prepare</a></div><div class="ttdeci">Statement prepare(std::string_view sql, Args... args)</div><div class="ttdoc">Creates a new statement for the supplied string.</div><div class="ttdef"><b>Definition:</b> Connection.h:78</div></div>
+<div class="ttc" id="aclassDbpp_1_1Connection_html"><div class="ttname"><a href="classDbpp_1_1Connection.html">Dbpp::Connection</a></div><div class="ttdoc">A connection object represents a connection to a database.</div><div class="ttdef"><b>Definition:</b> Connection.h:38</div></div>
+<div class="ttc" id="aclassDbpp_1_1Connection_html_ae8d72d0a260142e80d4d9f4df758a9a9"><div class="ttname"><a href="classDbpp_1_1Connection.html#ae8d72d0a260142e80d4d9f4df758a9a9">Dbpp::Connection::exec</a></div><div class="ttdeci">Result exec(std::string_view sql, Args... args)</div><div class="ttdoc">Creates and executes an SQL statement.</div><div class="ttdef"><b>Definition:</b> Connection.h:97</div></div>
+<div class="ttc" id="aclassDbpp_1_1Connection_html_a8d36f1dd4783eea22d5084df3f03aeaf"><div class="ttname"><a href="classDbpp_1_1Connection.html#a8d36f1dd4783eea22d5084df3f03aeaf">Dbpp::Connection::prepare</a></div><div class="ttdeci">Statement prepare(std::string_view sql, Args... args)</div><div class="ttdoc">Creates a new statement for the supplied string.</div><div class="ttdef"><b>Definition:</b> Connection.h:79</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

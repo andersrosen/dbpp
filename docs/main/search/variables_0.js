@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['code_107',['code',['../classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73',1,'Dbpp::ErrorWithCode']]]
+  ['code_118',['code',['../classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73',1,'Dbpp::ErrorWithCode']]]
 ];
