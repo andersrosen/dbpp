@@ -17,6 +17,8 @@
 
 #pragma once
 
+#include "config.h"
+
 #include "Exception.h"
 #include "adapter/Result.h"
 #include "adapter/Types.h"
@@ -61,7 +63,7 @@ namespace Detail {
 /// \brief Represents a single result (row) of a query
 ///
 /// \since v1.0.0
-class Result {
+class DBPP_EXPORTED Result {
     friend class Statement;
 private:
     Adapter::ResultPtr impl_;
@@ -339,7 +341,7 @@ public:
     template <typename T>
     [[nodiscard]]
     typename std::enable_if_t<
-        not Detail::IsOptional<T>::value and not Detail::HasStaticDbppGetMethodV<T>,
+        !Detail::IsOptional<T>::value && !Detail::HasStaticDbppGetMethodV<T>,
         T>
     get(int columnIndex) {
         T val;
@@ -360,7 +362,7 @@ public:
     template <typename T>
     [[nodiscard]]
     std::enable_if_t<
-        Detail::IsOptionalV<T> and Detail::HasStaticDbppGetMethodV<typename T::value_type>,
+        Detail::IsOptionalV<T> && Detail::HasStaticDbppGetMethodV<typename T::value_type>,
         T>
     get(int columnIndex) {
         if (isNull(columnIndex))
@@ -380,7 +382,7 @@ public:
     template <typename T>
     [[nodiscard]]
     typename std::enable_if_t<
-        Detail::IsOptionalV<T> and not Detail::HasStaticDbppGetMethodV<typename T::value_type>,
+        Detail::IsOptionalV<T> && !Detail::HasStaticDbppGetMethodV<typename T::value_type>,
         T>
     get(int columnIndex) {
         typename T::value_type val;
@@ -446,7 +448,7 @@ public:
     /// \since v1.0.0
     template <typename T>
     [[nodiscard]]
-    typename std::enable_if_t<not Detail::IsOptionalV<T> and not Detail::HasStaticDbppGetMethodV<T>, T>
+    typename std::enable_if_t<!Detail::IsOptionalV<T> && !Detail::HasStaticDbppGetMethodV<T>, T>
     valueOr(int columnIndex, T defaultValue) {
         get(columnIndex, defaultValue);
         return defaultValue;
@@ -464,7 +466,7 @@ public:
     /// \since v1.0.0
     template <typename T>
     [[nodiscard]]
-    typename std::enable_if_t<not Detail::IsOptionalV<T> and Detail::HasStaticDbppGetMethodV<T>, T>
+    typename std::enable_if_t<!Detail::IsOptionalV<T> && Detail::HasStaticDbppGetMethodV<T>, T>
     valueOr(int columnIndex, T defaultValue) {
         if (isNull(columnIndex))
             return defaultValue;

@@ -7,16 +7,16 @@ if (NOT DEFINED PROJECT_NAME)
 endif()
 
 # Get version from the main header
-file(READ include/dbpp/dbpp.h dbpp_h)
-if (NOT dbpp_h MATCHES "DBPP_VERSION ([0-9]+)([0-9][0-9])([0-9][0-9])")
-  message(FATAL_ERROR "Cannot get DBPP_VERSION from dbpp.h")
+file(READ include/dbpp/config.h dbpp_config_h)
+if (NOT dbpp_config_h MATCHES "DBPP_VERSION ([0-9]+)([0-9][0-9])([0-9][0-9])")
+  message(FATAL_ERROR "Cannot get DBPP_VERSION from dbpp/config.h")
 endif ()
 # Use math to skip leading zeroes if any.
 math(EXPR CPACK_PACKAGE_VERSION_MAJOR ${CMAKE_MATCH_1})
 math(EXPR CPACK_PACKAGE_VERSION_MINOR ${CMAKE_MATCH_2})
 math(EXPR CPACK_PACKAGE_VERSION_PATCH ${CMAKE_MATCH_3})
 
-project(dbpp VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}" LANGUAGES CXX)
+project(dbpp VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}" LANGUAGES CXX C)
 message(STATUS "${PROJECT_NAME} version: ${PROJECT_VERSION}")
 
 include(GNUInstallDirs)
@@ -31,13 +31,17 @@ option(DBPP_ENABLE_TESTS "Build tests" ${MASTER_PROJECT})
 option(DBPP_ENABLE_DOCS "Generate documentation using Doxygen" ${MASTER_PROJECT})
 option(DBPP_ENABLE_DEV_MODE "Enable strict compiler warnings" OFF)
 option(DBPP_ENABLE_SANITIZERS "Use address, leak and undefined behavior sanitizers" ${DBPP_ENABLE_DEV_MODE})
+option(DBPP_USE_BUNDLED_SQLITE "Use the version of SQLite that's bundled with dbpp" OFF)
 
 # CMake script include path
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 # External Dependencies
 find_package(Doxygen)
-find_package(SQLite3 REQUIRED)
+if (NOT DBPP_USE_BUNDLED_SQLITE)
+    find_package(SQLite3 REQUIRED)
+endif()
+
 add_subdirectory(thirdparty)
 
 # Target definition
@@ -48,7 +52,9 @@ add_library(${PROJECT_NAME}::dbpp ALIAS dbpp)
 
 target_compile_features(dbpp PUBLIC cxx_std_17)
 
-target_compile_definitions(dbpp PUBLIC $<BUILD_INTERFACE:BUILDING_DBPP>)
+if (${BUILD_SHARED_LIBS})
+    target_compile_definitions(dbpp PUBLIC $<BUILD_INTERFACE:BUILDING_DBPP_DLL>)
+endif()
 
 set_target_properties(dbpp PROPERTIES
     VERSION ${PROJECT_VERSION} SOVERSION ${CPACK_PACKAGE_VERSION_MAJOR}
@@ -119,7 +125,7 @@ if (DBPP_ENABLE_INSTALL)
     # Generate CMake package configuration files, to support find_package()
     set(version_config "${PROJECT_BINARY_DIR}/${PROJECT_NAME}-config-version.cmake")
     set(project_config "${PROJECT_BINARY_DIR}/${PROJECT_NAME}-config.cmake")
-    set(targets_export_name "${PROJECT_NAME}-targets")
+    set(targets_export_name "dbpp-targets")
     set(namespace "${PROJECT_NAME}::")
     include(CMakePackageConfigHelpers)
 

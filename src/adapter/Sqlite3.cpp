@@ -302,7 +302,7 @@ private:
 public:
     Connection(const std::filesystem::path& filename, OpenMode mode, OpenFlag flags) {
         struct sqlite3* conn; // NOLINT
-        int res = sqlite3_open_v2(filename.c_str(), &conn, static_cast<int>(static_cast<unsigned int>(mode) | static_cast<unsigned int>(flags)), nullptr);
+        int res = sqlite3_open_v2(filename.u8string().c_str(), &conn, static_cast<int>(static_cast<unsigned int>(mode) | static_cast<unsigned int>(flags)), nullptr);
         if (res != SQLITE_OK) {
             if (conn != nullptr)
                 sqlite3_close(conn);
@@ -349,7 +349,8 @@ public:
         std::unique_ptr<struct sqlite3, DbDeleter> dbHandle;
         {
             struct sqlite3* db; // NOLINT
-            auto res = sqlite3_open(file.c_str(), &db);
+            auto res = sqlite3_open(file.u8string().c_str(), &db);
+
             if (res != SQLITE_OK) {
                 if (db)
                     sqlite3_close(db);

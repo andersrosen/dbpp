@@ -17,6 +17,8 @@
 
 #pragma once
 
+#include "../config.h"
+
 #include <memory>
 
 namespace Dbpp::Adapter {

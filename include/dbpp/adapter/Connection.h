@@ -17,6 +17,8 @@
 
 #pragma once
 
+#include "../config.h"
+
 #include "../Connection.h"
 #include "Types.h"
 
@@ -27,7 +29,7 @@ namespace Dbpp::Adapter {
 /// \brief Abstract base class for the connection of a driver
 ///
 /// \since v1.0.0
-class Connection {
+class DBPP_EXPORTED Connection {
 public:
     /// \brief Creates a new statement for the supplied string
     ///

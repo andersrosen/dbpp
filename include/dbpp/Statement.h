@@ -17,6 +17,8 @@
 
 #pragma once
 
+#include "config.h"
+
 #include "Result.h"
 #include "adapter/Types.h"
 
@@ -57,7 +59,7 @@ class StatementTupleIterator;
 /// or iterate over it using the begin() and end() methods.
 ///
 /// \since v1.0.0
-class Statement {
+class DBPP_EXPORTED Statement {
     friend class Connection;
 
 private:
@@ -328,7 +330,7 @@ public:
 /// \brief Allows iteration over results of a statement
 ///
 /// \since v1.0.0
-class StatementIterator {
+class DBPP_EXPORTED StatementIterator {
     friend class Statement;
 
 private:
