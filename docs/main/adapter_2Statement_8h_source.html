@@ -126,16 +126,18 @@ $(function() {
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classDbpp_1_1Adapter_1_1Statement.html#a87af67a13a06f0dea19c4f924cd8060a">bind</a>(<span class="keyword">const</span> std::vector&lt;unsigned char&gt; &amp;blobValue, <span class="keywordtype">int</span> placeholderIndex) = 0;</div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keyword">virtual</span> std::string <a class="code" href="classDbpp_1_1Adapter_1_1Statement.html#a2c60784042fd596731d183252e54479c">sql</a>() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keyword">virtual</span> ResultPtr <a class="code" href="classDbpp_1_1Adapter_1_1Statement.html#a28a2a200dae66b01bd246332d3e60fd0">step</a>() = 0;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classDbpp_1_1Adapter_1_1Statement.html#afaec4da667c18bbcb0c26a06c880b13e">reset</a>() = 0;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classDbpp_1_1Adapter_1_1Statement.html#a73b2bea56460f4f14c064f44c1af46a8">clearBindings</a>() = 0;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;};</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;}</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    [[nodiscard]]</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keyword">virtual</span> std::string <a class="code" href="classDbpp_1_1Adapter_1_1Statement.html#a2c60784042fd596731d183252e54479c">sql</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    [[nodiscard]]</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keyword">virtual</span> ResultPtr <a class="code" href="classDbpp_1_1Adapter_1_1Statement.html#a28a2a200dae66b01bd246332d3e60fd0">step</a>() = 0;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classDbpp_1_1Adapter_1_1Statement.html#afaec4da667c18bbcb0c26a06c880b13e">reset</a>() = 0;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classDbpp_1_1Adapter_1_1Statement.html#a73b2bea56460f4f14c064f44c1af46a8">clearBindings</a>() = 0;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;};</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;} <span class="comment">// namespace Dbpp::Adapter</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassDbpp_1_1Adapter_1_1Statement_html_a28a2a200dae66b01bd246332d3e60fd0"><div class="ttname"><a href="classDbpp_1_1Adapter_1_1Statement.html#a28a2a200dae66b01bd246332d3e60fd0">Dbpp::Adapter::Statement::step</a></div><div class="ttdeci">virtual ResultPtr step()=0</div><div class="ttdoc">Executes the statement or steps to the next result.</div></div>
 <div class="ttc" id="aclassDbpp_1_1Adapter_1_1Statement_html"><div class="ttname"><a href="classDbpp_1_1Adapter_1_1Statement.html">Dbpp::Adapter::Statement</a></div><div class="ttdoc">Interface class for database adapters.</div><div class="ttdef"><b>Definition:</b> Statement.h:30</div></div>
