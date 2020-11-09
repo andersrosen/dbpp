@@ -380,6 +380,11 @@ Dbpp::Connection open(const std::filesystem::path& file) {
 return open(file, OpenMode::ReadWriteCreate, OpenFlag::None);
 }
 
+void backup(Dbpp::Connection &db, const std::filesystem::path &file, int pagesPerStep, int sleepTimePerStepMs) {
+    auto progressFuncNoOp = [](int, int){};
+    backup(db, file, pagesPerStep, sleepTimePerStepMs, progressFuncNoOp);
+}
+
 void backup(Dbpp::Connection& db, const std::filesystem::path& file, int pagesPerStep, int sleepTimePerStepMs, std::function<void(int,int)> progressCallback) {
     if (db.adapterName() != "sqlite3")
         throw Error("dbpp::sqlite3::backup() can only be called with an sqlite3 connection");
