@@ -18,6 +18,7 @@
 #pragma once
 
 #include "adapter/Types.h"
+#include "MetaFunctions.h"
 #include "Statement.h"
 
 #include <string>
@@ -99,24 +100,77 @@ public:
         return st.step();
     }
 
+#ifdef DOXYGEN_SHOULD_SEE_THIS
     /// \brief Creates and executes an SQL statement, returning a single value
     ///
     /// This is a convenience method that can be used when it is expected that the
     /// statement returns exactly one value.
     ///
     /// \tparam T The type of the return value
+    /// \tparam Args... The types of the additional arguments for binding values to placeholders (should be deduced automatically)
     /// \param sql An SQL statement
     /// \param args A list of values to be bound to placeholders in the SQL statement
     /// \return A single value
     ///
     /// \since v1.0.0
+
+    // Only for documentation purposes! This is ifdef:d out when compiling
     template <typename T, typename... Args>
-    T get(std::string_view sql, Args... args) {
+    [[nodiscard]]
+    T get(std::string_view sql, Args... args);
+
+
+    /// \brief Creates and executes an SQL statement, returning a single result
+    ///
+    /// This is a convenience method that can be used when it is expected that the
+    /// statement returns exactly one row in the result set, or when you are only
+    /// interested in the first one.
+    ///
+    /// \tparam ReturnTypes The types of the columns to return
+    /// \tparam Args... The types of the additional arguments for binding values to placeholders (should be deduced automatically)
+    /// \param sql An SQL statement
+    /// \param args A list of values to be bound to placeholders in the SQL statement
+    /// \return A tuple representing the result
+    ///
+    /// \since v1.0.0
+
+    // Only for documentation purposes! This is ifdef:d out when compiling
+    template <typename... ReturnTypes, typename... Args>
+    [[nodiscard]]
+    std::tuple<ReturnTypes...> get(std::string_view sql, Args... args);
+#else
+    // The function below is a bit of a hack. It would be nice to have two functions as in the
+    // doxygen part above, but that won't compile since it will be ambiguous which of the two
+    // functions to use. The workaround is to implement them both in a single function, which
+    // adapts depending on the number of return types.
+
+    // Even though this will not be read by doxygen, we add a doxygen style comment anyway,
+    // since many IDEs will show this kind of comments
+
+    /// \brief Creates and executes an SQL statement, returning a single value or a tuple
+    ///
+    /// \tparam ReturnType... The return type - if there are multiple types a tuple will be returned, otherwise a single value will be returned
+    /// \tparam Args... The types of the additional arguments for binding values to placeholders (should be deduced automatically)
+    /// \param sql An SQL statement
+    /// \param args A list of values to be bound to placeholders in the SQL statement
+    /// \return A single value or a tuple representing the result
+    ///
+    /// \since v1.0.0
+    template <typename... ReturnType, typename... Args>
+    [[nodiscard]]
+    Detail::ScalarOrTupleT<ReturnType...> get(std::string_view sql, Args... args) {
         auto row = exec(sql, args...);
-        if (row.columnCount() != 1)
-            throw Dbpp::Error(std::string("get() expects a single column Result. Statement: ") + std::string{sql});
-        return row.template get<T>(0);
+        if constexpr(Detail::IsScalarV<ReturnType...>) {
+            // Return a single value
+            if (row.columnCount() != 1)
+                throw Dbpp::Error(std::string("get() expects a single column Result. Statement: ") + std::string{ sql });
+            return row.template get<Detail::FirstTypeT<ReturnType...>>(0);
+        } else {
+            // Return it as a tuple
+            return row.template toTuple<ReturnType...>();
+        }
     }
+#endif
 
     /// \brief Creates and executes an SQL statement, returning a single optional value
     ///
