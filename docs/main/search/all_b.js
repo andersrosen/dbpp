@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['open_30',['open',['../namespaceDbpp_1_1Sqlite3.html#aa413ad0c0178ba2f31b3fc1e56f82e5e',1,'Dbpp::Sqlite3::open(const std::filesystem::path &amp;file)'],['../namespaceDbpp_1_1Sqlite3.html#a3b9b9098b90164817417072680ac37f0',1,'Dbpp::Sqlite3::open(const std::filesystem::path &amp;file, OpenMode mode)'],['../namespaceDbpp_1_1Sqlite3.html#adbbf14999f0a57abfdd1c4bbc809543b',1,'Dbpp::Sqlite3::open(const std::filesystem::path &amp;file, OpenMode mode, OpenFlag flags)']]],
+  ['open_30',['open',['../namespaceDbpp_1_1Sqlite3.html#a7b0a65a94d9fefa80fdbf2fb595cf7fe',1,'Dbpp::Sqlite3::open(const std::filesystem::path &amp;file)'],['../namespaceDbpp_1_1Sqlite3.html#a0ec01a7d73087cb5fceba2828e187e48',1,'Dbpp::Sqlite3::open(const std::filesystem::path &amp;file, OpenMode mode)'],['../namespaceDbpp_1_1Sqlite3.html#a185c01eaeb9b9cac53f9253e717c8501',1,'Dbpp::Sqlite3::open(const std::filesystem::path &amp;file, OpenMode mode, OpenFlag flags)']]],
   ['openflag_31',['OpenFlag',['../namespaceDbpp_1_1Sqlite3.html#a0523f25495dd773469ef8a426427acea',1,'Dbpp::Sqlite3']]],
   ['openmode_32',['OpenMode',['../namespaceDbpp_1_1Sqlite3.html#acf713b698926b509722ba8259283f802',1,'Dbpp::Sqlite3']]],
   ['operator_20bool_33',['operator bool',['../classDbpp_1_1Result.html#a6f3fca568b65c422cf0a7679ca031645',1,'Dbpp::Result']]],

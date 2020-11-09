@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['valueor_58',['valueOr',['../classDbpp_1_1Result.html#ac7d0f9c995e399e84ff9de26919c6409',1,'Dbpp::Result::valueOr(int columnIndex, T defaultValue)'],['../classDbpp_1_1Result.html#aeb6af14341e03112739fbfc7dfe2df3c',1,'Dbpp::Result::valueOr(int columnIndex, T defaultValue)']]]
+  ['valueor_58',['valueOr',['../classDbpp_1_1Result.html#a1e2c85825234fcedb00a5dac1199cecc',1,'Dbpp::Result::valueOr(int columnIndex, T defaultValue)'],['../classDbpp_1_1Result.html#a0fb35f38d09ea59292e669a3841ee968',1,'Dbpp::Result::valueOr(int columnIndex, T defaultValue)']]]
 ];

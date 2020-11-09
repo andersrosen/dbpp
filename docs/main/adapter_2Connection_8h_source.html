@@ -89,42 +89,39 @@ $(function() {
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;../Connection.h&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;Types.h&quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;string_view&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;../config.h&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;../Connection.h&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;Types.h&quot;</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">namespace </span>Dbpp::Adapter {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;string_view&gt;</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classDbpp_1_1Adapter_1_1Connection.html">   30</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDbpp_1_1Adapter_1_1Connection.html">Connection</a> {</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">virtual</span> StatementPtr <a class="code" href="classDbpp_1_1Adapter_1_1Connection.html#a72fa520b6f3601e1ea0711fd49136788">prepare</a>(std::string_view sql) = 0;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classDbpp_1_1Adapter_1_1Connection.html#ad3d61bee22744a85ac71f9b7e67c28fb">begin</a>() = 0;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classDbpp_1_1Adapter_1_1Connection.html#a094e915af95b406fcb6fc8fccfe067d1">commit</a>() = 0;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classDbpp_1_1Adapter_1_1Connection.html#a2e1a727d58163af4be9f1dc6775f6cee">rollback</a>() = 0;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    [[nodiscard]]</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">virtual</span> <span class="keyword">const</span> std::string&amp; <a class="code" href="classDbpp_1_1Adapter_1_1Connection.html#aa9fa32d453c497b2bcf61d5da45f1beb">adapterName</a>() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    [[nodiscard]]</div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="classDbpp_1_1Adapter_1_1Connection.html#ac11fcea4c6470e756a21679da6b5136a">   70</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">static</span> ConnectionPtr <a class="code" href="classDbpp_1_1Adapter_1_1Connection.html#ac11fcea4c6470e756a21679da6b5136a">getImpl</a>(<a class="code" href="classDbpp_1_1Connection.html">Dbpp::Connection</a>&amp; db) {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">return</span> db.impl_;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;};</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;} <span class="comment">// namespace Dbpp::Adapter</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">namespace </span>Dbpp::Adapter {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classDbpp_1_1Adapter_1_1Connection.html">   32</a></span>&#160;<span class="keyword">class </span>DBPP_EXPORTED <a class="code" href="classDbpp_1_1Adapter_1_1Connection.html">Connection</a> {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">virtual</span> StatementPtr prepare(std::string_view sql) = 0;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> begin() = 0;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> commit() = 0;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> rollback() = 0;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    [[nodiscard]]</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">virtual</span> <span class="keyword">const</span> std::string&amp; adapterName() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    [[nodiscard]]</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classDbpp_1_1Adapter_1_1Connection.html#ac11fcea4c6470e756a21679da6b5136a">   72</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">static</span> ConnectionPtr <a class="code" href="classDbpp_1_1Adapter_1_1Connection.html#ac11fcea4c6470e756a21679da6b5136a">getImpl</a>(<a class="code" href="classDbpp_1_1Connection.html">Dbpp::Connection</a>&amp; db) {</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">return</span> db.impl_;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;};</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;} <span class="comment">// namespace Dbpp::Adapter</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassDbpp_1_1Adapter_1_1Connection_html_a72fa520b6f3601e1ea0711fd49136788"><div class="ttname"><a href="classDbpp_1_1Adapter_1_1Connection.html#a72fa520b6f3601e1ea0711fd49136788">Dbpp::Adapter::Connection::prepare</a></div><div class="ttdeci">virtual StatementPtr prepare(std::string_view sql)=0</div><div class="ttdoc">Creates a new statement for the supplied string.</div></div>
-<div class="ttc" id="aclassDbpp_1_1Adapter_1_1Connection_html_ad3d61bee22744a85ac71f9b7e67c28fb"><div class="ttname"><a href="classDbpp_1_1Adapter_1_1Connection.html#ad3d61bee22744a85ac71f9b7e67c28fb">Dbpp::Adapter::Connection::begin</a></div><div class="ttdeci">virtual void begin()=0</div><div class="ttdoc">Begins a transaction.</div></div>
-<div class="ttc" id="aclassDbpp_1_1Adapter_1_1Connection_html"><div class="ttname"><a href="classDbpp_1_1Adapter_1_1Connection.html">Dbpp::Adapter::Connection</a></div><div class="ttdoc">Abstract base class for the connection of a driver.</div><div class="ttdef"><b>Definition:</b> Connection.h:30</div></div>
-<div class="ttc" id="aclassDbpp_1_1Connection_html"><div class="ttname"><a href="classDbpp_1_1Connection.html">Dbpp::Connection</a></div><div class="ttdoc">A connection object represents a connection to a database.</div><div class="ttdef"><b>Definition:</b> Connection.h:38</div></div>
-<div class="ttc" id="aclassDbpp_1_1Adapter_1_1Connection_html_a2e1a727d58163af4be9f1dc6775f6cee"><div class="ttname"><a href="classDbpp_1_1Adapter_1_1Connection.html#a2e1a727d58163af4be9f1dc6775f6cee">Dbpp::Adapter::Connection::rollback</a></div><div class="ttdeci">virtual void rollback()=0</div><div class="ttdoc">Rolls back a transaction.</div></div>
-<div class="ttc" id="aclassDbpp_1_1Adapter_1_1Connection_html_a094e915af95b406fcb6fc8fccfe067d1"><div class="ttname"><a href="classDbpp_1_1Adapter_1_1Connection.html#a094e915af95b406fcb6fc8fccfe067d1">Dbpp::Adapter::Connection::commit</a></div><div class="ttdeci">virtual void commit()=0</div><div class="ttdoc">Commits a transaction.</div></div>
-<div class="ttc" id="aclassDbpp_1_1Adapter_1_1Connection_html_aa9fa32d453c497b2bcf61d5da45f1beb"><div class="ttname"><a href="classDbpp_1_1Adapter_1_1Connection.html#aa9fa32d453c497b2bcf61d5da45f1beb">Dbpp::Adapter::Connection::adapterName</a></div><div class="ttdeci">virtual const std::string &amp; adapterName() const =0</div><div class="ttdoc">Returns the name of the driver.</div></div>
-<div class="ttc" id="aclassDbpp_1_1Adapter_1_1Connection_html_ac11fcea4c6470e756a21679da6b5136a"><div class="ttname"><a href="classDbpp_1_1Adapter_1_1Connection.html#ac11fcea4c6470e756a21679da6b5136a">Dbpp::Adapter::Connection::getImpl</a></div><div class="ttdeci">static ConnectionPtr getImpl(Dbpp::Connection &amp;db)</div><div class="ttdoc">Retrieves a shared pointer to the adapter-specific connection object.</div><div class="ttdef"><b>Definition:</b> Connection.h:70</div></div>
+<div class="ttc" id="aclassDbpp_1_1Adapter_1_1Connection_html"><div class="ttname"><a href="classDbpp_1_1Adapter_1_1Connection.html">Dbpp::Adapter::Connection</a></div><div class="ttdoc">Abstract base class for the connection of a driver.</div><div class="ttdef"><b>Definition:</b> Connection.h:32</div></div>
+<div class="ttc" id="aclassDbpp_1_1Connection_html"><div class="ttname"><a href="classDbpp_1_1Connection.html">Dbpp::Connection</a></div><div class="ttdoc">A connection object represents a connection to a database.</div><div class="ttdef"><b>Definition:</b> Connection.h:40</div></div>
+<div class="ttc" id="aclassDbpp_1_1Adapter_1_1Connection_html_ac11fcea4c6470e756a21679da6b5136a"><div class="ttname"><a href="classDbpp_1_1Adapter_1_1Connection.html#ac11fcea4c6470e756a21679da6b5136a">Dbpp::Adapter::Connection::getImpl</a></div><div class="ttdeci">static ConnectionPtr getImpl(Dbpp::Connection &amp;db)</div><div class="ttdoc">Retrieves a shared pointer to the adapter-specific connection object.</div><div class="ttdef"><b>Definition:</b> Connection.h:72</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
