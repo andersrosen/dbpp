@@ -270,6 +270,7 @@ public:
 
     /// \brief Resets the statement to its initial state, so it can be executed again
     ///
+    /// \since v1.0.0
     template <typename... Args>
     void reset(Args... args)
     {
