@@ -42,7 +42,14 @@ inline constexpr bool HasDbppBindMethodV = HasDbppBindMethod<T>::value;
 } // namespace Detail
 
 class Connection;
+
+template <typename... Ts>
+class StatementTupleWrapper;
+
 class StatementIterator;
+
+template <typename... Ts>
+class StatementTupleIterator;
 
 /// \brief Represents a prepared SQL statement
 ///
@@ -271,6 +278,50 @@ public:
             clearBindings();
         (bind(args), ...);
     }
+
+    /// \brief Allows retrieving results as tuples
+    ///
+    /// \tparam Ts The types of the columns in the result
+    /// \return A wrapper class allowing iteration over tuples instead of Result objects
+    ///
+    /// \since v1.0.0
+    template <typename... Ts>
+    [[nodiscard]]
+    StatementTupleWrapper<Ts...> as() && {
+        return StatementTupleWrapper<Ts...>(std::move(*this));
+    }
+};
+
+/// \brief A class that wraps Statement objects, to allow iteration over tuples instead of Result objects
+///
+/// \tparam Ts The types of the columns in the result
+///
+/// \since v1.0.0
+template <typename... Ts>
+class StatementTupleWrapper
+{
+    friend class Statement;
+
+    Statement stmt_;
+
+    explicit StatementTupleWrapper(Statement&& statement)
+    : stmt_(std::move(statement))
+    {}
+
+public:
+    using iterator = StatementTupleIterator<Ts...>; // NOLINT
+
+    /// \brief Returns an iterator to the first result
+    ///
+    /// \since v1.0.0
+    [[nodiscard]]
+    iterator begin() {return iterator(&stmt_); }
+
+    /// \brief Returns an iterator to the end of the results
+    ///
+    /// \since v1.0.0
+    [[nodiscard]]
+    iterator end() {return {};}
 };
 
 /// \brief Allows iteration over results of a statement
@@ -343,6 +394,92 @@ public:
                 // Become the end iterator
                 stmt_ = nullptr;
                 res_ = Result();
+            }
+        }
+        return *this;
+    }
+};
+
+/// \brief Allows iteration over results of a statement, as tuples
+///
+/// \since v1.0.0
+template <typename... Ts>
+class StatementTupleIterator {
+    friend class StatementTupleWrapper<Ts...>;
+
+    using TupleT = std::tuple<Ts...>;
+    Statement* stmt_ = nullptr;
+    TupleT tuple_;
+
+    explicit StatementTupleIterator(Dbpp::Statement* statement)
+    : stmt_(statement) {
+        auto res = statement->step();
+        if (res.empty()) {
+            // Become the end iterator
+            stmt_ = nullptr;
+        } else {
+            tuple_ = res.toTuple<Ts...>();
+        }
+    }
+
+public:
+    using value_type = std::tuple<Ts...>; // NOLINT
+
+    StatementTupleIterator& operator=(const StatementTupleIterator&) = delete;
+    StatementTupleIterator(const StatementTupleIterator&) = delete;
+
+    ~StatementTupleIterator() = default;
+
+    /// \brief Default constructor
+    ///
+    /// \since v1.0.0
+    StatementTupleIterator() = default; // Constructs an end iterator
+
+    /// \brief Move constructor
+    ///
+    /// \since v1.0.0
+    StatementTupleIterator(StatementTupleIterator&&) noexcept = default;
+
+    /// \brief Move assignment
+    ///
+    /// \since v1.0.0
+    StatementTupleIterator& operator=(StatementTupleIterator&&) noexcept = default;
+
+    /// \brief Dereferencing operator
+    ///
+    /// \since v1.0.0
+    [[nodiscard]]
+    const std::tuple<Ts...>& operator*() const { return tuple_; }
+
+    /// \brief Dereferencing operator
+    ///
+    /// \since v1.0.0
+    [[nodiscard]]
+    const std::tuple<Ts...>* operator->() const { return &tuple_; }
+
+    /// \brief Checks if two iterators are equal
+    ///
+    /// \since v1.0.0
+    [[nodiscard]]
+    bool operator==(const StatementTupleIterator& that) const { return stmt_ == that.stmt_; }
+
+    /// \brief Checks if two iterators are different
+    ///
+    /// \since v1.0.0
+    [[nodiscard]]
+    bool operator!=(const StatementTupleIterator& that) const { return !(*this == that); }
+
+    /// \brief Increments the iterator, which means stepping to the next result
+    ///
+    /// \since v1.0.0
+    StatementTupleIterator& operator++() {
+        if (stmt_) {
+            auto res = stmt_->step();
+            if (res.empty()) {
+                // Become the end iterator
+                stmt_ = nullptr;
+            } else {
+                tuple_ = res.toTuple<Ts...>();
             }
         }
         return *this;
