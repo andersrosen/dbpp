@@ -41,6 +41,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual bool getColumn(int columnIndex, short& outputVariable) = 0;
 
     /// \brief Retrieves a value from the result
@@ -54,6 +55,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual bool getColumn(int columnIndex, int& outputVariable) = 0;
 
     /// \brief Retrieves a value from the result
@@ -67,6 +69,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual bool getColumn(int columnIndex, long& outputVariable) = 0;
 
     /// \brief Retrieves a value from the result
@@ -80,6 +83,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual bool getColumn(int columnIndex, long long& outputVariable) = 0;
 
     /// \brief Retrieves a value from the result
@@ -93,6 +97,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual bool getColumn(int columnIndex, unsigned short& outputVariable) = 0;
 
     /// \brief Retrieves a value from the result
@@ -106,6 +111,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual bool getColumn(int columnIndex, unsigned int& outputVariable) = 0;
 
     /// \brief Retrieves a value from the result
@@ -119,6 +125,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual bool getColumn(int columnIndex, unsigned long& outputVariable) = 0;
 
     /// \brief Retrieves a value from the result
@@ -132,6 +139,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual bool getColumn(int columnIndex, unsigned long long& outputVariable) = 0;
 
     /// \brief Retrieves a value from the result
@@ -145,6 +153,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual bool getColumn(int columnIndex, float& outputVariable) = 0;
 
     /// \brief Retrieves a value from the result
@@ -158,6 +167,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual bool getColumn(int columnIndex, double& outputVariable) = 0;
 
     /// \brief Retrieves a value from the result
@@ -171,6 +181,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual bool getColumn(int columnIndex, std::string& outputVariable) = 0;
 
     /// \brief Retrieves a value from the result
@@ -184,6 +195,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual bool getColumn(int columnIndex, std::filesystem::path& outputVariable) = 0;
 
     /// \brief Retrieves a value from the result
@@ -197,6 +209,7 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual bool getColumn(int columnIndex, std::vector<unsigned char>& outputVariable) = 0;
 
     /// \brief Checks if the result is empty
@@ -204,6 +217,7 @@ public:
     /// \return True if the result is empty, false otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual bool empty() const = 0;
 
     /// \brief Retrieves the number of columns (values) in the result
@@ -211,6 +225,7 @@ public:
     /// \return The number of columns in the result
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual int columnCount() const = 0;
 
     /// \brief Retrieves the name of the column at the specified index
@@ -221,6 +236,7 @@ public:
     /// \return The name of the column
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual std::string columnName(int columnIndex) const = 0;
 
     /// \brief Retrieves the index of the specified column
@@ -231,6 +247,7 @@ public:
     /// \return The index of the specified column
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual int columnIndexByName(std::string_view columnName) const = 0;
 
     /// \brief Checks if the specified column is NULL
@@ -239,6 +256,7 @@ public:
     /// \return True if the column was NULL, true otherwise
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual bool isNull(int columnIndex) const = 0;
 
     /// \brief Retrieves the last insert ID
@@ -247,9 +265,10 @@ public:
     /// \return The last ID in the sequence
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual long long getInsertId(std::string_view sequenceName) = 0;
 
     virtual ~Result() = default;
 };
 
-}
+} // namespace Dbpp::Adapter

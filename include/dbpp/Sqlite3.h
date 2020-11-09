@@ -104,4 +104,4 @@ void backup(Dbpp::Connection &db, const std::filesystem::path &file, int pagesPe
 /// \since v1.0.0
 void backup(Dbpp::Connection &db, const std::filesystem::path &file, int pagesPerStep, int sleepTimePerStepMs, std::function<void(int,int)> progressCallback);
 
-}
+} // namespace Dbpp::Sqlite3

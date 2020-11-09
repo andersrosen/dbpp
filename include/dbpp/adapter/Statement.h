@@ -143,6 +143,7 @@ public:
     /// \brief Returns the SQL statement string represented by this object
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual std::string sql() const = 0;
 
     /// \brief Executes the statement or steps to the next result
@@ -150,6 +151,7 @@ public:
     /// \return A shared pointer to a result object, representing the next set of values
     ///
     /// \since v1.0.0
+    [[nodiscard]]
     virtual ResultPtr step() = 0;
 
     /// \brief Resets the statement to its original state, while keeping the existing bindings
@@ -163,4 +165,4 @@ public:
     virtual void clearBindings() = 0;
 };
 
-}
+} // namespace Dbpp::Adapter

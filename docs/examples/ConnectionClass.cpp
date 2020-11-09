@@ -4,7 +4,7 @@
 
 namespace Sqlite3 = Dbpp::Sqlite3;
 
-int main(int argc, char **argv) {
+int main() {
     Dbpp::Connection db = Sqlite3::open(":memory:");
 
     db.exec("CREATE TABLE employee ("
