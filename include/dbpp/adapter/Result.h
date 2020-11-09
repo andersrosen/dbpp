@@ -17,6 +17,8 @@
 
 #pragma once
 
+#include "../config.h"
+
 #include <filesystem>
 #include <string>
 #include <string_view>

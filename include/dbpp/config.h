@@ -17,19 +17,18 @@
 
 #pragma once
 
-#include "../config.h"
+#ifndef DBPP_EXPORTED
+#   if defined(__WIN32__) || defined(__WINRT__)
+#       ifdef BUILDING_DBPP_DLL
+#           define DBPP_EXPORTED __declspec(dllexport)
+#       else
+#           define DBPP_EXPORTED __declspec(dllimport)
+#       endif
+#   else
+#       define DBPP_EXPORTED
+#   endif
+#endif
 
-#include <memory>
-
-namespace Dbpp::Adapter {
-
-class Statement;
-using StatementPtr = std::shared_ptr<Statement>;
-
-class Connection;
-using ConnectionPtr = std::shared_ptr<Connection>;
-
-class Result;
-using ResultPtr = std::shared_ptr<Result>;
-
-} // namespace Dbpp::Adapter
+/// The version of the dbpp library.
+/// Format: ABBCC Where A = Major, BB = Minor, CC = Revision
+#define DBPP_VERSION 10000

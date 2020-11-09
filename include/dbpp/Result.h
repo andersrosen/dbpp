@@ -17,6 +17,8 @@
 
 #pragma once
 
+#include "config.h"
+
 #include "Exception.h"
 #include "adapter/Result.h"
 #include "adapter/Types.h"
@@ -61,7 +63,7 @@ namespace Detail {
 /// \brief Represents a single result (row) of a query
 ///
 /// \since v1.0.0
-class Result {
+class DBPP_EXPORTED Result {
     friend class Statement;
 private:
     Adapter::ResultPtr impl_;

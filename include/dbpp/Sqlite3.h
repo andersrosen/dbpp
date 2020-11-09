@@ -17,6 +17,8 @@
 
 #pragma once
 
+#include "config.h"
+
 #include "Connection.h"
 
 #include <filesystem>
@@ -62,7 +64,7 @@ enum class OpenFlag : unsigned int {
 /// \return A connection to the database
 ///
 /// \since v1.0.0
-Connection open(const std::filesystem::path &file);
+Connection DBPP_EXPORTED open(const std::filesystem::path &file);
 
 /// \brief Opens an SQLite3 database, and returns a connection to it
 ///
@@ -71,7 +73,7 @@ Connection open(const std::filesystem::path &file);
 /// \return A connection to the database
 ///
 /// \since v1.0.0
-Connection open(const std::filesystem::path &file, OpenMode mode);
+Connection DBPP_EXPORTED open(const std::filesystem::path &file, OpenMode mode);
 
 /// \brief Opens an SQLite3 database, and returns a connection to it
 ///
@@ -81,7 +83,7 @@ Connection open(const std::filesystem::path &file, OpenMode mode);
 /// \return A connection to the database
 ///
 /// \since v1.0.0
-Connection open(const std::filesystem::path &file, OpenMode mode, OpenFlag flags);
+Connection DBPP_EXPORTED open(const std::filesystem::path &file, OpenMode mode, OpenFlag flags);
 
 /// \brief Backs up an SQLite3 database
 ///
@@ -91,7 +93,7 @@ Connection open(const std::filesystem::path &file, OpenMode mode, OpenFlag flags
 /// \param sleepTimePerStepMs How long to sleep, in milliseconds, between the steps
 ///
 /// \since v1.0.0
-void backup(Dbpp::Connection &db, const std::filesystem::path &file, int pagesPerStep, int sleepTimePerStepMs);
+void DBPP_EXPORTED backup(Dbpp::Connection &db, const std::filesystem::path &file, int pagesPerStep, int sleepTimePerStepMs);
 
 /// \brief Backs up an SQLite3 database
 ///
@@ -102,6 +104,6 @@ void backup(Dbpp::Connection &db, const std::filesystem::path &file, int pagesPe
 /// \param progressCallback A callback that will be called after each step, to report progress to the caller
 ///
 /// \since v1.0.0
-void backup(Dbpp::Connection &db, const std::filesystem::path &file, int pagesPerStep, int sleepTimePerStepMs, std::function<void(int,int)> progressCallback);
+void DBPP_EXPORTED backup(Dbpp::Connection &db, const std::filesystem::path &file, int pagesPerStep, int sleepTimePerStepMs, std::function<void(int,int)> progressCallback);
 
 } // namespace Dbpp::Sqlite3

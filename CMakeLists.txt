@@ -7,9 +7,9 @@ if (NOT DEFINED PROJECT_NAME)
 endif()
 
 # Get version from the main header
-file(READ include/dbpp/dbpp.h dbpp_h)
-if (NOT dbpp_h MATCHES "DBPP_VERSION ([0-9]+)([0-9][0-9])([0-9][0-9])")
-  message(FATAL_ERROR "Cannot get DBPP_VERSION from dbpp.h")
+file(READ include/dbpp/config.h dbpp_config_h)
+if (NOT dbpp_config_h MATCHES "DBPP_VERSION ([0-9]+)([0-9][0-9])([0-9][0-9])")
+  message(FATAL_ERROR "Cannot get DBPP_VERSION from dbpp/config.h")
 endif ()
 # Use math to skip leading zeroes if any.
 math(EXPR CPACK_PACKAGE_VERSION_MAJOR ${CMAKE_MATCH_1})
@@ -52,7 +52,9 @@ add_library(${PROJECT_NAME}::dbpp ALIAS dbpp)
 
 target_compile_features(dbpp PUBLIC cxx_std_17)
 
-target_compile_definitions(dbpp PUBLIC $<BUILD_INTERFACE:BUILDING_DBPP>)
+if (${BUILD_SHARED_LIBS})
+    target_compile_definitions(dbpp PUBLIC $<BUILD_INTERFACE:BUILDING_DBPP_DLL>)
+endif()
 
 set_target_properties(dbpp PROPERTIES
     VERSION ${PROJECT_VERSION} SOVERSION ${CPACK_PACKAGE_VERSION_MAJOR}

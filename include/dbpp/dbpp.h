@@ -17,23 +17,9 @@
 
 #pragma once
 
-#ifndef DECLSPEC
-#   if defined(__WIN32__) || defined(__WINRT__)
-#       ifdef BUILDING_DBPP
-#           define DECLSPEC __declspec(dllexport)
-#       else
-#           define DECLSPEC __declspec(dllimport)
-#       endif
-#   else
-#       define DECLSPEC
-#   endif
-#endif
+#include "config.h"
 
-/// The version of the dbpp library.
-/// Format: ABBCC Where A = Major, BB = Minor, CC = Revision
-#define DBPP_VERSION 10000
-
-#include "dbpp/Connection.h"
-#include "dbpp/Statement.h"
-#include "dbpp/Result.h"
-#include "dbpp/Exception.h"
+#include "Connection.h"
+#include "Statement.h"
+#include "Result.h"
+#include "Exception.h"

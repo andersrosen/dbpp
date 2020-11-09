@@ -17,6 +17,8 @@
 
 #pragma once
 
+#include "config.h"
+
 #include "adapter/Types.h"
 #include "MetaFunctions.h"
 #include "Statement.h"
@@ -35,7 +37,7 @@ namespace Dbpp {
 /// \since v1.0.0
 ///
 /// \includeexamplewithoutput{ConnectionClass.cpp}
-class Connection {
+class DBPP_EXPORTED Connection {
     friend class Adapter::Connection;
 
 private:
@@ -219,7 +221,7 @@ public:
 /// If it goes out of scope before commit has been called, the transaction will be rolled back automatically.
 ///
 /// \since v1.0.0
-class Transaction {
+class DBPP_EXPORTED Transaction {
 private:
     Connection &db_;
     bool committed_{false};

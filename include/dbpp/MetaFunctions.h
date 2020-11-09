@@ -17,6 +17,8 @@
 
 #pragma once
 
+#include "config.h"
+
 #include <utility>
 
 namespace Dbpp::Detail {

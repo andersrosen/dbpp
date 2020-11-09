@@ -17,6 +17,8 @@
 
 #pragma once
 
+#include "config.h"
+
 #include <stdexcept>
 
 namespace Dbpp {
@@ -27,7 +29,7 @@ namespace Dbpp {
     /// standard library, or the underlying database driver.
     ///
     /// \since v1.0.0
-    class Error : public std::runtime_error {
+    class DBPP_EXPORTED Error : public std::runtime_error {
         using std::runtime_error::runtime_error;
     };
 
@@ -38,7 +40,7 @@ namespace Dbpp {
     /// want to use when handling the exception
     ///
     /// \since v1.0.0
-    class ErrorWithCode : public Error {
+    class DBPP_EXPORTED ErrorWithCode : public Error {
     public:
         /// The error code from the underlying driver implementation.
         ///
@@ -60,7 +62,7 @@ namespace Dbpp {
     /// doesn't exist
     ///
     /// \since v1.0.0
-    class PlaceholderOutOfRange : public Error {
+    class DBPP_EXPORTED PlaceholderOutOfRange : public Error {
         using Error::Error;
     };
 

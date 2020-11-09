@@ -17,6 +17,8 @@
 
 #pragma once
 
+#include "../config.h"
+
 #include "Types.h"
 
 #include <string>
