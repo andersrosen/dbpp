@@ -19,7 +19,7 @@ jobs:
           submodules: true
           path: src
 
-      - name: Configure
+      - name: Configure CMake
         run: |
           cmake -B build -S src -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/install
 
