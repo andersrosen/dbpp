@@ -34,6 +34,15 @@ void Statement::clearBindings() {
     placeholderPosition_ = 0;
 }
 
+StatementIterator::StatementIterator(Statement* statement)
+        : stmt_(statement), res_(statement->step()) {
+    if (res_.empty()) {
+        // Become the end iterator
+        stmt_ = nullptr;
+        res_ = Result();
+    }
+}
+
 Statement::Statement(Adapter::StatementPtr p)
 : impl_(std::move(p)) {}
 
@@ -127,6 +136,20 @@ Result Statement::step() {
 
 std::string Statement::sql() const {
     return impl_->sql();
+}
+
+//////////////////////////////////////////////////////////////////////////////
+
+StatementIterator& StatementIterator::operator++() {
+    if (stmt_) {
+        res_ = stmt_->step();
+        if (res_.empty()) {
+            // Become the end iterator
+            stmt_ = nullptr;
+            res_ = Result();
+        }
+    }
+    return *this;
 }
 
 } // namespace Dbpp
