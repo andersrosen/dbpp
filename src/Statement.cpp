@@ -37,10 +37,14 @@ Statement::Statement(Adapter::StatementPtr p)
 : impl_(std::move(p)) {}
 
 Statement::Statement(Statement&& that) noexcept
-: impl_(std::move(that.impl_)) {}
+: impl_(std::move(that.impl_))
+, placeholderPosition_(that.placeholderPosition_)
+{}
 
 Statement& Statement::operator=(Statement&& that) noexcept {
     impl_ = std::move(that.impl_);
+    placeholderPosition_ = that.placeholderPosition_;
+
     return *this;
 }
 
