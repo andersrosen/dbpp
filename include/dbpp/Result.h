@@ -473,7 +473,7 @@ public:
     /// \brief Converts the result to a tuple
     template <typename... Ts>
     [[nodiscard]]
-    explicit operator std::tuple<Ts...>()
+    operator std::tuple<Ts...>()
     {
         return toTuple<Ts...>();
     }
