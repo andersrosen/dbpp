@@ -337,14 +337,7 @@ private:
     Statement* stmt_ = nullptr;
     Result res_;
 
-    explicit StatementIterator(Statement* statement)
-    : stmt_(statement), res_(statement->step()) {
-        if (res_.empty()) {
-            // Become the end iterator
-            stmt_ = nullptr;
-            res_ = Result();
-        }
-    }
+    explicit StatementIterator(Statement* statement);
 
 public:
     using value_type = Result; // NOLINT
@@ -396,17 +389,7 @@ public:
     /// \brief Increments the iterator, which means stepping to the next result
     ///
     /// \since v1.0.0
-    StatementIterator& operator++() {
-        if (stmt_) {
-            res_ = stmt_->step();
-            if (res_.empty()) {
-                // Become the end iterator
-                stmt_ = nullptr;
-                res_ = Result();
-            }
-        }
-        return *this;
-    }
+    StatementIterator& operator++();
 };
 
 /// \brief Allows iteration over results of a statement, as tuples
