@@ -194,6 +194,57 @@ TEST_CASE("Statement", "[api]") {
         REQUIRE(valFromDb == blob);
     }
 
+    SECTION("bind(), custom type") {
+        class MyCustomType {
+            std::string str_;
+
+            public:
+            explicit MyCustomType(std::string_view str)
+            : str_(str)
+            {}
+
+            void dbppBind(Statement &st) const {
+                st.bind(str_);
+            }
+        };
+
+        MyCustomType custom{persons.johnDoe().name};
+        auto st = db.prepare("SELECT COUNT(*) FROM person WHERE name = ?");
+        st.bind(custom);
+        auto res = st.step();
+        int count = res.get<int>(0);
+        REQUIRE(count == 1);
+    }
+
+    SECTION("bind(), optional custom type") {
+        class MyCustomId {
+            std::int64_t id_;
+
+            public:
+            explicit MyCustomId(std::int64_t id)
+                : id_(id)
+            {}
+
+            void dbppBind(Statement &st) const {
+                st.bind(id_);
+            }
+        };
+
+        std::optional<MyCustomId> unsetId;
+        auto st1 = db.prepare("SELECT COUNT(*) FROM person WHERE id = ?");
+        st1.bind(unsetId);
+        auto res = st1.step();
+        int count = res.get<int>(0);
+        REQUIRE(count == 0);
+
+        std::optional<MyCustomId> setId{persons.johnDoe().id};
+        auto st2 = db.prepare("SELECT COUNT(*) FROM person WHERE id = ?");
+        st2.bind(setId);
+        res = st2.step();
+        count = res.get<int>(0);
+        REQUIRE(count == 1);
+    }
+
     SECTION("reset()") {
         auto st = db.prepare("SELECT name FROM person WHERE id = ?", persons.johnDoe().id);
         auto res = st.step();
