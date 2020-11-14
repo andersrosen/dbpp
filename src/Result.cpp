@@ -63,7 +63,7 @@ bool Result::get(int index, std::filesystem::path& out) { return doGet(impl_, ou
 
 bool Result::empty() const {
     if (!impl_)
-        return false;
+        return true;
     return impl_->empty();
 }
 
