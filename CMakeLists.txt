@@ -7,9 +7,9 @@ if (NOT DEFINED PROJECT_NAME)
 endif()
 
 # Get version from the main header
-file(READ include/dbpp/config.h dbpp_config_h)
-if (NOT dbpp_config_h MATCHES "DBPP_VERSION ([0-9]+)([0-9][0-9])([0-9][0-9])")
-  message(FATAL_ERROR "Cannot get DBPP_VERSION from dbpp/config.h")
+file(READ include/dbpp/defs.h dbpp_defs_h)
+if (NOT dbpp_defs_h MATCHES "DBPP_VERSION ([0-9]+)([0-9][0-9])([0-9][0-9])")
+  message(FATAL_ERROR "Cannot get DBPP_VERSION from dbpp/defs.h")
 endif ()
 # Use math to skip leading zeroes if any.
 math(EXPR CPACK_PACKAGE_VERSION_MAJOR ${CMAKE_MATCH_1})

@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "config.h"
+#include "defs.h"
 
 #include "Result.h"
 #include "adapter/Types.h"
@@ -60,6 +60,8 @@ class StatementTupleIterator;
 ///
 /// \since v1.0.0
 class DBPP_EXPORTED Statement {
+    DBPP_NO_COPY_SEMANTICS(Statement);
+
     friend class Connection;
 
 private:
@@ -76,9 +78,6 @@ private:
 
 public:
     using iterator = StatementIterator; // NOLINT
-
-    Statement(const Statement&) = delete;
-    Statement& operator=(const Statement&) = delete;
 
     /// \brief Move constructor
     ///
@@ -331,6 +330,8 @@ public:
 ///
 /// \since v1.0.0
 class DBPP_EXPORTED StatementIterator {
+    DBPP_NO_COPY_SEMANTICS(StatementIterator);
+
     friend class Statement;
 
 private:
@@ -341,9 +342,6 @@ private:
 
 public:
     using value_type = Result; // NOLINT
-
-    StatementIterator& operator=(const StatementIterator&) = delete;
-    StatementIterator(const StatementIterator&) = delete;
 
     ~StatementIterator() = default;
 
@@ -397,6 +395,8 @@ public:
 /// \since v1.0.0
 template <typename... Ts>
 class StatementTupleIterator {
+    DBPP_NO_COPY_SEMANTICS(StatementTupleIterator);
+
     friend class StatementTupleWrapper<Ts...>;
 
     using TupleT = std::tuple<Ts...>;
@@ -416,9 +416,6 @@ class StatementTupleIterator {
 
 public:
     using value_type = std::tuple<Ts...>; // NOLINT
-
-    StatementTupleIterator& operator=(const StatementTupleIterator&) = delete;
-    StatementTupleIterator(const StatementTupleIterator&) = delete;
 
     ~StatementTupleIterator() = default;
 

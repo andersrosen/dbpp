@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "config.h"
+#include "defs.h"
 
 #include "adapter/Types.h"
 #include "MetaFunctions.h"
@@ -38,6 +38,8 @@ namespace Dbpp {
 ///
 /// \includeexamplewithoutput{ConnectionClass.cpp}
 class DBPP_EXPORTED Connection {
+    DBPP_NO_COPY_SEMANTICS(Connection);
+
     friend class Adapter::Connection;
 
 private:
@@ -46,9 +48,6 @@ private:
     Statement createStatement(std::string_view sql) const;
 
 public:
-    Connection(const Connection &c) = delete;
-    Connection &operator=(const Connection &) = delete;
-
     /// \brief Construct a connection object
     ///
     /// This constructor is typically called from a driver specific creation
@@ -222,16 +221,14 @@ public:
 ///
 /// \since v1.0.0
 class DBPP_EXPORTED Transaction {
+    DBPP_NO_COPY_SEMANTICS(Transaction);
+    DBPP_NO_MOVE_SEMANTICS(Transaction);
+
 private:
     Connection &db_;
     bool committed_{false};
 
 public:
-    Transaction(const Transaction&) = delete;
-    Transaction(const Transaction&&) = delete;
-    Transaction& operator=(const Transaction&) = delete;
-    Transaction& operator=(Transaction&&) = delete;
-
     /// \brief Constructor. Begins a transaction
     ///
     /// \param db The db connection object
