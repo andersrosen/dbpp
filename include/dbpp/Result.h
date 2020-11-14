@@ -309,6 +309,9 @@ public:
     [[nodiscard]]
     typename std::enable_if_t<Detail::HasStaticDbppGetMethodV<T>, T>
     get(int columnIndex) {
+        if (!impl_)
+            throw Error("Empty Result");
+
         return T::dbppGet(*this, columnIndex);
     }
 
