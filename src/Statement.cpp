@@ -31,6 +31,7 @@ void Statement::doReset() {
 
 void Statement::clearBindings() {
     impl_->clearBindings();
+    placeholderPosition_ = 0;
 }
 
 Statement::Statement(Adapter::StatementPtr p)
