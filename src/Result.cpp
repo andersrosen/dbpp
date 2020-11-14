@@ -44,6 +44,8 @@ Result& Result::operator=(Dbpp::Result &&that) noexcept
 }
 
 bool Result::isNull(int columnIndex) const {
+    if (!impl_)
+        throw Error("Empty Result");
     return impl_->isNull(columnIndex);
 }
 
