@@ -443,6 +443,10 @@ public:
 
     /// \brief Dereferencing operator
     ///
+    /// \note This operator overload is only included for completeness.
+    ///       It can't really be used, since the only two members of tuple
+    ///       (assignment and swap) are not const, so they can't be called
+    ///
     /// \since v1.0.0
     [[nodiscard]]
     const std::tuple<Ts...>* operator->() const { return &tuple_; }

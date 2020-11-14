@@ -194,6 +194,57 @@ TEST_CASE("Statement", "[api]") {
         REQUIRE(valFromDb == blob);
     }
 
+    SECTION("bind(), custom type") {
+        class MyCustomType {
+            std::string str_;
+
+            public:
+            explicit MyCustomType(std::string_view str)
+            : str_(str)
+            {}
+
+            void dbppBind(Statement &st) const {
+                st.bind(str_);
+            }
+        };
+
+        MyCustomType custom{persons.johnDoe().name};
+        auto st = db.prepare("SELECT COUNT(*) FROM person WHERE name = ?");
+        st.bind(custom);
+        auto res = st.step();
+        int count = res.get<int>(0);
+        REQUIRE(count == 1);
+    }
+
+    SECTION("bind(), optional custom type") {
+        class MyCustomId {
+            std::int64_t id_;
+
+            public:
+            explicit MyCustomId(std::int64_t id)
+                : id_(id)
+            {}
+
+            void dbppBind(Statement &st) const {
+                st.bind(id_);
+            }
+        };
+
+        std::optional<MyCustomId> unsetId;
+        auto st1 = db.prepare("SELECT COUNT(*) FROM person WHERE id = ?");
+        st1.bind(unsetId);
+        auto res = st1.step();
+        int count = res.get<int>(0);
+        REQUIRE(count == 0);
+
+        std::optional<MyCustomId> setId{persons.johnDoe().id};
+        auto st2 = db.prepare("SELECT COUNT(*) FROM person WHERE id = ?");
+        st2.bind(setId);
+        res = st2.step();
+        count = res.get<int>(0);
+        REQUIRE(count == 1);
+    }
+
     SECTION("reset()") {
         auto st = db.prepare("SELECT name FROM person WHERE id = ?", persons.johnDoe().id);
         auto res = st.step();
@@ -211,5 +262,103 @@ TEST_CASE("Statement", "[api]") {
     SECTION("sql()") {
         auto st = db.prepare("SELECT * FROM person WHERE age = ?", persons.janeDoe().id);
         REQUIRE(st.sql() == "SELECT * FROM person WHERE age = ?");
+    }
+}
+
+TEST_CASE("Statement iteration", "[api]") {
+    Persons persons;
+    persons.populate();
+    Connection& db = persons.db;
+
+    const auto expectedTotalAge =
+        persons.johnDoe().age
+        + persons.janeDoe().age
+        + persons.andersSvensson().age;
+
+    const auto expectedConcatenatedNames =
+        persons.johnDoe().name
+        + persons.janeDoe().name
+        + persons.andersSvensson().name;
+
+    SECTION("range-for as Result objects") {
+        int rowCount = 0;
+        int totalAge = 0;
+        std::string concatenatedNames;
+        auto st = db.prepare("SELECT * FROM person ORDER BY id ASC");
+        for (auto& row : st) {
+            ++rowCount;
+            totalAge += row.get<int>("age");
+            concatenatedNames += row.get<std::string>("name");
+        }
+        REQUIRE(rowCount == persons.Count);
+        REQUIRE(totalAge == expectedTotalAge);
+        REQUIRE(concatenatedNames == expectedConcatenatedNames);
+    }
+
+    SECTION("Empty range-for as Result objects") {
+        int rowCount = 0;
+        auto st = db.prepare("SELECT * FROM person WHERE name = ?", "There is no one with this name");
+        for (auto& row : st)
+            ++rowCount;
+        REQUIRE(rowCount == 0);
+    }
+
+    SECTION("Default-constructed StatementIterator is the end iterator") {
+        StatementIterator endIterator;
+        Statement noMatches = db.prepare("SELECT * FROM person WHERE name = ?", "There is no one with this name");
+
+        REQUIRE(noMatches.begin() == endIterator);
+        REQUIRE(noMatches.end() == endIterator);
+    }
+
+    SECTION("Dereference StatementIterator") {
+        Statement st = db.prepare("SELECT * FROM person WHERE id = ?", persons.johnDoe().id);
+        auto it = st.begin();
+        REQUIRE(it->get<int>("age") == persons.johnDoe().age);
+        auto &row = *it;
+        REQUIRE(row.get<std::string>("name") == persons.johnDoe().name);
+    }
+
+    SECTION("range-for as tuples") {
+        int rowCount = 0;
+        int totalAge = 0;
+        std::string concatenatedNames;
+        auto st = db.prepare("SELECT name, age FROM person ORDER BY id ASC");
+        for (const auto &[name, age] : std::move(st).as<std::string, int>()) {
+            ++rowCount;
+            totalAge += age;
+            concatenatedNames += name;
+        }
+        REQUIRE(rowCount == persons.Count);
+        REQUIRE(totalAge == expectedTotalAge);
+        REQUIRE(concatenatedNames == expectedConcatenatedNames);
+    }
+
+    SECTION("Empty range-for as tuples") {
+        int rowCount = 0;
+        auto st = db.prepare("SELECT name, age FROM person WHERE name = ?", "There is no one with this name");
+        for (const auto& [name, age] : std::move(st).as<std::string, int>())
+            ++rowCount;
+        REQUIRE(rowCount == 0);
+    }
+
+    SECTION("Default-constructed StatementTupleIterator is the end iterator") {
+        StatementTupleIterator<std::string, int> endIterator;
+        auto noMatches = db.prepare("SELECT name, age FROM person WHERE name = ?", "There is no one with this name").as<std::string, int>();
+
+        REQUIRE(noMatches.begin() == endIterator);
+        REQUIRE(noMatches.end() == endIterator);
+    }
+
+    SECTION("Dereference StatementIterator") {
+        auto st = db.prepare("SELECT name, age FROM person WHERE id = ?", persons.johnDoe().id).as<std::string, int>();
+        auto it = st.begin();
+
+        const auto &t = *it;
+        REQUIRE(std::get<0>(t) == persons.johnDoe().name);
+
+        // Dereferencing using operator -> can't be tested, since the only
+        // members in std::tuple are assignment and swap, and they require the
+        // tuple to not be const
     }
 }
