@@ -110,7 +110,7 @@ public:
     /// \brief Conversion to bool. False if the result is empty, true otherwise
     ///
     /// \since v1.0.0
-    inline explicit operator bool () const {return !empty();}
+    inline explicit operator bool() const { return !empty(); }
 
     /// \brief Checks if the specified column is NULL
     ///

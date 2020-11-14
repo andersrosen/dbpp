@@ -30,16 +30,16 @@ namespace Dbpp {
 
 namespace Detail {
 
-template<class T, class = void>
-struct HasDbppBindMethod : std::false_type {};
+    template<class T, class = void>
+    struct HasDbppBindMethod : std::false_type {};
 
-template<class T>
-struct HasDbppBindMethod<T, std::void_t<decltype(std::declval<const T&>().dbppBind(std::declval<Statement&>()))>>
-: std::true_type {};
+    template<class T>
+    struct HasDbppBindMethod<T, std::void_t<decltype(std::declval<const T&>().dbppBind(std::declval<Statement&>()))>>
+    : std::true_type {};
 
-// Trait to check if class T has a dbppBind member function
-template<class T>
-inline constexpr bool HasDbppBindMethodV = HasDbppBindMethod<T>::value;
+    // Trait to check if class T has a dbppBind member function
+    template<class T>
+    inline constexpr bool HasDbppBindMethodV = HasDbppBindMethod<T>::value;
 
 } // namespace Detail
 
