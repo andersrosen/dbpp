@@ -138,7 +138,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, short& out);
 
     /// \brief Retrieves a value from the result
@@ -152,7 +151,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, int& out);
 
     /// \brief Retrieves a value from the result
@@ -166,7 +164,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, long& out);
 
     /// \brief Retrieves a value from the result
@@ -180,7 +177,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, long long& out);
 
     /// \brief Retrieves a value from the result
@@ -194,7 +190,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, unsigned short& out);
 
     /// \brief Retrieves a value from the result
@@ -208,7 +203,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, unsigned int& out);
 
     /// \brief Retrieves a value from the result
@@ -222,7 +216,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, unsigned long& out);
 
     /// \brief Retrieves a value from the result
@@ -236,7 +229,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, unsigned long long& out);
 
     /// \brief Retrieves a value from the result
@@ -250,7 +242,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, float& out);
 
     /// \brief Retrieves a value from the result
@@ -264,7 +255,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, double& out);
 
     /// \brief Retrieves a value from the result
@@ -278,7 +268,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, std::string& out);
 
     /// \brief Retrieves a value from the result
@@ -292,7 +281,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, std::vector<unsigned char>& out);
 
     /// \brief Retrieves a value from the result
@@ -306,7 +294,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, std::filesystem::path& out);
 
     /// \brief Retrieves a value of type T from the specified column in the result
