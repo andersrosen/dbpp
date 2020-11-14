@@ -84,9 +84,6 @@ private:
         return TupleT(getColumn<TupleT, Is>()...);
     }
 
-    /// \brief Constructs a result object from a driver specific result
-    ///
-    /// \since v1.0.0
     explicit Result(Adapter::ResultPtr p);
 
 public:
