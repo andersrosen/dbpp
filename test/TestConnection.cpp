@@ -15,50 +15,15 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
 // USA
 
+#include "Persons.h"
+
 #include <catch2/catch.hpp>
-#include <cstring>
-#include <dbpp/Sqlite3.h>
-#include <dbpp/dbpp.h>
-#include <optional>
 
 using namespace Dbpp;
 
-class Util {
-    public:
-    Connection db;
-
-    int personCount = 0;
-    int64_t johnDoeId = -1;
-    int64_t janeDoeId = -1;
-    int64_t andersSvenssonId = -1;
-
-    Util()
-    : db(Sqlite3::open(":memory:"))
-    {
-    }
-
-    void populate() {
-        db.exec("CREATE TABLE person ("
-                " id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                " name TEXT NOT NULL,"
-                " age INTEGER NOT NULL,"
-                " spouse_id INTEGER REFERENCES person(id)"
-                ")");
-
-        johnDoeId = db.exec("INSERT INTO person (name, age) VALUES ('John Doe', 48)").getInsertId();
-        ++personCount;
-        janeDoeId = db.exec("INSERT INTO person (name, age) VALUES ('Jane Doe', 45)").getInsertId();
-        ++personCount;
-        andersSvenssonId = db.exec("INSERT INTO person (name, age) VALUES ('Anders Svensson', 38)").getInsertId();
-        ++personCount;
-        db.exec("UPDATE person set spouse_id = ? WHERE id = ?", janeDoeId, johnDoeId);
-        db.exec("UPDATE person set spouse_id = ? WHERE id = ?", johnDoeId, janeDoeId);
-    }
-};
-
 TEST_CASE("Connection", "[api]") {
-    Util util;
-    Connection &db = util.db;
+    Persons persons;
+    Connection &db = persons.db;
 
     SECTION("Connection::exec()") {
         db.exec("CREATE TABLE person ("
@@ -89,11 +54,11 @@ TEST_CASE("Connection", "[api]") {
         db.exec("DROP TABLE person");
     }
 
-    util.populate();
+    persons.populate();
 
     SECTION("Connection move constructor and move assignment") {
         auto movedDb = std::move(db);
-        REQUIRE(movedDb.get<int>("SELECT COUNT(*) FROM PERSON") == util.personCount);
+        REQUIRE(movedDb.get<int>("SELECT COUNT(*) FROM person") == persons.Count);
 
         db = std::move(movedDb);
     }
@@ -102,72 +67,74 @@ TEST_CASE("Connection", "[api]") {
         auto stmt = db.prepare("SELECT COUNT(*) FROM person");
         auto result = stmt.step();
         REQUIRE(result);
-        REQUIRE(result.get<int>(0) == util.personCount);
+        REQUIRE(result.get<int>(0) == persons.Count);
 
-        stmt = db.prepare("SELECT name FROM person WHERE id = ?", util.johnDoeId);
+        stmt = db.prepare("SELECT name FROM person WHERE id = ?", persons.johnDoe().id);
         result = stmt.step();
         REQUIRE(result);
-        REQUIRE(result.get<std::string>(0) == "John Doe");
+        REQUIRE(result.get<std::string>(0) == persons.johnDoe().name);
 
-        stmt = db.prepare("SELECT id FROM person WHERE name = ?", "John Doe");
+        stmt = db.prepare("SELECT id FROM person WHERE name = ?", persons.johnDoe().name);
         result = stmt.step();
         REQUIRE(result);
-        REQUIRE(result.get<int>(0) == util.johnDoeId);
+        REQUIRE(result.get<int>(0) == persons.johnDoe().id);
 
         REQUIRE_THROWS_AS(db.prepare("SELECT COUNT"), Error);
-        REQUIRE_THROWS_AS(db.prepare("SELECT age FROM person WHERE id = ?", util.johnDoeId, 888), PlaceholderOutOfRange);
+        REQUIRE_THROWS_AS(db.prepare("SELECT age FROM person WHERE id = ?", persons.johnDoe().id, 888), PlaceholderOutOfRange);
     }
 
     SECTION("Connection::get<T>(), where T is a basic type") {
         REQUIRE(db.get<int>("SELECT COUNT(*) FROM person") == 3);
         REQUIRE(db.get<int>("SELECT COUNT(*) FROM person WHERE name = 'John Doe'") == 1);
-        REQUIRE(db.get<int>("SELECT COUNT(*) FROM person WHERE name = ?", "John Doe") == 1);
-        REQUIRE(db.get<int>("SELECT COUNT(*) FROM person WHERE name = ?", std::string{ "John Doe" }) == 1);
-        REQUIRE(db.get<short>("SELECT COUNT(*) FROM person WHERE name = ?", std::string{ "John Doe" }) == static_cast<short>(1));
-        REQUIRE(db.get<int>("SELECT COUNT(*) FROM person WHERE name = ? AND age = ?", "John Doe", 48) == 1);
-        REQUIRE(db.get<std::string>("SELECT name FROM person WHERE id = ?", util.andersSvenssonId) == "Anders Svensson");
+        REQUIRE(db.get<int>("SELECT COUNT(*) FROM person WHERE name = ?", persons.johnDoe().name.c_str()) == 1);
+        REQUIRE(db.get<int>("SELECT COUNT(*) FROM person WHERE name = ?", persons.johnDoe().name) == 1);
+        REQUIRE(db.get<short>("SELECT COUNT(*) FROM person WHERE name = ?", persons.johnDoe().name) == static_cast<short>(1));
+        REQUIRE(db.get<int>("SELECT COUNT(*) FROM person WHERE name = ? AND age = ?", persons.johnDoe().name, persons.johnDoe().age) == 1);
+        REQUIRE(db.get<std::string>("SELECT name FROM person WHERE id = ?", persons.andersSvensson().id) == persons.andersSvensson().name);
         REQUIRE_THROWS_AS(db.get<int>("SELECT COUNT"), Error);
         REQUIRE_THROWS_AS(db.get<int>("SELECT age FROM person WHERE id = ?"), Error);
-        REQUIRE_THROWS_AS(db.get<int>("SELECT age FROM person WHERE id = ?", util.johnDoeId, 888), PlaceholderOutOfRange);
-        REQUIRE_THROWS_AS(db.get<int>("SELECT * FROM person WHERE id = ?", util.johnDoeId), Error);
+        REQUIRE_THROWS_AS(db.get<int>("SELECT age FROM person WHERE id = ?", persons.johnDoe().id, 888), PlaceholderOutOfRange);
+        REQUIRE_THROWS_AS(db.get<int>("SELECT * FROM person WHERE id = ?", persons.johnDoe().id), Error);
     }
 
     SECTION("Connection::get<T>(), where T is std::optional") {
-        auto val = db.get<std::optional<int>>("SELECT spouse_id FROM person WHERE id = ?", util.johnDoeId);
+        auto val = db.get<std::optional<int>>("SELECT spouse_id FROM person WHERE id = ?", persons.johnDoe().id);
         REQUIRE(val);
-        REQUIRE(*val == util.janeDoeId);
-        val = db.get<std::optional<int>>("SELECT spouse_id FROM person WHERE id = ?", util.andersSvenssonId);
+        REQUIRE(*val == persons.janeDoe().id);
+        val = db.get<std::optional<int>>("SELECT spouse_id FROM person WHERE id = ?", persons.andersSvensson().id);
         REQUIRE(!val);
         REQUIRE_THROWS_AS(db.get<std::optional<int>>("SELECT COUNT"), Error);
         REQUIRE_THROWS_AS(db.get<std::optional<int>>("SELECT age FROM person WHERE id = ?"), Error);
-        REQUIRE_THROWS_AS(db.get<std::optional<int>>("SELECT age FROM person WHERE id = ?", util.johnDoeId, 888), PlaceholderOutOfRange);
+        REQUIRE_THROWS_AS(db.get<std::optional<int>>("SELECT age FROM person WHERE id = ?", persons.johnDoe().id, 888), PlaceholderOutOfRange);
     }
 
     SECTION("Connection::getOptional<T>(), where T is a basic type") {
-        auto val = db.getOptional<int>("SELECT spouse_id FROM person WHERE id = ?", util.johnDoeId);
+        auto val = db.getOptional<int>("SELECT spouse_id FROM person WHERE id = ?", persons.johnDoe().id);
         REQUIRE(val);
-        REQUIRE(*val == util.janeDoeId);
-        val = db.getOptional<int>("SELECT spouse_id FROM person WHERE id = ?", util.andersSvenssonId);
+        REQUIRE(*val == persons.johnDoe().spouseId);
+        val = db.getOptional<int>("SELECT spouse_id FROM person WHERE id = ?", persons.andersSvensson().id);
         REQUIRE(!val);
         REQUIRE_THROWS_AS(db.getOptional<int>("SELECT COUNT"), Error);
         REQUIRE_THROWS_AS(db.getOptional<int>("SELECT age FROM person WHERE id = ?"), Error);
-        REQUIRE_THROWS_AS(db.getOptional<int>("SELECT age FROM person WHERE id = ?", util.johnDoeId, 888), PlaceholderOutOfRange);
-        REQUIRE_THROWS_AS(db.getOptional<int>("SELECT * FROM person WHERE id = ?", util.johnDoeId), Error);
+        REQUIRE_THROWS_AS(db.getOptional<int>("SELECT age FROM person WHERE id = ?", persons.johnDoe().id, 888), PlaceholderOutOfRange);
+        REQUIRE_THROWS_AS(db.getOptional<int>("SELECT * FROM person WHERE id = ?", persons.johnDoe().id), Error);
     }
 
     SECTION("Connection::get<Ts...>") {
         {
-            const auto& [name, age, maybeSpouseId] = db.get<std::string, int, std::optional<std::int64_t>>("SELECT name, age, spouse_id FROM person WHERE id = ?", util.johnDoeId);
-            REQUIRE(name == "John Doe");
-            REQUIRE(age == 48);
+            const auto& [name, age, maybeSpouseId] = db.get<std::string, int, std::optional<std::int64_t>>(
+                "SELECT name, age, spouse_id FROM person WHERE id = ?", persons.johnDoe().id);
+            REQUIRE(name == persons.johnDoe().name);
+            REQUIRE(age == persons.johnDoe().age);
             REQUIRE(maybeSpouseId);
-            REQUIRE(*maybeSpouseId == util.janeDoeId);
+            REQUIRE(*maybeSpouseId == persons.johnDoe().spouseId);
         }
 
         {
-            const auto& [name, age, maybeSpouseId] = db.get<std::string, int, std::optional<std::int64_t>>("SELECT name, age, spouse_id FROM person WHERE id = ?", util.andersSvenssonId);
-            REQUIRE(name == "Anders Svensson");
-            REQUIRE(age == 38);
+            const auto& [name, age, maybeSpouseId] = db.get<std::string, int, std::optional<std::int64_t>>(
+                "SELECT name, age, spouse_id FROM person WHERE id = ?", persons.andersSvensson().id);
+            REQUIRE(name == persons.andersSvensson().name);
+            REQUIRE(age == persons.andersSvensson().age);
             REQUIRE(!maybeSpouseId);
         }
     }
@@ -175,14 +142,14 @@ TEST_CASE("Connection", "[api]") {
     SECTION("Connection::begin(), commit(), rollback()") {
         db.begin();
         db.exec("INSERT INTO person (name, age) VALUES ('Donald Duck', 86)");
-        REQUIRE(db.get<int>("SELECT COUNT(*) FROM person") == util.personCount + 1);
+        REQUIRE(db.get<int>("SELECT COUNT(*) FROM person") == persons.Count + 1);
         db.rollback();
-        REQUIRE(db.get<int>("SELECT COUNT(*) FROM person") == util.personCount);
+        REQUIRE(db.get<int>("SELECT COUNT(*) FROM person") == persons.Count);
 
         db.begin();
         auto id = db.exec("INSERT INTO person (name, age) VALUES ('James Smith', 103)").getInsertId();
         db.commit();
-        REQUIRE(db.get<int>("SELECT COUNT(*) FROM person") == util.personCount + 1);
+        REQUIRE(db.get<int>("SELECT COUNT(*) FROM person") == persons.Count + 1);
         db.exec("DELETE FROM person WHERE id = ?", id);
     }
 
@@ -190,17 +157,17 @@ TEST_CASE("Connection", "[api]") {
         {
             Transaction tr(db);
             db.exec("INSERT INTO person (name, age) VALUES ('Donald Duck', 86)");
-            REQUIRE(db.get<int>("SELECT COUNT(*) FROM person") == util.personCount + 1);
+            REQUIRE(db.get<int>("SELECT COUNT(*) FROM person") == persons.Count + 1);
         }
-        REQUIRE(db.get<int>("SELECT COUNT(*) FROM person") == util.personCount);
+        REQUIRE(db.get<int>("SELECT COUNT(*) FROM person") == persons.Count);
 
-        int id;
+        long long id = -1;
         {
             Transaction tr(db);
             id = db.exec("INSERT INTO person (name, age) VALUES ('James Smith', 103)").getInsertId();
             tr.commit();
         }
-        REQUIRE(db.get<int>("SELECT COUNT(*) FROM person") == util.personCount + 1);
+        REQUIRE(db.get<int>("SELECT COUNT(*) FROM person") == persons.Count + 1);
         db.exec("DELETE FROM person WHERE id = ?", id);
     }
 
