@@ -541,7 +541,7 @@ public:
     ///
     /// \since v1.0.0
     [[nodiscard]]
-    long long getInsertId() { return impl_->getInsertId(""); }
+    inline long long getInsertId() { return impl_->getInsertId(""); }
 
     /// \brief Retrieves the last insert ID
     ///
@@ -550,7 +550,7 @@ public:
     ///
     /// \since v1.0.0
     [[nodiscard]]
-    long long getInsertId(std::string_view sequenceName) { return impl_->getInsertId(sequenceName); }
+    inline long long getInsertId(std::string_view sequenceName) { return impl_->getInsertId(sequenceName); }
 };
 
 } // namespace Dbpp
