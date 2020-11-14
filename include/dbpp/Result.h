@@ -414,7 +414,7 @@ public:
     template <typename T>
     [[nodiscard]]
     T get(std::string_view columnName) {
-        return get<T>(columnIndexByName(columnName));
+        return get<T>(columnIndex(columnName));
     }
 
     /// \brief Retrieves an optional value of type T from the specified column in the result
@@ -429,7 +429,7 @@ public:
     template <typename T>
     [[nodiscard]]
     std::optional<T> getOptional(std::string_view columnName) {
-        return getOptional<T>(columnIndexByName(columnName));
+        return getOptional<T>(columnIndex(columnName));
     }
 
     /// \brief Returns a column's value or, if it was NULL, the provided default value
@@ -524,7 +524,7 @@ public:
     ///
     /// \since v1.0.0
     [[nodiscard]]
-    int columnIndexByName(std::string_view columnName) const;
+    int columnIndex(std::string_view columnName) const;
 
     /// \brief Checks if the result has a column of the specified name
     ///

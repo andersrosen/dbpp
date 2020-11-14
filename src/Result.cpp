@@ -50,7 +50,7 @@ bool Result::isNull(int columnIndex) const {
 }
 
 bool Result::isNull(std::string_view columnName) const {
-    return isNull(columnIndexByName(columnName));
+    return isNull(columnIndex(columnName));
 }
 
 bool Result::get(int index, short& out) { return doGet(impl_, out, index); }
@@ -92,7 +92,7 @@ bool Result::hasColumn(std::string_view columnName) const {
     return idx >= 0;
 }
 
-int Result::columnIndexByName(std::string_view columnName) const {
+int Result::columnIndex(std::string_view columnName) const {
     if (!impl_)
         throw Error("Empty Result");
     auto idx = impl_->columnIndexByName(columnName);
