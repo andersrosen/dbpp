@@ -47,6 +47,10 @@ bool Result::isNull(int columnIndex) const {
     return impl_->isNull(columnIndex);
 }
 
+bool Result::isNull(std::string_view columnName) const {
+    return isNull(columnIndexByName(columnName));
+}
+
 bool Result::get(int index, short& out) { return doGet(impl_, out, index); }
 bool Result::get(int index, int& out) { return doGet(impl_, out, index); }
 bool Result::get(int index, long& out) { return doGet(impl_, out, index); }
