@@ -444,8 +444,8 @@ public:
     /// \since v1.0.0
     template <typename T>
     [[nodiscard]]
-    typename std::enable_if_t<!Detail::IsOptionalV<T> && !Detail::HasStaticDbppGetMethodV<T>, T>
-    valueOr(int columnIndex, T defaultValue) {
+    typename std::enable_if_t<!Detail::IsOptionalV<T> && !Detail::HasStaticDbppGetMethodV<T>, std::remove_reference_t<T>>
+    valueOr(int columnIndex, std::remove_reference_t<T> defaultValue) {
         get(columnIndex, defaultValue);
         return defaultValue;
     }
@@ -462,8 +462,8 @@ public:
     /// \since v1.0.0
     template <typename T>
     [[nodiscard]]
-    typename std::enable_if_t<!Detail::IsOptionalV<T> && Detail::HasStaticDbppGetMethodV<T>, T>
-    valueOr(int columnIndex, T defaultValue) {
+    typename std::enable_if_t<!Detail::IsOptionalV<T> && Detail::HasStaticDbppGetMethodV<T>, std::remove_reference_t<T>>
+    valueOr(int columnIndex, std::remove_reference_t<T> defaultValue) {
         if (isNull(columnIndex))
             return defaultValue;
         return T::dbppGet(*this, columnIndex);
