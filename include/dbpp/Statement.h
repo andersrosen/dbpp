@@ -373,25 +373,25 @@ public:
     ///
     /// \since v1.0.0
     [[nodiscard]]
-    Result& operator*() { return res_; }
+    inline Result& operator*() { return res_; }
 
     /// \brief Dereferencing operator
     ///
     /// \since v1.0.0
     [[nodiscard]]
-    Result* operator->() { return &res_; }
+    inline Result* operator->() { return &res_; }
 
     /// \brief Checks if two iterators are equal
     ///
     /// \since v1.0.0
     [[nodiscard]]
-    bool operator==(const StatementIterator& that) const { return stmt_ == that.stmt_; }
+    inline bool operator==(const StatementIterator& that) const { return stmt_ == that.stmt_; }
 
     /// \brief Checks if two iterators are different
     ///
     /// \since v1.0.0
     [[nodiscard]]
-    bool operator!=(const StatementIterator& that) const  { return !(*this == that); }
+    inline bool operator!=(const StatementIterator& that) const  { return !(*this == that); }
 
     /// \brief Increments the iterator, which means stepping to the next result
     ///
