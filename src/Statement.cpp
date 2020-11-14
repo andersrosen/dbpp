@@ -20,11 +20,6 @@
 
 namespace Dbpp {
 
-template<class T>
-static void doBind(Adapter::StatementPtr& p, T val, int& placeholderPos) {
-    p->bind(val, placeholderPos++);
-}
-
 void Statement::doReset() {
     impl_->reset();
 }

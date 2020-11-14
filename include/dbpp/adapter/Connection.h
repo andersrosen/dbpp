@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "../config.h"
+#include "../defs.h"
 
 #include "../Connection.h"
 #include "Types.h"

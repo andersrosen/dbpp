@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "config.h"
+#include "defs.h"
 
 #include "Exception.h"
 #include "adapter/Result.h"
@@ -64,7 +64,10 @@ namespace Detail {
 ///
 /// \since v1.0.0
 class DBPP_EXPORTED Result {
+    DBPP_NO_COPY_SEMANTICS(Result);
+
     friend class Statement;
+
 private:
     Adapter::ResultPtr impl_;
 
@@ -81,9 +84,6 @@ private:
         return TupleT(getColumn<TupleT, Is>()...);
     }
 
-    /// \brief Constructs a result object from a driver specific result
-    ///
-    /// \since v1.0.0
     explicit Result(Adapter::ResultPtr p);
 
 public:
@@ -92,16 +92,12 @@ public:
     /// \since v1.0.0
     Result() = default;
 
-    Result(const Result &) = delete;
-
     /// \brief Move constructor
     ///
     /// \since v1.0.0
     Result(Result &&) noexcept;
 
     ~Result() = default;
-
-    Result &operator=(const Result &) = delete;
 
     /// \brief Move constructor
     ///
@@ -111,7 +107,7 @@ public:
     /// \brief Conversion to bool. False if the result is empty, true otherwise
     ///
     /// \since v1.0.0
-    inline explicit operator bool () const {return !empty();}
+    inline explicit operator bool() const { return !empty(); }
 
     /// \brief Checks if the specified column is NULL
     ///

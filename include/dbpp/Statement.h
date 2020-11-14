@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "config.h"
+#include "defs.h"
 
 #include "Result.h"
 #include "adapter/Types.h"
@@ -30,16 +30,16 @@ namespace Dbpp {
 
 namespace Detail {
 
-template<class T, class = void>
-struct HasDbppBindMethod : std::false_type {};
+    template<class T, class = void>
+    struct HasDbppBindMethod : std::false_type {};
 
-template<class T>
-struct HasDbppBindMethod<T, std::void_t<decltype(std::declval<const T&>().dbppBind(std::declval<Statement&>()))>>
-: std::true_type {};
+    template<class T>
+    struct HasDbppBindMethod<T, std::void_t<decltype(std::declval<const T&>().dbppBind(std::declval<Statement&>()))>>
+    : std::true_type {};
 
-// Trait to check if class T has a dbppBind member function
-template<class T>
-inline constexpr bool HasDbppBindMethodV = HasDbppBindMethod<T>::value;
+    // Trait to check if class T has a dbppBind member function
+    template<class T>
+    inline constexpr bool HasDbppBindMethodV = HasDbppBindMethod<T>::value;
 
 } // namespace Detail
 
@@ -60,6 +60,8 @@ class StatementTupleIterator;
 ///
 /// \since v1.0.0
 class DBPP_EXPORTED Statement {
+    DBPP_NO_COPY_SEMANTICS(Statement);
+
     friend class Connection;
 
 private:
@@ -69,23 +71,21 @@ private:
     void doReset();
     void clearBindings();
 
-    /// \brief Constructs a Statement object from an adapter-specific statement
-    ///
-    /// \since v1.0.0
     explicit Statement(Adapter::StatementPtr p);
 
 public:
     using iterator = StatementIterator; // NOLINT
 
-    Statement(const Statement&) = delete;
-    Statement& operator=(const Statement&) = delete;
+    ~Statement() = default;
 
     /// \brief Move constructor
     ///
     /// \since v1.0.0
     Statement(Statement&&) noexcept;
-    ~Statement() = default;
 
+    /// \brief Move assignment
+    ///
+    /// \since v1.0.0
     Statement& operator=(Statement&&) noexcept;
 
     /// \brief Returns an iterator to the first result of this statement
@@ -331,6 +331,8 @@ public:
 ///
 /// \since v1.0.0
 class DBPP_EXPORTED StatementIterator {
+    DBPP_NO_COPY_SEMANTICS(StatementIterator);
+
     friend class Statement;
 
 private:
@@ -341,9 +343,6 @@ private:
 
 public:
     using value_type = Result; // NOLINT
-
-    StatementIterator& operator=(const StatementIterator&) = delete;
-    StatementIterator(const StatementIterator&) = delete;
 
     ~StatementIterator() = default;
 
@@ -397,6 +396,8 @@ public:
 /// \since v1.0.0
 template <typename... Ts>
 class StatementTupleIterator {
+    DBPP_NO_COPY_SEMANTICS(StatementTupleIterator);
+
     friend class StatementTupleWrapper<Ts...>;
 
     using TupleT = std::tuple<Ts...>;
@@ -416,9 +417,6 @@ class StatementTupleIterator {
 
 public:
     using value_type = std::tuple<Ts...>; // NOLINT
-
-    StatementTupleIterator& operator=(const StatementTupleIterator&) = delete;
-    StatementTupleIterator(const StatementTupleIterator&) = delete;
 
     ~StatementTupleIterator() = default;
 

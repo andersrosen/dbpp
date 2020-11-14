@@ -32,3 +32,11 @@
 /// The version of the dbpp library.
 /// Format: ABBCC Where A = Major, BB = Minor, CC = Revision
 #define DBPP_VERSION 10000
+
+#define DBPP_NO_COPY_SEMANTICS(classname) \
+    classname(classname&) = delete; \
+    classname& operator=(const classname&) = delete
+
+#define DBPP_NO_MOVE_SEMANTICS(classname) \
+    classname(classname&&) = delete; \
+    classname& operator=(classname&&) = delete
