@@ -3,6 +3,7 @@ target_sources(test_dbpp PRIVATE
     Persons.cpp
     Persons.h
     TestConnection.cpp
+    TestResult.cpp
     TestStatement.cpp
 )
 
