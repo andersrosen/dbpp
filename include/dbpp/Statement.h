@@ -71,20 +71,21 @@ private:
     void doReset();
     void clearBindings();
 
-    /// \brief Constructs a Statement object from an adapter-specific statement
-    ///
-    /// \since v1.0.0
     explicit Statement(Adapter::StatementPtr p);
 
 public:
     using iterator = StatementIterator; // NOLINT
 
+    ~Statement() = default;
+
     /// \brief Move constructor
     ///
     /// \since v1.0.0
     Statement(Statement&&) noexcept;
-    ~Statement() = default;
 
+    /// \brief Move assignment
+    ///
+    /// \since v1.0.0
     Statement& operator=(Statement&&) noexcept;
 
     /// \brief Returns an iterator to the first result of this statement
