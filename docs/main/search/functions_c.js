@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['valueor_115',['valueOr',['../classDbpp_1_1Result.html#a1e2c85825234fcedb00a5dac1199cecc',1,'Dbpp::Result::valueOr(int columnIndex, T defaultValue)'],['../classDbpp_1_1Result.html#a0fb35f38d09ea59292e669a3841ee968',1,'Dbpp::Result::valueOr(int columnIndex, T defaultValue)']]]
+  ['valueor_117',['valueOr',['../classDbpp_1_1Result.html#a686009df09601c1c562bda3e1a293e87',1,'Dbpp::Result::valueOr(int columnIndex, std::remove_reference_t&lt; T &gt; defaultValue)'],['../classDbpp_1_1Result.html#aec480031eb44d5e54f930d87de8d72dd',1,'Dbpp::Result::valueOr(int columnIndex, std::remove_reference_t&lt; T &gt; defaultValue)']]]
 ];

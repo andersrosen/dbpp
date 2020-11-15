@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['_7econnection_59',['~Connection',['../classDbpp_1_1Connection.html#a15d499a6ea05103b836da39527387857',1,'Dbpp::Connection']]],
-  ['_7etransaction_60',['~Transaction',['../classDbpp_1_1Transaction.html#af948f37019e409df9f4da242c591afd9',1,'Dbpp::Transaction']]]
+  ['_7econnection_60',['~Connection',['../classDbpp_1_1Connection.html#a15d499a6ea05103b836da39527387857',1,'Dbpp::Connection']]],
+  ['_7etransaction_61',['~Transaction',['../classDbpp_1_1Transaction.html#af948f37019e409df9f4da242c591afd9',1,'Dbpp::Transaction']]]
 ];

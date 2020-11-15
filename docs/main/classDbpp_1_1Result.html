@@ -94,7 +94,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6f3fca568b65c422cf0a7679ca031645"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#a6f3fca568b65c422cf0a7679ca031645">operator bool</a> () const</td></tr>
 <tr class="memdesc:a6f3fca568b65c422cf0a7679ca031645"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conversion to bool. False if the result is empty, true otherwise.  <a href="classDbpp_1_1Result.html#a6f3fca568b65c422cf0a7679ca031645">More...</a><br /></td></tr>
 <tr class="separator:a6f3fca568b65c422cf0a7679ca031645"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa268ccc86be3b2aebd0d99a68eeacde6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#aa268ccc86be3b2aebd0d99a68eeacde6">isNull</a> (int columnIndex) const</td></tr>
+<tr class="memitem:aa268ccc86be3b2aebd0d99a68eeacde6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#aa268ccc86be3b2aebd0d99a68eeacde6">isNull</a> (int <a class="el" href="classDbpp_1_1Result.html#a39d7344ff0bfd581b169cee2df7b4e3c">columnIndex</a>) const</td></tr>
 <tr class="memdesc:aa268ccc86be3b2aebd0d99a68eeacde6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the specified column is NULL.  <a href="classDbpp_1_1Result.html#aa268ccc86be3b2aebd0d99a68eeacde6">More...</a><br /></td></tr>
 <tr class="separator:aa268ccc86be3b2aebd0d99a68eeacde6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23d1d93d6395b94cabf3f47b641c517a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#a23d1d93d6395b94cabf3f47b641c517a">isNull</a> (std::string_view <a class="el" href="classDbpp_1_1Result.html#a0bb9227356223737cfeeec5e663a6afd">columnName</a>) const</td></tr>
@@ -140,23 +140,23 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a1d72c34aaa7120c4ac018cc2ca299161"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a value from the result.  <a href="classDbpp_1_1Result.html#a1d72c34aaa7120c4ac018cc2ca299161">More...</a><br /></td></tr>
 <tr class="separator:a1d72c34aaa7120c4ac018cc2ca299161"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a157c8393e7b183071487078226e8c2d5"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a157c8393e7b183071487078226e8c2d5"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; Detail::HasStaticDbppGetMethodV&lt; T &gt;, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#a157c8393e7b183071487078226e8c2d5">get</a> (int columnIndex)</td></tr>
+<tr class="memitem:a157c8393e7b183071487078226e8c2d5"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; Detail::HasStaticDbppGetMethodV&lt; T &gt;, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#a157c8393e7b183071487078226e8c2d5">get</a> (int <a class="el" href="classDbpp_1_1Result.html#a39d7344ff0bfd581b169cee2df7b4e3c">columnIndex</a>)</td></tr>
 <tr class="memdesc:a157c8393e7b183071487078226e8c2d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a value of type T from the specified column in the result.  <a href="classDbpp_1_1Result.html#a157c8393e7b183071487078226e8c2d5">More...</a><br /></td></tr>
 <tr class="separator:a157c8393e7b183071487078226e8c2d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a475bd0fce9d3b2f0de277a47096b917d"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a475bd0fce9d3b2f0de277a47096b917d"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; !Detail::IsOptional&lt; T &gt;::value &amp;&amp;!Detail::HasStaticDbppGetMethodV&lt; T &gt;, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#a475bd0fce9d3b2f0de277a47096b917d">get</a> (int columnIndex)</td></tr>
+<tr class="memitem:a475bd0fce9d3b2f0de277a47096b917d"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; !Detail::IsOptional&lt; T &gt;::value &amp;&amp;!Detail::HasStaticDbppGetMethodV&lt; T &gt;, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#a475bd0fce9d3b2f0de277a47096b917d">get</a> (int <a class="el" href="classDbpp_1_1Result.html#a39d7344ff0bfd581b169cee2df7b4e3c">columnIndex</a>)</td></tr>
 <tr class="memdesc:a475bd0fce9d3b2f0de277a47096b917d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a value of type T from the specified column in the result.  <a href="classDbpp_1_1Result.html#a475bd0fce9d3b2f0de277a47096b917d">More...</a><br /></td></tr>
 <tr class="separator:a475bd0fce9d3b2f0de277a47096b917d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5e1d4d017b5ec1e68f3478d7a03621b"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ac5e1d4d017b5ec1e68f3478d7a03621b"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; Detail::IsOptionalV&lt; T &gt; &amp;&amp;Detail::HasStaticDbppGetMethodV&lt; typename T::value_type &gt;, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#ac5e1d4d017b5ec1e68f3478d7a03621b">get</a> (int columnIndex)</td></tr>
+<tr class="memitem:ac5e1d4d017b5ec1e68f3478d7a03621b"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; Detail::IsOptionalV&lt; T &gt; &amp;&amp;Detail::HasStaticDbppGetMethodV&lt; typename T::value_type &gt;, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#ac5e1d4d017b5ec1e68f3478d7a03621b">get</a> (int <a class="el" href="classDbpp_1_1Result.html#a39d7344ff0bfd581b169cee2df7b4e3c">columnIndex</a>)</td></tr>
 <tr class="memdesc:ac5e1d4d017b5ec1e68f3478d7a03621b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a value of type T from the specified column in the result.  <a href="classDbpp_1_1Result.html#ac5e1d4d017b5ec1e68f3478d7a03621b">More...</a><br /></td></tr>
 <tr class="separator:ac5e1d4d017b5ec1e68f3478d7a03621b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a801a85b70af43cb62d57c7e85a9c361f"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a801a85b70af43cb62d57c7e85a9c361f"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; Detail::IsOptionalV&lt; T &gt; &amp;&amp;!Detail::HasStaticDbppGetMethodV&lt; typename T::value_type &gt;, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#a801a85b70af43cb62d57c7e85a9c361f">get</a> (int columnIndex)</td></tr>
+<tr class="memitem:a801a85b70af43cb62d57c7e85a9c361f"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; Detail::IsOptionalV&lt; T &gt; &amp;&amp;!Detail::HasStaticDbppGetMethodV&lt; typename T::value_type &gt;, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#a801a85b70af43cb62d57c7e85a9c361f">get</a> (int <a class="el" href="classDbpp_1_1Result.html#a39d7344ff0bfd581b169cee2df7b4e3c">columnIndex</a>)</td></tr>
 <tr class="memdesc:a801a85b70af43cb62d57c7e85a9c361f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a value of type T from the specified column in the result.  <a href="classDbpp_1_1Result.html#a801a85b70af43cb62d57c7e85a9c361f">More...</a><br /></td></tr>
 <tr class="separator:a801a85b70af43cb62d57c7e85a9c361f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adebe478d2a3916aa21dd3ffe5c299d86"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:adebe478d2a3916aa21dd3ffe5c299d86"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#adebe478d2a3916aa21dd3ffe5c299d86">getOptional</a> (int columnIndex)</td></tr>
+<tr class="memitem:adebe478d2a3916aa21dd3ffe5c299d86"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#adebe478d2a3916aa21dd3ffe5c299d86">getOptional</a> (int <a class="el" href="classDbpp_1_1Result.html#a39d7344ff0bfd581b169cee2df7b4e3c">columnIndex</a>)</td></tr>
 <tr class="memdesc:adebe478d2a3916aa21dd3ffe5c299d86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves an optional value of type T from the specified column in the result.  <a href="classDbpp_1_1Result.html#adebe478d2a3916aa21dd3ffe5c299d86">More...</a><br /></td></tr>
 <tr class="separator:adebe478d2a3916aa21dd3ffe5c299d86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82098f5f3ad9b798c30f6f65c2697a18"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
@@ -167,14 +167,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a107db9f709cb28c665835734d6301adf"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#a107db9f709cb28c665835734d6301adf">getOptional</a> (std::string_view <a class="el" href="classDbpp_1_1Result.html#a0bb9227356223737cfeeec5e663a6afd">columnName</a>)</td></tr>
 <tr class="memdesc:a107db9f709cb28c665835734d6301adf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves an optional value of type T from the specified column in the result.  <a href="classDbpp_1_1Result.html#a107db9f709cb28c665835734d6301adf">More...</a><br /></td></tr>
 <tr class="separator:a107db9f709cb28c665835734d6301adf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e2c85825234fcedb00a5dac1199cecc"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a1e2c85825234fcedb00a5dac1199cecc"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt;!Detail::IsOptionalV&lt; T &gt; &amp;&amp;!Detail::HasStaticDbppGetMethodV&lt; T &gt;, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#a1e2c85825234fcedb00a5dac1199cecc">valueOr</a> (int columnIndex, T defaultValue)</td></tr>
-<tr class="memdesc:a1e2c85825234fcedb00a5dac1199cecc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a column's value or, if it was NULL, the provided default value.  <a href="classDbpp_1_1Result.html#a1e2c85825234fcedb00a5dac1199cecc">More...</a><br /></td></tr>
-<tr class="separator:a1e2c85825234fcedb00a5dac1199cecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fb35f38d09ea59292e669a3841ee968"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a0fb35f38d09ea59292e669a3841ee968"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt;!Detail::IsOptionalV&lt; T &gt; &amp;&amp;Detail::HasStaticDbppGetMethodV&lt; T &gt;, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#a0fb35f38d09ea59292e669a3841ee968">valueOr</a> (int columnIndex, T defaultValue)</td></tr>
-<tr class="memdesc:a0fb35f38d09ea59292e669a3841ee968"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a column's value or, if it was NULL, the provided default value.  <a href="classDbpp_1_1Result.html#a0fb35f38d09ea59292e669a3841ee968">More...</a><br /></td></tr>
-<tr class="separator:a0fb35f38d09ea59292e669a3841ee968"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a686009df09601c1c562bda3e1a293e87"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a686009df09601c1c562bda3e1a293e87"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt;!Detail::IsOptionalV&lt; T &gt; &amp;&amp;!Detail::HasStaticDbppGetMethodV&lt; T &gt;, std::remove_reference_t&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#a686009df09601c1c562bda3e1a293e87">valueOr</a> (int <a class="el" href="classDbpp_1_1Result.html#a39d7344ff0bfd581b169cee2df7b4e3c">columnIndex</a>, std::remove_reference_t&lt; T &gt; defaultValue)</td></tr>
+<tr class="memdesc:a686009df09601c1c562bda3e1a293e87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a column's value or, if it was NULL, the provided default value.  <a href="classDbpp_1_1Result.html#a686009df09601c1c562bda3e1a293e87">More...</a><br /></td></tr>
+<tr class="separator:a686009df09601c1c562bda3e1a293e87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec480031eb44d5e54f930d87de8d72dd"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:aec480031eb44d5e54f930d87de8d72dd"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt;!Detail::IsOptionalV&lt; T &gt; &amp;&amp;Detail::HasStaticDbppGetMethodV&lt; T &gt;, std::remove_reference_t&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#aec480031eb44d5e54f930d87de8d72dd">valueOr</a> (int <a class="el" href="classDbpp_1_1Result.html#a39d7344ff0bfd581b169cee2df7b4e3c">columnIndex</a>, std::remove_reference_t&lt; T &gt; defaultValue)</td></tr>
+<tr class="memdesc:aec480031eb44d5e54f930d87de8d72dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a column's value or, if it was NULL, the provided default value.  <a href="classDbpp_1_1Result.html#aec480031eb44d5e54f930d87de8d72dd">More...</a><br /></td></tr>
+<tr class="separator:aec480031eb44d5e54f930d87de8d72dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aadfd76654edc2eca5d68547bd4ec4192"><td class="memTemplParams" colspan="2">template&lt;typename... Ts&gt; </td></tr>
 <tr class="memitem:aadfd76654edc2eca5d68547bd4ec4192"><td class="memTemplItemLeft" align="right" valign="top">std::tuple&lt; Ts... &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#aadfd76654edc2eca5d68547bd4ec4192">toTuple</a> ()</td></tr>
 <tr class="memdesc:aadfd76654edc2eca5d68547bd4ec4192"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the result to a tuple.  <a href="classDbpp_1_1Result.html#aadfd76654edc2eca5d68547bd4ec4192">More...</a><br /></td></tr>
@@ -193,9 +193,9 @@ template&lt;typename... Ts&gt; </td></tr>
 <tr class="memitem:a0bb9227356223737cfeeec5e663a6afd"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#a0bb9227356223737cfeeec5e663a6afd">columnName</a> (int index) const</td></tr>
 <tr class="memdesc:a0bb9227356223737cfeeec5e663a6afd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the name of the column at the specified index.  <a href="classDbpp_1_1Result.html#a0bb9227356223737cfeeec5e663a6afd">More...</a><br /></td></tr>
 <tr class="separator:a0bb9227356223737cfeeec5e663a6afd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bb45a3b1383e76429e1e1f7866586ad"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#a7bb45a3b1383e76429e1e1f7866586ad">columnIndexByName</a> (std::string_view <a class="el" href="classDbpp_1_1Result.html#a0bb9227356223737cfeeec5e663a6afd">columnName</a>) const</td></tr>
-<tr class="memdesc:a7bb45a3b1383e76429e1e1f7866586ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the index of the specified column.  <a href="classDbpp_1_1Result.html#a7bb45a3b1383e76429e1e1f7866586ad">More...</a><br /></td></tr>
-<tr class="separator:a7bb45a3b1383e76429e1e1f7866586ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39d7344ff0bfd581b169cee2df7b4e3c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#a39d7344ff0bfd581b169cee2df7b4e3c">columnIndex</a> (std::string_view <a class="el" href="classDbpp_1_1Result.html#a0bb9227356223737cfeeec5e663a6afd">columnName</a>) const</td></tr>
+<tr class="memdesc:a39d7344ff0bfd581b169cee2df7b4e3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the index of the specified column.  <a href="classDbpp_1_1Result.html#a39d7344ff0bfd581b169cee2df7b4e3c">More...</a><br /></td></tr>
+<tr class="separator:a39d7344ff0bfd581b169cee2df7b4e3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a574508765d59c4f94d0e55b52e77bdcc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Result.html#a574508765d59c4f94d0e55b52e77bdcc">hasColumn</a> (std::string_view <a class="el" href="classDbpp_1_1Result.html#a0bb9227356223737cfeeec5e663a6afd">columnName</a>) const</td></tr>
 <tr class="memdesc:a574508765d59c4f94d0e55b52e77bdcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the result has a column of the specified name.  <a href="classDbpp_1_1Result.html#a574508765d59c4f94d0e55b52e77bdcc">More...</a><br /></td></tr>
 <tr class="separator:a574508765d59c4f94d0e55b52e77bdcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -295,14 +295,14 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Statement</b></td></
 
 </div>
 </div>
-<a id="a7bb45a3b1383e76429e1e1f7866586ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7bb45a3b1383e76429e1e1f7866586ad">&#9670;&nbsp;</a></span>columnIndexByName()</h2>
+<a id="a39d7344ff0bfd581b169cee2df7b4e3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39d7344ff0bfd581b169cee2df7b4e3c">&#9670;&nbsp;</a></span>columnIndex()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Dbpp::Result::columnIndexByName </td>
+          <td class="memname">int Dbpp::Result::columnIndex </td>
           <td>(</td>
           <td class="paramtype">std::string_view&#160;</td>
           <td class="paramname"><em>columnName</em></td><td>)</td>
@@ -1451,8 +1451,8 @@ template&lt;typename... Ts&gt; </div>
 
 </div>
 </div>
-<a id="a1e2c85825234fcedb00a5dac1199cecc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e2c85825234fcedb00a5dac1199cecc">&#9670;&nbsp;</a></span>valueOr() <span class="overload">[1/2]</span></h2>
+<a id="a686009df09601c1c562bda3e1a293e87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a686009df09601c1c562bda3e1a293e87">&#9670;&nbsp;</a></span>valueOr() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1463,7 +1463,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if_t&lt;!Detail::IsOptionalV&lt;T&gt; &amp;&amp; !Detail::HasStaticDbppGetMethodV&lt;T&gt;, T&gt; Dbpp::Result::valueOr </td>
+          <td class="memname">std::enable_if_t&lt;!Detail::IsOptionalV&lt;T&gt; &amp;&amp; !Detail::HasStaticDbppGetMethodV&lt;T&gt;, std::remove_reference_t&lt;T&gt; &gt; Dbpp::Result::valueOr </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>columnIndex</em>, </td>
@@ -1471,7 +1471,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">T&#160;</td>
+          <td class="paramtype">std::remove_reference_t&lt; T &gt;&#160;</td>
           <td class="paramname"><em>defaultValue</em>&#160;</td>
         </tr>
         <tr>
@@ -1507,8 +1507,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a0fb35f38d09ea59292e669a3841ee968"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0fb35f38d09ea59292e669a3841ee968">&#9670;&nbsp;</a></span>valueOr() <span class="overload">[2/2]</span></h2>
+<a id="aec480031eb44d5e54f930d87de8d72dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec480031eb44d5e54f930d87de8d72dd">&#9670;&nbsp;</a></span>valueOr() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1519,7 +1519,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if_t&lt;!Detail::IsOptionalV&lt;T&gt; &amp;&amp; Detail::HasStaticDbppGetMethodV&lt;T&gt;, T&gt; Dbpp::Result::valueOr </td>
+          <td class="memname">std::enable_if_t&lt;!Detail::IsOptionalV&lt;T&gt; &amp;&amp; Detail::HasStaticDbppGetMethodV&lt;T&gt;, std::remove_reference_t&lt;T&gt; &gt; Dbpp::Result::valueOr </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>columnIndex</em>, </td>
@@ -1527,7 +1527,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">T&#160;</td>
+          <td class="paramtype">std::remove_reference_t&lt; T &gt;&#160;</td>
           <td class="paramname"><em>defaultValue</em>&#160;</td>
         </tr>
         <tr>
