@@ -72,12 +72,12 @@ public:
     /// \brief Creates a new statement for the supplied string
     ///
     /// \param sql An SQL statement string
-    /// \param args A list of values to be bound to placeholders in the SQL statement
-    /// \return A statement object
+    /// \param args A list of values to be bound to placeholders in the SQL statement string
+    /// \return A Statement object
     ///
     /// \since v1.0.0
     template <typename... Args>
-    Statement prepare(std::string_view sql, Args... args) {
+    Statement statement(std::string_view sql, Args... args) {
         Statement st = createStatement(sql);
         (st.bind(args), ...);
         return st;

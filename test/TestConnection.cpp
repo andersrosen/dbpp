@@ -63,24 +63,24 @@ TEST_CASE("Connection", "[api]") {
         db = std::move(movedDb);
     }
 
-    SECTION("Connection::prepare()") {
-        auto stmt = db.prepare("SELECT COUNT(*) FROM person");
+    SECTION("Connection::statement()") {
+        auto stmt = db.statement("SELECT COUNT(*) FROM person");
         auto result = stmt.step();
         REQUIRE(result);
         REQUIRE(result.get<int>(0) == persons.Count);
 
-        stmt = db.prepare("SELECT name FROM person WHERE id = ?", persons.johnDoe().id);
+        stmt = db.statement("SELECT name FROM person WHERE id = ?", persons.johnDoe().id);
         result = stmt.step();
         REQUIRE(result);
         REQUIRE(result.get<std::string>(0) == persons.johnDoe().name);
 
-        stmt = db.prepare("SELECT id FROM person WHERE name = ?", persons.johnDoe().name);
+        stmt = db.statement("SELECT id FROM person WHERE name = ?", persons.johnDoe().name);
         result = stmt.step();
         REQUIRE(result);
         REQUIRE(result.get<int>(0) == persons.johnDoe().id);
 
-        REQUIRE_THROWS_AS(db.prepare("SELECT COUNT"), Error);
-        REQUIRE_THROWS_AS(db.prepare("SELECT age FROM person WHERE id = ?", persons.johnDoe().id, 888), PlaceholderOutOfRange);
+        REQUIRE_THROWS_AS(db.statement("SELECT COUNT"), Error);
+        REQUIRE_THROWS_AS(db.statement("SELECT age FROM person WHERE id = ?", persons.johnDoe().id, 888), PlaceholderOutOfRange);
     }
 
     SECTION("Connection::get<T>(), where T is a basic type") {

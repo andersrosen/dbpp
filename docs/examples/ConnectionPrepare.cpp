@@ -4,5 +4,5 @@ using namespace Dbpp;
 
 int main()
 {
-    // FIXME! Show the prepare() method and its usage!
+    // FIXME! Show the statement() method and its usage!
 }

@@ -27,7 +27,7 @@ TEST_CASE("Statement", "[api]") {
     persons.populate();
 
     SECTION("Statement move semantics") {
-        Statement st = db.prepare("SELECT COUNT(*) FROM person WHERE id = ? OR id = ?");
+        Statement st = db.statement("SELECT COUNT(*) FROM person WHERE id = ? OR id = ?");
         st.bind(persons.johnDoe().id);
         Statement newStatement{std::move(st)};
         newStatement.bind(persons.janeDoe().id);
@@ -35,7 +35,7 @@ TEST_CASE("Statement", "[api]") {
         REQUIRE(result);
         REQUIRE(result.get<int>(0) == 2);
 
-        st = db.prepare("SELECT SUM(age) FROM person WHERE id = ? OR id = ?");
+        st = db.statement("SELECT SUM(age) FROM person WHERE id = ? OR id = ?");
         st.bind(persons.johnDoe().id);
         newStatement = std::move(st);
         newStatement.bind(persons.janeDoe().id);
@@ -45,12 +45,12 @@ TEST_CASE("Statement", "[api]") {
     }
 
     SECTION("Statement begin(), end()") {
-        Statement st = db.prepare("SELECT * FROM person WHERE id IS NULL"); // no hits - id column defined as NOT NULL
+        Statement st = db.statement("SELECT * FROM person WHERE id IS NULL"); // no hits - id column defined as NOT NULL
         Statement::iterator beginning = st.begin();
         Statement::iterator end = st.end();
         REQUIRE(beginning == end);
 
-        st = db.prepare("SELECT * FROM person WHERE id = ?", persons.johnDoe().id);
+        st = db.statement("SELECT * FROM person WHERE id = ?", persons.johnDoe().id);
         beginning = st.begin();
         end = st.end();
         REQUIRE(beginning != end);
@@ -67,7 +67,7 @@ TEST_CASE("Statement", "[api]") {
                 " realcol REAL"
                 ")");
 
-        auto st = db.prepare("INSERT INTO testing_bind (intcol, realcol) VALUES (?, ?)");
+        auto st = db.statement("INSERT INTO testing_bind (intcol, realcol) VALUES (?, ?)");
         st.bind(nullptr);
         st.bind(std::nullptr_t{});
         auto id = st.step().getInsertId();
@@ -75,7 +75,7 @@ TEST_CASE("Statement", "[api]") {
         REQUIRE_FALSE(intVal.has_value());
         REQUIRE_FALSE(realVal.has_value());
 
-        st = db.prepare("INSERT INTO testing_bind (intcol, realcol) VALUES (?, ?)");
+        st = db.statement("INSERT INTO testing_bind (intcol, realcol) VALUES (?, ?)");
         st.bind(intVal);
         st.bind(realVal);
         id = st.step().getInsertId();
@@ -83,7 +83,7 @@ TEST_CASE("Statement", "[api]") {
         REQUIRE_FALSE(intVal2.has_value());
         REQUIRE_FALSE(realVal2.has_value());
 
-        st = db.prepare("INSERT INTO testing_bind (intcol, realcol) VALUES (?, ?)");
+        st = db.statement("INSERT INTO testing_bind (intcol, realcol) VALUES (?, ?)");
         st.bindNull();
         st.bind(13.4);
         id = st.step().getInsertId();
@@ -92,7 +92,7 @@ TEST_CASE("Statement", "[api]") {
         REQUIRE(realVal3.has_value());
         REQUIRE(*realVal3 == Approx(static_cast<float>(13.4)));
 
-        st = db.prepare("INSERT INTO testing_bind (intcol, realcol) VALUES (?, ?)");
+        st = db.statement("INSERT INTO testing_bind (intcol, realcol) VALUES (?, ?)");
         intVal.reset();
         realVal = static_cast<float>(3.14);
         st.bind(intVal);
@@ -114,7 +114,7 @@ TEST_CASE("Statement", "[api]") {
         auto checkBindInt = [&db](auto val) {
             using ValT = decltype(val);
 
-            auto st = db.prepare("INSERT INTO testing_bind (col) VALUES (?)");
+            auto st = db.statement("INSERT INTO testing_bind (col) VALUES (?)");
             st.bind(val);
             auto id = st.step().getInsertId();
 
@@ -142,7 +142,7 @@ TEST_CASE("Statement", "[api]") {
         auto checkBindReal = [&db](auto val) {
           using ValT = decltype(val);
 
-          auto st = db.prepare("INSERT INTO testing_bind (col) VALUES (?)");
+          auto st = db.statement("INSERT INTO testing_bind (col) VALUES (?)");
           st.bind(val);
           auto id = st.step().getInsertId();
 
@@ -162,7 +162,7 @@ TEST_CASE("Statement", "[api]") {
                 ")");
 
         auto checkBind = [&db](auto val) {
-          auto st = db.prepare("INSERT INTO testing_bind (col) VALUES (?)");
+          auto st = db.statement("INSERT INTO testing_bind (col) VALUES (?)");
           st.bind(val);
           auto id = st.step().getInsertId();
 
@@ -186,7 +186,7 @@ TEST_CASE("Statement", "[api]") {
         for (unsigned int i = 0; i < 1024; ++i) {
             blob[i] = static_cast<std::uint8_t>(i & 0xff);
         }
-        auto st = db.prepare("INSERT INTO testing_bind (col) VALUES (?)");
+        auto st = db.statement("INSERT INTO testing_bind (col) VALUES (?)");
         st.bind(blob);
         auto id = st.step().getInsertId();
 
@@ -209,7 +209,7 @@ TEST_CASE("Statement", "[api]") {
         };
 
         MyCustomType custom{persons.johnDoe().name};
-        auto st = db.prepare("SELECT COUNT(*) FROM person WHERE name = ?");
+        auto st = db.statement("SELECT COUNT(*) FROM person WHERE name = ?");
         st.bind(custom);
         auto res = st.step();
         int count = res.get<int>(0);
@@ -231,14 +231,14 @@ TEST_CASE("Statement", "[api]") {
         };
 
         std::optional<MyCustomId> unsetId;
-        auto st1 = db.prepare("SELECT COUNT(*) FROM person WHERE id = ?");
+        auto st1 = db.statement("SELECT COUNT(*) FROM person WHERE id = ?");
         st1.bind(unsetId);
         auto res = st1.step();
         int count = res.get<int>(0);
         REQUIRE(count == 0);
 
         std::optional<MyCustomId> setId{persons.johnDoe().id};
-        auto st2 = db.prepare("SELECT COUNT(*) FROM person WHERE id = ?");
+        auto st2 = db.statement("SELECT COUNT(*) FROM person WHERE id = ?");
         st2.bind(setId);
         res = st2.step();
         count = res.get<int>(0);
@@ -246,7 +246,7 @@ TEST_CASE("Statement", "[api]") {
     }
 
     SECTION("reset()") {
-        auto st = db.prepare("SELECT name FROM person WHERE id = ?", persons.johnDoe().id);
+        auto st = db.statement("SELECT name FROM person WHERE id = ?", persons.johnDoe().id);
         auto res = st.step();
         REQUIRE(res.get<std::string>(0) == persons.johnDoe().name);
 
@@ -260,7 +260,7 @@ TEST_CASE("Statement", "[api]") {
     }
 
     SECTION("sql()") {
-        auto st = db.prepare("SELECT * FROM person WHERE age = ?", persons.janeDoe().id);
+        auto st = db.statement("SELECT * FROM person WHERE age = ?", persons.janeDoe().id);
         REQUIRE(st.sql() == "SELECT * FROM person WHERE age = ?");
     }
 }
@@ -284,7 +284,7 @@ TEST_CASE("Statement iteration", "[api]") {
         int rowCount = 0;
         int totalAge = 0;
         std::string concatenatedNames;
-        auto st = db.prepare("SELECT * FROM person ORDER BY id ASC");
+        auto st = db.statement("SELECT * FROM person ORDER BY id ASC");
         for (auto& row : st) {
             ++rowCount;
             totalAge += row.get<int>("age");
@@ -297,7 +297,7 @@ TEST_CASE("Statement iteration", "[api]") {
 
     SECTION("Empty range-for as Result objects") {
         int rowCount = 0;
-        auto st = db.prepare("SELECT * FROM person WHERE name = ?", "There is no one with this name");
+        auto st = db.statement("SELECT * FROM person WHERE name = ?", "There is no one with this name");
         for (auto& row : st)
             ++rowCount;
         REQUIRE(rowCount == 0);
@@ -305,14 +305,14 @@ TEST_CASE("Statement iteration", "[api]") {
 
     SECTION("Default-constructed StatementIterator is the end iterator") {
         StatementIterator endIterator;
-        Statement noMatches = db.prepare("SELECT * FROM person WHERE name = ?", "There is no one with this name");
+        Statement noMatches = db.statement("SELECT * FROM person WHERE name = ?", "There is no one with this name");
 
         REQUIRE(noMatches.begin() == endIterator);
         REQUIRE(noMatches.end() == endIterator);
     }
 
     SECTION("Dereference StatementIterator") {
-        Statement st = db.prepare("SELECT * FROM person WHERE id = ?", persons.johnDoe().id);
+        Statement st = db.statement("SELECT * FROM person WHERE id = ?", persons.johnDoe().id);
         auto it = st.begin();
         REQUIRE(it->get<int>("age") == persons.johnDoe().age);
         auto &row = *it;
@@ -323,7 +323,7 @@ TEST_CASE("Statement iteration", "[api]") {
         int rowCount = 0;
         int totalAge = 0;
         std::string concatenatedNames;
-        auto st = db.prepare("SELECT name, age FROM person ORDER BY id ASC");
+        auto st = db.statement("SELECT name, age FROM person ORDER BY id ASC");
         for (const auto &[name, age] : std::move(st).as<std::string, int>()) {
             ++rowCount;
             totalAge += age;
@@ -336,7 +336,7 @@ TEST_CASE("Statement iteration", "[api]") {
 
     SECTION("Empty range-for as tuples") {
         int rowCount = 0;
-        auto st = db.prepare("SELECT name, age FROM person WHERE name = ?", "There is no one with this name");
+        auto st = db.statement("SELECT name, age FROM person WHERE name = ?", "There is no one with this name");
         for (const auto& [name, age] : std::move(st).as<std::string, int>())
             ++rowCount;
         REQUIRE(rowCount == 0);
@@ -344,14 +344,14 @@ TEST_CASE("Statement iteration", "[api]") {
 
     SECTION("Default-constructed StatementTupleIterator is the end iterator") {
         StatementTupleIterator<std::string, int> endIterator;
-        auto noMatches = db.prepare("SELECT name, age FROM person WHERE name = ?", "There is no one with this name").as<std::string, int>();
+        auto noMatches = db.statement("SELECT name, age FROM person WHERE name = ?", "There is no one with this name").as<std::string, int>();
 
         REQUIRE(noMatches.begin() == endIterator);
         REQUIRE(noMatches.end() == endIterator);
     }
 
     SECTION("Dereference StatementIterator") {
-        auto st = db.prepare("SELECT name, age FROM person WHERE id = ?", persons.johnDoe().id).as<std::string, int>();
+        auto st = db.statement("SELECT name, age FROM person WHERE id = ?", persons.johnDoe().id).as<std::string, int>();
         auto it = st.begin();
 
         const auto &t = *it;

@@ -25,7 +25,7 @@ sqlite3 is the only supported database.
 auto db = Dbpp::Sqlite3::open(":memory:");
 
 // You can iterate over the results of a query
-for (auto&& row : db.prepare("SELECT * FROM persons WHERE age > ?", 18)) {
+for (auto&& row : db.statement("SELECT * FROM persons WHERE age > ?", 18)) {
     cout << "Name: " << row.get<std::string>("name")
          << ", age: " << row.get<int>("age") << std::endl;
 }
