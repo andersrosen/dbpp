@@ -90,18 +90,18 @@ TEST_CASE("Statement", "[api]") {
         auto [intVal3, realVal3] = db.get<std::optional<int>, std::optional<float>>("SELECT intcol, realcol FROM testing_bind WHERE id = ?", id);
         REQUIRE_FALSE(intVal3.has_value());
         REQUIRE(realVal3.has_value());
-        REQUIRE(*realVal3 == Approx(13.4));
+        REQUIRE(*realVal3 == Approx(static_cast<float>(13.4)));
 
         st = db.prepare("INSERT INTO testing_bind (intcol, realcol) VALUES (?, ?)");
         intVal.reset();
-        realVal = 3.14;
+        realVal = static_cast<float>(3.14);
         st.bind(intVal);
         st.bind(realVal);
         id = st.step().getInsertId();
         auto [intVal4, realVal4] = db.get<std::optional<int>, std::optional<float>>("SELECT intcol, realcol FROM testing_bind WHERE id = ?", id);
         REQUIRE_FALSE(intVal4.has_value());
         REQUIRE(realVal4.has_value());
-        REQUIRE(*realVal4 == Approx(3.14));
+        REQUIRE(*realVal4 == Approx(static_cast<float>(3.14)));
     }
 
     SECTION("bind(), integer values") {
