@@ -44,7 +44,13 @@ Result& Result::operator=(Dbpp::Result &&that) noexcept
 }
 
 bool Result::isNull(int columnIndex) const {
+    if (!impl_)
+        throw Error("Empty Result");
     return impl_->isNull(columnIndex);
+}
+
+bool Result::isNull(std::string_view columnName) const {
+    return isNull(columnIndex(columnName));
 }
 
 bool Result::get(int index, short& out) { return doGet(impl_, out, index); }
@@ -63,7 +69,7 @@ bool Result::get(int index, std::filesystem::path& out) { return doGet(impl_, ou
 
 bool Result::empty() const {
     if (!impl_)
-        return false;
+        return true;
     return impl_->empty();
 }
 
@@ -86,7 +92,7 @@ bool Result::hasColumn(std::string_view columnName) const {
     return idx >= 0;
 }
 
-int Result::columnIndexByName(std::string_view columnName) const {
+int Result::columnIndex(std::string_view columnName) const {
     if (!impl_)
         throw Error("Empty Result");
     auto idx = impl_->columnIndexByName(columnName);

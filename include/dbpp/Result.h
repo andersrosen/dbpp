@@ -138,7 +138,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, short& out);
 
     /// \brief Retrieves a value from the result
@@ -152,7 +151,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, int& out);
 
     /// \brief Retrieves a value from the result
@@ -166,7 +164,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, long& out);
 
     /// \brief Retrieves a value from the result
@@ -180,7 +177,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, long long& out);
 
     /// \brief Retrieves a value from the result
@@ -194,7 +190,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, unsigned short& out);
 
     /// \brief Retrieves a value from the result
@@ -208,7 +203,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, unsigned int& out);
 
     /// \brief Retrieves a value from the result
@@ -222,7 +216,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, unsigned long& out);
 
     /// \brief Retrieves a value from the result
@@ -236,7 +229,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, unsigned long long& out);
 
     /// \brief Retrieves a value from the result
@@ -250,7 +242,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, float& out);
 
     /// \brief Retrieves a value from the result
@@ -264,7 +255,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, double& out);
 
     /// \brief Retrieves a value from the result
@@ -278,7 +268,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, std::string& out);
 
     /// \brief Retrieves a value from the result
@@ -292,7 +281,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, std::vector<unsigned char>& out);
 
     /// \brief Retrieves a value from the result
@@ -306,7 +294,6 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
-    [[nodiscard]]
     bool get(int index, std::filesystem::path& out);
 
     /// \brief Retrieves a value of type T from the specified column in the result
@@ -322,6 +309,9 @@ public:
     [[nodiscard]]
     typename std::enable_if_t<Detail::HasStaticDbppGetMethodV<T>, T>
     get(int columnIndex) {
+        if (!impl_)
+            throw Error("Empty Result");
+
         return T::dbppGet(*this, columnIndex);
     }
 
@@ -414,7 +404,7 @@ public:
     template <typename T>
     [[nodiscard]]
     T get(std::string_view columnName) {
-        return get<T>(columnIndexByName(columnName));
+        return get<T>(columnIndex(columnName));
     }
 
     /// \brief Retrieves an optional value of type T from the specified column in the result
@@ -429,7 +419,7 @@ public:
     template <typename T>
     [[nodiscard]]
     std::optional<T> getOptional(std::string_view columnName) {
-        return getOptional<T>(columnIndexByName(columnName));
+        return getOptional<T>(columnIndex(columnName));
     }
 
     /// \brief Returns a column's value or, if it was NULL, the provided default value
@@ -444,8 +434,8 @@ public:
     /// \since v1.0.0
     template <typename T>
     [[nodiscard]]
-    typename std::enable_if_t<!Detail::IsOptionalV<T> && !Detail::HasStaticDbppGetMethodV<T>, T>
-    valueOr(int columnIndex, T defaultValue) {
+    typename std::enable_if_t<!Detail::IsOptionalV<T> && !Detail::HasStaticDbppGetMethodV<T>, std::remove_reference_t<T>>
+    valueOr(int columnIndex, std::remove_reference_t<T> defaultValue) {
         get(columnIndex, defaultValue);
         return defaultValue;
     }
@@ -462,8 +452,8 @@ public:
     /// \since v1.0.0
     template <typename T>
     [[nodiscard]]
-    typename std::enable_if_t<!Detail::IsOptionalV<T> && Detail::HasStaticDbppGetMethodV<T>, T>
-    valueOr(int columnIndex, T defaultValue) {
+    typename std::enable_if_t<!Detail::IsOptionalV<T> && Detail::HasStaticDbppGetMethodV<T>, std::remove_reference_t<T>>
+    valueOr(int columnIndex, std::remove_reference_t<T> defaultValue) {
         if (isNull(columnIndex))
             return defaultValue;
         return T::dbppGet(*this, columnIndex);
@@ -483,7 +473,7 @@ public:
     /// \brief Converts the result to a tuple
     template <typename... Ts>
     [[nodiscard]]
-    explicit operator std::tuple<Ts...>()
+    operator std::tuple<Ts...>()
     {
         return toTuple<Ts...>();
     }
@@ -524,7 +514,7 @@ public:
     ///
     /// \since v1.0.0
     [[nodiscard]]
-    int columnIndexByName(std::string_view columnName) const;
+    int columnIndex(std::string_view columnName) const;
 
     /// \brief Checks if the result has a column of the specified name
     ///
@@ -541,7 +531,7 @@ public:
     ///
     /// \since v1.0.0
     [[nodiscard]]
-    long long getInsertId() { return impl_->getInsertId(""); }
+    inline long long getInsertId() { return impl_->getInsertId(""); }
 
     /// \brief Retrieves the last insert ID
     ///
@@ -550,7 +540,7 @@ public:
     ///
     /// \since v1.0.0
     [[nodiscard]]
-    long long getInsertId(std::string_view sequenceName) { return impl_->getInsertId(sequenceName); }
+    inline long long getInsertId(std::string_view sequenceName) { return impl_->getInsertId(sequenceName); }
 };
 
 } // namespace Dbpp
