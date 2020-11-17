@@ -13,5 +13,5 @@ NamespaceIndentation: None
 IndentWidth: 4
 ContinuationIndentWidth: 4
 PointerAlignment: Left
-
+SpaceAfterTemplateKeyword: true
 
