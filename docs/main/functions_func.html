@@ -83,20 +83,16 @@ $(function() {
 , <a class="el" href="classDbpp_1_1StatementTupleWrapper.html#af69e1fa591410cf243fb6353829c603c">Dbpp::StatementTupleWrapper&lt; Ts &gt;</a>
 </li>
 <li>bind()
-: <a class="el" href="classDbpp_1_1Adapter_1_1Statement.html#a25da9564a651098ebbec7b3d9ab8f25a">Dbpp::Adapter::Statement</a>
-, <a class="el" href="classDbpp_1_1Statement.html#a54bdc940baeb60321aae232f76e15302">Dbpp::Statement</a>
+: <a class="el" href="classDbpp_1_1Adapter_1_1Statement.html#acd36e2312cf94fc9ad2c5fba6b2708e5">Dbpp::Adapter::Statement</a>
+, <a class="el" href="classDbpp_1_1BindHelper.html#ad067801d7aebb7ba4ae55fce224dcbe5">Dbpp::BindHelper</a>
 </li>
 <li>bindNull()
-: <a class="el" href="classDbpp_1_1Adapter_1_1Statement.html#adb91ba7b4d82ff891855c862c41095ef">Dbpp::Adapter::Statement</a>
-, <a class="el" href="classDbpp_1_1Statement.html#aeb2a91add98881a2339863e88e1b25f8">Dbpp::Statement</a>
+: <a class="el" href="classDbpp_1_1Adapter_1_1Statement.html#a02a2fbd38b2894e0a759e921e82eb079">Dbpp::Adapter::Statement</a>
 </li>
 </ul>
 
 
 <h3><a id="index_c"></a>- c -</h3><ul>
-<li>clearBindings()
-: <a class="el" href="classDbpp_1_1Adapter_1_1Statement.html#a73b2bea56460f4f14c064f44c1af46a8">Dbpp::Adapter::Statement</a>
-</li>
 <li>columnCount()
 : <a class="el" href="classDbpp_1_1Adapter_1_1Result.html#a7ff5ca4c35039810d6fc0dd0949141d9">Dbpp::Adapter::Result</a>
 , <a class="el" href="classDbpp_1_1Result.html#ac71f16a3524d96ea153cb004b2598d60">Dbpp::Result</a>
@@ -119,6 +115,12 @@ $(function() {
 <li>Connection()
 : <a class="el" href="classDbpp_1_1Connection.html#a173deab82b10d2ddcc349413c02e72e1">Dbpp::Connection</a>
 </li>
+<li>createPreparedStatement()
+: <a class="el" href="classDbpp_1_1Adapter_1_1Connection.html#a72001418630964312997e54449412c17">Dbpp::Adapter::Connection</a>
+</li>
+<li>createStatement()
+: <a class="el" href="classDbpp_1_1Adapter_1_1Connection.html#a975faa0bb54a1faa306d1c886cad6d2f">Dbpp::Adapter::Connection</a>
+</li>
 </ul>
 
 
@@ -135,7 +137,7 @@ $(function() {
 : <a class="el" href="classDbpp_1_1ErrorWithCode.html#a816456d31f3203561eb5d60b8f953431">Dbpp::ErrorWithCode</a>
 </li>
 <li>exec()
-: <a class="el" href="classDbpp_1_1Connection.html#ae8d72d0a260142e80d4d9f4df758a9a9">Dbpp::Connection</a>
+: <a class="el" href="classDbpp_1_1Connection.html#a20481ff3f0ea4840b968ba2001950fe4">Dbpp::Connection</a>
 </li>
 </ul>
 
@@ -156,7 +158,7 @@ $(function() {
 , <a class="el" href="classDbpp_1_1Result.html#aee9e9edc1cfcb3d3cc38ffc60bf1716a">Dbpp::Result</a>
 </li>
 <li>getOptional()
-: <a class="el" href="classDbpp_1_1Connection.html#ae14208c6d81281786ea9dd1312ccfcb6">Dbpp::Connection</a>
+: <a class="el" href="classDbpp_1_1Connection.html#af8712616bb9ebf3f7a77bdd09a9cff88">Dbpp::Connection</a>
 , <a class="el" href="classDbpp_1_1Result.html#adebe478d2a3916aa21dd3ffe5c299d86">Dbpp::Result</a>
 </li>
 </ul>
@@ -215,17 +217,28 @@ $(function() {
 
 
 <h3><a id="index_p"></a>- p -</h3><ul>
-<li>prepare()
-: <a class="el" href="classDbpp_1_1Adapter_1_1Connection.html#a72fa520b6f3601e1ea0711fd49136788">Dbpp::Adapter::Connection</a>
-, <a class="el" href="classDbpp_1_1Connection.html#a8d36f1dd4783eea22d5084df3f03aeaf">Dbpp::Connection</a>
+<li>postBind()
+: <a class="el" href="classDbpp_1_1Adapter_1_1Statement.html#ab6d7b119bb3014f916cf4eb93d48ff18">Dbpp::Adapter::Statement</a>
+</li>
+<li>preBind()
+: <a class="el" href="classDbpp_1_1Adapter_1_1Statement.html#a913f09e11c4670260b0f4670613abf49">Dbpp::Adapter::Statement</a>
+</li>
+<li>preparedStatement()
+: <a class="el" href="classDbpp_1_1Connection.html#a6f3ad703c62599a2c7a0f0e7773bbb74">Dbpp::Connection</a>
 </li>
 </ul>
 
 
 <h3><a id="index_r"></a>- r -</h3><ul>
+<li>rebind()
+: <a class="el" href="classDbpp_1_1PreparedStatement.html#a0f593d1ec0051db2506767dfa9ee0486">Dbpp::PreparedStatement</a>
+</li>
 <li>reset()
-: <a class="el" href="classDbpp_1_1Adapter_1_1Statement.html#afaec4da667c18bbcb0c26a06c880b13e">Dbpp::Adapter::Statement</a>
-, <a class="el" href="classDbpp_1_1Statement.html#a6190a4a32aedc3dc084d06eceecd34af">Dbpp::Statement</a>
+: <a class="el" href="classDbpp_1_1Adapter_1_1PreparedStatement.html#ac83b5ac105ef3c698774cfe227258467">Dbpp::Adapter::PreparedStatement</a>
+, <a class="el" href="classDbpp_1_1PreparedStatement.html#af97d789ef106f0ca20cc458e7d1bc504">Dbpp::PreparedStatement</a>
+</li>
+<li>resetAndClearBindings()
+: <a class="el" href="classDbpp_1_1Adapter_1_1PreparedStatement.html#a6b329f6af6a793db9aabcfa5bdf52a22">Dbpp::Adapter::PreparedStatement</a>
 </li>
 <li>Result()
 : <a class="el" href="classDbpp_1_1Result.html#acadb5679cee28b135f85bd7e79b38c93">Dbpp::Result</a>
@@ -241,6 +254,9 @@ $(function() {
 <li>sql()
 : <a class="el" href="classDbpp_1_1Adapter_1_1Statement.html#a2c60784042fd596731d183252e54479c">Dbpp::Adapter::Statement</a>
 , <a class="el" href="classDbpp_1_1Statement.html#a41fc437fe508d81a5efd9337b77a8d79">Dbpp::Statement</a>
+</li>
+<li>statement()
+: <a class="el" href="classDbpp_1_1Connection.html#a90cbb266585d9f0032ecdd1409070214">Dbpp::Connection</a>
 </li>
 <li>Statement()
 : <a class="el" href="classDbpp_1_1Statement.html#afb3482a383eea4bdc0e748fafbe39b6d">Dbpp::Statement</a>

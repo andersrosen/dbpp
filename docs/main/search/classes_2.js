@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['placeholderoutofrange_65',['PlaceholderOutOfRange',['../classDbpp_1_1PlaceholderOutOfRange.html',1,'Dbpp']]]
+  ['error_72',['Error',['../classDbpp_1_1Error.html',1,'Dbpp']]],
+  ['errorwithcode_73',['ErrorWithCode',['../classDbpp_1_1ErrorWithCode.html',1,'Dbpp']]]
 ];

@@ -82,9 +82,12 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a72fa520b6f3601e1ea0711fd49136788"><td class="memItemLeft" align="right" valign="top">virtual StatementPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Adapter_1_1Connection.html#a72fa520b6f3601e1ea0711fd49136788">prepare</a> (std::string_view sql)=0</td></tr>
-<tr class="memdesc:a72fa520b6f3601e1ea0711fd49136788"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new statement for the supplied string.  <a href="classDbpp_1_1Adapter_1_1Connection.html#a72fa520b6f3601e1ea0711fd49136788">More...</a><br /></td></tr>
-<tr class="separator:a72fa520b6f3601e1ea0711fd49136788"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72001418630964312997e54449412c17"><td class="memItemLeft" align="right" valign="top">virtual PreparedStatementPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Adapter_1_1Connection.html#a72001418630964312997e54449412c17">createPreparedStatement</a> (std::string_view sql)=0</td></tr>
+<tr class="memdesc:a72001418630964312997e54449412c17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new prepared statement for the supplied string.  <a href="classDbpp_1_1Adapter_1_1Connection.html#a72001418630964312997e54449412c17">More...</a><br /></td></tr>
+<tr class="separator:a72001418630964312997e54449412c17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a975faa0bb54a1faa306d1c886cad6d2f"><td class="memItemLeft" align="right" valign="top">virtual StatementPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Adapter_1_1Connection.html#a975faa0bb54a1faa306d1c886cad6d2f">createStatement</a> (std::string_view sql)=0</td></tr>
+<tr class="memdesc:a975faa0bb54a1faa306d1c886cad6d2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new statement for the supplied string.  <a href="classDbpp_1_1Adapter_1_1Connection.html#a975faa0bb54a1faa306d1c886cad6d2f">More...</a><br /></td></tr>
+<tr class="separator:a975faa0bb54a1faa306d1c886cad6d2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3d61bee22744a85ac71f9b7e67c28fb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Adapter_1_1Connection.html#ad3d61bee22744a85ac71f9b7e67c28fb">begin</a> ()=0</td></tr>
 <tr class="memdesc:ad3d61bee22744a85ac71f9b7e67c28fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begins a transaction.  <a href="classDbpp_1_1Adapter_1_1Connection.html#ad3d61bee22744a85ac71f9b7e67c28fb">More...</a><br /></td></tr>
 <tr class="separator:ad3d61bee22744a85ac71f9b7e67c28fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -192,6 +195,76 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a72001418630964312997e54449412c17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72001418630964312997e54449412c17">&#9670;&nbsp;</a></span>createPreparedStatement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual PreparedStatementPtr Dbpp::Adapter::Connection::createPreparedStatement </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>sql</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a new prepared statement for the supplied string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sql</td><td>An SQL statement string</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
+
+</div>
+</div>
+<a id="a975faa0bb54a1faa306d1c886cad6d2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a975faa0bb54a1faa306d1c886cad6d2f">&#9670;&nbsp;</a></span>createStatement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual StatementPtr Dbpp::Adapter::Connection::createStatement </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>sql</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a new statement for the supplied string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sql</td><td>An SQL statement string</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
+
+</div>
+</div>
 <a id="ac11fcea4c6470e756a21679da6b5136a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac11fcea4c6470e756a21679da6b5136a">&#9670;&nbsp;</a></span>getImpl()</h2>
 
@@ -225,35 +298,6 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A shared pointer to the adapter-specific object</dd></dl>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="a72fa520b6f3601e1ea0711fd49136788"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a72fa520b6f3601e1ea0711fd49136788">&#9670;&nbsp;</a></span>prepare()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual StatementPtr Dbpp::Adapter::Connection::prepare </td>
-          <td>(</td>
-          <td class="paramtype">std::string_view&#160;</td>
-          <td class="paramname"><em>sql</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Creates a new statement for the supplied string. </p>
 <dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
 
 </div>

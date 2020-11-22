@@ -69,6 +69,8 @@ $(function() {
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="classDbpp_1_1Statement-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -80,12 +82,24 @@ $(function() {
  <a href="classDbpp_1_1Statement.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Statement_8h_source.html">Statement.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for Dbpp::Statement:</div>
+<div class="dyncontent">
+<div class="center"><img src="classDbpp_1_1Statement__inherit__graph.png" border="0" usemap="#Dbpp_1_1Statement_inherit__map" alt="Inheritance graph"/></div>
+<map name="Dbpp_1_1Statement_inherit__map" id="Dbpp_1_1Statement_inherit__map">
+<area shape="rect" title="Represents a prepared SQL statement." alt="" coords="35,5,167,32"/>
+<area shape="rect" href="classDbpp_1_1PreparedStatement.html" title="Represents a prepared statement." alt="" coords="5,80,196,107"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a0ac039deb1b5e4da70f94b2cd3716a12"><td class="memItemLeft" align="right" valign="top"><a id="a0ac039deb1b5e4da70f94b2cd3716a12"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>iterator</b> = <a class="el" href="classDbpp_1_1StatementIterator.html">StatementIterator</a></td></tr>
-<tr class="separator:a0ac039deb1b5e4da70f94b2cd3716a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83e6975861a49522c5b06512f805715b"><td class="memItemLeft" align="right" valign="top"><a id="a83e6975861a49522c5b06512f805715b"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>Iterator</b> = <a class="el" href="classDbpp_1_1StatementIterator.html">StatementIterator</a></td></tr>
+<tr class="separator:a83e6975861a49522c5b06512f805715b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72e5689c6e0d532eaf35186d18e94bfe"><td class="memItemLeft" align="right" valign="top"><a id="a72e5689c6e0d532eaf35186d18e94bfe"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>iterator</b> = <a class="el" href="classDbpp_1_1StatementIterator.html">Iterator</a></td></tr>
+<tr class="separator:a72e5689c6e0d532eaf35186d18e94bfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -101,82 +115,116 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a167e8773a2919db1bcc15bf6cb4a2cc0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDbpp_1_1StatementIterator.html">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#a167e8773a2919db1bcc15bf6cb4a2cc0">end</a> ()</td></tr>
 <tr class="memdesc:a167e8773a2919db1bcc15bf6cb4a2cc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the end iterator of the result set.  <a href="classDbpp_1_1Statement.html#a167e8773a2919db1bcc15bf6cb4a2cc0">More...</a><br /></td></tr>
 <tr class="separator:a167e8773a2919db1bcc15bf6cb4a2cc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb2a91add98881a2339863e88e1b25f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#aeb2a91add98881a2339863e88e1b25f8">bindNull</a> ()</td></tr>
-<tr class="memdesc:aeb2a91add98881a2339863e88e1b25f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds NULL to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind.  <a href="classDbpp_1_1Statement.html#aeb2a91add98881a2339863e88e1b25f8">More...</a><br /></td></tr>
-<tr class="separator:aeb2a91add98881a2339863e88e1b25f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab61d30438f2f5e3e662641d0c9296df2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#ab61d30438f2f5e3e662641d0c9296df2">bind</a> (std::nullptr_t)</td></tr>
-<tr class="memdesc:ab61d30438f2f5e3e662641d0c9296df2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds NULL to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind.  <a href="classDbpp_1_1Statement.html#ab61d30438f2f5e3e662641d0c9296df2">More...</a><br /></td></tr>
-<tr class="separator:ab61d30438f2f5e3e662641d0c9296df2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55909dab92f3339b59e5bc9638d2c2ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#a55909dab92f3339b59e5bc9638d2c2ee">bind</a> (short value)</td></tr>
-<tr class="memdesc:a55909dab92f3339b59e5bc9638d2c2ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind.  <a href="classDbpp_1_1Statement.html#a55909dab92f3339b59e5bc9638d2c2ee">More...</a><br /></td></tr>
-<tr class="separator:a55909dab92f3339b59e5bc9638d2c2ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1291a50dbd7aa959bf877a301c07092d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#a1291a50dbd7aa959bf877a301c07092d">bind</a> (int value)</td></tr>
-<tr class="memdesc:a1291a50dbd7aa959bf877a301c07092d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind.  <a href="classDbpp_1_1Statement.html#a1291a50dbd7aa959bf877a301c07092d">More...</a><br /></td></tr>
-<tr class="separator:a1291a50dbd7aa959bf877a301c07092d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72dfe0ebcd2de042d6c4acb1eff82bb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#a72dfe0ebcd2de042d6c4acb1eff82bb1">bind</a> (long value)</td></tr>
-<tr class="memdesc:a72dfe0ebcd2de042d6c4acb1eff82bb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind.  <a href="classDbpp_1_1Statement.html#a72dfe0ebcd2de042d6c4acb1eff82bb1">More...</a><br /></td></tr>
-<tr class="separator:a72dfe0ebcd2de042d6c4acb1eff82bb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc677eff894b313e64d179bac2e623f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#acc677eff894b313e64d179bac2e623f1">bind</a> (long long value)</td></tr>
-<tr class="memdesc:acc677eff894b313e64d179bac2e623f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind.  <a href="classDbpp_1_1Statement.html#acc677eff894b313e64d179bac2e623f1">More...</a><br /></td></tr>
-<tr class="separator:acc677eff894b313e64d179bac2e623f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40c3de80d7ecd69940ebdf91c357b1a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#a40c3de80d7ecd69940ebdf91c357b1a3">bind</a> (unsigned short value)</td></tr>
-<tr class="memdesc:a40c3de80d7ecd69940ebdf91c357b1a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind.  <a href="classDbpp_1_1Statement.html#a40c3de80d7ecd69940ebdf91c357b1a3">More...</a><br /></td></tr>
-<tr class="separator:a40c3de80d7ecd69940ebdf91c357b1a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29afbf343fde15c5d15eaf180f9448a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#a29afbf343fde15c5d15eaf180f9448a2">bind</a> (unsigned int value)</td></tr>
-<tr class="memdesc:a29afbf343fde15c5d15eaf180f9448a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind.  <a href="classDbpp_1_1Statement.html#a29afbf343fde15c5d15eaf180f9448a2">More...</a><br /></td></tr>
-<tr class="separator:a29afbf343fde15c5d15eaf180f9448a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d2976c677724681254bbe4cb2ecbd08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#a6d2976c677724681254bbe4cb2ecbd08">bind</a> (unsigned long value)</td></tr>
-<tr class="memdesc:a6d2976c677724681254bbe4cb2ecbd08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind.  <a href="classDbpp_1_1Statement.html#a6d2976c677724681254bbe4cb2ecbd08">More...</a><br /></td></tr>
-<tr class="separator:a6d2976c677724681254bbe4cb2ecbd08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa74d98358b91bb6f883dc8f5116dd7b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#aa74d98358b91bb6f883dc8f5116dd7b1">bind</a> (unsigned long long value)</td></tr>
-<tr class="memdesc:aa74d98358b91bb6f883dc8f5116dd7b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind.  <a href="classDbpp_1_1Statement.html#aa74d98358b91bb6f883dc8f5116dd7b1">More...</a><br /></td></tr>
-<tr class="separator:aa74d98358b91bb6f883dc8f5116dd7b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9887c4c68cb0fad753ff62efdeff140e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#a9887c4c68cb0fad753ff62efdeff140e">bind</a> (float value)</td></tr>
-<tr class="memdesc:a9887c4c68cb0fad753ff62efdeff140e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind.  <a href="classDbpp_1_1Statement.html#a9887c4c68cb0fad753ff62efdeff140e">More...</a><br /></td></tr>
-<tr class="separator:a9887c4c68cb0fad753ff62efdeff140e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6ce3709fe2ddeec8eefb435206fbbe5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#ab6ce3709fe2ddeec8eefb435206fbbe5">bind</a> (double value)</td></tr>
-<tr class="memdesc:ab6ce3709fe2ddeec8eefb435206fbbe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind.  <a href="classDbpp_1_1Statement.html#ab6ce3709fe2ddeec8eefb435206fbbe5">More...</a><br /></td></tr>
-<tr class="separator:ab6ce3709fe2ddeec8eefb435206fbbe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54bdc940baeb60321aae232f76e15302"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#a54bdc940baeb60321aae232f76e15302">bind</a> (const char *value)</td></tr>
-<tr class="memdesc:a54bdc940baeb60321aae232f76e15302"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind.  <a href="classDbpp_1_1Statement.html#a54bdc940baeb60321aae232f76e15302">More...</a><br /></td></tr>
-<tr class="separator:a54bdc940baeb60321aae232f76e15302"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade7abff21a042ef26ad3c47e883479c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#ade7abff21a042ef26ad3c47e883479c3">bind</a> (const std::string &amp;value)</td></tr>
-<tr class="memdesc:ade7abff21a042ef26ad3c47e883479c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind.  <a href="classDbpp_1_1Statement.html#ade7abff21a042ef26ad3c47e883479c3">More...</a><br /></td></tr>
-<tr class="separator:ade7abff21a042ef26ad3c47e883479c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2f4c9ba853442f71d557f61b4c3e914"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#aa2f4c9ba853442f71d557f61b4c3e914">bind</a> (std::string_view value)</td></tr>
-<tr class="memdesc:aa2f4c9ba853442f71d557f61b4c3e914"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind.  <a href="classDbpp_1_1Statement.html#aa2f4c9ba853442f71d557f61b4c3e914">More...</a><br /></td></tr>
-<tr class="separator:aa2f4c9ba853442f71d557f61b4c3e914"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25fb96b82c997b75aff0fe80878d6260"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#a25fb96b82c997b75aff0fe80878d6260">bind</a> (const std::vector&lt; std::uint8_t &gt; &amp;value)</td></tr>
-<tr class="memdesc:a25fb96b82c997b75aff0fe80878d6260"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds a vector of bytes as a BLOB to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind.  <a href="classDbpp_1_1Statement.html#a25fb96b82c997b75aff0fe80878d6260">More...</a><br /></td></tr>
-<tr class="separator:a25fb96b82c997b75aff0fe80878d6260"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad74305556983e601051f4979f4633515"><td class="memTemplParams" colspan="2">template&lt;typename T , typename std::enable_if_t&lt; Detail::HasDbppBindMethodV&lt; T &gt;, int &gt;  = 0&gt; </td></tr>
-<tr class="memitem:ad74305556983e601051f4979f4633515"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#ad74305556983e601051f4979f4633515">bind</a> (const T &amp;value)</td></tr>
-<tr class="memdesc:ad74305556983e601051f4979f4633515"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind.  <a href="classDbpp_1_1Statement.html#ad74305556983e601051f4979f4633515">More...</a><br /></td></tr>
-<tr class="separator:ad74305556983e601051f4979f4633515"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2492267b293eca97f7842fb3cf95eba"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:ad2492267b293eca97f7842fb3cf95eba"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#ad2492267b293eca97f7842fb3cf95eba">bind</a> (const std::optional&lt; T &gt; &amp;value)</td></tr>
-<tr class="memdesc:ad2492267b293eca97f7842fb3cf95eba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds an optional value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind.  <a href="classDbpp_1_1Statement.html#ad2492267b293eca97f7842fb3cf95eba">More...</a><br /></td></tr>
-<tr class="separator:ad2492267b293eca97f7842fb3cf95eba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41fc437fe508d81a5efd9337b77a8d79"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#a41fc437fe508d81a5efd9337b77a8d79">sql</a> () const</td></tr>
-<tr class="memdesc:a41fc437fe508d81a5efd9337b77a8d79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the SQL statement string represented by this object.  <a href="classDbpp_1_1Statement.html#a41fc437fe508d81a5efd9337b77a8d79">More...</a><br /></td></tr>
-<tr class="separator:a41fc437fe508d81a5efd9337b77a8d79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b8bd7c33d0b1f3d98a7d44fd1e7c58d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDbpp_1_1Result.html">Result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#a2b8bd7c33d0b1f3d98a7d44fd1e7c58d">step</a> ()</td></tr>
 <tr class="memdesc:a2b8bd7c33d0b1f3d98a7d44fd1e7c58d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the statement or steps to the next result.  <a href="classDbpp_1_1Statement.html#a2b8bd7c33d0b1f3d98a7d44fd1e7c58d">More...</a><br /></td></tr>
 <tr class="separator:a2b8bd7c33d0b1f3d98a7d44fd1e7c58d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6190a4a32aedc3dc084d06eceecd34af"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
-<tr class="memitem:a6190a4a32aedc3dc084d06eceecd34af"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#a6190a4a32aedc3dc084d06eceecd34af">reset</a> (Args... args)</td></tr>
-<tr class="memdesc:a6190a4a32aedc3dc084d06eceecd34af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the statement to its initial state, so it can be executed again.  <a href="classDbpp_1_1Statement.html#a6190a4a32aedc3dc084d06eceecd34af">More...</a><br /></td></tr>
-<tr class="separator:a6190a4a32aedc3dc084d06eceecd34af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41fc437fe508d81a5efd9337b77a8d79"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#a41fc437fe508d81a5efd9337b77a8d79">sql</a> () const</td></tr>
+<tr class="memdesc:a41fc437fe508d81a5efd9337b77a8d79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the SQL statement string represented by this object.  <a href="classDbpp_1_1Statement.html#a41fc437fe508d81a5efd9337b77a8d79">More...</a><br /></td></tr>
+<tr class="separator:a41fc437fe508d81a5efd9337b77a8d79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77c895034b59ce4dc24b9f7dbe44a02b"><td class="memTemplParams" colspan="2">template&lt;typename... Ts&gt; </td></tr>
 <tr class="memitem:a77c895034b59ce4dc24b9f7dbe44a02b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classDbpp_1_1StatementTupleWrapper.html">StatementTupleWrapper</a>&lt; Ts... &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Statement.html#a77c895034b59ce4dc24b9f7dbe44a02b">as</a> () &amp;&amp;</td></tr>
 <tr class="memdesc:a77c895034b59ce4dc24b9f7dbe44a02b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows retrieving results as tuples.  <a href="classDbpp_1_1Statement.html#a77c895034b59ce4dc24b9f7dbe44a02b">More...</a><br /></td></tr>
 <tr class="separator:a77c895034b59ce4dc24b9f7dbe44a02b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a61af17eed90c68f653852665813af926"><td class="memItemLeft" align="right" valign="top"><a id="a61af17eed90c68f653852665813af926"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>preBind</b> (std::size_t providedParameterCount)</td></tr>
+<tr class="separator:a61af17eed90c68f653852665813af926"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c53dd83243facd70728b9e0f4962743"><td class="memItemLeft" align="right" valign="top"><a id="a2c53dd83243facd70728b9e0f4962743"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>postBind</b> (std::size_t providedParameterCount, std::size_t boundParameterCount)</td></tr>
+<tr class="separator:a2c53dd83243facd70728b9e0f4962743"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf1a5163b7b8775382f6a11edab9bb6f"><td class="memItemLeft" align="right" valign="top"><a id="adf1a5163b7b8775382f6a11edab9bb6f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>doBind</b> (std::nullptr_t)</td></tr>
+<tr class="separator:adf1a5163b7b8775382f6a11edab9bb6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af29b2e8004f8054d271ecff870655d72"><td class="memItemLeft" align="right" valign="top"><a id="af29b2e8004f8054d271ecff870655d72"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>doBind</b> (short value)</td></tr>
+<tr class="separator:af29b2e8004f8054d271ecff870655d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59b6cd8c13d6c527761a8389af181ac7"><td class="memItemLeft" align="right" valign="top"><a id="a59b6cd8c13d6c527761a8389af181ac7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>doBind</b> (int value)</td></tr>
+<tr class="separator:a59b6cd8c13d6c527761a8389af181ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25a8525b232ebb24e1b0e1a792ebea19"><td class="memItemLeft" align="right" valign="top"><a id="a25a8525b232ebb24e1b0e1a792ebea19"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>doBind</b> (long value)</td></tr>
+<tr class="separator:a25a8525b232ebb24e1b0e1a792ebea19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a484bdf892e55cf3b6ca8785ba91cf07f"><td class="memItemLeft" align="right" valign="top"><a id="a484bdf892e55cf3b6ca8785ba91cf07f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>doBind</b> (long long value)</td></tr>
+<tr class="separator:a484bdf892e55cf3b6ca8785ba91cf07f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6611ef52d00fe57c19bd9989f229c966"><td class="memItemLeft" align="right" valign="top"><a id="a6611ef52d00fe57c19bd9989f229c966"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>doBind</b> (unsigned short value)</td></tr>
+<tr class="separator:a6611ef52d00fe57c19bd9989f229c966"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9060336385672a6f27cddfae718fac72"><td class="memItemLeft" align="right" valign="top"><a id="a9060336385672a6f27cddfae718fac72"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>doBind</b> (unsigned int value)</td></tr>
+<tr class="separator:a9060336385672a6f27cddfae718fac72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf5a2ae8376eabdb6db9b1107017c383"><td class="memItemLeft" align="right" valign="top"><a id="adf5a2ae8376eabdb6db9b1107017c383"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>doBind</b> (unsigned long value)</td></tr>
+<tr class="separator:adf5a2ae8376eabdb6db9b1107017c383"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7844631c975646cf9f461da088c8244"><td class="memItemLeft" align="right" valign="top"><a id="aa7844631c975646cf9f461da088c8244"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>doBind</b> (unsigned long long value)</td></tr>
+<tr class="separator:aa7844631c975646cf9f461da088c8244"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44dd33d7894ea7dd9fbe4c0099cbf6f8"><td class="memItemLeft" align="right" valign="top"><a id="a44dd33d7894ea7dd9fbe4c0099cbf6f8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>doBind</b> (float value)</td></tr>
+<tr class="separator:a44dd33d7894ea7dd9fbe4c0099cbf6f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34bbb48abddc6ef75ada343c8563356c"><td class="memItemLeft" align="right" valign="top"><a id="a34bbb48abddc6ef75ada343c8563356c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>doBind</b> (double value)</td></tr>
+<tr class="separator:a34bbb48abddc6ef75ada343c8563356c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac40313b3c564b1a99edf0662955160ee"><td class="memItemLeft" align="right" valign="top"><a id="ac40313b3c564b1a99edf0662955160ee"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>doBind</b> (const char *value)</td></tr>
+<tr class="separator:ac40313b3c564b1a99edf0662955160ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42b48ec276eb547263734534fa13bcfc"><td class="memItemLeft" align="right" valign="top"><a id="a42b48ec276eb547263734534fa13bcfc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>doBind</b> (const std::string &amp;value)</td></tr>
+<tr class="separator:a42b48ec276eb547263734534fa13bcfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ae15f67f8561a9cf2aa7f6282eec040"><td class="memItemLeft" align="right" valign="top"><a id="a9ae15f67f8561a9cf2aa7f6282eec040"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>doBind</b> (std::string_view value)</td></tr>
+<tr class="separator:a9ae15f67f8561a9cf2aa7f6282eec040"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f0b4fe6f7f9df947661c606a45a1d21"><td class="memItemLeft" align="right" valign="top"><a id="a3f0b4fe6f7f9df947661c606a45a1d21"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>doBind</b> (const std::pair&lt; const unsigned char *, std::size_t &gt; &amp;data)</td></tr>
+<tr class="separator:a3f0b4fe6f7f9df947661c606a45a1d21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93e8bdc7357b55ce28da4b694517b7e0"><td class="memTemplParams" colspan="2"><a id="a93e8bdc7357b55ce28da4b694517b7e0"></a>
+template&lt;typename T , typename  = std::enable_if_t&lt;Detail::IsOneOfV&lt;T, char, signed char, unsigned char&gt;&gt;&gt; </td></tr>
+<tr class="memitem:a93e8bdc7357b55ce28da4b694517b7e0"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>doBind</b> (const std::vector&lt; T &gt; &amp;value)</td></tr>
+<tr class="separator:a93e8bdc7357b55ce28da4b694517b7e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a727e0ff2aac6dbaa8f2307b9a574ece1"><td class="memTemplParams" colspan="2"><a id="a727e0ff2aac6dbaa8f2307b9a574ece1"></a>
+template&lt;typename T , typename std::enable_if_t&lt; Detail::HasDbppBindMethodV&lt; T &gt;, int &gt;  = 0&gt; </td></tr>
+<tr class="memitem:a727e0ff2aac6dbaa8f2307b9a574ece1"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>doBind</b> (const T &amp;customType)</td></tr>
+<tr class="separator:a727e0ff2aac6dbaa8f2307b9a574ece1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6b9bcfe6327bd6f076edbc60c3b7e7d"><td class="memTemplParams" colspan="2"><a id="aa6b9bcfe6327bd6f076edbc60c3b7e7d"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:aa6b9bcfe6327bd6f076edbc60c3b7e7d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>doBind</b> (const std::optional&lt; T &gt; &amp;value)</td></tr>
+<tr class="separator:aa6b9bcfe6327bd6f076edbc60c3b7e7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c17b96c601c56bb2f60035d49051be7"><td class="memTemplParams" colspan="2"><a id="a6c17b96c601c56bb2f60035d49051be7"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:a6c17b96c601c56bb2f60035d49051be7"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>doBind</b> (const std::unique_ptr&lt; T &gt; &amp;value)</td></tr>
+<tr class="separator:a6c17b96c601c56bb2f60035d49051be7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66e34c89f7f758a6d12c6cdcef174651"><td class="memTemplParams" colspan="2"><a id="a66e34c89f7f758a6d12c6cdcef174651"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:a66e34c89f7f758a6d12c6cdcef174651"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>doBind</b> (const std::shared_ptr&lt; T &gt; &amp;value)</td></tr>
+<tr class="separator:a66e34c89f7f758a6d12c6cdcef174651"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac92b25a9c5e47e5b514172075b249774"><td class="memTemplParams" colspan="2"><a id="ac92b25a9c5e47e5b514172075b249774"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:ac92b25a9c5e47e5b514172075b249774"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>doBind</b> (const std::weak_ptr&lt; T &gt; &amp;value)</td></tr>
+<tr class="separator:ac92b25a9c5e47e5b514172075b249774"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e01d5660a07ad559fb98bc931a0a49c"><td class="memTemplParams" colspan="2"><a id="a7e01d5660a07ad559fb98bc931a0a49c"></a>
+template&lt;typename... Ts&gt; </td></tr>
+<tr class="memitem:a7e01d5660a07ad559fb98bc931a0a49c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>bind</b> (Ts &amp;&amp;... parameters)</td></tr>
+<tr class="separator:a7e01d5660a07ad559fb98bc931a0a49c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a821d1cc9e7c894f740b593e737c9133d"><td class="memItemLeft" align="right" valign="top"><a id="a821d1cc9e7c894f740b593e737c9133d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Statement</b> (Adapter::StatementPtr p)</td></tr>
+<tr class="separator:a821d1cc9e7c894f740b593e737c9133d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a328337cbcdd27792340a906156aadd69"><td class="memItemLeft" align="right" valign="top"><a id="a328337cbcdd27792340a906156aadd69"></a>
+Adapter::StatementPtr&#160;</td><td class="memItemRight" valign="bottom"><b>impl_</b></td></tr>
+<tr class="separator:a328337cbcdd27792340a906156aadd69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:a54a11fdc71e1679a42fa0c0e3856673d"><td class="memItemLeft" align="right" valign="top"><a id="a54a11fdc71e1679a42fa0c0e3856673d"></a>
 class&#160;</td><td class="memItemRight" valign="bottom"><b>Connection</b></td></tr>
 <tr class="separator:a54a11fdc71e1679a42fa0c0e3856673d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab265645b319d8f916d71a1e8c15f6ae2"><td class="memItemLeft" align="right" valign="top"><a id="ab265645b319d8f916d71a1e8c15f6ae2"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>BindHelper</b></td></tr>
+<tr class="separator:ab265645b319d8f916d71a1e8c15f6ae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a prepared SQL statement. </p>
@@ -270,513 +318,6 @@ template&lt;typename... Ts&gt; </div>
 
 </div>
 </div>
-<a id="a54bdc940baeb60321aae232f76e15302"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54bdc940baeb60321aae232f76e15302">&#9670;&nbsp;</a></span>bind() <span class="overload">[1/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dbpp::Statement::bind </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>The value to bind</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="ad2492267b293eca97f7842fb3cf95eba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad2492267b293eca97f7842fb3cf95eba">&#9670;&nbsp;</a></span>bind() <span class="overload">[2/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dbpp::Statement::bind </td>
-          <td>(</td>
-          <td class="paramtype">const std::optional&lt; T &gt; &amp;&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Binds an optional value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind. </p>
-<p>If the optional does not have a value, NULL will be bound instead</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The underlying type of the optional </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>The value to bind</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="ade7abff21a042ef26ad3c47e883479c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade7abff21a042ef26ad3c47e883479c3">&#9670;&nbsp;</a></span>bind() <span class="overload">[3/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dbpp::Statement::bind </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>The value to bind</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="a25fb96b82c997b75aff0fe80878d6260"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a25fb96b82c997b75aff0fe80878d6260">&#9670;&nbsp;</a></span>bind() <span class="overload">[4/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dbpp::Statement::bind </td>
-          <td>(</td>
-          <td class="paramtype">const std::vector&lt; std::uint8_t &gt; &amp;&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Binds a vector of bytes as a BLOB to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>The vector of bytes to bind as a blob</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="ad74305556983e601051f4979f4633515"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad74305556983e601051f4979f4633515">&#9670;&nbsp;</a></span>bind() <span class="overload">[5/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T , typename std::enable_if_t&lt; Detail::HasDbppBindMethodV&lt; T &gt;, int &gt;  = 0&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dbpp::Statement::bind </td>
-          <td>(</td>
-          <td class="paramtype">const T &amp;&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind. </p>
-<p>This is only possible if T has a method dbppBind(Statement&amp;) const that calls bind on the provided statement to actually bind a value.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>the type of the value to bind </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>The value to bind</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="ab6ce3709fe2ddeec8eefb435206fbbe5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6ce3709fe2ddeec8eefb435206fbbe5">&#9670;&nbsp;</a></span>bind() <span class="overload">[6/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dbpp::Statement::bind </td>
-          <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>The value to bind</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="a9887c4c68cb0fad753ff62efdeff140e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9887c4c68cb0fad753ff62efdeff140e">&#9670;&nbsp;</a></span>bind() <span class="overload">[7/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dbpp::Statement::bind </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>The value to bind</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="a1291a50dbd7aa959bf877a301c07092d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1291a50dbd7aa959bf877a301c07092d">&#9670;&nbsp;</a></span>bind() <span class="overload">[8/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dbpp::Statement::bind </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>The value to bind</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="acc677eff894b313e64d179bac2e623f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acc677eff894b313e64d179bac2e623f1">&#9670;&nbsp;</a></span>bind() <span class="overload">[9/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dbpp::Statement::bind </td>
-          <td>(</td>
-          <td class="paramtype">long long&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>The value to bind</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="a72dfe0ebcd2de042d6c4acb1eff82bb1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a72dfe0ebcd2de042d6c4acb1eff82bb1">&#9670;&nbsp;</a></span>bind() <span class="overload">[10/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dbpp::Statement::bind </td>
-          <td>(</td>
-          <td class="paramtype">long&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>The value to bind</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="a55909dab92f3339b59e5bc9638d2c2ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a55909dab92f3339b59e5bc9638d2c2ee">&#9670;&nbsp;</a></span>bind() <span class="overload">[11/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dbpp::Statement::bind </td>
-          <td>(</td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>The value to bind</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="ab61d30438f2f5e3e662641d0c9296df2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab61d30438f2f5e3e662641d0c9296df2">&#9670;&nbsp;</a></span>bind() <span class="overload">[12/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dbpp::Statement::bind </td>
-          <td>(</td>
-          <td class="paramtype">std::nullptr_t&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Binds NULL to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind. </p>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="aa2f4c9ba853442f71d557f61b4c3e914"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2f4c9ba853442f71d557f61b4c3e914">&#9670;&nbsp;</a></span>bind() <span class="overload">[13/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dbpp::Statement::bind </td>
-          <td>(</td>
-          <td class="paramtype">std::string_view&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>The value to bind</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="a29afbf343fde15c5d15eaf180f9448a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29afbf343fde15c5d15eaf180f9448a2">&#9670;&nbsp;</a></span>bind() <span class="overload">[14/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dbpp::Statement::bind </td>
-          <td>(</td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>The value to bind</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="aa74d98358b91bb6f883dc8f5116dd7b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa74d98358b91bb6f883dc8f5116dd7b1">&#9670;&nbsp;</a></span>bind() <span class="overload">[15/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dbpp::Statement::bind </td>
-          <td>(</td>
-          <td class="paramtype">unsigned long long&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>The value to bind</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="a6d2976c677724681254bbe4cb2ecbd08"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d2976c677724681254bbe4cb2ecbd08">&#9670;&nbsp;</a></span>bind() <span class="overload">[16/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dbpp::Statement::bind </td>
-          <td>(</td>
-          <td class="paramtype">unsigned long&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>The value to bind</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="a40c3de80d7ecd69940ebdf91c357b1a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40c3de80d7ecd69940ebdf91c357b1a3">&#9670;&nbsp;</a></span>bind() <span class="overload">[17/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dbpp::Statement::bind </td>
-          <td>(</td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Binds a value to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>The value to bind</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="aeb2a91add98881a2339863e88e1b25f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb2a91add98881a2339863e88e1b25f8">&#9670;&nbsp;</a></span>bindNull()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dbpp::Statement::bindNull </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Binds NULL to a placeholder (typically a question mark) in the SQL statement, and increments the index of the next placeholder to bind. </p>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
 <a id="a167e8773a2919db1bcc15bf6cb4a2cc0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a167e8773a2919db1bcc15bf6cb4a2cc0">&#9670;&nbsp;</a></span>end()</h2>
 
@@ -822,37 +363,6 @@ template&lt;typename T , typename std::enable_if_t&lt; Detail::HasDbppBindMethod
 </div><div class="memdoc">
 
 <p>Move assignment. </p>
-<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
-
-</div>
-</div>
-<a id="a6190a4a32aedc3dc084d06eceecd34af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6190a4a32aedc3dc084d06eceecd34af">&#9670;&nbsp;</a></span>reset()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename... Args&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dbpp::Statement::reset </td>
-          <td>(</td>
-          <td class="paramtype">Args...&#160;</td>
-          <td class="paramname"><em>args</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Resets the statement to its initial state, so it can be executed again. </p>
 <dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
 
 </div>

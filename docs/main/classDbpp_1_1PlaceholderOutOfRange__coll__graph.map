@@ -1,5 +1,0 @@
-<map id="Dbpp::PlaceholderOutOfRange" name="Dbpp::PlaceholderOutOfRange">
-<area shape="rect" id="node1" title="Thrown if the client tries to bind a value to a placeholder that doesn&#39;t exist." alt="" coords="5,155,224,181"/>
-<area shape="rect" id="node2" href="$classDbpp_1_1Error.html" title="Generic exception class for the dbpp library." alt="" coords="67,80,162,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="45,5,184,32"/>
-</map>

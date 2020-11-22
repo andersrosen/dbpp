@@ -92,32 +92,64 @@ $(function() {
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;defs.h&quot;</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">namespace </span>Dbpp {</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classDbpp_1_1Error.html">   32</a></span>&#160;    <span class="keyword">class </span>DBPP_EXPORTED <a class="code" href="classDbpp_1_1Error.html">Error</a> : <span class="keyword">public</span> std::runtime_error {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keyword">using</span> std::runtime_error::runtime_error;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    };</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classDbpp_1_1ErrorWithCode.html">   43</a></span>&#160;    <span class="keyword">class </span>DBPP_EXPORTED <a class="code" href="classDbpp_1_1ErrorWithCode.html">ErrorWithCode</a> : <span class="keyword">public</span> <a class="code" href="classDbpp_1_1Error.html">Error</a> {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73">   48</a></span>&#160;        <span class="keyword">const</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code" href="classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73">code</a>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classDbpp_1_1ErrorWithCode.html#a816456d31f3203561eb5d60b8f953431">   56</a></span>&#160;        <a class="code" href="classDbpp_1_1ErrorWithCode.html#a816456d31f3203561eb5d60b8f953431">ErrorWithCode</a>(<span class="keywordtype">long</span> <span class="keywordtype">long</span> errorCode, <span class="keyword">const</span> std::string &amp;message)</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        : <a class="code" href="classDbpp_1_1Error.html">Error</a>(message), code(errorCode)</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        {}</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    };</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classDbpp_1_1PlaceholderOutOfRange.html">   65</a></span>&#160;    <span class="keyword">class </span>DBPP_EXPORTED <a class="code" href="classDbpp_1_1PlaceholderOutOfRange.html">PlaceholderOutOfRange</a> : <span class="keyword">public</span> <a class="code" href="classDbpp_1_1Error.html">Error</a> {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">namespace </span>Dbpp {</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classDbpp_1_1Error.html">   33</a></span>&#160;    <span class="keyword">class </span>DBPP_EXPORTED <a class="code" href="classDbpp_1_1Error.html">Error</a> : <span class="keyword">public</span> std::runtime_error {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keyword">using</span> std::runtime_error::runtime_error;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    };</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classDbpp_1_1ErrorWithCode.html">   44</a></span>&#160;    <span class="keyword">class </span>DBPP_EXPORTED <a class="code" href="classDbpp_1_1ErrorWithCode.html">ErrorWithCode</a> : <span class="keyword">public</span> <a class="code" href="classDbpp_1_1Error.html">Error</a> {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73">   49</a></span>&#160;        <span class="keyword">const</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code" href="classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73">code</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classDbpp_1_1ErrorWithCode.html#a816456d31f3203561eb5d60b8f953431">   57</a></span>&#160;        <a class="code" href="classDbpp_1_1ErrorWithCode.html#a816456d31f3203561eb5d60b8f953431">ErrorWithCode</a>(<span class="keywordtype">long</span> <span class="keywordtype">long</span> errorCode, <span class="keyword">const</span> std::string &amp;message)</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        : <a class="code" href="classDbpp_1_1Error.html">Error</a>(message), code(errorCode)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        {}</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    };</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classDbpp_1_1TooFewParametersProvided.html">   65</a></span>&#160;    <span class="keyword">class </span>DBPP_EXPORTED <a class="code" href="classDbpp_1_1TooFewParametersProvided.html">TooFewParametersProvided</a> : <span class="keyword">public</span> <a class="code" href="classDbpp_1_1Error.html">Error</a> {</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keyword">using</span> Error::Error;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    };</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;} <span class="comment">// namespace Dbpp</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        [[nodiscard]]</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span>* what() <span class="keyword">const</span> noexcept <span class="keyword">override</span>  {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keyword">static</span> std::string msg;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            msg = std::string(Error::what()) + <span class="stringliteral">&quot;: Too few parameters were provided&quot;</span>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">return</span> msg.c_str();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    };</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="classDbpp_1_1TooManyParametersProvided.html">   79</a></span>&#160;    <span class="keyword">class </span>DBPP_EXPORTED <a class="code" href="classDbpp_1_1TooManyParametersProvided.html">TooManyParametersProvided</a> : <span class="keyword">public</span> <a class="code" href="classDbpp_1_1Error.html">Error</a> {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keyword">using</span> Error::Error;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        [[nodiscard]]</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span>* what() <span class="keyword">const</span> noexcept <span class="keyword">override</span>  {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keyword">static</span> std::string msg;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            msg = std::string(Error::what()) + <span class="stringliteral">&quot;: Too many parameters were provided&quot;</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="keywordflow">return</span> msg.c_str();</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        }</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    };</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="classDbpp_1_1UnsupportedDataToBind.html">   93</a></span>&#160;    <span class="keyword">class </span>DBPP_EXPORTED <a class="code" href="classDbpp_1_1UnsupportedDataToBind.html">UnsupportedDataToBind</a> : <span class="keyword">public</span> <a class="code" href="classDbpp_1_1Error.html">Error</a> {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keyword">using</span> Error::Error;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        [[nodiscard]]</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span>* what() <span class="keyword">const</span> noexcept <span class="keyword">override</span>  {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <span class="keyword">static</span> std::string msg;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            msg = std::string(std::string{<span class="stringliteral">&quot;Could not bind the provided value as a statement parameter: &quot;</span>} + Error::what());</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            <span class="keywordflow">return</span> msg.c_str();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    };</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;} <span class="comment">// namespace Dbpp</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassDbpp_1_1ErrorWithCode_html_a5c9bd5984373876923b64ba98d650e73"><div class="ttname"><a href="classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73">Dbpp::ErrorWithCode::code</a></div><div class="ttdeci">const long long code</div><div class="ttdef"><b>Definition:</b> Exception.h:48</div></div>
-<div class="ttc" id="aclassDbpp_1_1Error_html"><div class="ttname"><a href="classDbpp_1_1Error.html">Dbpp::Error</a></div><div class="ttdoc">Generic exception class for the dbpp library.</div><div class="ttdef"><b>Definition:</b> Exception.h:32</div></div>
-<div class="ttc" id="aclassDbpp_1_1PlaceholderOutOfRange_html"><div class="ttname"><a href="classDbpp_1_1PlaceholderOutOfRange.html">Dbpp::PlaceholderOutOfRange</a></div><div class="ttdoc">Thrown if the client tries to bind a value to a placeholder that doesn't exist.</div><div class="ttdef"><b>Definition:</b> Exception.h:65</div></div>
-<div class="ttc" id="aclassDbpp_1_1ErrorWithCode_html_a816456d31f3203561eb5d60b8f953431"><div class="ttname"><a href="classDbpp_1_1ErrorWithCode.html#a816456d31f3203561eb5d60b8f953431">Dbpp::ErrorWithCode::ErrorWithCode</a></div><div class="ttdeci">ErrorWithCode(long long errorCode, const std::string &amp;message)</div><div class="ttdef"><b>Definition:</b> Exception.h:56</div></div>
-<div class="ttc" id="aclassDbpp_1_1ErrorWithCode_html"><div class="ttname"><a href="classDbpp_1_1ErrorWithCode.html">Dbpp::ErrorWithCode</a></div><div class="ttdoc">Exception class with a driver-specific numeric code.</div><div class="ttdef"><b>Definition:</b> Exception.h:43</div></div>
+<div class="ttc" id="aclassDbpp_1_1ErrorWithCode_html_a5c9bd5984373876923b64ba98d650e73"><div class="ttname"><a href="classDbpp_1_1ErrorWithCode.html#a5c9bd5984373876923b64ba98d650e73">Dbpp::ErrorWithCode::code</a></div><div class="ttdeci">const long long code</div><div class="ttdef"><b>Definition:</b> Exception.h:49</div></div>
+<div class="ttc" id="aclassDbpp_1_1Error_html"><div class="ttname"><a href="classDbpp_1_1Error.html">Dbpp::Error</a></div><div class="ttdoc">Generic exception class for the dbpp library.</div><div class="ttdef"><b>Definition:</b> Exception.h:33</div></div>
+<div class="ttc" id="aclassDbpp_1_1TooFewParametersProvided_html"><div class="ttname"><a href="classDbpp_1_1TooFewParametersProvided.html">Dbpp::TooFewParametersProvided</a></div><div class="ttdoc">Thrown if the client tries to bind too few parameters to a statement.</div><div class="ttdef"><b>Definition:</b> Exception.h:65</div></div>
+<div class="ttc" id="aclassDbpp_1_1TooManyParametersProvided_html"><div class="ttname"><a href="classDbpp_1_1TooManyParametersProvided.html">Dbpp::TooManyParametersProvided</a></div><div class="ttdoc">Thrown if the client tries to bind too many parameters to a statement.</div><div class="ttdef"><b>Definition:</b> Exception.h:79</div></div>
+<div class="ttc" id="aclassDbpp_1_1ErrorWithCode_html_a816456d31f3203561eb5d60b8f953431"><div class="ttname"><a href="classDbpp_1_1ErrorWithCode.html#a816456d31f3203561eb5d60b8f953431">Dbpp::ErrorWithCode::ErrorWithCode</a></div><div class="ttdeci">ErrorWithCode(long long errorCode, const std::string &amp;message)</div><div class="ttdef"><b>Definition:</b> Exception.h:57</div></div>
+<div class="ttc" id="aclassDbpp_1_1ErrorWithCode_html"><div class="ttname"><a href="classDbpp_1_1ErrorWithCode.html">Dbpp::ErrorWithCode</a></div><div class="ttdoc">Exception class with a driver-specific numeric code.</div><div class="ttdef"><b>Definition:</b> Exception.h:44</div></div>
+<div class="ttc" id="aclassDbpp_1_1UnsupportedDataToBind_html"><div class="ttname"><a href="classDbpp_1_1UnsupportedDataToBind.html">Dbpp::UnsupportedDataToBind</a></div><div class="ttdoc">Thrown if the client tries to bind a value that's not supported by the database.</div><div class="ttdef"><b>Definition:</b> Exception.h:93</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
