@@ -112,7 +112,7 @@ TEST_CASE("Statement", "[api]") {
 
         auto sharedInt = std::make_shared<int>(48);
         auto sharedReal = std::shared_ptr<double>();
-        insertSt.rebind(std::weak_ptr(sharedInt), std::weak_ptr(sharedReal));
+        insertSt.rebind(std::weak_ptr<int>(sharedInt), std::weak_ptr<double>(sharedReal));
         id = insertSt.step().getInsertId();
         auto [intVal7, realVal7] = db.get<std::optional<int>, std::optional<double>>("SELECT intcol, realcol FROM testing_bind WHERE id = ?", id);
         REQUIRE(intVal7.has_value());
