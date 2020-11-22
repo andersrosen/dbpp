@@ -19,20 +19,24 @@
 
 #include "../defs.h"
 
-#include <memory>
+#include "Statement.h"
 
 namespace Dbpp::Adapter {
 
-class Statement;
-using StatementPtr = std::shared_ptr<Statement>;
+/// \brief Interface class for database adapters
+///
+/// \since v1.0.0
+class PreparedStatement : public Statement {
+public:
+    /// \brief Resets the statement to its original state, while keeping the existing bindings
+    ///
+    /// \since v1.0.0
+    virtual void reset() = 0;
 
-class PreparedStatement;
-using PreparedStatementPtr = std::shared_ptr<PreparedStatement>;
-
-class Connection;
-using ConnectionPtr = std::shared_ptr<Connection>;
-
-class Result;
-using ResultPtr = std::shared_ptr<Result>;
+    /// \brief Resets the statement and clears the existing placeholder bindings of the statement
+    ///
+    /// \since v1.0.0
+    virtual void resetAndClearBindings() = 0;
+};
 
 } // namespace Dbpp::Adapter

@@ -31,116 +31,119 @@ namespace Dbpp::Adapter {
 /// \since v1.0.0
 class Statement {
 public:
-    /// \brief Binds NULL to a placeholder (typically a question mark) in the SQL statement
+    /// \brief Called before placeholder parameters will be bound
     ///
-    /// \param placeholderIndex The zero-based index of the placeholder to bind
+    /// This method is called by Statement objects before calling bindNull() or bind() repeatedly for each
+    /// placeholder parameter. This can be used by the adapter to do any preparation needed.
+    ///
+    /// \param providedParameterCount The number of parameters that were provided
+    virtual void preBind(std::size_t providedParameterCount) = 0;
+
+    /// \brief Called after placeholder parameters have been bound
+    ///
+    /// This method is called the Statement objects after calls to bind() or bindNull(). This function
+    /// will be called even if there was an exception while binding the parameters, in which case the
+    /// boundParameterCount argument will be less than providedParameterCount.
+    ///
+    /// \param providedParameterCount The number of parameters that will be bound
+    /// \param boundParameterCount The number of parameters that were bound before the call to this method
+    virtual void postBind(std::size_t providedParameterCount, std::size_t boundParameterCount) = 0;
+
+    /// \brief Binds NULL to the next placeholder (typically a question mark) in the SQL statement
     ///
     /// \since v1.0.0
-    virtual void bindNull(int placeholderIndex) = 0;
+    virtual void bindNull() = 0;
 
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement
+    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
     ///
     /// \param value The value to bind
-    /// \param placeholderIndex The zero based index of the placeholder to bind
     ///
     /// \since v1.0.0
-    virtual void bind(short value, int placeholderIndex) = 0;
+    virtual void bind(short value) = 0;
 
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement
+    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
     ///
     /// \param value The value to bind
-    /// \param placeholderIndex The zero based index of the placeholder to bind
     ///
     /// \since v1.0.0
-    virtual void bind(int value, int placeholderIndex) = 0;
+    virtual void bind(int value) = 0;
 
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement
+    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
     ///
     /// \param value The value to bind
-    /// \param placeholderIndex The zero based index of the placeholder to bind
     ///
     /// \since v1.0.0
-    virtual void bind(long value, int placeholderIndex) = 0;
+    virtual void bind(long value) = 0;
 
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement
+    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
     ///
     /// \param value The value to bind
-    /// \param placeholderIndex The zero based index of the placeholder to bind
     ///
     /// \since v1.0.0
-    virtual void bind(long long value, int placeholderIndex) = 0;
+    virtual void bind(long long value) = 0;
 
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement
+    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
     ///
     /// \param value The value to bind
-    /// \param placeholderIndex The zero based index of the placeholder to bind
     ///
     /// \since v1.0.0
-    virtual void bind(unsigned short value, int placeholderIndex) = 0;
+    virtual void bind(unsigned short value) = 0;
 
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement
+    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
     ///
     /// \param value The value to bind
-    /// \param placeholderIndex The zero based index of the placeholder to bind
     ///
     /// \since v1.0.0
-    virtual void bind(unsigned int value, int placeholderIndex) = 0;
+    virtual void bind(unsigned int value) = 0;
 
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement
+    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
     ///
     /// \param value The value to bind
-    /// \param placeholderIndex The zero based index of the placeholder to bind
     ///
     /// \since v1.0.0
-    virtual void bind(unsigned long value, int placeholderIndex) = 0;
+    virtual void bind(unsigned long value) = 0;
 
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement
+    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
     ///
     /// \param value The value to bind
-    /// \param placeholderIndex The zero based index of the placeholder to bind
     ///
     /// \since v1.0.0
-    virtual void bind(unsigned long long value, int placeholderIndex) = 0;
+    virtual void bind(unsigned long long value) = 0;
 
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement
+    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
     ///
     /// \param value The value to bind
-    /// \param placeholderIndex The zero based index of the placeholder to bind
     ///
     /// \since v1.0.0
-    virtual void bind(float value, int placeholderIndex) = 0;
+    virtual void bind(float value) = 0;
 
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement
+    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
     ///
     /// \param value The value to bind
-    /// \param placeholderIndex The zero based index of the placeholder to bind
     ///
     /// \since v1.0.0
-    virtual void bind(double value, int placeholderIndex) = 0;
+    virtual void bind(double value) = 0;
 
-    /// \brief Binds a string to a placeholder (typically a question mark) in the SQL statement
+    /// \brief Binds a string to the next placeholder (typically a question mark) in the SQL statement
     ///
     /// \param value The value to bind
-    /// \param placeholderIndex The zero based index of the placeholder to bind
     ///
     /// \since v1.0.0
-    virtual void bind(const std::string &value, int placeholderIndex) = 0;
+    virtual void bind(const std::string &value) = 0;
 
-    /// \brief Binds a string to a placeholder (typically a question mark) in the SQL statement
+    /// \brief Binds a string to the next placeholder (typically a question mark) in the SQL statement
     ///
     /// \param value The value to bind
-    /// \param placeholderIndex The zero based index of the placeholder to bind
     ///
     /// \since v1.0.0
-    virtual void bind(std::string_view value, int placeholderIndex) = 0;
+    virtual void bind(std::string_view value) = 0;
 
-    /// \brief Binds a vector of bytes as a blob to a placeholder (typically a question mark) in the SQL statement
+    /// \brief Binds a sequence of bytes as a blob to the next placeholder (typically a question mark) in the SQL statement
     ///
     /// \param blobValue The bytes to bind
-    /// \param placeholderIndex The zero based index of the placeholder to bind
     ///
     /// \since v1.0.0
-    virtual void bind(const std::vector<unsigned char> &blobValue, int placeholderIndex) = 0;
+    virtual void bind(const std::pair<const unsigned char*, std::size_t>& bytes) = 0;
 
     /// \brief Returns the SQL statement string represented by this object
     ///
@@ -155,16 +158,6 @@ public:
     /// \since v1.0.0
     [[nodiscard]]
     virtual ResultPtr step() = 0;
-
-    /// \brief Resets the statement to its original state, while keeping the existing bindings
-    ///
-    /// \since v1.0.0
-    virtual void reset() = 0;
-
-    /// \brief Clears the existing bindings of the statement
-    ///
-    /// \since v1.0.0
-    virtual void clearBindings() = 0;
 };
 
 } // namespace Dbpp::Adapter

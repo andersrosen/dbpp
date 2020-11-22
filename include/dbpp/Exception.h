@@ -20,6 +20,7 @@
 #include "defs.h"
 
 #include <stdexcept>
+#include <string>
 
 namespace Dbpp {
     /// \brief Generic exception class for the dbpp library
@@ -58,12 +59,46 @@ namespace Dbpp {
         {}
     };
 
-    /// \brief Thrown if the client tries to bind a value to a placeholder that
-    /// doesn't exist
+    /// \brief Thrown if the client tries to bind too few parameters to a statement
     ///
     /// \since v1.0.0
-    class DBPP_EXPORTED PlaceholderOutOfRange : public Error {
+    class DBPP_EXPORTED TooFewParametersProvided : public Error {
         using Error::Error;
+
+        [[nodiscard]]
+        const char* what() const noexcept override  {
+            static std::string msg;
+            msg = std::string(Error::what()) + ": Too few parameters were provided";
+            return msg.c_str();
+        }
+    };
+
+    /// \brief Thrown if the client tries to bind too many parameters to a statement
+    ///
+    /// \since v1.0.0
+    class DBPP_EXPORTED TooManyParametersProvided : public Error {
+        using Error::Error;
+
+        [[nodiscard]]
+        const char* what() const noexcept override  {
+            static std::string msg;
+            msg = std::string(Error::what()) + ": Too many parameters were provided";
+            return msg.c_str();
+        }
+    };
+
+    /// \brief Thrown if the client tries to bind a value that's not supported by the database
+    ///
+    /// \since v1.0.0
+    class DBPP_EXPORTED UnsupportedDataToBind : public Error {
+        using Error::Error;
+
+        [[nodiscard]]
+        const char* what() const noexcept override  {
+            static std::string msg;
+            msg = std::string(std::string{"Could not bind the provided value as a statement parameter: "} + Error::what());
+            return msg.c_str();
+        }
     };
 
 } // namespace Dbpp

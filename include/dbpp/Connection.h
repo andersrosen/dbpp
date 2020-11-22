@@ -21,7 +21,7 @@
 
 #include "adapter/Types.h"
 #include "MetaFunctions.h"
-#include "Statement.h"
+#include "PreparedStatement.h"
 
 #include <string>
 #include <string_view>
@@ -45,7 +45,11 @@ class DBPP_EXPORTED Connection {
 private:
     Adapter::ConnectionPtr impl_;
 
+    [[nodiscard]]
     Statement createStatement(std::string_view sql) const;
+
+    [[nodiscard]]
+    PreparedStatement createPreparedStatement(std::string_view sql) const;
 
 public:
     /// \brief Construct a connection object
@@ -72,15 +76,25 @@ public:
     /// \brief Creates a new statement for the supplied string
     ///
     /// \param sql An SQL statement string
-    /// \param args A list of values to be bound to placeholders in the SQL statement
-    /// \return A statement object
+    /// \param args A list of values to be bound to placeholders in the SQL statement string
+    /// \return A Statement object
     ///
     /// \since v1.0.0
     template <typename... Args>
-    Statement prepare(std::string_view sql, Args... args) {
+    Statement statement(std::string_view sql, Args&&... args) {
         Statement st = createStatement(sql);
-        (st.bind(args), ...);
+        st.bind(std::forward<Args>(args)...);
         return st;
+    }
+
+    /// \brief Creates a new prepared statement for the supplied string
+    ///
+    /// \param sql An SQL statement string
+    /// \return A PreparedStatement object
+    ///
+    /// \since v1.0.0
+    PreparedStatement preparedStatement(std::string_view sql) {
+        return createPreparedStatement(sql);
     }
 
     /// \brief Creates and executes an SQL statement
@@ -95,17 +109,15 @@ public:
     ///
     /// \since v1.0.0
     template <typename... Args>
-    Result exec(std::string_view sql, Args... args) {
-        Statement st = createStatement(sql);
-        (st.bind(args), ...);
-        return st.step();
+    Result exec(std::string_view sql, Args&&... args) {
+        return statement(sql, std::forward<Args>(args)...).step();
     }
 
 #ifdef DOXYGEN_SHOULD_SEE_THIS
     /// \brief Creates and executes an SQL statement, returning a single value
     ///
     /// This is a convenience method that can be used when it is expected that the
-    /// statement returns exactly one value.
+    /// statement returns exactly one row with a single value.
     ///
     /// \tparam T The type of the return value
     /// \tparam Args... The types of the additional arguments for binding values to placeholders (should be deduced automatically)
@@ -159,8 +171,8 @@ public:
     /// \since v1.0.0
     template <typename... ReturnType, typename... Args>
     [[nodiscard]]
-    Detail::ScalarOrTupleT<ReturnType...> get(std::string_view sql, Args... args) {
-        auto row = exec(sql, args...);
+    Detail::ScalarOrTupleT<ReturnType...> get(std::string_view sql, Args&&... args) {
+        auto row = exec(sql, std::forward<Args>(args)...);
         if constexpr(Detail::IsScalarV<ReturnType...>) {
             // Return a single value
             if (row.columnCount() != 1)
@@ -186,8 +198,8 @@ public:
     /// \since v1.0.0
     template <typename T, typename... Args>
     [[nodiscard]]
-    std::optional<T> getOptional(std::string_view sql, Args... args) {
-        auto row = exec(sql, args...);
+    std::optional<T> getOptional(std::string_view sql, Args&&... args) {
+        auto row = exec(sql, std::forward<Args>(args)...);
         if (row.columnCount() != 1)
             throw Dbpp::Error(std::string("getOptional() expects a single column Result. Statement: ") + std::string{sql});
         return row.template getOptional<T>(0);

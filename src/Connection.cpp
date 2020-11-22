@@ -20,8 +20,14 @@
 
 namespace Dbpp {
 
-Statement Connection::createStatement(std::string_view sql) const {
-    return Statement(impl_->prepare(sql));
+PreparedStatement
+Connection::createPreparedStatement(std::string_view sql) const {
+    return PreparedStatement(impl_->createPreparedStatement(sql));
+}
+
+Statement
+Connection::createStatement(std::string_view sql) const {
+    return Statement(impl_->createStatement(sql));
 }
 
 Connection::Connection(Adapter::ConnectionPtr c)

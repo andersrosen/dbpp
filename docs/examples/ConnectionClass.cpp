@@ -15,7 +15,7 @@ int main() {
     db.exec("INSERT INTO employee (name) VALUES (?)", "Jason Bourne");
     db.exec("INSERT INTO employee (name) VALUES (?)", "Carl Hamilton");
 
-    for (auto &&row : db.prepare("SELECT name, id FROM employee WHERE name NOT LIKE '%Hamilton'"))
+    for (auto &&row : db.statement("SELECT name, id FROM employee WHERE name NOT LIKE '%Hamilton'"))
         std::cout << "Agent " << row.get<int>("id") << ": " << row.get<std::string>("name") << std::endl;
 
     return 0;
