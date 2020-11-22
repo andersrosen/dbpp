@@ -64,6 +64,9 @@ bool Result::get(int index, unsigned long long& out) { return doGet(impl_, out, 
 bool Result::get(int index, float& out) { return doGet(impl_, out, index); }
 bool Result::get(int index, double& out) { return doGet(impl_, out, index); }
 bool Result::get(int index, std::string& out) { return doGet(impl_, out, index); }
+bool Result::get(int index, std::vector<std::byte>& out) { return doGet(impl_, out, index); }
+bool Result::get(int index, std::vector<char>& out) { return doGet(impl_, out, index); }
+bool Result::get(int index, std::vector<signed char>& out) { return doGet(impl_, out, index); }
 bool Result::get(int index, std::vector<unsigned char>& out) { return doGet(impl_, out, index); }
 bool Result::get(int index, std::filesystem::path& out) { return doGet(impl_, out, index); }
 

@@ -144,7 +144,7 @@ TEST_CASE("Result", "[api]") {
         const int intVal = 14;
         const float realVal = 3.14;
         const std::string strVal = "/tmp/a/string/thats/also/a/path";
-        std::vector<std::uint8_t> blobVal(1024);
+        std::vector<unsigned char> blobVal(1024);
         std::iota(blobVal.begin(), blobVal.end(), 0);
 
         const auto intId = db.exec("INSERT INTO get_test (intval) VALUES (?)", intVal).getInsertId();
@@ -218,10 +218,11 @@ TEST_CASE("Result", "[api]") {
             auto blobRes = db.exec("SELECT blobval FROM get_test WHERE id = ?", intId);
             REQUIRE_FALSE(blobRes.empty());
 
-            std::vector<std::uint8_t> blobOut(10);
+            std::vector<unsigned char> blobOut(10);
             std::iota(blobOut.begin(), blobOut.end(), 0);
+            std::vector expectedBlob = blobOut;
             REQUIRE_FALSE(blobRes.get(0, blobOut));
-            REQUIRE(blobOut == std::vector<std::uint8_t>{0, 1, 2, 3, 4, 5, 6, 7, 8, 9});
+            REQUIRE(blobOut == expectedBlob);
         }
 
         SECTION("Return true if value is not null, and set the output variable")
@@ -286,7 +287,7 @@ TEST_CASE("Result", "[api]") {
             auto blobRes = db.exec("SELECT blobval FROM get_test WHERE id = ?", blobId);
             REQUIRE_FALSE(blobRes.empty());
 
-            std::vector<std::uint8_t> blobOut(10);
+            std::vector<unsigned char> blobOut(10);
             std::iota(blobOut.begin(), blobOut.end(), 0);
             REQUIRE(blobRes.get(0, blobOut) == true);
             REQUIRE(blobOut == blobVal);

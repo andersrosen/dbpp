@@ -212,6 +212,48 @@ public:
     ///
     /// \since v1.0.0
     [[nodiscard]]
+    virtual bool getColumn(int columnIndex, std::vector<std::byte>& outputVariable) = 0;
+
+    /// \brief Retrieves a value from the result
+    ///
+    /// Retrieves a blob value from the result. If it was NULL, the
+    /// output variable will not be touched, and false is returned.
+    ///
+    /// \param columnIndex The zero-based index of the value
+    /// \param outputVariable Output variable where the blob will be
+    ///        stored unless it was NULL in the result
+    /// \return False if the value was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    [[nodiscard]]
+    virtual bool getColumn(int columnIndex, std::vector<char>& outputVariable) = 0;
+
+    /// \brief Retrieves a value from the result
+    ///
+    /// Retrieves a blob value from the result. If it was NULL, the
+    /// output variable will not be touched, and false is returned.
+    ///
+    /// \param columnIndex The zero-based index of the value
+    /// \param outputVariable Output variable where the blob will be
+    ///        stored unless it was NULL in the result
+    /// \return False if the value was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    [[nodiscard]]
+    virtual bool getColumn(int columnIndex, std::vector<signed char>& outputVariable) = 0;
+
+    /// \brief Retrieves a value from the result
+    ///
+    /// Retrieves a blob value from the result. If it was NULL, the
+    /// output variable will not be touched, and false is returned.
+    ///
+    /// \param columnIndex The zero-based index of the value
+    /// \param outputVariable Output variable where the blob will be
+    ///        stored unless it was NULL in the result
+    /// \return False if the value was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    [[nodiscard]]
     virtual bool getColumn(int columnIndex, std::vector<unsigned char>& outputVariable) = 0;
 
     /// \brief Checks if the result is empty

@@ -281,6 +281,45 @@ public:
     /// \return False if the value was NULL, true otherwise
     ///
     /// \since v1.0.0
+    bool get(int index, std::vector<std::byte>& out);
+
+    /// \brief Retrieves a value from the result
+    ///
+    /// Retrieves a value from the result. If the value was NULL, the
+    /// output variable will not be touched, and false is returned.
+    ///
+    /// \param index The zero-based index of the value
+    /// \param out Output variable where the value will be stored unless
+    ///            it was NULL in the result
+    /// \return False if the value was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    bool get(int index, std::vector<char>& out);
+
+    /// \brief Retrieves a value from the result
+    ///
+    /// Retrieves a value from the result. If the value was NULL, the
+    /// output variable will not be touched, and false is returned.
+    ///
+    /// \param index The zero-based index of the value
+    /// \param out Output variable where the value will be stored unless
+    ///            it was NULL in the result
+    /// \return False if the value was NULL, true otherwise
+    ///
+    /// \since v1.0.0
+    bool get(int index, std::vector<signed char>& out);
+
+    /// \brief Retrieves a value from the result
+    ///
+    /// Retrieves a value from the result. If the value was NULL, the
+    /// output variable will not be touched, and false is returned.
+    ///
+    /// \param index The zero-based index of the value
+    /// \param out Output variable where the value will be stored unless
+    ///            it was NULL in the result
+    /// \return False if the value was NULL, true otherwise
+    ///
+    /// \since v1.0.0
     bool get(int index, std::vector<unsigned char>& out);
 
     /// \brief Retrieves a value from the result
