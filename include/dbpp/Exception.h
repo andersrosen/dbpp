@@ -20,6 +20,7 @@
 #include "defs.h"
 
 #include <stdexcept>
+#include <string>
 
 namespace Dbpp {
     /// \brief Generic exception class for the dbpp library
