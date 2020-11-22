@@ -102,16 +102,20 @@ private:
         return true;
     }
 
-    bool doGetBlob(std::vector<unsigned char>& var, int index = -1) {
+    template <typename T>
+    bool doGetBlob(std::vector<T>& var, int index = -1) {
+        using ByteT = T;
+        using SizeT = typename std::vector<T>::size_type;
+
         if (index < 0)
             index = ++colIndex_;
         if (isNull(index))
             return false;
 
-        const auto* datap = static_cast<const unsigned char *>(sqlite3_column_blob(stmt_.get(), index));
+        const auto* datap = reinterpret_cast<const ByteT *>(sqlite3_column_blob(stmt_.get(), index)); // NOLINT
         const auto datasize = sqlite3_column_bytes(stmt_.get(), index);
         var.clear();
-        var.reserve(static_cast<std::vector<unsigned char>::size_type>(datasize));
+        var.reserve(static_cast<SizeT>(datasize));
         var.insert(var.end(), datap, datap + datasize); // NOLINT
         return true;
     }
@@ -146,9 +150,10 @@ public:
         return true;
     }
 
-    bool getColumn(int index, std::vector<unsigned char>& var) override {
-        return doGetBlob(var, index);
-    }
+    bool getColumn(int index, std::vector<std::byte>& var) override { return doGetBlob(var, index); }
+    bool getColumn(int index, std::vector<char>& var) override { return doGetBlob(var, index); }
+    bool getColumn(int index, std::vector<unsigned char>& var) override { return doGetBlob(var, index); }
+    bool getColumn(int index, std::vector<signed char>& var) override { return doGetBlob(var, index); }
 
     [[nodiscard]]
     bool empty() const override {
