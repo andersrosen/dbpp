@@ -96,7 +96,8 @@ protected:
     Adapter::StatementPtr impl_;
 
 public:
-    using iterator = StatementIterator; // NOLINT
+    using Iterator = StatementIterator;
+    using iterator = Iterator;
 
     ~Statement() = default;
 
@@ -249,7 +250,8 @@ class StatementTupleWrapper
     {}
 
 public:
-    using iterator = StatementTupleIterator<Ts...>; // NOLINT
+    using Iterator = StatementTupleIterator<Ts...>;
+    using iterator = Iterator;
 
     /// \brief Returns an iterator to the first result
     ///
@@ -279,7 +281,8 @@ private:
     explicit StatementIterator(Statement* statement);
 
 public:
-    using value_type = Result; // NOLINT
+    using ValueType = Result;
+    using value_type = ValueType;
 
     ~StatementIterator() = default;
 
