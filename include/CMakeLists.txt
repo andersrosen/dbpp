@@ -10,8 +10,10 @@ target_sources(dbpp PRIVATE
     dbpp/Exception.h
     dbpp/MetaFunctions.h
     dbpp/Result.h
+    dbpp/PreparedStatement.h
     dbpp/Statement.h
     dbpp/adapter/Connection.h
+    dbpp/adapter/PreparedStatement.h
     dbpp/adapter/Result.h
     dbpp/adapter/Statement.h
     dbpp/adapter/Types.h

@@ -245,20 +245,6 @@ TEST_CASE("Statement", "[api]") {
         REQUIRE(count == 1);
     }
 
-    SECTION("reset()") {
-        auto st = db.statement("SELECT name FROM person WHERE id = ?", persons.johnDoe().id);
-        auto res = st.step();
-        REQUIRE(res.get<std::string>(0) == persons.johnDoe().name);
-
-        st.reset();
-        auto res2 = st.step();
-        REQUIRE(res2.get<std::string>(0) == persons.johnDoe().name);
-
-        st.reset(persons.janeDoe().id);
-        auto res3 = st.step();
-        REQUIRE(res3.get<std::string>(0) == persons.janeDoe().name);
-    }
-
     SECTION("sql()") {
         auto st = db.statement("SELECT * FROM person WHERE age = ?", persons.janeDoe().id);
         REQUIRE(st.sql() == "SELECT * FROM person WHERE age = ?");
@@ -360,5 +346,26 @@ TEST_CASE("Statement iteration", "[api]") {
         // Dereferencing using operator -> can't be tested, since the only
         // members in std::tuple are assignment and swap, and they require the
         // tuple to not be const
+    }
+}
+
+TEST_CASE("PreparedStatement", "[api]") {
+    Persons persons;
+    persons.populate();
+    Connection& db = persons.db;
+
+    SECTION("reset()") {
+        auto st = db.preparedStatement("SELECT name FROM person WHERE id = ?");
+        st.rebind(persons.johnDoe().id);
+        auto res = st.step();
+        REQUIRE(res.get<std::string>(0) == persons.johnDoe().name);
+
+        st.reset();
+        auto res2 = st.step();
+        REQUIRE(res2.get<std::string>(0) == persons.johnDoe().name);
+
+        st.rebind(persons.janeDoe().id);
+        auto res3 = st.step();
+        REQUIRE(res3.get<std::string>(0) == persons.janeDoe().name);
     }
 }

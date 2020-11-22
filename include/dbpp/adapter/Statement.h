@@ -155,16 +155,6 @@ public:
     /// \since v1.0.0
     [[nodiscard]]
     virtual ResultPtr step() = 0;
-
-    /// \brief Resets the statement to its original state, while keeping the existing bindings
-    ///
-    /// \since v1.0.0
-    virtual void reset() = 0;
-
-    /// \brief Clears the existing bindings of the statement
-    ///
-    /// \since v1.0.0
-    virtual void clearBindings() = 0;
 };
 
 } // namespace Dbpp::Adapter

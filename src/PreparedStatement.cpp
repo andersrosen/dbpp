@@ -15,24 +15,23 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
 // USA
 
-#pragma once
+#include "dbpp/PreparedStatement.h"
+#include "dbpp/adapter/PreparedStatement.h"
 
-#include "../defs.h"
+namespace Dbpp {
 
-#include <memory>
+PreparedStatement::PreparedStatement(Adapter::PreparedStatementPtr p)
+: Statement(p) {
+}
 
-namespace Dbpp::Adapter {
+void
+PreparedStatement::resetAndClearBindings() {
+    static_cast<Adapter::PreparedStatement*>(impl_.get())->resetAndClearBindings(); // NOLINT
+}
 
-class Statement;
-using StatementPtr = std::shared_ptr<Statement>;
+void
+PreparedStatement::reset() {
+    static_cast<Adapter::PreparedStatement*>(impl_.get())->reset(); // NOLINT
+}
 
-class PreparedStatement;
-using PreparedStatementPtr = std::shared_ptr<PreparedStatement>;
-
-class Connection;
-using ConnectionPtr = std::shared_ptr<Connection>;
-
-class Result;
-using ResultPtr = std::shared_ptr<Result>;
-
-} // namespace Dbpp::Adapter
+} // namespace Dbpp

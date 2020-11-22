@@ -64,14 +64,12 @@ class DBPP_EXPORTED Statement {
 
     friend class Connection;
 
-private:
+protected:
     Adapter::StatementPtr impl_;
     int placeholderPosition_ = 0;
 
     void doReset();
     void clearBindings();
-
-    explicit Statement(Adapter::StatementPtr p);
 
 public:
     using iterator = StatementIterator; // NOLINT
@@ -270,18 +268,6 @@ public:
     [[nodiscard]]
     Result step();
 
-    /// \brief Resets the statement to its initial state, so it can be executed again
-    ///
-    /// \since v1.0.0
-    template <typename... Args>
-    void reset(Args... args)
-    {
-        doReset();
-        if constexpr(sizeof...(args) > 0)
-            clearBindings();
-        (bind(args), ...);
-    }
-
     /// \brief Allows retrieving results as tuples
     ///
     /// \tparam Ts The types of the columns in the result
@@ -293,6 +279,10 @@ public:
     StatementTupleWrapper<Ts...> as() && {
         return StatementTupleWrapper<Ts...>(std::move(*this));
     }
+
+protected:
+
+    explicit Statement(Adapter::StatementPtr p);
 };
 
 /// \brief A class that wraps Statement objects, to allow iteration over tuples instead of Result objects

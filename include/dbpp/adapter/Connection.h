@@ -31,10 +31,21 @@ namespace Dbpp::Adapter {
 /// \since v1.0.0
 class DBPP_EXPORTED Connection {
 public:
-    /// \brief Creates a new statement for the supplied string
+    /// \brief Creates a new prepared statement for the supplied string
+    ///
+    /// \param sql An SQL statement string
     ///
     /// \since v1.0.0
-    virtual StatementPtr prepare(std::string_view sql) = 0;
+    [[nodiscard]]
+    virtual PreparedStatementPtr createPreparedStatement(std::string_view sql) = 0;
+
+    /// \brief Creates a new statement for the supplied string
+    ///
+    /// \param sql An SQL statement string
+    ///
+    /// \since v1.0.0
+    [[nodiscard]]
+    virtual StatementPtr createStatement(std::string_view sql) = 0;
 
     /// \brief Begins a transaction
     ///

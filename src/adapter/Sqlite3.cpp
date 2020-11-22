@@ -20,8 +20,9 @@
 #include "dbpp/Sqlite3.h"
 #include "dbpp/adapter/Connection.h"
 #include "dbpp/adapter/Result.h"
-#include "dbpp/adapter/Statement.h"
+#include "dbpp/adapter/PreparedStatement.h"
 
+#include <cassert>
 #include <filesystem>
 #include <functional>
 #include <limits>
@@ -194,7 +195,7 @@ public:
     }
 };
 
-class Statement final : public Adapter::Statement {
+class Statement final : public Adapter::PreparedStatement {
 private:
     Sqlite3HandleT connectionHandle_;
     StmtHandleT handle_;
@@ -285,11 +286,12 @@ public:
         throwOnError(res, "Failed to reset statement");
     }
 
-    void clearBindings() override {
-        int res = sqlite3_clear_bindings(handle_.get());
+    void resetAndClearBindings() override {
+        int res = sqlite3_reset(handle_.get());
+        throwOnError(res, "Failed to reset statement");
+        res = sqlite3_clear_bindings(handle_.get());
         throwOnError(res, "Failed to clear statement bindings");
     }
-
 };
 
 class Connection final : public Adapter::Connection {
@@ -318,22 +320,25 @@ public:
     }
 
     void begin() override {
-        auto res = prepare("BEGIN")->step();
+        auto res = createStatement("BEGIN")->step();
         (void) res;
     }
 
     void commit() override {
-        auto res = prepare("COMMIT")->step();
+        auto res = createStatement("COMMIT")->step();
         (void) res;
     }
 
     void rollback() override {
-        auto res = prepare("ROLLBACK")->step();
+        auto res = createStatement("ROLLBACK")->step();
         (void) res;
     }
 
-    [[nodiscard]]
-    Adapter::StatementPtr prepare(std::string_view sql) override {
+    [[nodiscard]] Adapter::PreparedStatementPtr createPreparedStatement(std::string_view sql) override {
+        return std::make_shared<Statement>(handle_, sql);
+    }
+
+    [[nodiscard]] Adapter::StatementPtr createStatement(std::string_view sql) override {
         return std::make_shared<Statement>(handle_, sql);
     }
 

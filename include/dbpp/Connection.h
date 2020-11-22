@@ -21,7 +21,7 @@
 
 #include "adapter/Types.h"
 #include "MetaFunctions.h"
-#include "Statement.h"
+#include "PreparedStatement.h"
 
 #include <string>
 #include <string_view>
@@ -45,7 +45,11 @@ class DBPP_EXPORTED Connection {
 private:
     Adapter::ConnectionPtr impl_;
 
+    [[nodiscard]]
     Statement createStatement(std::string_view sql) const;
+
+    [[nodiscard]]
+    PreparedStatement createPreparedStatement(std::string_view sql) const;
 
 public:
     /// \brief Construct a connection object
@@ -81,6 +85,16 @@ public:
         Statement st = createStatement(sql);
         (st.bind(args), ...);
         return st;
+    }
+
+    /// \brief Creates a new prepared statement for the supplied string
+    ///
+    /// \param sql An SQL statement string
+    /// \return A PreparedStatement object
+    ///
+    /// \since v1.0.0
+    PreparedStatement preparedStatement(std::string_view sql) {
+        return createPreparedStatement(sql);
     }
 
     /// \brief Creates and executes an SQL statement

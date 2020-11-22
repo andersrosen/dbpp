@@ -20,15 +20,6 @@
 
 namespace Dbpp {
 
-void Statement::doReset() {
-    impl_->reset();
-}
-
-void Statement::clearBindings() {
-    impl_->clearBindings();
-    placeholderPosition_ = 0;
-}
-
 StatementIterator::StatementIterator(Statement* statement)
         : stmt_(statement), res_(statement->step()) {
     if (res_.empty()) {
