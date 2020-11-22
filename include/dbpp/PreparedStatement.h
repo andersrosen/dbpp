@@ -54,7 +54,6 @@ public:
     template <typename... Ts>
     void rebind(Ts&&... parameters) {
         resetAndClearBindings();
-        placeholderPosition_ = 0;
         bind(std::forward<Ts>(parameters)...);
     }
 };

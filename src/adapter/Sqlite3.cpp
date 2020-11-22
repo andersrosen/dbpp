@@ -200,28 +200,27 @@ private:
     Sqlite3HandleT connectionHandle_;
     StmtHandleT handle_;
     ColInfoPtr colInfo_;
+    int placeholderPosition_ = 0;
 
     static void throwOnBindError(int errcode) {
-        if (errcode == SQLITE_RANGE)
-            throw PlaceholderOutOfRange("Binding value to non-existent placeholder");
         throwOnError(errcode, "Error when binding value to placeholder");
     }
 
     template <class T>
-    void doBindInt(T val, int position) {
+    void doBindInt(T val) {
         if constexpr(sizeof(T) >= sizeof(sqlite3_int64)) { // NOLINT(bugprone-suspicious-semicolon)
             if (val > static_cast<T>(std::numeric_limits<sqlite3_int64>::max()))
-                throw Error("Can't bind value, since it's larger than the greatest signed 64-bit integer");
+                throw UnsupportedDataToBind("The value is larger than the greatest signed 64-bit integer");
         }
 
-        int res = sqlite3_bind_int64(handle_.get(), position+1, static_cast<sqlite3_int64>(val));
+        int res = sqlite3_bind_int64(handle_.get(), ++placeholderPosition_, static_cast<sqlite3_int64>(val));
         throwOnBindError(res);
     }
 
 public:
     Statement(Sqlite3HandleT conn, std::string_view sql)
     : connectionHandle_(std::move(conn)) {
-        sqlite3_stmt* stmt; // NOLINT
+        sqlite3_stmt* stmt; // NOLINT - stmt gets initialized by the call to sqlite3_prepare
         int res = sqlite3_prepare_v2(connectionHandle_.get(),
                 sql.data(), static_cast<int>(sql.length()),
                 &stmt, nullptr);
@@ -231,40 +230,53 @@ public:
         colInfo_->numCols = sqlite3_column_count(handle_.get());
     }
 
-    void bindNull(int position) override {
-        int res = sqlite3_bind_null(handle_.get(), position+1);
+    void preBind(std::size_t numParameters) override {
+        auto count = static_cast<std::size_t>(sqlite3_bind_parameter_count(handle_.get()));
+        if (numParameters == count)
+            return;
+        if (numParameters > count)
+            throw TooManyParametersProvided("Failed to bind parameters to statement");
+        throw TooFewParametersProvided("Failed to bind parameters to statement");
+    }
+
+    void postBind(std::size_t providedParameterCount, std::size_t boundParameterCount) override {
+        if (providedParameterCount != boundParameterCount)
+            sqlite3_clear_bindings(handle_.get());
+    }
+
+    void bindNull() override {
+        int res = sqlite3_bind_null(handle_.get(), ++placeholderPosition_);
         throwOnBindError(res);
     }
-    void bind(short val, int position) override { doBindInt(val, position); }
-    void bind(int val, int position) override { doBindInt(val, position); }
-    void bind(long val, int position) override { doBindInt(val, position); }
-    void bind(long long val, int position) override { doBindInt(val, position); }
-    void bind(unsigned short val, int position) override { doBindInt(val, position); }
-    void bind(unsigned int val, int position) override { doBindInt(val, position); }
-    void bind(unsigned long val, int position) override { doBindInt(val, position); }
-    void bind(unsigned long long val, int position) override { doBindInt(val, position); }
-    void bind(float val, int position) override {
-        int res = sqlite3_bind_double(handle_.get(), position+1,
-                                      static_cast<double>(val));
+    void bind(short val) override { doBindInt(val); }
+    void bind(int val) override { doBindInt(val); }
+    void bind(long val) override { doBindInt(val); }
+    void bind(long long val) override { doBindInt(val); }
+    void bind(unsigned short val) override { doBindInt(val); }
+    void bind(unsigned int val) override { doBindInt(val); }
+    void bind(unsigned long val) override { doBindInt(val); }
+    void bind(unsigned long long val) override { doBindInt(val); }
+    void bind(float val) override {
+        int res = sqlite3_bind_double(handle_.get(), ++placeholderPosition_, static_cast<double>(val));
         throwOnBindError(res);
     }
-    void bind(double val, int position) override {
-        int res = sqlite3_bind_double(handle_.get(), position+1, val);
+    void bind(double val) override {
+        int res = sqlite3_bind_double(handle_.get(), ++placeholderPosition_, val);
         throwOnBindError(res);
     }
-    void bind(const std::string &val, int position) override {
-        int res = sqlite3_bind_text(handle_.get(), position + 1, val.c_str(),
-                                    static_cast<int>(val.length()), SQLITE_TRANSIENT); // NOLINT
+    void bind(const std::string &val) override {
+        int res = sqlite3_bind_text(handle_.get(), ++placeholderPosition_, val.c_str(), static_cast<int>(val.length()), SQLITE_TRANSIENT); // NOLINT
         throwOnBindError(res);
     }
-    void bind(std::string_view val, int position) override {
-        int res = sqlite3_bind_text(handle_.get(), position + 1, val.data(),
-                                static_cast<int>(val.length()), SQLITE_TRANSIENT); // NOLINT
+    void bind(std::string_view val) override {
+        int res = sqlite3_bind_text(handle_.get(), ++placeholderPosition_, val.data(), static_cast<int>(val.length()), SQLITE_TRANSIENT); // NOLINT
         throwOnBindError(res);
     }
-    void bind(const std::vector<unsigned char>& val, int position) override {
-        int res = sqlite3_bind_blob(handle_.get(), position + 1,
-                                    val.data(), static_cast<int>(val.size()), SQLITE_TRANSIENT); // NOLINT
+    void bind(const std::pair<const unsigned char*, std::size_t>& data) override {
+        assert(data.first != nullptr);
+        if (data.second > static_cast<size_t>(std::numeric_limits<int>::max()))
+            throw UnsupportedDataToBind("Failed to bind blob - it is larger than supported");
+        int res = sqlite3_bind_blob(handle_.get(), ++placeholderPosition_, data.first, static_cast<int>(data.second), SQLITE_TRANSIENT); // NOLINT
         throwOnBindError(res);
     }
 
@@ -291,6 +303,7 @@ public:
         throwOnError(res, "Failed to reset statement");
         res = sqlite3_clear_bindings(handle_.get());
         throwOnError(res, "Failed to clear statement bindings");
+        placeholderPosition_ = 0;
     }
 };
 

@@ -19,6 +19,7 @@
 
 #include "defs.h"
 
+#include "MetaFunctions.h"
 #include "Result.h"
 #include "adapter/Types.h"
 
@@ -28,17 +29,18 @@
 
 namespace Dbpp {
 
+class BindHelper;
 namespace Detail {
 
-    template<class T, class = void>
+    template <typename T, typename = void>
     struct HasDbppBindMethod : std::false_type {};
 
-    template<class T>
-    struct HasDbppBindMethod<T, std::void_t<decltype(std::declval<const T&>().dbppBind(std::declval<Statement&>()))>>
+    template <typename T>
+    struct HasDbppBindMethod<T, std::void_t<decltype(std::declval<const T&>().dbppBind(std::declval<BindHelper&>()))>>
     : std::true_type {};
 
     // Trait to check if class T has a dbppBind member function
-    template<class T>
+    template <typename T>
     inline constexpr bool HasDbppBindMethodV = HasDbppBindMethod<T>::value;
 
 } // namespace Detail
@@ -53,6 +55,32 @@ class StatementIterator;
 template <typename... Ts>
 class StatementTupleIterator;
 
+/// \brief This class allows custom types to call bind on statements
+///
+/// This is normally not possible because that method is protected
+///
+/// \since v1.0.0
+class BindHelper {
+    DBPP_NO_COPY_SEMANTICS(BindHelper);
+    DBPP_NO_MOVE_SEMANTICS(BindHelper);
+    friend class Statement;
+
+    Statement& statement_;
+    explicit inline BindHelper(Statement& statement) : statement_(statement) {}
+
+public:
+    ~BindHelper() = default;
+
+    /// \brief Bind a value to the statement
+    ///
+    /// \tparam T The type of the value to bind
+    /// \param val The value to bind
+    ///
+    /// \since v1.0.0
+    template <typename T>
+    void bind(T&& val);
+};
+
 /// \brief Represents a prepared SQL statement
 ///
 /// You can bind values to it, and then execute it by either calling the step() method
@@ -61,15 +89,11 @@ class StatementTupleIterator;
 /// \since v1.0.0
 class DBPP_EXPORTED Statement {
     DBPP_NO_COPY_SEMANTICS(Statement);
-
     friend class Connection;
+    friend class BindHelper;
 
 protected:
     Adapter::StatementPtr impl_;
-    int placeholderPosition_ = 0;
-
-    void doReset();
-    void clearBindings();
 
 public:
     using iterator = StatementIterator; // NOLINT
@@ -98,168 +122,6 @@ public:
     [[nodiscard]]
     iterator end();
 
-    /// \brief Binds NULL to a placeholder (typically a question mark) in the SQL statement,
-    /// and increments the index of the next placeholder to bind
-    ///
-    /// \since v1.0.0
-    void bindNull();
-
-    /// \brief Binds NULL to a placeholder (typically a question mark) in the SQL statement,
-    /// and increments the index of the next placeholder to bind
-    ///
-    /// \since v1.0.0
-    void bind(std::nullptr_t);
-
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement, and
-    /// increments the index of the next placeholder to bind
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    void bind(short value);
-
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement, and
-    /// increments the index of the next placeholder to bind
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    void bind(int value);
-
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement, and
-    /// increments the index of the next placeholder to bind
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    void bind(long value);
-
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement, and
-    /// increments the index of the next placeholder to bind
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    void bind(long long value);
-
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement, and
-    /// increments the index of the next placeholder to bind
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    void bind(unsigned short value);
-
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement, and
-    /// increments the index of the next placeholder to bind
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    void bind(unsigned int value);
-
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement, and
-    /// increments the index of the next placeholder to bind
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    void bind(unsigned long value);
-
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement, and
-    /// increments the index of the next placeholder to bind
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    void bind(unsigned long long value);
-
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement, and
-    /// increments the index of the next placeholder to bind
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    void bind(float value);
-
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement, and
-    /// increments the index of the next placeholder to bind
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    void bind(double value);
-
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement, and
-    /// increments the index of the next placeholder to bind
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    void bind(const char* value);
-
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement, and
-    /// increments the index of the next placeholder to bind
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    void bind(const std::string& value);
-
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL statement, and
-    /// increments the index of the next placeholder to bind
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    void bind(std::string_view value);
-
-    /// \brief Binds a vector of bytes as a BLOB to a placeholder (typically a question mark) in the SQL
-    /// statement, and increments the index of the next placeholder to bind
-    ///
-    /// \param value The vector of bytes to bind as a blob
-    ///
-    /// \since v1.0.0
-    void bind(const std::vector<std::uint8_t>& value);
-
-    /// \brief Binds a value to a placeholder (typically a question mark) in the SQL
-    /// statement, and increments the index of the next placeholder to bind
-    ///
-    /// This is only possible if T has a method dbppBind(Statement&) const that
-    /// calls bind on the provided statement to actually bind a value.
-    ///
-    /// \tparam T the type of the value to bind
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    template<typename T, typename std::enable_if_t<Detail::HasDbppBindMethodV<T>, int> = 0>
-    void bind(const T& value) {
-        value.dbppBind(*this);
-    }
-
-    /// \brief Binds an optional value to a placeholder (typically a question mark) in the SQL
-    /// statement, and increments the index of the next placeholder to bind.
-    ///
-    /// If the optional does not have a value, NULL will be bound instead
-    ///
-    /// \tparam T The underlying type of the optional
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    template<class T>
-    void bind(const std::optional<T>& value) {
-        if (value.has_value())
-            bind(value.value());
-        else
-            bindNull();
-    }
-
-    /// \brief Returns the SQL statement string represented by this object
-    ///
-    /// \since v1.0.0
-    [[nodiscard]]
-    std::string sql() const;
-
     /// \brief Executes the statement or steps to the next result
     ///
     /// \return A result object, representing the next set of values
@@ -267,6 +129,12 @@ public:
     /// \since v1.0.0
     [[nodiscard]]
     Result step();
+
+    /// \brief Returns the SQL statement string represented by this object
+    ///
+    /// \since v1.0.0
+    [[nodiscard]]
+    std::string sql() const;
 
     /// \brief Allows retrieving results as tuples
     ///
@@ -281,6 +149,85 @@ public:
     }
 
 protected:
+    void preBind(std::size_t providedParameterCount);
+    void postBind(std::size_t providedParameterCount, std::size_t boundParameterCount);
+
+    void doBind(std::nullptr_t);
+
+    void doBind(short value);
+    void doBind(int value);
+    void doBind(long value);
+    void doBind(long long value);
+
+    void doBind(unsigned short value);
+    void doBind(unsigned int value);
+    void doBind(unsigned long value);
+    void doBind(unsigned long long value);
+
+    void doBind(float value);
+    void doBind(double value);
+
+    void doBind(const char* value);
+    void doBind(const std::string& value);
+    void doBind(std::string_view value);
+
+    void doBind(const std::pair<const unsigned char*, std::size_t>& data);
+
+    template <typename T, typename=std::enable_if_t<Detail::IsOneOfV<T, char, signed char, unsigned char>>>
+    void doBind(const std::vector<T>& value) {
+        doBind(std::pair(reinterpret_cast<const unsigned char*>(value.data()), static_cast<std::size_t>(value.size())));
+    }
+
+    template<typename T, typename std::enable_if_t<Detail::HasDbppBindMethodV<T>, int> = 0>
+    void doBind(const T& customType) {
+        BindHelper helper(*this);
+        customType.dbppBind(helper);
+    }
+
+    template<class T>
+    void doBind(const std::optional<T>& value) {
+        if (value.has_value())
+            doBind(value.value());
+        else
+            doBind(nullptr);
+    }
+
+    template<class T>
+    void doBind(const std::unique_ptr<T>& value) {
+        if (value)
+            doBind(*value);
+        else
+            doBind(nullptr);
+    }
+
+    template<class T>
+    void doBind(const std::shared_ptr<T>& value) {
+        if (value)
+            doBind(*value);
+        else
+            doBind(nullptr);
+    }
+
+    template<class T>
+    void doBind(const std::weak_ptr<T>& value) {
+        if (auto shared = value.lock())
+            doBind(*shared);
+        else
+            doBind(nullptr);
+    }
+
+    template <typename... Ts>
+    void bind(Ts&&... parameters) {
+        preBind(sizeof...(Ts));
+        std::size_t numBound = 0;
+        try {
+            ((doBind(std::forward<Ts>(parameters)), ++numBound), ...);
+        } catch (...) {
+            postBind(sizeof...(Ts), numBound);
+            throw;
+        }
+        postBind(sizeof...(Ts), numBound);
+    }
 
     explicit Statement(Adapter::StatementPtr p);
 };
@@ -469,5 +416,10 @@ public:
         return *this;
     }
 };
+
+template <typename T>
+void BindHelper::bind(T&& val) {
+    statement_.bind(std::forward<T>(val));
+}
 
 } // namespace Dbpp

@@ -83,7 +83,7 @@ public:
     template <typename... Args>
     Statement statement(std::string_view sql, Args&&... args) {
         Statement st = createStatement(sql);
-        (st.bind(std::forward<Args>(args)), ...);
+        st.bind(std::forward<Args>(args)...);
         return st;
     }
 

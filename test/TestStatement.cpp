@@ -27,21 +27,20 @@ TEST_CASE("Statement", "[api]") {
     persons.populate();
 
     SECTION("Statement move semantics") {
-        Statement st = db.statement("SELECT COUNT(*) FROM person WHERE id = ? OR id = ?");
-        st.bind(persons.johnDoe().id);
+        Statement st = db.statement("SELECT COUNT(*) FROM person WHERE id = ? OR id = ?", persons.johnDoe().id, persons.janeDoe().id);
         Statement newStatement{std::move(st)};
-        newStatement.bind(persons.janeDoe().id);
         auto result = newStatement.step();
         REQUIRE(result);
         REQUIRE(result.get<int>(0) == 2);
 
-        st = db.statement("SELECT SUM(age) FROM person WHERE id = ? OR id = ?");
-        st.bind(persons.johnDoe().id);
+        st = db.statement("SELECT id FROM person ORDER BY age ASC");
+        result = st.step();
+        REQUIRE(result);
+        REQUIRE(result.get<int>(0) == persons.andersSvensson().id);
         newStatement = std::move(st);
-        newStatement.bind(persons.janeDoe().id);
         result = newStatement.step();
         REQUIRE(result);
-        REQUIRE(result.get<int>(0) == persons.johnDoe().age + persons.janeDoe().age);
+        REQUIRE(result.get<int>(0) == persons.janeDoe().id);
     }
 
     SECTION("Statement begin(), end()") {
@@ -59,7 +58,7 @@ TEST_CASE("Statement", "[api]") {
         REQUIRE(beginning == end);
     }
 
-    SECTION("bind(), null values and optional") {
+    SECTION("bind(), null values, optional and pointers") {
         Transaction tr(db);
         db.exec("CREATE table testing_bind("
                 " id INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -67,41 +66,57 @@ TEST_CASE("Statement", "[api]") {
                 " realcol REAL"
                 ")");
 
-        auto st = db.statement("INSERT INTO testing_bind (intcol, realcol) VALUES (?, ?)");
-        st.bind(nullptr);
-        st.bind(std::nullptr_t{});
-        auto id = st.step().getInsertId();
-        auto [intVal, realVal] = db.get<std::optional<int>, std::optional<float>>("SELECT intcol, realcol FROM testing_bind WHERE id = ?", id);
+        auto insertSt = db.preparedStatement("INSERT INTO testing_bind (intcol, realcol) VALUES (?, ?)");
+        insertSt.rebind(nullptr, nullptr);
+        auto id = insertSt.step().getInsertId();
+        auto [intVal, realVal] = db.get<std::optional<int>, std::optional<double>>("SELECT intcol, realcol FROM testing_bind WHERE id = ?", id);
         REQUIRE_FALSE(intVal.has_value());
         REQUIRE_FALSE(realVal.has_value());
 
-        st = db.statement("INSERT INTO testing_bind (intcol, realcol) VALUES (?, ?)");
-        st.bind(intVal);
-        st.bind(realVal);
-        id = st.step().getInsertId();
-        auto [intVal2, realVal2] = db.get<std::optional<int>, std::optional<float>>("SELECT intcol, realcol FROM testing_bind WHERE id = ?", id);
+        insertSt.rebind(intVal, realVal);
+        id = insertSt.step().getInsertId();
+        auto [intVal2, realVal2] = db.get<std::optional<int>, std::optional<double>>("SELECT intcol, realcol FROM testing_bind WHERE id = ?", id);
         REQUIRE_FALSE(intVal2.has_value());
         REQUIRE_FALSE(realVal2.has_value());
 
-        st = db.statement("INSERT INTO testing_bind (intcol, realcol) VALUES (?, ?)");
-        st.bindNull();
-        st.bind(13.4);
-        id = st.step().getInsertId();
-        auto [intVal3, realVal3] = db.get<std::optional<int>, std::optional<float>>("SELECT intcol, realcol FROM testing_bind WHERE id = ?", id);
+        insertSt.rebind(nullptr, 13.4);
+        id = insertSt.step().getInsertId();
+        auto [intVal3, realVal3] = db.get<std::optional<int>, std::optional<double>>("SELECT intcol, realcol FROM testing_bind WHERE id = ?", id);
         REQUIRE_FALSE(intVal3.has_value());
         REQUIRE(realVal3.has_value());
-        REQUIRE(*realVal3 == Approx(static_cast<float>(13.4)));
+        REQUIRE(*realVal3 == Approx(13.4));
 
-        st = db.statement("INSERT INTO testing_bind (intcol, realcol) VALUES (?, ?)");
         intVal.reset();
-        realVal = static_cast<float>(3.14);
-        st.bind(intVal);
-        st.bind(realVal);
-        id = st.step().getInsertId();
-        auto [intVal4, realVal4] = db.get<std::optional<int>, std::optional<float>>("SELECT intcol, realcol FROM testing_bind WHERE id = ?", id);
+        realVal = 3.14;
+        insertSt.rebind(intVal, realVal);
+        id = insertSt.step().getInsertId();
+        auto [intVal4, realVal4] = db.get<std::optional<int>, std::optional<double>>("SELECT intcol, realcol FROM testing_bind WHERE id = ?", id);
         REQUIRE_FALSE(intVal4.has_value());
         REQUIRE(realVal4.has_value());
-        REQUIRE(*realVal4 == Approx(static_cast<float>(3.14)));
+        REQUIRE(*realVal4 == Approx(3.14));
+
+        insertSt.rebind(std::unique_ptr<int>{}, std::make_unique<double>(3.14));
+        id = insertSt.step().getInsertId();
+        auto [intVal5, realVal5] = db.get<std::optional<int>, std::optional<double>>("SELECT intcol, realcol FROM testing_bind WHERE id = ?", id);
+        REQUIRE_FALSE(intVal5.has_value());
+        REQUIRE(realVal5.has_value());
+        REQUIRE(*realVal5 == 3.14);
+
+        insertSt.rebind(std::shared_ptr<int>{}, std::make_shared<double>(3.14));
+        id = insertSt.step().getInsertId();
+        auto [intVal6, realVal6] = db.get<std::optional<int>, std::optional<double>>("SELECT intcol, realcol FROM testing_bind WHERE id = ?", id);
+        REQUIRE_FALSE(intVal6.has_value());
+        REQUIRE(realVal6.has_value());
+        REQUIRE(*realVal6 == 3.14);
+
+        auto sharedInt = std::make_shared<int>(48);
+        auto sharedReal = std::shared_ptr<double>();
+        insertSt.rebind(std::weak_ptr(sharedInt), std::weak_ptr(sharedReal));
+        id = insertSt.step().getInsertId();
+        auto [intVal7, realVal7] = db.get<std::optional<int>, std::optional<double>>("SELECT intcol, realcol FROM testing_bind WHERE id = ?", id);
+        REQUIRE(intVal7.has_value());
+        REQUIRE(intVal7 == 48);
+        REQUIRE_FALSE(realVal7.has_value());
     }
 
     SECTION("bind(), integer values") {
@@ -114,8 +129,7 @@ TEST_CASE("Statement", "[api]") {
         auto checkBindInt = [&db](auto val) {
             using ValT = decltype(val);
 
-            auto st = db.statement("INSERT INTO testing_bind (col) VALUES (?)");
-            st.bind(val);
+            auto st = db.statement("INSERT INTO testing_bind (col) VALUES (?)", val);
             auto id = st.step().getInsertId();
 
             auto valFromDb = db.get<ValT>("SELECT col FROM testing_bind WHERE id = ?", id);
@@ -142,8 +156,7 @@ TEST_CASE("Statement", "[api]") {
         auto checkBindReal = [&db](auto val) {
           using ValT = decltype(val);
 
-          auto st = db.statement("INSERT INTO testing_bind (col) VALUES (?)");
-          st.bind(val);
+          auto st = db.statement("INSERT INTO testing_bind (col) VALUES (?)", val);
           auto id = st.step().getInsertId();
 
           auto valFromDb = db.get<ValT>("SELECT col FROM testing_bind WHERE id = ?", id);
@@ -162,8 +175,7 @@ TEST_CASE("Statement", "[api]") {
                 ")");
 
         auto checkBind = [&db](auto val) {
-          auto st = db.statement("INSERT INTO testing_bind (col) VALUES (?)");
-          st.bind(val);
+          auto st = db.statement("INSERT INTO testing_bind (col) VALUES (?)", val);
           auto id = st.step().getInsertId();
 
           auto valFromDb = db.get<std::string>("SELECT col FROM testing_bind WHERE id = ?", id);
@@ -183,11 +195,8 @@ TEST_CASE("Statement", "[api]") {
                 ")");
 
         std::vector<std::uint8_t> blob(1024);
-        for (unsigned int i = 0; i < 1024; ++i) {
-            blob[i] = static_cast<std::uint8_t>(i & 0xff);
-        }
-        auto st = db.statement("INSERT INTO testing_bind (col) VALUES (?)");
-        st.bind(blob);
+        std::iota(blob.begin(), blob.end(), 0);
+        auto st = db.statement("INSERT INTO testing_bind (col) VALUES (?)", blob);
         auto id = st.step().getInsertId();
 
         auto valFromDb = db.get<std::vector<std::uint8_t>>("SELECT col FROM testing_bind WHERE id = ?", id);
@@ -198,19 +207,18 @@ TEST_CASE("Statement", "[api]") {
         class MyCustomType {
             std::string str_;
 
-            public:
+        public:
             explicit MyCustomType(std::string_view str)
             : str_(str)
             {}
 
-            void dbppBind(Statement &st) const {
-                st.bind(str_);
+            void dbppBind(BindHelper &helper) const {
+                helper.bind(str_);
             }
         };
 
         MyCustomType custom{persons.johnDoe().name};
-        auto st = db.statement("SELECT COUNT(*) FROM person WHERE name = ?");
-        st.bind(custom);
+        auto st = db.statement("SELECT COUNT(*) FROM person WHERE name = ?", custom);
         auto res = st.step();
         int count = res.get<int>(0);
         REQUIRE(count == 1);
@@ -220,29 +228,41 @@ TEST_CASE("Statement", "[api]") {
         class MyCustomId {
             std::int64_t id_;
 
-            public:
+        public:
             explicit MyCustomId(std::int64_t id)
-                : id_(id)
+            : id_(id)
             {}
 
-            void dbppBind(Statement &st) const {
-                st.bind(id_);
+            void dbppBind(BindHelper &helper) const {
+                helper.bind(id_);
             }
         };
 
         std::optional<MyCustomId> unsetId;
-        auto st1 = db.statement("SELECT COUNT(*) FROM person WHERE id = ?");
-        st1.bind(unsetId);
+        auto st1 = db.statement("SELECT COUNT(*) FROM person WHERE id = ?", unsetId);
         auto res = st1.step();
         int count = res.get<int>(0);
         REQUIRE(count == 0);
 
         std::optional<MyCustomId> setId{persons.johnDoe().id};
-        auto st2 = db.statement("SELECT COUNT(*) FROM person WHERE id = ?");
-        st2.bind(setId);
+        auto st2 = db.statement("SELECT COUNT(*) FROM person WHERE id = ?", setId);
         res = st2.step();
         count = res.get<int>(0);
         REQUIRE(count == 1);
+    }
+
+    SECTION("bind, exceptions") {
+        REQUIRE_THROWS_AS(db.statement("SELECT * FROM person", 14), TooManyParametersProvided);
+        REQUIRE_THROWS_AS(db.statement("SELECT * FROM person WHERE id = ?"), TooFewParametersProvided);
+
+        class MyCustomTypeThatThrows {
+            public:
+            void dbppBind(BindHelper& helper) const {
+                throw std::runtime_error("The custom class couldn't bind");
+            }
+        };
+
+        REQUIRE_THROWS_AS(db.statement("SELECT * FROM person WHERE id = ?", MyCustomTypeThatThrows{}), std::runtime_error);
     }
 
     SECTION("sql()") {

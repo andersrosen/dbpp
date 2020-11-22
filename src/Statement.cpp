@@ -21,7 +21,7 @@
 namespace Dbpp {
 
 StatementIterator::StatementIterator(Statement* statement)
-        : stmt_(statement), res_(statement->step()) {
+: stmt_(statement), res_(statement->step()) {
     if (res_.empty()) {
         // Become the end iterator
         stmt_ = nullptr;
@@ -34,12 +34,10 @@ Statement::Statement(Adapter::StatementPtr p)
 
 Statement::Statement(Statement&& that) noexcept
 : impl_(std::move(that.impl_))
-, placeholderPosition_(that.placeholderPosition_)
 {}
 
 Statement& Statement::operator=(Statement&& that) noexcept {
     impl_ = std::move(that.impl_);
-    placeholderPosition_ = that.placeholderPosition_;
 
     return *this;
 }
@@ -52,68 +50,72 @@ StatementIterator Statement::end() {
     return StatementIterator();
 }
 
-void Statement::bindNull() {
-    impl_->bindNull(placeholderPosition_++);
+void Statement::preBind(std::size_t providedParameterCount) {
+    impl_->preBind(providedParameterCount);
 }
 
-void Statement::bind(std::nullptr_t) {
-    impl_->bindNull(placeholderPosition_++);
+void Statement::postBind(std::size_t providedParameterCount, std::size_t boundParameterCount) {
+    impl_->postBind(providedParameterCount, boundParameterCount);
 }
 
-void Statement::bind(short v) {
-    impl_->bind(v, placeholderPosition_++);
+void Statement::doBind(std::nullptr_t) {
+    impl_->bindNull();
 }
 
-void Statement::bind(int v) {
-    impl_->bind(v, placeholderPosition_++);
+void Statement::doBind(short v) {
+    impl_->bind(v);
 }
 
-void Statement::bind(long v) {
-    impl_->bind(v, placeholderPosition_++);
+void Statement::doBind(int v) {
+    impl_->bind(v);
 }
 
-void Statement::bind(long long v) {
-    impl_->bind(v, placeholderPosition_++);
+void Statement::doBind(long v) {
+    impl_->bind(v);
 }
 
-void Statement::bind(unsigned short v) {
-    impl_->bind(v, placeholderPosition_++);
+void Statement::doBind(long long v) {
+    impl_->bind(v);
 }
 
-void Statement::bind(unsigned int v) {
-    impl_->bind(v, placeholderPosition_++);
+void Statement::doBind(unsigned short v) {
+    impl_->bind(v);
 }
 
-void Statement::bind(unsigned long v) {
-    impl_->bind(v, placeholderPosition_++);
+void Statement::doBind(unsigned int v) {
+    impl_->bind(v);
 }
 
-void Statement::bind(unsigned long long v) {
-    impl_->bind(v, placeholderPosition_++);
+void Statement::doBind(unsigned long v) {
+    impl_->bind(v);
 }
 
-void Statement::bind(float v) {
-    impl_->bind(v, placeholderPosition_++);
+void Statement::doBind(unsigned long long v) {
+    impl_->bind(v);
 }
 
-void Statement::bind(double v) {
-    impl_->bind(v, placeholderPosition_++);
+void Statement::doBind(float v) {
+    impl_->bind(v);
 }
 
-void Statement::bind(const std::string& v) {
-    impl_->bind(v, placeholderPosition_++);
+void Statement::doBind(double v) {
+    impl_->bind(v);
 }
 
-void Statement::bind(std::string_view value) {
-    impl_->bind(value, placeholderPosition_++);
+void Statement::doBind(const std::string& v) {
+    impl_->bind(v);
 }
 
-void Statement::bind(const char* v) {
-    impl_->bind(std::string{ v }, placeholderPosition_++);
+void Statement::doBind(std::string_view value) {
+    impl_->bind(value);
 }
 
-void Statement::bind(const std::vector<unsigned char>& v) {
-    impl_->bind(v, placeholderPosition_++);
+void Statement::doBind(const char* v) {
+    impl_->bind(std::string{v});
+}
+
+void Statement::doBind(const std::pair<const unsigned char*, std::size_t>& bytes) {
+    impl_->bind(bytes);
 }
 
 Result Statement::step() {

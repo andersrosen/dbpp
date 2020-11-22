@@ -58,4 +58,15 @@ struct ScalarOrTuple<false, Ts...>
 template <typename... Ts>
 using ScalarOrTupleT = typename ScalarOrTuple<sizeof...(Ts) == 1, Ts...>::type;
 
+//////////////////////////////////////////////////////////////////////////////
+
+template <typename T1, typename... Ts>
+struct IsOneOf {
+    const static bool Value = (std::is_same_v<T1, Ts> || ...);
+};
+
+// True if T is one of the types in Ts
+template <typename T, typename... Ts>
+inline constexpr bool IsOneOfV = IsOneOf<T, Ts...>::Value;
+
 } // namespace Dbpp::Detail

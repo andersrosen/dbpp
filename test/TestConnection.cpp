@@ -34,7 +34,7 @@ TEST_CASE("Connection", "[api]") {
                 ")");
 
         REQUIRE_THROWS_AS(db.exec("INSERT INTO person (name, age) VALUES ('John Doe')"), Error);
-        REQUIRE_THROWS_AS(db.exec("INSERT INTO person (name, age) VALUES ('John Doe', ?)", 48, 15), PlaceholderOutOfRange);
+        REQUIRE_THROWS_AS(db.exec("INSERT INTO person (name, age) VALUES ('John Doe', ?)", 48, 15), TooManyParametersProvided);
 
         auto result = db.exec("INSERT INTO person (name, age) VALUES ('John Doe', 48)");
         REQUIRE(result.empty());
@@ -80,7 +80,7 @@ TEST_CASE("Connection", "[api]") {
         REQUIRE(result.get<int>(0) == persons.johnDoe().id);
 
         REQUIRE_THROWS_AS(db.statement("SELECT COUNT"), Error);
-        REQUIRE_THROWS_AS(db.statement("SELECT age FROM person WHERE id = ?", persons.johnDoe().id, 888), PlaceholderOutOfRange);
+        REQUIRE_THROWS_AS(db.statement("SELECT age FROM person WHERE id = ?", persons.johnDoe().id, 888), TooManyParametersProvided);
     }
 
     SECTION("Connection::get<T>(), where T is a basic type") {
@@ -93,7 +93,7 @@ TEST_CASE("Connection", "[api]") {
         REQUIRE(db.get<std::string>("SELECT name FROM person WHERE id = ?", persons.andersSvensson().id) == persons.andersSvensson().name);
         REQUIRE_THROWS_AS(db.get<int>("SELECT COUNT"), Error);
         REQUIRE_THROWS_AS(db.get<int>("SELECT age FROM person WHERE id = ?"), Error);
-        REQUIRE_THROWS_AS(db.get<int>("SELECT age FROM person WHERE id = ?", persons.johnDoe().id, 888), PlaceholderOutOfRange);
+        REQUIRE_THROWS_AS(db.get<int>("SELECT age FROM person WHERE id = ?", persons.johnDoe().id, 888), TooManyParametersProvided);
         REQUIRE_THROWS_AS(db.get<int>("SELECT * FROM person WHERE id = ?", persons.johnDoe().id), Error);
     }
 
@@ -105,7 +105,7 @@ TEST_CASE("Connection", "[api]") {
         REQUIRE(!val);
         REQUIRE_THROWS_AS(db.get<std::optional<int>>("SELECT COUNT"), Error);
         REQUIRE_THROWS_AS(db.get<std::optional<int>>("SELECT age FROM person WHERE id = ?"), Error);
-        REQUIRE_THROWS_AS(db.get<std::optional<int>>("SELECT age FROM person WHERE id = ?", persons.johnDoe().id, 888), PlaceholderOutOfRange);
+        REQUIRE_THROWS_AS(db.get<std::optional<int>>("SELECT age FROM person WHERE id = ?", persons.johnDoe().id, 888), TooManyParametersProvided);
     }
 
     SECTION("Connection::getOptional<T>(), where T is a basic type") {
@@ -116,7 +116,7 @@ TEST_CASE("Connection", "[api]") {
         REQUIRE(!val);
         REQUIRE_THROWS_AS(db.getOptional<int>("SELECT COUNT"), Error);
         REQUIRE_THROWS_AS(db.getOptional<int>("SELECT age FROM person WHERE id = ?"), Error);
-        REQUIRE_THROWS_AS(db.getOptional<int>("SELECT age FROM person WHERE id = ?", persons.johnDoe().id, 888), PlaceholderOutOfRange);
+        REQUIRE_THROWS_AS(db.getOptional<int>("SELECT age FROM person WHERE id = ?", persons.johnDoe().id, 888), TooManyParametersProvided);
         REQUIRE_THROWS_AS(db.getOptional<int>("SELECT * FROM person WHERE id = ?", persons.johnDoe().id), Error);
     }
 
