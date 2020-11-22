@@ -81,9 +81,9 @@ public:
     ///
     /// \since v1.0.0
     template <typename... Args>
-    Statement statement(std::string_view sql, Args... args) {
+    Statement statement(std::string_view sql, Args&&... args) {
         Statement st = createStatement(sql);
-        (st.bind(args), ...);
+        (st.bind(std::forward<Args>(args)), ...);
         return st;
     }
 
@@ -109,17 +109,15 @@ public:
     ///
     /// \since v1.0.0
     template <typename... Args>
-    Result exec(std::string_view sql, Args... args) {
-        Statement st = createStatement(sql);
-        (st.bind(args), ...);
-        return st.step();
+    Result exec(std::string_view sql, Args&&... args) {
+        return statement(sql, std::forward<Args>(args)...).step();
     }
 
 #ifdef DOXYGEN_SHOULD_SEE_THIS
     /// \brief Creates and executes an SQL statement, returning a single value
     ///
     /// This is a convenience method that can be used when it is expected that the
-    /// statement returns exactly one value.
+    /// statement returns exactly one row with a single value.
     ///
     /// \tparam T The type of the return value
     /// \tparam Args... The types of the additional arguments for binding values to placeholders (should be deduced automatically)
@@ -173,8 +171,8 @@ public:
     /// \since v1.0.0
     template <typename... ReturnType, typename... Args>
     [[nodiscard]]
-    Detail::ScalarOrTupleT<ReturnType...> get(std::string_view sql, Args... args) {
-        auto row = exec(sql, args...);
+    Detail::ScalarOrTupleT<ReturnType...> get(std::string_view sql, Args&&... args) {
+        auto row = exec(sql, std::forward<Args>(args)...);
         if constexpr(Detail::IsScalarV<ReturnType...>) {
             // Return a single value
             if (row.columnCount() != 1)
@@ -200,8 +198,8 @@ public:
     /// \since v1.0.0
     template <typename T, typename... Args>
     [[nodiscard]]
-    std::optional<T> getOptional(std::string_view sql, Args... args) {
-        auto row = exec(sql, args...);
+    std::optional<T> getOptional(std::string_view sql, Args&&... args) {
+        auto row = exec(sql, std::forward<Args>(args)...);
         if (row.columnCount() != 1)
             throw Dbpp::Error(std::string("getOptional() expects a single column Result. Statement: ") + std::string{sql});
         return row.template getOptional<T>(0);
