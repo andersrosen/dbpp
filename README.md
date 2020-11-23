@@ -12,7 +12,7 @@ sqlite3 is the only supported database.
 
 ## Reference documentation
 
-[Bleeding edge](https://andersrosen.github.io/dbpp/docs/main/index.html) (generated from the latest commit to main)<br>
+[Latest unreleased](https://andersrosen.github.io/dbpp/docs/main/index.html) (generated from the latest commit to main)<br>
 
 ## Usage
 ```c++
@@ -20,22 +20,31 @@ sqlite3 is the only supported database.
 #include <dbpp/Sqlite3.h>
 
 ...
-    
 // Set up the connection to the database
 auto db = Dbpp::Sqlite3::open(":memory:");
 
 // You can iterate over the results of a query
 for (auto&& row : db.statement("SELECT * FROM persons WHERE age > ?", 18)) {
-    cout << "Name: " << row.get<std::string>("name")
-         << ", age: " << row.get<int>("age") << std::endl;
+    std::cout << "Name: " << row.get<std::string>("name")
+              << ", age: " << row.get<int>("age") << std::endl;
 }
-        
+
+// Another way of iteration, using tuples
+for (auto &[name, age] : db.statement("SELECT name, age FROM persons WHERE age > ?", 18)
+                         .as<std::string, int>()) {
+    std::cout << "Name: " << name << ", age: " << age << std::endl;
+}
+
 // You can opt to execute a statement immediately, which is useful if it
 // doesn't produce a result.
 db.exec("DELETE FROM persons WHERE age < ?", 18);
 
 // If you only query for a single value, you can use the get() method:
-int numberOfAdults = db.get("SELECT COUNT(*) FROM persons WHERE age >= ?", 18);
+int numberOfAdults = db.get<int>("SELECT COUNT(*) FROM persons WHERE age >= ?", 18);
+
+// If you only query for a single row, you can get it as a tuple
+const int someId = 1234;
+const auto& [name, age] = db.get<std::string, int>("SELECT name, age FROM persons WHERE id = ?", someId);
 ```
 
 ## Building and Installing

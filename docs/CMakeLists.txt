@@ -13,6 +13,7 @@ doxygen_add_docs(docs mainpage.md ${CMAKE_CURRENT_SOURCE_DIR}/../include ALL)
 set(EXAMPLES
     examples/ConnectionClass.cpp
     examples/ConnectionPrepare.cpp
+    examples/ReadmeExample.cpp
 )
 
 foreach(EXAMPLE ${EXAMPLES})
