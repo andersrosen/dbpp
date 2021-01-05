@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classDbpp_1_1Connection.html" title="A connection object represents a connection to a database." alt="" coords="5,5,143,32"/>
+<area shape="rect" id="node1" href="$classDbpp_1_1PlaceholderBinder.html" title=" " alt="" coords="5,5,188,32"/>
+<area shape="rect" id="node2" href="$classDbpp_1_1Adapter_1_1Statement.html" title="Interface class for database adapters." alt="" coords="236,5,427,32"/>
+<area shape="rect" id="node3" href="$classDbpp_1_1Adapter_1_1PreparedStatement.html" title="Interface class for database adapters." alt="" coords="475,5,724,32"/>
 </map>

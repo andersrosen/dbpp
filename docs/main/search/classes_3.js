@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['preparedstatement_74',['PreparedStatement',['../classDbpp_1_1PreparedStatement.html',1,'Dbpp::PreparedStatement'],['../classDbpp_1_1Adapter_1_1PreparedStatement.html',1,'Dbpp::Adapter::PreparedStatement']]]
+  ['result_77',['Result',['../classDbpp_1_1Result.html',1,'Dbpp::Result'],['../classDbpp_1_1Adapter_1_1Result.html',1,'Dbpp::Adapter::Result']]]
 ];

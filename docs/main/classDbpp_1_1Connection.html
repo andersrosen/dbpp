@@ -95,9 +95,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a90cbb266585d9f0032ecdd1409070214"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classDbpp_1_1Statement.html">Statement</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#a90cbb266585d9f0032ecdd1409070214">statement</a> (std::string_view sql, Args &amp;&amp;... args)</td></tr>
 <tr class="memdesc:a90cbb266585d9f0032ecdd1409070214"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new statement for the supplied string.  <a href="classDbpp_1_1Connection.html#a90cbb266585d9f0032ecdd1409070214">More...</a><br /></td></tr>
 <tr class="separator:a90cbb266585d9f0032ecdd1409070214"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0acbd841dbbecb3cda6d84059948833a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDbpp_1_1Statement.html">Statement</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#a0acbd841dbbecb3cda6d84059948833a">statement</a> (const <a class="el" href="classDbpp_1_1StatementBuilder.html">StatementBuilder</a> &amp;builder)</td></tr>
+<tr class="memdesc:a0acbd841dbbecb3cda6d84059948833a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new statement from the supplied <a class="el" href="classDbpp_1_1StatementBuilder.html" title="Allows incremental construction of statements.">StatementBuilder</a>.  <a href="classDbpp_1_1Connection.html#a0acbd841dbbecb3cda6d84059948833a">More...</a><br /></td></tr>
+<tr class="separator:a0acbd841dbbecb3cda6d84059948833a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f3ad703c62599a2c7a0f0e7773bbb74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDbpp_1_1PreparedStatement.html">PreparedStatement</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#a6f3ad703c62599a2c7a0f0e7773bbb74">preparedStatement</a> (std::string_view sql)</td></tr>
 <tr class="memdesc:a6f3ad703c62599a2c7a0f0e7773bbb74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new prepared statement for the supplied string.  <a href="classDbpp_1_1Connection.html#a6f3ad703c62599a2c7a0f0e7773bbb74">More...</a><br /></td></tr>
 <tr class="separator:a6f3ad703c62599a2c7a0f0e7773bbb74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22af6df862456b439fb817ee395399ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDbpp_1_1PreparedStatement.html">PreparedStatement</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#a22af6df862456b439fb817ee395399ef">preparedStatement</a> (const <a class="el" href="classDbpp_1_1StatementBuilder.html">StatementBuilder</a> &amp;builder)</td></tr>
+<tr class="memdesc:a22af6df862456b439fb817ee395399ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new prepared statement from the supplied <a class="el" href="classDbpp_1_1StatementBuilder.html" title="Allows incremental construction of statements.">StatementBuilder</a>.  <a href="classDbpp_1_1Connection.html#a22af6df862456b439fb817ee395399ef">More...</a><br /></td></tr>
+<tr class="separator:a22af6df862456b439fb817ee395399ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20481ff3f0ea4840b968ba2001950fe4"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
 <tr class="memitem:a20481ff3f0ea4840b968ba2001950fe4"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classDbpp_1_1Result.html">Result</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDbpp_1_1Connection.html#a20481ff3f0ea4840b968ba2001950fe4">exec</a> (std::string_view sql, Args &amp;&amp;... args)</td></tr>
 <tr class="memdesc:a20481ff3f0ea4840b968ba2001950fe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and executes an SQL statement.  <a href="classDbpp_1_1Connection.html#a20481ff3f0ea4840b968ba2001950fe4">More...</a><br /></td></tr>
@@ -537,8 +543,44 @@ template&lt;typename T , typename... Args&gt; </div>
 
 </div>
 </div>
+<a id="a22af6df862456b439fb817ee395399ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22af6df862456b439fb817ee395399ef">&#9670;&nbsp;</a></span>preparedStatement() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDbpp_1_1PreparedStatement.html">PreparedStatement</a> Dbpp::Connection::preparedStatement </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDbpp_1_1StatementBuilder.html">StatementBuilder</a> &amp;&#160;</td>
+          <td class="paramname"><em>builder</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a new prepared statement from the supplied <a class="el" href="classDbpp_1_1StatementBuilder.html" title="Allows incremental construction of statements.">StatementBuilder</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">builder</td><td>The <a class="el" href="classDbpp_1_1StatementBuilder.html" title="Allows incremental construction of statements.">StatementBuilder</a> object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="classDbpp_1_1PreparedStatement.html" title="Represents a prepared statement.">PreparedStatement</a> object</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
+
+</div>
+</div>
 <a id="a6f3ad703c62599a2c7a0f0e7773bbb74"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f3ad703c62599a2c7a0f0e7773bbb74">&#9670;&nbsp;</a></span>preparedStatement()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f3ad703c62599a2c7a0f0e7773bbb74">&#9670;&nbsp;</a></span>preparedStatement() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -593,8 +635,44 @@ template&lt;typename T , typename... Args&gt; </div>
 
 </div>
 </div>
+<a id="a0acbd841dbbecb3cda6d84059948833a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0acbd841dbbecb3cda6d84059948833a">&#9670;&nbsp;</a></span>statement() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDbpp_1_1Statement.html">Statement</a> Dbpp::Connection::statement </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDbpp_1_1StatementBuilder.html">StatementBuilder</a> &amp;&#160;</td>
+          <td class="paramname"><em>builder</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a new statement from the supplied <a class="el" href="classDbpp_1_1StatementBuilder.html" title="Allows incremental construction of statements.">StatementBuilder</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">builder</td><td>The <a class="el" href="classDbpp_1_1StatementBuilder.html" title="Allows incremental construction of statements.">StatementBuilder</a> object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="classDbpp_1_1Statement.html" title="Represents a prepared SQL statement.">Statement</a> object</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>v1.0.0 </dd></dl>
+
+</div>
+</div>
 <a id="a90cbb266585d9f0032ecdd1409070214"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a90cbb266585d9f0032ecdd1409070214">&#9670;&nbsp;</a></span>statement()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a90cbb266585d9f0032ecdd1409070214">&#9670;&nbsp;</a></span>statement() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -649,9 +727,9 @@ template&lt;typename... Args&gt; </div>
 <div class="ttc" id="aclassDbpp_1_1Result_html_aa9cfbb3ce55711cbe366b1df172be48e"><div class="ttname"><a href="classDbpp_1_1Result.html#aa9cfbb3ce55711cbe366b1df172be48e">Dbpp::Result::get</a></div><div class="ttdeci">bool get(int index, short &amp;out)</div><div class="ttdoc">Retrieves a value from the result.</div></div>
 <div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html_a7b0a65a94d9fefa80fdbf2fb595cf7fe"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html#a7b0a65a94d9fefa80fdbf2fb595cf7fe">Dbpp::Sqlite3::open</a></div><div class="ttdeci">Connection DBPP_EXPORTED open(const std::filesystem::path &amp;file)</div><div class="ttdoc">Opens an SQLite3 database, and returns a connection to it.</div></div>
 <div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html">Dbpp::Sqlite3</a></div><div class="ttdoc">Namespace specific to the SQLite3 adapter.</div><div class="ttdef"><b>Definition:</b> Sqlite3.h:31</div></div>
-<div class="ttc" id="aclassDbpp_1_1Connection_html_a20481ff3f0ea4840b968ba2001950fe4"><div class="ttname"><a href="classDbpp_1_1Connection.html#a20481ff3f0ea4840b968ba2001950fe4">Dbpp::Connection::exec</a></div><div class="ttdeci">Result exec(std::string_view sql, Args &amp;&amp;... args)</div><div class="ttdoc">Creates and executes an SQL statement.</div><div class="ttdef"><b>Definition:</b> Connection.h:112</div></div>
-<div class="ttc" id="aclassDbpp_1_1Connection_html_a90cbb266585d9f0032ecdd1409070214"><div class="ttname"><a href="classDbpp_1_1Connection.html#a90cbb266585d9f0032ecdd1409070214">Dbpp::Connection::statement</a></div><div class="ttdeci">Statement statement(std::string_view sql, Args &amp;&amp;... args)</div><div class="ttdoc">Creates a new statement for the supplied string.</div><div class="ttdef"><b>Definition:</b> Connection.h:84</div></div>
-<div class="ttc" id="aclassDbpp_1_1Connection_html"><div class="ttname"><a href="classDbpp_1_1Connection.html">Dbpp::Connection</a></div><div class="ttdoc">A connection object represents a connection to a database.</div><div class="ttdef"><b>Definition:</b> Connection.h:40</div></div>
+<div class="ttc" id="aclassDbpp_1_1Connection_html_a20481ff3f0ea4840b968ba2001950fe4"><div class="ttname"><a href="classDbpp_1_1Connection.html#a20481ff3f0ea4840b968ba2001950fe4">Dbpp::Connection::exec</a></div><div class="ttdeci">Result exec(std::string_view sql, Args &amp;&amp;... args)</div><div class="ttdoc">Creates and executes an SQL statement.</div><div class="ttdef"><b>Definition:</b> Connection.h:137</div></div>
+<div class="ttc" id="aclassDbpp_1_1Connection_html_a90cbb266585d9f0032ecdd1409070214"><div class="ttname"><a href="classDbpp_1_1Connection.html#a90cbb266585d9f0032ecdd1409070214">Dbpp::Connection::statement</a></div><div class="ttdeci">Statement statement(std::string_view sql, Args &amp;&amp;... args)</div><div class="ttdoc">Creates a new statement for the supplied string.</div><div class="ttdef"><b>Definition:</b> Connection.h:85</div></div>
+<div class="ttc" id="aclassDbpp_1_1Connection_html"><div class="ttname"><a href="classDbpp_1_1Connection.html">Dbpp::Connection</a></div><div class="ttdoc">A connection object represents a connection to a database.</div><div class="ttdef"><b>Definition:</b> Connection.h:41</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bindhelper_70',['BindHelper',['../classDbpp_1_1BindHelper.html',1,'Dbpp']]]
+  ['connection_72',['Connection',['../classDbpp_1_1Adapter_1_1Connection.html',1,'Dbpp::Adapter::Connection'],['../classDbpp_1_1Connection.html',1,'Dbpp::Connection']]]
 ];

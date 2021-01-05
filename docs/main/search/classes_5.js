@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['statement_76',['Statement',['../classDbpp_1_1Adapter_1_1Statement.html',1,'Dbpp::Adapter::Statement'],['../classDbpp_1_1Statement.html',1,'Dbpp::Statement']]],
-  ['statementiterator_77',['StatementIterator',['../classDbpp_1_1StatementIterator.html',1,'Dbpp']]],
-  ['statementtupleiterator_78',['StatementTupleIterator',['../classDbpp_1_1StatementTupleIterator.html',1,'Dbpp']]],
-  ['statementtuplewrapper_79',['StatementTupleWrapper',['../classDbpp_1_1StatementTupleWrapper.html',1,'Dbpp']]]
+  ['toofewparametersprovided_83',['TooFewParametersProvided',['../classDbpp_1_1TooFewParametersProvided.html',1,'Dbpp']]],
+  ['toomanyparametersprovided_84',['TooManyParametersProvided',['../classDbpp_1_1TooManyParametersProvided.html',1,'Dbpp']]],
+  ['transaction_85',['Transaction',['../classDbpp_1_1Transaction.html',1,'Dbpp']]]
 ];
