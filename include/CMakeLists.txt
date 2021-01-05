@@ -13,6 +13,7 @@ target_sources(dbpp PRIVATE
     dbpp/PlaceholderBinder.h
     dbpp/PreparedStatement.h
     dbpp/Statement.h
+    dbpp/StatementBuilder.h
     dbpp/adapter/Connection.h
     dbpp/adapter/PreparedStatement.h
     dbpp/adapter/Result.h

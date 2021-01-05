@@ -5,6 +5,7 @@ target_sources(test_dbpp PRIVATE
     TestConnection.cpp
     TestResult.cpp
     TestStatement.cpp
+    TestStatementBuilder.cpp
 )
 
 target_link_libraries(test_dbpp PRIVATE dbpp::dbpp Catch2::Catch2)
