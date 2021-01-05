@@ -10,6 +10,7 @@ target_sources(dbpp PRIVATE
     dbpp/Exception.h
     dbpp/MetaFunctions.h
     dbpp/Result.h
+    dbpp/PlaceholderBinder.h
     dbpp/PreparedStatement.h
     dbpp/Statement.h
     dbpp/adapter/Connection.h

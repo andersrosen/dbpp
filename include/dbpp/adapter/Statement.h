@@ -20,16 +20,14 @@
 #include "../defs.h"
 
 #include "Types.h"
-
-#include <string>
-#include <vector>
+#include "../PlaceholderBinder.h"
 
 namespace Dbpp::Adapter {
 
 /// \brief Interface class for database adapters
 ///
 /// \since v1.0.0
-class Statement {
+class Statement : public PlaceholderBinder {
 public:
     /// \brief Called before placeholder parameters will be bound
     ///
@@ -48,102 +46,6 @@ public:
     /// \param providedParameterCount The number of parameters that will be bound
     /// \param boundParameterCount The number of parameters that were bound before the call to this method
     virtual void postBind(std::size_t providedParameterCount, std::size_t boundParameterCount) = 0;
-
-    /// \brief Binds NULL to the next placeholder (typically a question mark) in the SQL statement
-    ///
-    /// \since v1.0.0
-    virtual void bindNull() = 0;
-
-    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    virtual void bind(short value) = 0;
-
-    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    virtual void bind(int value) = 0;
-
-    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    virtual void bind(long value) = 0;
-
-    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    virtual void bind(long long value) = 0;
-
-    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    virtual void bind(unsigned short value) = 0;
-
-    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    virtual void bind(unsigned int value) = 0;
-
-    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    virtual void bind(unsigned long value) = 0;
-
-    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    virtual void bind(unsigned long long value) = 0;
-
-    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    virtual void bind(float value) = 0;
-
-    /// \brief Binds a value to the next placeholder (typically a question mark) in the SQL statement
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    virtual void bind(double value) = 0;
-
-    /// \brief Binds a string to the next placeholder (typically a question mark) in the SQL statement
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    virtual void bind(const std::string &value) = 0;
-
-    /// \brief Binds a string to the next placeholder (typically a question mark) in the SQL statement
-    ///
-    /// \param value The value to bind
-    ///
-    /// \since v1.0.0
-    virtual void bind(std::string_view value) = 0;
-
-    /// \brief Binds a sequence of bytes as a blob to the next placeholder (typically a question mark) in the SQL statement
-    ///
-    /// \param blobValue The bytes to bind
-    ///
-    /// \since v1.0.0
-    virtual void bind(const std::pair<const unsigned char*, std::size_t>& bytes) = 0;
 
     /// \brief Returns the SQL statement string represented by this object
     ///

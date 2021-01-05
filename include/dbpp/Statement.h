@@ -21,6 +21,7 @@
 
 #include "MetaFunctions.h"
 #include "Result.h"
+#include "adapter/Statement.h"
 #include "adapter/Types.h"
 
 #include <memory>
@@ -28,22 +29,6 @@
 #include <vector>
 
 namespace Dbpp {
-
-class BindHelper;
-namespace Detail {
-
-    template <typename T, typename = void>
-    struct HasDbppBindMethod : std::false_type {};
-
-    template <typename T>
-    struct HasDbppBindMethod<T, std::void_t<decltype(std::declval<const T&>().dbppBind(std::declval<BindHelper&>()))>>
-    : std::true_type {};
-
-    // Trait to check if class T has a dbppBind member function
-    template <typename T>
-    inline constexpr bool HasDbppBindMethodV = HasDbppBindMethod<T>::value;
-
-} // namespace Detail
 
 class Connection;
 
@@ -54,32 +39,6 @@ class StatementIterator;
 
 template <typename... Ts>
 class StatementTupleIterator;
-
-/// \brief This class allows custom types to call bind on statements
-///
-/// This is normally not possible because that method is protected
-///
-/// \since v1.0.0
-class BindHelper {
-    DBPP_NO_COPY_SEMANTICS(BindHelper);
-    DBPP_NO_MOVE_SEMANTICS(BindHelper);
-    friend class Statement;
-
-    Statement& statement_;
-    explicit inline BindHelper(Statement& statement) : statement_(statement) {}
-
-public:
-    ~BindHelper() = default;
-
-    /// \brief Bind a value to the statement
-    ///
-    /// \tparam T The type of the value to bind
-    /// \param val The value to bind
-    ///
-    /// \since v1.0.0
-    template <typename T>
-    void bind(T&& val);
-};
 
 /// \brief Represents a prepared SQL statement
 ///
@@ -150,84 +109,17 @@ public:
     }
 
 protected:
-    void preBind(std::size_t providedParameterCount);
-    void postBind(std::size_t providedParameterCount, std::size_t boundParameterCount);
-
-    void doBind(std::nullptr_t);
-
-    void doBind(short value);
-    void doBind(int value);
-    void doBind(long value);
-    void doBind(long long value);
-
-    void doBind(unsigned short value);
-    void doBind(unsigned int value);
-    void doBind(unsigned long value);
-    void doBind(unsigned long long value);
-
-    void doBind(float value);
-    void doBind(double value);
-
-    void doBind(const char* value);
-    void doBind(const std::string& value);
-    void doBind(std::string_view value);
-
-    void doBind(const std::pair<const unsigned char*, std::size_t>& data);
-
-    template <typename T, typename=std::enable_if_t<Detail::IsOneOfV<T, char, signed char, unsigned char>>>
-    void doBind(const std::vector<T>& value) {
-        doBind(std::pair(reinterpret_cast<const unsigned char*>(value.data()), static_cast<std::size_t>(value.size())));
-    }
-
-    template<typename T, typename std::enable_if_t<Detail::HasDbppBindMethodV<T>, int> = 0>
-    void doBind(const T& customType) {
-        BindHelper helper(*this);
-        customType.dbppBind(helper);
-    }
-
-    template<class T>
-    void doBind(const std::optional<T>& value) {
-        if (value.has_value())
-            doBind(value.value());
-        else
-            doBind(nullptr);
-    }
-
-    template<class T>
-    void doBind(const std::unique_ptr<T>& value) {
-        if (value)
-            doBind(*value);
-        else
-            doBind(nullptr);
-    }
-
-    template<class T>
-    void doBind(const std::shared_ptr<T>& value) {
-        if (value)
-            doBind(*value);
-        else
-            doBind(nullptr);
-    }
-
-    template<class T>
-    void doBind(const std::weak_ptr<T>& value) {
-        if (auto shared = value.lock())
-            doBind(*shared);
-        else
-            doBind(nullptr);
-    }
-
     template <typename... Ts>
     void bind(Ts&&... parameters) {
-        preBind(sizeof...(Ts));
+        impl_->preBind(sizeof...(Ts));
         std::size_t numBound = 0;
         try {
-            ((doBind(std::forward<Ts>(parameters)), ++numBound), ...);
+            ((impl_->bind(std::forward<Ts>(parameters)), ++numBound), ...);
         } catch (...) {
-            postBind(sizeof...(Ts), numBound);
+            impl_->postBind(sizeof...(Ts), numBound);
             throw;
         }
-        postBind(sizeof...(Ts), numBound);
+        impl_->postBind(sizeof...(Ts), numBound);
     }
 
     explicit Statement(Adapter::StatementPtr p);
@@ -419,10 +311,5 @@ public:
         return *this;
     }
 };
-
-template <typename T>
-void BindHelper::bind(T&& val) {
-    statement_.bind(std::forward<T>(val));
-}
 
 } // namespace Dbpp
