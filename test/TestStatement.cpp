@@ -213,7 +213,7 @@ TEST_CASE("Statement", "[api]") {
             : str_(str)
             {}
 
-            void dbppBind(BindHelper &helper) const {
+            void dbppBind(PlaceholderBinder &helper) const {
                 helper.bind(str_);
             }
         };
@@ -234,7 +234,7 @@ TEST_CASE("Statement", "[api]") {
             : id_(id)
             {}
 
-            void dbppBind(BindHelper &helper) const {
+            void dbppBind(PlaceholderBinder &helper) const {
                 helper.bind(id_);
             }
         };
@@ -258,7 +258,7 @@ TEST_CASE("Statement", "[api]") {
 
         class MyCustomTypeThatThrows {
             public:
-            void dbppBind(BindHelper& helper) const {
+            void dbppBind(PlaceholderBinder& helper) const {
                 throw std::runtime_error("The custom class couldn't bind");
             }
         };

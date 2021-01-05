@@ -5,4 +5,5 @@ target_sources(dbpp PRIVATE
     PreparedStatement.cpp
     Result.cpp
     Statement.cpp
+    StatementBuilder.cpp
 )

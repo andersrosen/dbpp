@@ -19,9 +19,10 @@
 
 #include "defs.h"
 
-#include "adapter/Types.h"
 #include "MetaFunctions.h"
 #include "PreparedStatement.h"
+#include "StatementBuilder.h"
+#include "adapter/Types.h"
 
 #include <string>
 #include <string_view>
@@ -82,8 +83,20 @@ public:
     /// \since v1.0.0
     template <typename... Args>
     Statement statement(std::string_view sql, Args&&... args) {
-        Statement st = createStatement(sql);
+        auto st = createStatement(sql);
         st.bind(std::forward<Args>(args)...);
+        return st;
+    }
+
+    /// \brief Creates a new statement from the supplied StatementBuilder
+    ///
+    /// \param builder The StatementBuilder object
+    /// \return A Statement object
+    ///
+    /// \since v1.0.0
+    inline Statement statement(const StatementBuilder& builder) {
+        auto st = createStatement(builder.sql());
+        builder.bindToStatement(*st.impl_);
         return st;
     }
 
@@ -93,8 +106,20 @@ public:
     /// \return A PreparedStatement object
     ///
     /// \since v1.0.0
-    PreparedStatement preparedStatement(std::string_view sql) {
+    inline PreparedStatement preparedStatement(std::string_view sql) {
         return createPreparedStatement(sql);
+    }
+
+    /// \brief Creates a new prepared statement from the supplied StatementBuilder
+    ///
+    /// \param builder The StatementBuilder object
+    /// \return A PreparedStatement object
+    ///
+    /// \since v1.0.0
+    inline PreparedStatement preparedStatement(const StatementBuilder& builder) {
+        auto st = preparedStatement(builder.sql());
+        builder.bindToStatement(*st.impl_);
+        return st;
     }
 
     /// \brief Creates and executes an SQL statement

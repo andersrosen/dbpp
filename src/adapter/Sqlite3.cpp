@@ -249,7 +249,7 @@ public:
             sqlite3_clear_bindings(handle_.get());
     }
 
-    void bindNull() override {
+    void bind(std::nullptr_t) override {
         int res = sqlite3_bind_null(handle_.get(), ++placeholderPosition_);
         throwOnBindError(res);
     }
@@ -267,10 +267,6 @@ public:
     }
     void bind(double val) override {
         int res = sqlite3_bind_double(handle_.get(), ++placeholderPosition_, val);
-        throwOnBindError(res);
-    }
-    void bind(const std::string &val) override {
-        int res = sqlite3_bind_text(handle_.get(), ++placeholderPosition_, val.c_str(), static_cast<int>(val.length()), SQLITE_TRANSIENT); // NOLINT
         throwOnBindError(res);
     }
     void bind(std::string_view val) override {
