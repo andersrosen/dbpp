@@ -28,10 +28,10 @@ int main() {
     db.exec("DELETE FROM persons WHERE age < ?", 18);
 
     // If you only query for a single value, you can use the get() method:
-    int numberOfAdults = db.get<int>("SELECT COUNT(*) FROM persons WHERE age >= ?", 18);
+    [[maybe_unused]] int numberOfAdults = db.get<int>("SELECT COUNT(*) FROM persons WHERE age >= ?", 18);
 
     // If you only query for a single row, you can get it as a tuple
     const int someId = 2;
-    const auto& [name, age] = db.get<std::string, int>("SELECT name, age FROM persons WHERE id = ?", someId);
+    [[maybe_unused]] const auto& [name, age] = db.get<std::string, int>("SELECT name, age FROM persons WHERE id = ?", someId);
 }
 

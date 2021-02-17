@@ -101,14 +101,14 @@ TEST_CASE("Statement", "[api]") {
         auto [intVal5, realVal5] = db.get<std::optional<int>, std::optional<double>>("SELECT intcol, realcol FROM testing_bind WHERE id = ?", id);
         REQUIRE_FALSE(intVal5.has_value());
         REQUIRE(realVal5.has_value());
-        REQUIRE(*realVal5 == 3.14);
+        REQUIRE(*realVal5 == Approx(3.14));
 
         insertSt.rebind(std::shared_ptr<int>{}, std::make_shared<double>(3.14));
         id = insertSt.step().getInsertId();
         auto [intVal6, realVal6] = db.get<std::optional<int>, std::optional<double>>("SELECT intcol, realcol FROM testing_bind WHERE id = ?", id);
         REQUIRE_FALSE(intVal6.has_value());
         REQUIRE(realVal6.has_value());
-        REQUIRE(*realVal6 == 3.14);
+        REQUIRE(*realVal6 == Approx(3.14));
 
         auto sharedInt = std::make_shared<int>(48);
         auto sharedReal = std::shared_ptr<double>();
@@ -258,7 +258,7 @@ TEST_CASE("Statement", "[api]") {
 
         class MyCustomTypeThatThrows {
             public:
-            void dbppBind(PlaceholderBinder& helper) const {
+            [[noreturn]] void dbppBind(PlaceholderBinder& helper) const {
                 throw std::runtime_error("The custom class couldn't bind");
             }
         };
@@ -305,7 +305,7 @@ TEST_CASE("Statement iteration", "[api]") {
     SECTION("Empty range-for as Result objects") {
         int rowCount = 0;
         auto st = db.statement("SELECT * FROM person WHERE name = ?", "There is no one with this name");
-        for (auto& row : st)
+        for ([[maybe_unused]] auto& row : st)
             ++rowCount;
         REQUIRE(rowCount == 0);
     }
@@ -344,7 +344,7 @@ TEST_CASE("Statement iteration", "[api]") {
     SECTION("Empty range-for as tuples") {
         int rowCount = 0;
         auto st = db.statement("SELECT name, age FROM person WHERE name = ?", "There is no one with this name");
-        for (const auto& [name, age] : std::move(st).as<std::string, int>())
+        for ([[maybe_unused]] const auto& [name, age] : std::move(st).as<std::string, int>())
             ++rowCount;
         REQUIRE(rowCount == 0);
     }

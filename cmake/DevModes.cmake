@@ -17,7 +17,7 @@ set(GNU_CXX_WARNINGS
     -Wconversion
     -Wdisabled-optimization
     -Werror
-#    -Wfloat-equal
+    -Wfloat-equal
     -Wformat=2
     -Wformat-nonliteral
     -Wformat-security
@@ -40,9 +40,11 @@ set(GNU_CXX_WARNINGS
     -Wswitch-enum
     -Wunreachable-code
     -Wunused
-    -Wunused-parameter
     -Wvariadic-macros
     -Wwrite-strings
+
+    # Disabled warnings
+    -Wno-unused-parameter
 )
 list(JOIN GNU_CXX_WARNINGS " " DEVMODES_GNU_CXX_WARNINGS)
 set(${UC_PROJECT_NAME}_DEVMODES_GNU_CXX_WARNINGS ${DEVMODES_GNU_CXX_WARNINGS}
@@ -82,9 +84,11 @@ set(CLANG_CXX_WARNINGS
     -Wswitch-enum
     -Wunreachable-code
     -Wunused
-    -Wunused-parameter
     -Wvariadic-macros
     -Wwrite-strings
+
+    # Disabled warnings
+    -Wno-unused-parameter
 )
 list(JOIN CLANG_CXX_WARNINGS " " DEVMODES_CLANG_CXX_WARNINGS)
 set(${UC_PROJECT_NAME}_DEVMODES_CLANG_CXX_WARNINGS ${DEVMODES_CLANG_CXX_WARNINGS}

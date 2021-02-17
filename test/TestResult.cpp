@@ -194,13 +194,20 @@ TEST_CASE("Result", "[api]") {
             auto realRes = db.exec("SELECT realval FROM get_test WHERE id = ?", intId);
             REQUIRE_FALSE(realRes.empty());
 
+// We only want to make sure that the float and double variables were not changed, so an equality comparison
+// is actually reasonable here
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wfloat-equal"
             float floatOut = realVal * 2;
+            float expectedFloatOut = floatOut;
             REQUIRE_FALSE(realRes.get(0, floatOut));
-            REQUIRE(floatOut == realVal * 2);
+            REQUIRE(floatOut == expectedFloatOut);
 
             float doubleOut = realVal * 2;
+            float expectedDoubleOut = doubleOut;
             REQUIRE_FALSE(realRes.get(0, doubleOut));
-            REQUIRE(doubleOut == realVal * 2);
+            REQUIRE(doubleOut == expectedDoubleOut);
+#pragma GCC diagnostic pop
 
             // Select the column with id = intId to make sure we get a null result
             auto strRes = db.exec("SELECT strval FROM get_test WHERE id = ?", intId);
@@ -267,11 +274,11 @@ TEST_CASE("Result", "[api]") {
 
             float floatOut = realVal * 2;
             REQUIRE(realRes.get(0, floatOut) == true);
-            REQUIRE(floatOut == realVal);
+            REQUIRE(floatOut == Approx(realVal));
 
             double doubleOut = realVal * 2;
             REQUIRE(realRes.get(0, doubleOut) == true);
-            REQUIRE(doubleOut == realVal);
+            REQUIRE(doubleOut == Approx(realVal));
 
             auto strRes = db.exec("SELECT strval FROM get_test WHERE id = ?", strId);
             REQUIRE_FALSE(strRes.empty());
