@@ -17,12 +17,13 @@
 
 #pragma once
 
-#include "defs.h"
-
-#include "MetaFunctions.h"
-#include "Result.h"
-#include "adapter/Statement.h"
-#include "adapter/Types.h"
+#include <dbpp/config.h>
+#include <dbpp/exports.h>
+#include <dbpp/MetaFunctions.h>
+#include <dbpp/Result.h>
+#include <dbpp/util.h>
+#include <dbpp/adapter/Statement.h>
+#include <dbpp/adapter/Types.h>
 
 #include <memory>
 #include <string>
@@ -46,7 +47,7 @@ class StatementTupleIterator;
 /// or iterate over it using the begin() and end() methods.
 ///
 /// \since v1.0.0
-class DBPP_EXPORTED Statement {
+class DBPP_EXPORT Statement {
     DBPP_NO_COPY_SEMANTICS(Statement);
     friend class Connection;
     friend class BindHelper;
@@ -131,7 +132,7 @@ protected:
 ///
 /// \since v1.0.0
 template <typename... Ts>
-class StatementTupleWrapper
+class DBPP_EXPORT StatementTupleWrapper
 {
     friend class Statement;
 
@@ -161,7 +162,7 @@ public:
 /// \brief Allows iteration over results of a statement
 ///
 /// \since v1.0.0
-class DBPP_EXPORTED StatementIterator {
+class DBPP_EXPORT StatementIterator {
     DBPP_NO_COPY_SEMANTICS(StatementIterator);
 
     friend class Statement;
@@ -227,7 +228,7 @@ public:
 ///
 /// \since v1.0.0
 template <typename... Ts>
-class StatementTupleIterator {
+class DBPP_EXPORT StatementTupleIterator {
     DBPP_NO_COPY_SEMANTICS(StatementTupleIterator);
 
     friend class StatementTupleWrapper<Ts...>;

@@ -17,10 +17,12 @@
 
 #pragma once
 
-#include "../defs.h"
+#include <dbpp/config.h>
+#include <dbpp/exports.h>
+#include <dbpp/util.h>
 
-#include "../Connection.h"
-#include "Types.h"
+#include <dbpp/Connection.h>
+#include <dbpp/adapter/Types.h>
 
 #include <string_view>
 
@@ -29,7 +31,7 @@ namespace Dbpp::Adapter {
 /// \brief Abstract base class for the connection of a driver
 ///
 /// \since v1.0.0
-class DBPP_EXPORTED Connection {
+class DBPP_EXPORT Connection {
 public:
     /// \brief Creates a new prepared statement for the supplied string
     ///

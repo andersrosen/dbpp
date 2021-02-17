@@ -1,0 +1,7 @@
+set(_use_bundled_sqlite, "@DBPP_USE_BUNDLED_SQLITE@")
+
+if (NOT _use_bundled_sqlite)
+    find_dependency(SQLite3 REQUIRED)
+endif()
+
+include("${CMAKE_CURRENT_LIST_DIR}/dbpp-sqlite3-targets.cmake")

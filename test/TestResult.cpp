@@ -142,7 +142,7 @@ TEST_CASE("Result", "[api]") {
                 ")");
 
         const int intVal = 14;
-        const float realVal = 3.14;
+        const float realVal = 3.14f;
         const std::string strVal = "/tmp/a/string/thats/also/a/path";
         std::vector<unsigned char> blobVal(1024);
         std::iota(blobVal.begin(), blobVal.end(), 0);
@@ -269,7 +269,7 @@ TEST_CASE("Result", "[api]") {
             REQUIRE(realRes.get(0, floatOut) == true);
             REQUIRE(floatOut == realVal);
 
-            float doubleOut = realVal * 2;
+            double doubleOut = realVal * 2;
             REQUIRE(realRes.get(0, doubleOut) == true);
             REQUIRE(doubleOut == realVal);
 

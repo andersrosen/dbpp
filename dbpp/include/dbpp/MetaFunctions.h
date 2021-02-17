@@ -17,7 +17,8 @@
 
 #pragma once
 
-#include "defs.h"
+#include <dbpp/config.h>
+#include <dbpp/util.h>
 
 #include <utility>
 

@@ -17,7 +17,9 @@
 
 #pragma once
 
-#include "defs.h"
+#include <dbpp/config.h>
+#include <dbpp/exports.h>
+#include <dbpp/util.h>
 
 #include <stdexcept>
 #include <string>
@@ -30,7 +32,7 @@ namespace Dbpp {
     /// standard library, or the underlying database driver.
     ///
     /// \since v1.0.0
-    class DBPP_EXPORTED Error : public std::runtime_error {
+    class DBPP_EXPORT Error : public std::runtime_error {
         using std::runtime_error::runtime_error;
     };
 
@@ -41,7 +43,7 @@ namespace Dbpp {
     /// want to use when handling the exception
     ///
     /// \since v1.0.0
-    class DBPP_EXPORTED ErrorWithCode : public Error {
+    class DBPP_EXPORT ErrorWithCode : public Error {
     public:
         /// The error code from the underlying driver implementation.
         ///
@@ -62,7 +64,7 @@ namespace Dbpp {
     /// \brief Thrown if the client tries to bind too few parameters to a statement
     ///
     /// \since v1.0.0
-    class DBPP_EXPORTED TooFewParametersProvided : public Error {
+    class DBPP_EXPORT TooFewParametersProvided : public Error {
         using Error::Error;
 
         [[nodiscard]]
@@ -76,7 +78,7 @@ namespace Dbpp {
     /// \brief Thrown if the client tries to bind too many parameters to a statement
     ///
     /// \since v1.0.0
-    class DBPP_EXPORTED TooManyParametersProvided : public Error {
+    class DBPP_EXPORT TooManyParametersProvided : public Error {
         using Error::Error;
 
         [[nodiscard]]
@@ -90,7 +92,7 @@ namespace Dbpp {
     /// \brief Thrown if the client tries to bind a value that's not supported by the database
     ///
     /// \since v1.0.0
-    class DBPP_EXPORTED UnsupportedDataToBind : public Error {
+    class DBPP_EXPORT UnsupportedDataToBind : public Error {
         using Error::Error;
 
         [[nodiscard]]

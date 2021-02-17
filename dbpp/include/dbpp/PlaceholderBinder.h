@@ -17,9 +17,11 @@
 
 #pragma once
 
-#include "defs.h"
-#include "adapter/Types.h"
-#include "MetaFunctions.h"
+#include <dbpp/config.h>
+#include <dbpp/exports.h>
+#include <dbpp/MetaFunctions.h>
+#include <dbpp/util.h>
+#include <dbpp/adapter/Types.h>
 
 #include <optional>
 #include <string>

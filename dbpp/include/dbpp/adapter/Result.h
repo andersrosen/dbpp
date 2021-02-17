@@ -17,7 +17,9 @@
 
 #pragma once
 
-#include "../defs.h"
+#include <dbpp/config.h>
+#include <dbpp/exports.h>
+#include <dbpp/util.h>
 
 #include <filesystem>
 #include <string>
@@ -29,7 +31,7 @@ namespace Dbpp::Adapter {
 /// \brief Interface class for the result of a query
 ///
 /// \since v1.0.0
-class Result {
+class DBPP_EXPORT Result {
 public:
 
     /// \brief Retrieves a value from the result

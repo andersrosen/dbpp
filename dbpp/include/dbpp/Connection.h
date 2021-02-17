@@ -17,12 +17,13 @@
 
 #pragma once
 
-#include "defs.h"
-
-#include "MetaFunctions.h"
-#include "PreparedStatement.h"
-#include "StatementBuilder.h"
-#include "adapter/Types.h"
+#include <dbpp/config.h>
+#include <dbpp/exports.h>
+#include <dbpp/util.h>
+#include <dbpp/MetaFunctions.h>
+#include <dbpp/PreparedStatement.h>
+#include <dbpp/StatementBuilder.h>
+#include <dbpp/adapter/Types.h>
 
 #include <string>
 #include <string_view>
@@ -38,7 +39,7 @@ namespace Dbpp {
 /// \since v1.0.0
 ///
 /// \includeexamplewithoutput{ConnectionClass.cpp}
-class DBPP_EXPORTED Connection {
+class DBPP_EXPORT Connection {
     DBPP_NO_COPY_SEMANTICS(Connection);
 
     friend class Adapter::Connection;
@@ -257,7 +258,7 @@ public:
 /// If it goes out of scope before commit has been called, the transaction will be rolled back automatically.
 ///
 /// \since v1.0.0
-class DBPP_EXPORTED Transaction {
+class DBPP_EXPORT Transaction {
     DBPP_NO_COPY_SEMANTICS(Transaction);
     DBPP_NO_MOVE_SEMANTICS(Transaction);
 

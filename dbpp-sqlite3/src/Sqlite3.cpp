@@ -15,12 +15,12 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
 // USA
 
-#include "dbpp/Connection.h"
-#include "dbpp/Exception.h"
-#include "dbpp/Sqlite3.h"
-#include "dbpp/adapter/Connection.h"
-#include "dbpp/adapter/Result.h"
-#include "dbpp/adapter/PreparedStatement.h"
+#include <dbpp/Connection.h>
+#include <dbpp/Exception.h>
+#include <dbpp/adapter/Connection.h>
+#include <dbpp/adapter/Result.h>
+#include <dbpp/adapter/PreparedStatement.h>
+#include <dbpp/sqlite3/Sqlite3.h>
 
 #include <cassert>
 #include <filesystem>

@@ -17,17 +17,19 @@
 
 #pragma once
 
-#include "../defs.h"
+#include <dbpp/config.h>
+#include <dbpp/exports.h>
+#include <dbpp/util.h>
 
-#include "Types.h"
-#include "../PlaceholderBinder.h"
+#include <dbpp/adapter/Types.h>
+#include <dbpp/PlaceholderBinder.h>
 
 namespace Dbpp::Adapter {
 
 /// \brief Interface class for database adapters
 ///
 /// \since v1.0.0
-class Statement : public PlaceholderBinder {
+class DBPP_EXPORT Statement : public PlaceholderBinder {
 public:
     /// \brief Called before placeholder parameters will be bound
     ///

@@ -17,26 +17,11 @@
 
 #pragma once
 
-#include "../defs.h"
+#define DBPP_NO_COPY_SEMANTICS(classname) \
+    classname(classname&) = delete; \
+    classname& operator=(const classname&) = delete
 
-#include "Statement.h"
+#define DBPP_NO_MOVE_SEMANTICS(classname) \
+    classname(classname&&) = delete; \
+    classname& operator=(classname&&) = delete
 
-namespace Dbpp::Adapter {
-
-/// \brief Interface class for database adapters
-///
-/// \since v1.0.0
-class PreparedStatement : public Statement {
-public:
-    /// \brief Resets the statement to its original state, while keeping the existing bindings
-    ///
-    /// \since v1.0.0
-    virtual void reset() = 0;
-
-    /// \brief Resets the statement and clears the existing placeholder bindings of the statement
-    ///
-    /// \since v1.0.0
-    virtual void resetAndClearBindings() = 0;
-};
-
-} // namespace Dbpp::Adapter

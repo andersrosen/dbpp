@@ -17,8 +17,10 @@
 
 #pragma once
 
-#include "PlaceholderBinder.h"
-#include "adapter/Statement.h"
+#include <dbpp/config.h>
+#include <dbpp/exports.h>
+#include <dbpp/PlaceholderBinder.h>
+#include <dbpp/adapter/Statement.h>
 
 #include <variant>
 #include <vector>
@@ -28,7 +30,7 @@ namespace Dbpp {
 class Connection;
 
 /// \brief Allows incremental construction of statements
-class StatementBuilder final {
+class DBPP_EXPORT StatementBuilder final {
     friend class Connection;
 
     class PlaceholderValues : public PlaceholderBinder {

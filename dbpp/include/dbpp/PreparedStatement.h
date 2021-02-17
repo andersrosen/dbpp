@@ -17,9 +17,10 @@
 
 #pragma once
 
-#include "defs.h"
-
-#include "Statement.h"
+#include <dbpp/config.h>
+#include <dbpp/exports.h>
+#include <dbpp/Statement.h>
+#include <dbpp/util.h>
 
 namespace Dbpp {
 
@@ -33,7 +34,7 @@ namespace Dbpp {
 /// rebind(), which will reset the statement and then bind the provided parameters.
 ///
 /// \since v1.0.0
-class PreparedStatement final : public Statement {
+class DBPP_EXPORT PreparedStatement final : public Statement {
     friend class Connection;
 
     explicit PreparedStatement(Adapter::PreparedStatementPtr p);

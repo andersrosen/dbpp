@@ -17,26 +17,13 @@
 
 #pragma once
 
-#ifndef DBPP_EXPORTED
-#   if defined(__WIN32__) || defined(__WINRT__)
-#       ifdef BUILDING_DBPP_DLL
-#           define DBPP_EXPORTED __declspec(dllexport)
-#       else
-#           define DBPP_EXPORTED __declspec(dllimport)
-#       endif
-#   else
-#       define DBPP_EXPORTED
-#   endif
-#endif
+#define DBPP_VERSION_MAJOR = @PROJECT_VERSION_MAJOR@
+#define DBPP_VERSION_MINOR = @PROJECT_VERSION_MINOR@
+#define DBPP_VERSION_PATCH = @PROJECT_VERSION_PATCH@
+#define DBPP_VERSION ((DBPP_VERSION_MAJOR) << 16) | (DBPP_VERSION_MINOR) << 8 | (DBPP_VERSION_PATCH))
+#define DBPP_VERSION_STR = "@PROJECT_VERSION@"
 
-/// The version of the dbpp library.
-/// Format: ABBCC Where A = Major, BB = Minor, CC = Revision
-#define DBPP_VERSION 10000
-
-#define DBPP_NO_COPY_SEMANTICS(classname) \
-    classname(classname&) = delete; \
-    classname& operator=(const classname&) = delete
-
-#define DBPP_NO_MOVE_SEMANTICS(classname) \
-    classname(classname&&) = delete; \
-    classname& operator=(classname&&) = delete
+#cmakedefine HAVE_TO_CHAR_FLOAT
+#cmakedefine HAVE_TO_CHAR_DOUBLE
+#cmakedefine HAVE_FROM_CHARS_FLOAT
+#cmakedefine HAVE_FROM_CHARS_DOUBLE
