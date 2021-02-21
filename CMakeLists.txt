@@ -28,7 +28,6 @@ endif()
 set(CMAKE_DEBUG_POSTFIX -d)
 
 # External Dependencies. Note that the adapters have additional dependencies defined in their own CMakeLists.txt
-find_package(Doxygen)
 add_subdirectory(thirdparty)
 
 # Main library / API

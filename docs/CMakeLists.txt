@@ -1,8 +1,10 @@
 option(DBPP_ENABLE_DOCS "Generate documentation using Doxygen" ${MASTER_PROJECT})
 
 if (DBPP_ENABLE_DOCS)
+    find_package(Doxygen)
     if (NOT DOXYGEN_FOUND)
-        message(FATAL_ERROR "Can't generate documentation, since doxygen was not found!")
+        message(WARNING "Can't generate documentation, since doxygen was not found!")
+        return()
     endif()
 
     list(APPEND DOXYGEN_ALIASES "includeexample{1}=\\par Example^^ \\includelineno \\1")
