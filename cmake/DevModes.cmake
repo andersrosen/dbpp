@@ -1,12 +1,5 @@
 string(TOUPPER ${PROJECT_NAME} UC_PROJECT_NAME)
 
-option(${UC_PROJECT_NAME}_ENABLE_SANITIZERS "Use address, leak and undefined behavior sanitizers" OFF)
-option(${UC_PROJECT_NAME}_ENABLE_COVERAGE "Compile with code coverage analysis" OFF)
-
-if (${UC_PROJECT}_ENABLE_SANITIZERS AND ${UC_PROJECT}_ENABLE_COVERAGE)
-    message(FATAL_ERROR "Coverage and sanitizers can't be enabled at the same time!")
-endif()
-
 set(GNU_CXX_WARNINGS
     -Wall
     -pedantic
@@ -95,7 +88,7 @@ set(${UC_PROJECT_NAME}_DEVMODES_CLANG_CXX_WARNINGS ${DEVMODES_CLANG_CXX_WARNINGS
     CACHE STRING "clang++ warnings to use in developer mode builds"
 )
 
-set(DEV_MODES Dev DevWithASAN DevWithCoverage)
+set(DEV_MODES DevWithASAN DevWithCoverage)
 get_property(IS_MULTI_CONFIG GLOBAL
     PROPERTY GENERATOR_IS_MULTI_CONFIG
 )
@@ -141,4 +134,8 @@ elseif(USING_APPLE_CLANG)
     set(CMAKE_CXX_FLAGS_DEVWITHSANITIZERS "${CMAKE_CXX_FLAGS_DEV} -fsanitize=address")
     set(CMAKE_CXX_FLAGS_DEVWITHCOVERAGE "${CMAKE_CXX_FLAGS_DEV} --coverage")
     set(CMAKE_EXE_LINKER_FLAGS_DEVWITHCOVERAGE "${CMAKE_EXE_LINKER_FLAGS_DEBUG} --coverage")
+else()
+    set(CMAKE_EXE_LINKER_FLAGS_DEV ${CMAKE_EXE_LINKER_FLAGS})
+    set(CMAKE_EXE_LINKER_FLAGS_DEVWITHASAN ${CMAKE_EXE_LINKER_FLAGS})
+    set(CMAKE_EXE_LINKER_FLAGS_DEVWITHCOVERAGE ${CMAKE_EXE_LINKER_FLAGS})
 endif()
