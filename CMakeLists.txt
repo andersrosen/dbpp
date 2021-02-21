@@ -25,6 +25,8 @@ if (NOT APPLE)
     set(CMAKE_INSTALL_RPATH $ORIGIN)
 endif()
 
+set(CMAKE_DEBUG_POSTFIX -d)
+
 # External Dependencies. Note that the adapters have additional dependencies defined in their own CMakeLists.txt
 find_package(Doxygen)
 add_subdirectory(thirdparty)
@@ -35,8 +37,14 @@ add_subdirectory(dbpp)
 # Adapters
 add_subdirectory(dbpp-sqlite3)
 
-#
+# Tests
 add_subdirectory(test)
+
+# When generating docs we'll always include everything, even if not all adapters are built
+set(DBPP_DOXYGEN_INPUT_DIRS
+    ${CMAKE_CURRENT_SOURCE_DIR}/dbpp/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/dbpp-sqlite3/include
+)
 add_subdirectory(docs)
 
 if (DBPP_ENABLE_INSTALL)
@@ -48,33 +56,11 @@ if (DBPP_ENABLE_INSTALL)
             ${CMAKE_CURRENT_SOURCE_DIR}/LICENSE
             ${CMAKE_CURRENT_SOURCE_DIR}/README.md
         DESTINATION ${CMAKE_INSTALL_DOCDIR}
+        COMPONENT dbpp_Runtime
     )
 endif()
 
 # Packaging
 if (MASTER_PROJECT)
-    set(CPACK_PROJECT_URL "https://github.com/andersrosen/dbpp")
-    set(CPACK_PACKAGE_VENDOR  "Anders Rosén")
-    set(CPACK_PACKAGE_CONTACT "Anders Rosén <panrosen@gmail.com>")
-
-    set(CPACK_GENERATOR "TBZ2")
-
-    set(CPACK_SOURCE_GENERATOR "TBZ2")
-    set(CPACK_SOURCE_PACKAGE_FILE_NAME "${PROJECT_NAME}-${PROJECT_VERSION}")
-
-    set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
-    set(CPACK_RESOURCE_FILE_README "${PROJECT_SOURCE_DIR}/README.md")
-
-    set(CPACK_SOURCE_IGNORE_FILES
-        "/\\\\.git/"
-        "/\\\\.gitmodules"
-        "/build/"
-        "/cmake-build-.*"
-        "/cmake-install-.*"
-        "/\\\\.idea"
-        "/\\\\.DS_Store"
-    )
-
-    include(CPack)
+    add_subdirectory(packaging)
 endif()
-

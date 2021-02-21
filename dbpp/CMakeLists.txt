@@ -43,51 +43,6 @@ set_target_properties(dbpp PROPERTIES
     VISIBILITY_INLINES hidden
 )
 
-if (DBPP_ENABLE_DEV_MODE)
-    target_compile_options(dbpp PRIVATE
-        -Wall
-        -pedantic
-        -pedantic-errors
-        -Wextra
-        -Wcast-align
-        -Wcast-qual
-        -Wconversion
-        -Wdisabled-optimization
-        -Werror
-        -Wfloat-equal
-        -Wformat=2
-        -Wformat-nonliteral
-        -Wformat-security
-        -Wformat-y2k
-        -Wimport
-        -Winit-self
-        -Winline
-        -Winvalid-pch
-        -Wmissing-field-initializers
-        -Wmissing-format-attribute
-        -Wmissing-include-dirs
-        -Wmissing-noreturn
-        -Wpacked
-        -Wpointer-arith
-        -Wredundant-decls
-        -Wshadow
-        -Wstack-protector
-        -Wstrict-aliasing=2
-        -Wswitch-default
-        -Wswitch-enum
-        -Wunreachable-code
-        -Wunused
-        -Wunused-parameter
-        -Wvariadic-macros
-        -Wwrite-strings
-        )
-endif()
-
-if (DBPP_ENABLE_COVERAGE)
-    target_compile_options(dbpp PUBLIC -coverage)
-    target_link_libraries(dbpp PUBLIC gcov)
-endif()
-
 # Generated files
 include(GenerateExportHeader)
 generate_export_header(dbpp EXPORT_FILE_NAME ${CMAKE_CURRENT_BINARY_DIR}/include/dbpp/exports.h)
@@ -136,7 +91,7 @@ if (DBPP_ENABLE_INSTALL)
         PUBLIC_HEADER
             DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/dbpp
             COMPONENT dbpp_Development
-        )
+    )
 
     # Package target exports
     install(EXPORT dbpp-exports
@@ -147,5 +102,8 @@ if (DBPP_ENABLE_INSTALL)
     )
 
     # Headers
-    install(DIRECTORY include/dbpp DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+    install(DIRECTORY include/dbpp
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+        COMPONENT dbpp_Development
+    )
 endif()

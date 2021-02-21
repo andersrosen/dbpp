@@ -15,7 +15,7 @@ if (DBPP_ENABLE_DOCS)
     set(DOXYGEN_USE_MDFILE_AS_MAINPAGE mainpage.md)
     set(DOXYGEN_PREDEFINED DOXYGEN_SHOULD_SEE_THIS)
 
-    doxygen_add_docs(docs mainpage.md ${CMAKE_CURRENT_SOURCE_DIR}/../include ALL)
+    doxygen_add_docs(docs mainpage.md ${DBPP_DOXYGEN_INPUT_DIRS} ALL)
 
     set(EXAMPLES
         examples/ConnectionClass.cpp

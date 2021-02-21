@@ -45,6 +45,7 @@ target_link_libraries(dbpp-sqlite3
 
 if (DBPP_ENABLE_INSTALL)
     # Install the libs and headers
+
     install(TARGETS dbpp-sqlite3
         EXPORT dbpp-sqlite3-exports
         RUNTIME
@@ -67,11 +68,12 @@ if (DBPP_ENABLE_INSTALL)
         FILE dbpp-sqlite3-targets.cmake
         NAMESPACE dbpp::
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/dbpp
-        COMPONENT dbpp_Development
+        COMPONENT dbpp_sqlite3_Development
     )
     configure_file(dbpp-sqlite3-config.cmake.in dbpp-sqlite3-config.cmake @ONLY)
     install(
         FILES ${CMAKE_CURRENT_BINARY_DIR}/dbpp-sqlite3-config.cmake
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/dbpp
+        COMPONENT dbpp_sqlite3_Development
     )
 endif()
