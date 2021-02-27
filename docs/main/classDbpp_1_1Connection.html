@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">dbpp
-   &#160;<span id="projectnumber">1.0.0</span>
+   &#160;<span id="projectnumber">0.0.1</span>
    </div>
   </td>
  </tr>
@@ -145,12 +145,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Adapter::Connection<
 <dl class="section since"><dt>Since</dt><dd>v1.0.0</dd></dl>
 <dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;dbpp/dbpp.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;dbpp/Sqlite3.h&gt;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;dbpp/sqlite3/Sqlite3.h&gt;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">namespace </span>Sqlite3 = <a class="code" href="namespaceDbpp_1_1Sqlite3.html">Dbpp::Sqlite3</a>;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keywordtype">int</span> main() {</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="classDbpp_1_1Connection.html">Dbpp::Connection</a> db = <a class="code" href="namespaceDbpp_1_1Sqlite3.html#a7b0a65a94d9fefa80fdbf2fb595cf7fe">Sqlite3::open</a>(<span class="stringliteral">&quot;:memory:&quot;</span>);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="classDbpp_1_1Connection.html">Dbpp::Connection</a> db = <a class="code" href="namespaceDbpp_1_1Sqlite3.html#a36b205afec3df69ffa0bc5fd046df641">Sqlite3::open</a>(<span class="stringliteral">&quot;:memory:&quot;</span>);</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    db.<a class="code" href="classDbpp_1_1Connection.html#a20481ff3f0ea4840b968ba2001950fe4">exec</a>(<span class="stringliteral">&quot;CREATE TABLE employee (&quot;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            <span class="stringliteral">&quot; id INTEGER PRIMARY KEY AUTOINCREMENT,&quot;</span></div>
@@ -721,15 +721,15 @@ template&lt;typename... Args&gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/runner/work/dbpp/dbpp/src/include/dbpp/<a class="el" href="Connection_8h_source.html">Connection.h</a></li>
+<li>/home/runner/work/dbpp/dbpp/src/dbpp/include/dbpp/<a class="el" href="Connection_8h_source.html">Connection.h</a></li>
 </ul>
 </div><!-- contents -->
 <div class="ttc" id="aclassDbpp_1_1Result_html_aa9cfbb3ce55711cbe366b1df172be48e"><div class="ttname"><a href="classDbpp_1_1Result.html#aa9cfbb3ce55711cbe366b1df172be48e">Dbpp::Result::get</a></div><div class="ttdeci">bool get(int index, short &amp;out)</div><div class="ttdoc">Retrieves a value from the result.</div></div>
-<div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html_a7b0a65a94d9fefa80fdbf2fb595cf7fe"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html#a7b0a65a94d9fefa80fdbf2fb595cf7fe">Dbpp::Sqlite3::open</a></div><div class="ttdeci">Connection DBPP_EXPORTED open(const std::filesystem::path &amp;file)</div><div class="ttdoc">Opens an SQLite3 database, and returns a connection to it.</div></div>
 <div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html">Dbpp::Sqlite3</a></div><div class="ttdoc">Namespace specific to the SQLite3 adapter.</div><div class="ttdef"><b>Definition:</b> Sqlite3.h:31</div></div>
-<div class="ttc" id="aclassDbpp_1_1Connection_html_a20481ff3f0ea4840b968ba2001950fe4"><div class="ttname"><a href="classDbpp_1_1Connection.html#a20481ff3f0ea4840b968ba2001950fe4">Dbpp::Connection::exec</a></div><div class="ttdeci">Result exec(std::string_view sql, Args &amp;&amp;... args)</div><div class="ttdoc">Creates and executes an SQL statement.</div><div class="ttdef"><b>Definition:</b> Connection.h:137</div></div>
-<div class="ttc" id="aclassDbpp_1_1Connection_html_a90cbb266585d9f0032ecdd1409070214"><div class="ttname"><a href="classDbpp_1_1Connection.html#a90cbb266585d9f0032ecdd1409070214">Dbpp::Connection::statement</a></div><div class="ttdeci">Statement statement(std::string_view sql, Args &amp;&amp;... args)</div><div class="ttdoc">Creates a new statement for the supplied string.</div><div class="ttdef"><b>Definition:</b> Connection.h:85</div></div>
-<div class="ttc" id="aclassDbpp_1_1Connection_html"><div class="ttname"><a href="classDbpp_1_1Connection.html">Dbpp::Connection</a></div><div class="ttdoc">A connection object represents a connection to a database.</div><div class="ttdef"><b>Definition:</b> Connection.h:41</div></div>
+<div class="ttc" id="aclassDbpp_1_1Connection_html_a20481ff3f0ea4840b968ba2001950fe4"><div class="ttname"><a href="classDbpp_1_1Connection.html#a20481ff3f0ea4840b968ba2001950fe4">Dbpp::Connection::exec</a></div><div class="ttdeci">Result exec(std::string_view sql, Args &amp;&amp;... args)</div><div class="ttdoc">Creates and executes an SQL statement.</div><div class="ttdef"><b>Definition:</b> Connection.h:138</div></div>
+<div class="ttc" id="aclassDbpp_1_1Connection_html_a90cbb266585d9f0032ecdd1409070214"><div class="ttname"><a href="classDbpp_1_1Connection.html#a90cbb266585d9f0032ecdd1409070214">Dbpp::Connection::statement</a></div><div class="ttdeci">Statement statement(std::string_view sql, Args &amp;&amp;... args)</div><div class="ttdoc">Creates a new statement for the supplied string.</div><div class="ttdef"><b>Definition:</b> Connection.h:86</div></div>
+<div class="ttc" id="aclassDbpp_1_1Connection_html"><div class="ttname"><a href="classDbpp_1_1Connection.html">Dbpp::Connection</a></div><div class="ttdoc">A connection object represents a connection to a database.</div><div class="ttdef"><b>Definition:</b> Connection.h:42</div></div>
+<div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html_a36b205afec3df69ffa0bc5fd046df641"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html#a36b205afec3df69ffa0bc5fd046df641">Dbpp::Sqlite3::open</a></div><div class="ttdeci">DBPP_SQLITE3_EXPORT Connection open(const std::filesystem::path &amp;file)</div><div class="ttdoc">Opens an SQLite3 database, and returns a connection to it.</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

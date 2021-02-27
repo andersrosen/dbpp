@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>dbpp: /home/runner/work/dbpp/dbpp/src/include/dbpp/Sqlite3.h Source File</title>
+<title>dbpp: /home/runner/work/dbpp/dbpp/src/dbpp-sqlite3/include/dbpp/sqlite3/Sqlite3.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">dbpp
-   &#160;<span id="projectnumber">1.0.0</span>
+   &#160;<span id="projectnumber">0.0.1</span>
    </div>
   </td>
  </tr>
@@ -62,7 +62,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_25302ac36fc683bdbd6214ae10ab801d.html">dbpp</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_8cc0af7c9611e7845d0c492c01da3689.html">dbpp-sqlite3</a></li><li class="navelem"><a class="el" href="dir_cd1bd37c53aa5b175d1e149588d69c47.html">include</a></li><li class="navelem"><a class="el" href="dir_a9acbf4e12c922514659984313a9a14f.html">dbpp</a></li><li class="navelem"><a class="el" href="dir_72346a9bc9ae3a5f7049667c0f9a4022.html">sqlite3</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -89,9 +89,9 @@ $(function() {
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;defs.h&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;Connection.h&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;dbpp/Connection.h&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;dbpp/sqlite3/exports.h&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;dbpp/util.h&gt;</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;filesystem&gt;</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
@@ -119,29 +119,29 @@ $(function() {
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;};</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<a class="code" href="classDbpp_1_1Connection.html">Connection</a> DBPP_EXPORTED <a class="code" href="namespaceDbpp_1_1Sqlite3.html#a7b0a65a94d9fefa80fdbf2fb595cf7fe">open</a>(<span class="keyword">const</span> std::filesystem::path &amp;file);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;DBPP_SQLITE3_EXPORT <a class="code" href="classDbpp_1_1Connection.html">Connection</a> <a class="code" href="namespaceDbpp_1_1Sqlite3.html#a36b205afec3df69ffa0bc5fd046df641">open</a>(<span class="keyword">const</span> std::filesystem::path &amp;file);</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<a class="code" href="classDbpp_1_1Connection.html">Connection</a> DBPP_EXPORTED <a class="code" href="namespaceDbpp_1_1Sqlite3.html#a7b0a65a94d9fefa80fdbf2fb595cf7fe">open</a>(<span class="keyword">const</span> std::filesystem::path &amp;file, <a class="code" href="namespaceDbpp_1_1Sqlite3.html#acf713b698926b509722ba8259283f802">OpenMode</a> mode);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;DBPP_SQLITE3_EXPORT <a class="code" href="classDbpp_1_1Connection.html">Connection</a> <a class="code" href="namespaceDbpp_1_1Sqlite3.html#a36b205afec3df69ffa0bc5fd046df641">open</a>(<span class="keyword">const</span> std::filesystem::path &amp;file, <a class="code" href="namespaceDbpp_1_1Sqlite3.html#acf713b698926b509722ba8259283f802">OpenMode</a> mode);</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<a class="code" href="classDbpp_1_1Connection.html">Connection</a> DBPP_EXPORTED <a class="code" href="namespaceDbpp_1_1Sqlite3.html#a7b0a65a94d9fefa80fdbf2fb595cf7fe">open</a>(<span class="keyword">const</span> std::filesystem::path &amp;file, <a class="code" href="namespaceDbpp_1_1Sqlite3.html#acf713b698926b509722ba8259283f802">OpenMode</a> mode, <a class="code" href="namespaceDbpp_1_1Sqlite3.html#a0523f25495dd773469ef8a426427acea">OpenFlag</a> flags);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;DBPP_SQLITE3_EXPORT <a class="code" href="classDbpp_1_1Connection.html">Connection</a> <a class="code" href="namespaceDbpp_1_1Sqlite3.html#a36b205afec3df69ffa0bc5fd046df641">open</a>(<span class="keyword">const</span> std::filesystem::path &amp;file, <a class="code" href="namespaceDbpp_1_1Sqlite3.html#acf713b698926b509722ba8259283f802">OpenMode</a> mode, <a class="code" href="namespaceDbpp_1_1Sqlite3.html#a0523f25495dd773469ef8a426427acea">OpenFlag</a> flags);</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keywordtype">void</span> DBPP_EXPORTED <a class="code" href="namespaceDbpp_1_1Sqlite3.html#ad0a8e63732bbf20b26161022a51979bd">backup</a>(<a class="code" href="classDbpp_1_1Connection.html">Dbpp::Connection</a> &amp;db, <span class="keyword">const</span> std::filesystem::path &amp;file, <span class="keywordtype">int</span> pagesPerStep, <span class="keywordtype">int</span> sleepTimePerStepMs);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;DBPP_SQLITE3_EXPORT <span class="keywordtype">void</span> <a class="code" href="namespaceDbpp_1_1Sqlite3.html#abe04bfcf9d76e289a26fb6938361a321">backup</a>(<a class="code" href="classDbpp_1_1Connection.html">Dbpp::Connection</a> &amp;db, <span class="keyword">const</span> std::filesystem::path &amp;file, <span class="keywordtype">int</span> pagesPerStep, <span class="keywordtype">int</span> sleepTimePerStepMs);</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keywordtype">void</span> DBPP_EXPORTED <a class="code" href="namespaceDbpp_1_1Sqlite3.html#ad0a8e63732bbf20b26161022a51979bd">backup</a>(<a class="code" href="classDbpp_1_1Connection.html">Dbpp::Connection</a> &amp;db, <span class="keyword">const</span> std::filesystem::path &amp;file, <span class="keywordtype">int</span> pagesPerStep, <span class="keywordtype">int</span> sleepTimePerStepMs, std::function&lt;<span class="keywordtype">void</span>(<span class="keywordtype">int</span>,<span class="keywordtype">int</span>)&gt; progressCallback);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;DBPP_SQLITE3_EXPORT <span class="keywordtype">void</span> <a class="code" href="namespaceDbpp_1_1Sqlite3.html#abe04bfcf9d76e289a26fb6938361a321">backup</a>(<a class="code" href="classDbpp_1_1Connection.html">Dbpp::Connection</a> &amp;db, <span class="keyword">const</span> std::filesystem::path &amp;file, <span class="keywordtype">int</span> pagesPerStep, <span class="keywordtype">int</span> sleepTimePerStepMs, std::function&lt;<span class="keywordtype">void</span>(<span class="keywordtype">int</span>,<span class="keywordtype">int</span>)&gt; progressCallback);</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;} <span class="comment">// namespace Dbpp::Sqlite3</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html_a0523f25495dd773469ef8a426427aceaa54f0a906e1d7cbe43867c40793c22c91"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html#a0523f25495dd773469ef8a426427aceaa54f0a906e1d7cbe43867c40793c22c91">Dbpp::Sqlite3::OpenFlag::PrivateCache</a></div><div class="ttdeci">@ PrivateCache</div><div class="ttdoc">The database is opened with shared cache enabled, overriding the default shared cache setting.</div></div>
-<div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html_a7b0a65a94d9fefa80fdbf2fb595cf7fe"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html#a7b0a65a94d9fefa80fdbf2fb595cf7fe">Dbpp::Sqlite3::open</a></div><div class="ttdeci">Connection DBPP_EXPORTED open(const std::filesystem::path &amp;file)</div><div class="ttdoc">Opens an SQLite3 database, and returns a connection to it.</div></div>
+<div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html_abe04bfcf9d76e289a26fb6938361a321"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html#abe04bfcf9d76e289a26fb6938361a321">Dbpp::Sqlite3::backup</a></div><div class="ttdeci">DBPP_SQLITE3_EXPORT void backup(Dbpp::Connection &amp;db, const std::filesystem::path &amp;file, int pagesPerStep, int sleepTimePerStepMs)</div><div class="ttdoc">Backs up an SQLite3 database.</div></div>
 <div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html">Dbpp::Sqlite3</a></div><div class="ttdoc">Namespace specific to the SQLite3 adapter.</div><div class="ttdef"><b>Definition:</b> Sqlite3.h:31</div></div>
-<div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html_ad0a8e63732bbf20b26161022a51979bd"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html#ad0a8e63732bbf20b26161022a51979bd">Dbpp::Sqlite3::backup</a></div><div class="ttdeci">void DBPP_EXPORTED backup(Dbpp::Connection &amp;db, const std::filesystem::path &amp;file, int pagesPerStep, int sleepTimePerStepMs)</div><div class="ttdoc">Backs up an SQLite3 database.</div></div>
 <div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html_acf713b698926b509722ba8259283f802a35922c9206688344b8c677f130135999"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html#acf713b698926b509722ba8259283f802a35922c9206688344b8c677f130135999">Dbpp::Sqlite3::OpenMode::ReadWriteCreate</a></div><div class="ttdeci">@ ReadWriteCreate</div><div class="ttdoc">Open it in read-write mode. Fail if it does not exist.</div></div>
 <div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html_acf713b698926b509722ba8259283f802a70a2a84088d405a2e3f1e3accaa16723"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html#acf713b698926b509722ba8259283f802a70a2a84088d405a2e3f1e3accaa16723">Dbpp::Sqlite3::OpenMode::ReadWrite</a></div><div class="ttdeci">@ ReadWrite</div><div class="ttdoc">Open it in read only mode. Fail if it does not exist.</div></div>
 <div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html_acf713b698926b509722ba8259283f802"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html#acf713b698926b509722ba8259283f802">Dbpp::Sqlite3::OpenMode</a></div><div class="ttdeci">OpenMode</div><div class="ttdoc">Specifies the mode in which to open an SQLite3 database.</div><div class="ttdef"><b>Definition:</b> Sqlite3.h:36</div></div>
 <div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html_a0523f25495dd773469ef8a426427aceaadd8141c2dbba4f369c304f748a6badf6"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html#a0523f25495dd773469ef8a426427aceaadd8141c2dbba4f369c304f748a6badf6">Dbpp::Sqlite3::OpenFlag::SharedCache</a></div><div class="ttdeci">@ SharedCache</div><div class="ttdoc">The new database connection will use the &quot;serialized&quot; threading mode. This means the multiple threads...</div></div>
 <div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html_a0523f25495dd773469ef8a426427acea"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html#a0523f25495dd773469ef8a426427acea">Dbpp::Sqlite3::OpenFlag</a></div><div class="ttdeci">OpenFlag</div><div class="ttdoc">Specifies how to open an SQLite3 database.</div><div class="ttdef"><b>Definition:</b> Sqlite3.h:45</div></div>
 <div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html_a0523f25495dd773469ef8a426427aceaa3322fce9aa781563c086ffd3c13da8b4"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html#a0523f25495dd773469ef8a426427aceaa3322fce9aa781563c086ffd3c13da8b4">Dbpp::Sqlite3::OpenFlag::FullMutex</a></div><div class="ttdeci">@ FullMutex</div><div class="ttdoc">The new database connection will use the &quot;multi-thread&quot; threading mode. This means that separate thre...</div></div>
-<div class="ttc" id="aclassDbpp_1_1Connection_html"><div class="ttname"><a href="classDbpp_1_1Connection.html">Dbpp::Connection</a></div><div class="ttdoc">A connection object represents a connection to a database.</div><div class="ttdef"><b>Definition:</b> Connection.h:41</div></div>
+<div class="ttc" id="aclassDbpp_1_1Connection_html"><div class="ttname"><a href="classDbpp_1_1Connection.html">Dbpp::Connection</a></div><div class="ttdoc">A connection object represents a connection to a database.</div><div class="ttdef"><b>Definition:</b> Connection.h:42</div></div>
+<div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html_a36b205afec3df69ffa0bc5fd046df641"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html#a36b205afec3df69ffa0bc5fd046df641">Dbpp::Sqlite3::open</a></div><div class="ttdeci">DBPP_SQLITE3_EXPORT Connection open(const std::filesystem::path &amp;file)</div><div class="ttdoc">Opens an SQLite3 database, and returns a connection to it.</div></div>
 <div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html_a0523f25495dd773469ef8a426427aceaa4789f23283b3a61f858b641a1bef19a3"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html#a0523f25495dd773469ef8a426427aceaa4789f23283b3a61f858b641a1bef19a3">Dbpp::Sqlite3::OpenFlag::Memory</a></div><div class="ttdeci">@ Memory</div><div class="ttdoc">The filename can be interpreted as a URI if this flag is set.</div></div>
 <div class="ttc" id="anamespaceDbpp_1_1Sqlite3_html_a0523f25495dd773469ef8a426427aceaaed897a216de36c7c934c4baa02b4fea7"><div class="ttname"><a href="namespaceDbpp_1_1Sqlite3.html#a0523f25495dd773469ef8a426427aceaaed897a216de36c7c934c4baa02b4fea7">Dbpp::Sqlite3::OpenFlag::NoMutex</a></div><div class="ttdeci">@ NoMutex</div><div class="ttdoc">The database will be opened as an in-memory database.</div></div>
 <!-- start footer part -->
