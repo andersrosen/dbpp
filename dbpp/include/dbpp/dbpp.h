@@ -17,30 +17,8 @@
 
 #pragma once
 
-#include <dbpp/dbpp.h>
-#include <dbpp/sqlite3/Sqlite3.h>
-
-class Persons {
-    struct Person
-    {
-        std::string name;
-        int age;
-        std::int64_t id;
-        std::optional<std::int64_t> spouseId;
-    };
-
-    Person johnDoe_{"John Doe", 48, 0, std::nullopt};
-    Person janeDoe_{"Jane Doe", 45, 0, std::nullopt};
-    Person andersSvensson_{"Anders Svensson", 38, 0, std::nullopt};
-
-public:
-    Dbpp::Connection db;
-
-    inline static const auto Count = 3;
-    inline const Person& johnDoe() { return johnDoe_; }
-    inline const Person& janeDoe() { return janeDoe_; }
-    inline const Person& andersSvensson() { return andersSvensson_; }
-
-    Persons();
-    void populate();
-};
+#include <dbpp/config.h>
+#include <dbpp/Connection.h>
+#include <dbpp/Statement.h>
+#include <dbpp/Result.h>
+#include <dbpp/Exception.h>

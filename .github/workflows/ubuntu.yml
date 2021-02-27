@@ -23,8 +23,13 @@ jobs:
           submodules: true
           path: src
 
-      - name: Configure CMake
-        run: cmake -B build -S src -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/install
+      - name: Configure CMake with docs generation enabled
+        if: ${{ github.event_name == 'push' }}
+        run: cmake -B build -S src -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/install -DDBPP_ENABLE_DOCS=ON
+
+      - name: Configure CMake without docs generation enabled
+        if: ${{ github.event_name != 'push' }}
+        run: cmake -B build -S src -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/install -DDBPP_ENABLE_DOCS=OFF
 
       - name: Build
         run: cmake --build build

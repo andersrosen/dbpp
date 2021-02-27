@@ -6,208 +6,60 @@ if (NOT DEFINED PROJECT_NAME)
     set(MASTER_PROJECT ON)
 endif()
 
-# Get version from the main header
-file(READ include/dbpp/defs.h dbpp_defs_h)
-if (NOT dbpp_defs_h MATCHES "DBPP_VERSION ([0-9]+)([0-9][0-9])([0-9][0-9])")
-  message(FATAL_ERROR "Cannot get DBPP_VERSION from dbpp/defs.h")
-endif ()
-# Use math to skip leading zeroes if any.
-math(EXPR CPACK_PACKAGE_VERSION_MAJOR ${CMAKE_MATCH_1})
-math(EXPR CPACK_PACKAGE_VERSION_MINOR ${CMAKE_MATCH_2})
-math(EXPR CPACK_PACKAGE_VERSION_PATCH ${CMAKE_MATCH_3})
-
-project(dbpp VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}" LANGUAGES CXX C)
+project(dbpp VERSION 0.0.1 LANGUAGES CXX C)
 message(STATUS "${PROJECT_NAME} version: ${PROJECT_VERSION}")
 
 include(GNUInstallDirs)
 
-# Settings
-set(DBPP_PKGCONFIG_DIR "${CMAKE_INSTALL_DATADIR}/pkgconfig" CACHE PATH
-    "Installation directory for pkgconfig (.pc) files.")
-set(CMAKE_BUILD_TYPE Release CACHE STRING
-    "Choose the type of build, options are: None (CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel.")
+# Settings. Note that additional settings are added by in the subdirectories CMakeLists.txt
 option(DBPP_ENABLE_INSTALL "Generate install target" ${MASTER_PROJECT})
-option(DBPP_ENABLE_TESTS "Build tests" ${MASTER_PROJECT})
-option(DBPP_ENABLE_DOCS "Generate documentation using Doxygen" ${MASTER_PROJECT})
-option(DBPP_ENABLE_DEV_MODE "Enable strict compiler warnings" OFF)
-option(DBPP_ENABLE_SANITIZERS "Use address, leak and undefined behavior sanitizers" ${DBPP_ENABLE_DEV_MODE})
-option(DBPP_ENABLE_COVERAGE "Compile with code coverage analysis" OFF)
-option(DBPP_USE_BUNDLED_SQLITE "Use the version of SQLite that's bundled with dbpp" OFF)
 
 # CMake script include path
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
-# External Dependencies
-find_package(Doxygen)
-if (NOT DBPP_USE_BUNDLED_SQLITE)
-    find_package(SQLite3 REQUIRED)
+include(DevModes)
+
+if (NOT APPLE)
+    # Tell the runtime loader to look for dependent libraries in the directory where this library is
+    # See Craig Scott's CppCon 2019 talk for a good explanation: https://www.youtube.com/watch?v=m0DwB4OvDXk
+    set(CMAKE_INSTALL_RPATH $ORIGIN)
 endif()
 
+set(CMAKE_DEBUG_POSTFIX -d)
+
+# External Dependencies. Note that the adapters have additional dependencies defined in their own CMakeLists.txt
 add_subdirectory(thirdparty)
 
-# Target definition
-set(CMAKE_DEBUG_POSTFIX "-d")
+# Main library / API
+add_subdirectory(dbpp)
 
-add_library(dbpp)
-add_library(${PROJECT_NAME}::dbpp ALIAS dbpp)
+# Adapters
+add_subdirectory(dbpp-sqlite3)
 
-target_compile_features(dbpp PUBLIC cxx_std_17)
+# Tests
+add_subdirectory(test)
 
-if (${BUILD_SHARED_LIBS})
-    target_compile_definitions(dbpp PUBLIC $<BUILD_INTERFACE:BUILDING_DBPP_DLL>)
-endif()
-
-set_target_properties(dbpp PROPERTIES
-    VERSION ${PROJECT_VERSION} SOVERSION ${CPACK_PACKAGE_VERSION_MAJOR}
+# When generating docs we'll always include everything, even if not all adapters are built
+set(DBPP_DOXYGEN_INPUT_DIRS
+    ${CMAKE_CURRENT_SOURCE_DIR}/dbpp/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/dbpp-sqlite3/include
 )
-
-target_link_libraries(dbpp PUBLIC SQLite::SQLite3)
-
-if (DBPP_ENABLE_DEV_MODE)
-    target_compile_options(dbpp PRIVATE
-        -Wall
-        -pedantic
-        -pedantic-errors
-        -Wextra
-        -Wcast-align
-        -Wcast-qual
-        -Wconversion
-        -Wdisabled-optimization
-        -Werror
-        -Wfloat-equal
-        -Wformat=2
-        -Wformat-nonliteral
-        -Wformat-security
-        -Wformat-y2k
-        -Wimport
-        -Winit-self
-        -Winline
-        -Winvalid-pch
-        -Wmissing-field-initializers
-        -Wmissing-format-attribute
-        -Wmissing-include-dirs
-        -Wmissing-noreturn
-        -Wpacked
-        -Wpointer-arith
-        -Wredundant-decls
-        -Wshadow
-        -Wstack-protector
-        -Wstrict-aliasing=2
-        -Wswitch-default
-        -Wswitch-enum
-        -Wunreachable-code
-        -Wunused
-        -Wunused-parameter
-        -Wvariadic-macros
-        -Wwrite-strings
-    )
-endif()
-
-if (DBPP_ENABLE_COVERAGE)
-    target_compile_options(dbpp PUBLIC -coverage)
-    target_link_libraries(dbpp PUBLIC gcov)
-endif()
-
-if (DBPP_ENABLE_SANITIZERS)
-    target_compile_options(dbpp PUBLIC -fsanitize=address -fsanitize=leak -fsanitize=undefined -g)
-    target_link_options(dbpp PUBLIC -fsanitize=address -fsanitize=leak -fsanitize=undefined -g)
-endif()
-
-add_subdirectory(include)
-add_subdirectory(src)
-
-# Testing
-if (DBPP_ENABLE_TESTS)
-    enable_testing()
-    add_subdirectory(test)
-endif()
-
-# Docs
-if (DBPP_ENABLE_DOCS AND DOXYGEN_FOUND)
-    add_subdirectory(docs)
-endif()
+add_subdirectory(docs)
 
 if (DBPP_ENABLE_INSTALL)
-    # Generate CMake package configuration files, to support find_package()
-    set(version_config "${PROJECT_BINARY_DIR}/${PROJECT_NAME}-config-version.cmake")
-    set(project_config "${PROJECT_BINARY_DIR}/${PROJECT_NAME}-config.cmake")
-    set(targets_export_name "dbpp-targets")
-    set(namespace "${PROJECT_NAME}::")
-    include(CMakePackageConfigHelpers)
+    # Note that the sub directories include install instructions for their own stuff
 
-    write_basic_package_version_file(${version_config}
-        VERSION ${PROJECT_VERSION}
-        COMPATIBILITY SameMajorVersion
-    )
-    configure_package_config_file(
-        ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}-config.cmake.in
-        ${project_config}
-        INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}"
-    )
-
-    # Also support pkgconfig
-    configure_file(
-        ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}.pc.in
-        ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pc
-        @ONLY
-    )
-
-    # Installation
-    install(TARGETS dbpp
-        EXPORT ${targets_export_name}
-        LIBRARY
-            DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        ARCHIVE
-            DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    )
-    install(EXPORT ${targets_export_name}
-        FILE ${targets_export_name}.cmake
-        NAMESPACE ${namespace}
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
-    )
-    install(
-        FILES
-            ${project_config}
-            ${version_config}
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
-    )
+    # Meta files that should always be installed
     install(
         FILES
             ${CMAKE_CURRENT_SOURCE_DIR}/LICENSE
             ${CMAKE_CURRENT_SOURCE_DIR}/README.md
         DESTINATION ${CMAKE_INSTALL_DOCDIR}
-    )
-    install(
-        FILES
-            ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pc
-        DESTINATION ${DBPP_PKGCONFIG_DIR}
+        COMPONENT dbpp_Runtime
     )
 endif()
 
 # Packaging
 if (MASTER_PROJECT)
-    set(CPACK_PROJECT_URL "https://github.com/andersrosen/dbpp")
-    set(CPACK_PACKAGE_VENDOR  "Anders Rosén")
-    set(CPACK_PACKAGE_CONTACT "Anders Rosén <panrosen@gmail.com>")
-
-    set(CPACK_GENERATOR "TBZ2")
-
-    set(CPACK_SOURCE_GENERATOR "TBZ2")
-    set(CPACK_SOURCE_PACKAGE_FILE_NAME "${PROJECT_NAME}-${PROJECT_VERSION}")
-
-    set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
-    set(CPACK_RESOURCE_FILE_README "${PROJECT_SOURCE_DIR}/README.md")
-
-    set(CPACK_SOURCE_IGNORE_FILES
-        "/\\\\.git/"
-        "/\\\\.gitmodules"
-        "/build/"
-        "/cmake-build-.*"
-        "/cmake-install-.*"
-        "/\\\\.idea"
-        "/\\\\.DS_Store"
-    )
-
-    include(CPack)
+    add_subdirectory(packaging)
 endif()
-

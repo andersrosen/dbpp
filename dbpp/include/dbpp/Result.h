@@ -17,11 +17,12 @@
 
 #pragma once
 
-#include "defs.h"
-
-#include "Exception.h"
-#include "adapter/Result.h"
-#include "adapter/Types.h"
+#include <dbpp/config.h>
+#include <dbpp/Exception.h>
+#include <dbpp/exports.h>
+#include <dbpp/adapter/Result.h>
+#include <dbpp/util.h>
+#include <dbpp/adapter/Types.h>
 
 #include <filesystem>
 #include <optional>
@@ -63,7 +64,7 @@ namespace Detail {
 /// \brief Represents a single result (row) of a query
 ///
 /// \since v1.0.0
-class DBPP_EXPORTED Result {
+class DBPP_EXPORT Result {
     DBPP_NO_COPY_SEMANTICS(Result);
 
     friend class Statement;

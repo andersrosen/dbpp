@@ -1,6 +1,6 @@
 #include <iostream>
 #include <dbpp/dbpp.h>
-#include <dbpp/Sqlite3.h>
+#include <dbpp/sqlite3/Sqlite3.h>
 
 namespace Sqlite3 = Dbpp::Sqlite3;
 

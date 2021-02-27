@@ -17,9 +17,22 @@
 
 #pragma once
 
-#include "defs.h"
+#include <dbpp/config.h>
 
-#include "Connection.h"
-#include "Statement.h"
-#include "Result.h"
-#include "Exception.h"
+#include <memory>
+
+namespace Dbpp::Adapter {
+
+class Statement;
+using StatementPtr = std::shared_ptr<Statement>;
+
+class PreparedStatement;
+using PreparedStatementPtr = std::shared_ptr<PreparedStatement>;
+
+class Connection;
+using ConnectionPtr = std::shared_ptr<Connection>;
+
+class Result;
+using ResultPtr = std::shared_ptr<Result>;
+
+} // namespace Dbpp::Adapter
