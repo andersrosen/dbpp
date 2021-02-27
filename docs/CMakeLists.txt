@@ -1,4 +1,4 @@
-option(DBPP_ENABLE_DOCS "Generate documentation using Doxygen" ${MASTER_PROJECT})
+option(DBPP_ENABLE_DOCS "Generate documentation using Doxygen" OFF)
 
 if (DBPP_ENABLE_DOCS)
     find_package(Doxygen)
